@@ -186,7 +186,12 @@
       <div class="topbar-title" id="topbarTitle">Visão Geral</div>
     </div>
     <div class="topbar-right">
-      <div class="avatar-sm" id="currentUserAvatar">--</div>
+      <div style="position:relative;cursor:pointer;" onclick="toggleNotifPanel()" title="Notificações">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="var(--text2)" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span id="notifBadge" style="display:none;position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:10px;min-width:16px;height:16px;border-radius:8px;align-items:center;justify-content:center;padding:0 3px;">0</span>
+      </div>
+      <div id="notifPanel" style="display:none;position:absolute;top:50px;right:90px;width:300px;background:var(--bg2);border:1px solid var(--border2);border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,.5);z-index:200;max-height:360px;overflow-y:auto;"></div>
+      <div class="avatar-sm" id="currentUserAvatar" onclick="openProfileModal()" style="cursor:pointer;" title="Meu perfil">--</div>
       <div class="logout-link" onclick="logout()">Sair</div>
     </div>
   </div>
@@ -335,9 +340,15 @@
           <input type="text" id="c-slug" placeholder="Ex: icasas">
         </div>
       </div>
-      <div class="form-group">
-        <label>Link do CRM (GitHub Pages)</label>
-        <input type="url" id="c-repo" placeholder="https://usuario.github.io/repo/">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Link do CRM (GitHub Pages)</label>
+          <input type="url" id="c-repo" placeholder="https://usuario.github.io/repo/">
+        </div>
+        <div class="form-group">
+          <label>WhatsApp do cliente</label>
+          <input type="text" id="c-whatsapp" placeholder="Ex: 5511999999999">
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -413,6 +424,34 @@
   </div>
 </div>
 
+<!-- MODAL: MEU PERFIL -->
+<div class="modal-overlay" id="profileModal">
+  <div class="modal" style="width:380px;">
+    <div class="modal-header">
+      <div class="modal-title">Meu perfil</div>
+      <button class="modal-close" onclick="closeModal('profileModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" id="profile-name">
+      </div>
+      <div class="form-group">
+        <label>Nova senha (deixe em branco para não alterar)</label>
+        <input type="password" id="profile-password" placeholder="••••••••">
+      </div>
+      <div class="form-group">
+        <label>Confirmar nova senha</label>
+        <input type="password" id="profile-password-confirm" placeholder="••••••••">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('profileModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveProfile()">Salvar</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -448,13 +487,14 @@ async function doLogin(){
 function onLoginSuccess(){
   document.getElementById('loginScreen').classList.remove('show');
   document.getElementById('currentUserAvatar').textContent = initials(currentUser.name);
-  loadAll();
+  loadAll().then(()=>startNotificationPolling());
 }
 function logout(){
   currentUser=null;clearSession();
   document.getElementById('loginUser').value='';
   document.getElementById('loginPass').value='';
   document.getElementById('loginScreen').classList.add('show');
+  stopNotificationPolling();
 }
 function initials(name){return (name||'?').split(' ').map(p=>p[0]).join('').substring(0,2).toUpperCase();}
 
@@ -605,6 +645,7 @@ function renderClientsTable(){
       <td>
         <div class="row-actions">
           <button class="btn btn-ghost btn-sm" onclick="editClient('${c.id}')">Editar</button>
+          ${c.whatsapp ? `<a href="https://wa.me/${c.whatsapp}" target="_blank" class="btn btn-sm" style="background:rgba(37,211,102,.15);color:#25d366;border:1px solid rgba(37,211,102,.2);text-decoration:none;">WhatsApp</a>` : ''}
           ${c.status==='blocked'
             ? `<button class="btn btn-green btn-sm" onclick="unblockClient('${c.id}')">Desbloquear</button>`
             : `<button class="btn btn-danger btn-sm" onclick="blockClient('${c.id}')">Bloquear</button>`}
@@ -622,6 +663,7 @@ function openClientModal(){
   document.getElementById('c-name').value='';
   document.getElementById('c-slug').value='';
   document.getElementById('c-repo').value='';
+  document.getElementById('c-whatsapp').value='';
   document.getElementById('c-supaurl').value='';
   document.getElementById('c-supakey').value='';
   document.getElementById('c-status').value='trial';
@@ -639,6 +681,7 @@ function editClient(id){
   document.getElementById('c-name').value=c.client_name;
   document.getElementById('c-slug').value=c.slug;
   document.getElementById('c-repo').value=c.repo_url||'';
+  document.getElementById('c-whatsapp').value=c.whatsapp||'';
   document.getElementById('c-supaurl').value=c.supabase_url||'';
   document.getElementById('c-supakey').value=c.supabase_key||'';
   document.getElementById('c-status').value=c.status;
@@ -663,6 +706,7 @@ async function saveClient(){
     client_name: name,
     slug: slug,
     repo_url: document.getElementById('c-repo').value.trim(),
+    whatsapp: document.getElementById('c-whatsapp').value.trim().replace(/\D/g,''),
     supabase_url: document.getElementById('c-supaurl').value.trim(),
     supabase_key: document.getElementById('c-supakey').value.trim(),
     status: document.getElementById('c-status').value,
@@ -750,6 +794,125 @@ function renderPaymentsTable(){
   </tr>`).join('');
 }
 
+// ---------- NOTIFICAÇÕES (som + sino) ----------
+let notifPollInterval = null;
+let notifLastSeen = {}; // { clientId: timestamp da última mensagem já notificada }
+let notifQueue = []; // mensagens não lidas acumuladas, pra exibir no painel do sino
+
+const NOTIF_STORAGE_KEY = 'orkia_master_notif_lastseen';
+
+function loadNotifLastSeen(){
+  try{ notifLastSeen = JSON.parse(localStorage.getItem(NOTIF_STORAGE_KEY)) || {}; }
+  catch(e){ notifLastSeen = {}; }
+}
+function saveNotifLastSeen(){
+  localStorage.setItem(NOTIF_STORAGE_KEY, JSON.stringify(notifLastSeen));
+}
+
+function startNotificationPolling(){
+  loadNotifLastSeen();
+  checkNewSupportMessages(); // checagem imediata, sem esperar o primeiro intervalo
+  if(notifPollInterval) clearInterval(notifPollInterval);
+  notifPollInterval = setInterval(checkNewSupportMessages, 15000);
+}
+function stopNotificationPolling(){
+  if(notifPollInterval){ clearInterval(notifPollInterval); notifPollInterval = null; }
+}
+
+async function checkNewSupportMessages(){
+  const clientsWithSupabase = allClients.filter(c=>c.supabase_url && c.supabase_key);
+  for(const client of clientsWithSupabase){
+    try{
+      const data = await fetchClientSupportTable(client, 'sender=eq.client&select=*&order=created_at.desc&limit=10');
+      if(!data.length) continue;
+      const lastSeen = notifLastSeen[client.id] || null;
+      const newOnes = lastSeen ? data.filter(m=>new Date(m.created_at) > new Date(lastSeen)) : [data[0]]; // primeira vez: só pega a mais recente, evita notificar histórico antigo todo de uma vez
+      if(newOnes.length){
+        newOnes.reverse().forEach(m=>{
+          notifQueue.unshift({ clientId: client.id, clientName: client.client_name, message: m.message, senderName: m.sender_name, createdAt: m.created_at });
+        });
+        notifLastSeen[client.id] = data[0].created_at;
+        saveNotifLastSeen();
+        playNotifSound();
+      }
+    }catch(e){
+      console.warn('Erro ao checar notificações de', client.client_name, e.message);
+    }
+  }
+  notifQueue = notifQueue.slice(0, 30); // limita histórico exibido no sino
+  updateNotifBadge();
+}
+
+function playNotifSound(){
+  try{
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+    osc.frequency.setValueAtTime(660, ctx.currentTime + 0.1);
+    gain.gain.setValueAtTime(0.25, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.3);
+  }catch(e){
+    // Navegador pode bloquear áudio antes de qualquer interação do usuário — falha silenciosa
+  }
+}
+
+function updateNotifBadge(){
+  const badge = document.getElementById('notifBadge');
+  if(notifQueue.length){
+    badge.style.display='flex';
+    badge.textContent = notifQueue.length > 9 ? '9+' : notifQueue.length;
+  } else {
+    badge.style.display='none';
+  }
+}
+
+function toggleNotifPanel(){
+  const panel = document.getElementById('notifPanel');
+  const isOpen = panel.style.display === 'block';
+  panel.style.display = isOpen ? 'none' : 'block';
+  if(!isOpen) renderNotifPanel();
+}
+
+function renderNotifPanel(){
+  const panel = document.getElementById('notifPanel');
+  if(!notifQueue.length){
+    panel.innerHTML = '<div style="padding:20px 16px;text-align:center;color:var(--text3);font-size:12px;">Nenhuma notificação nova.</div>';
+    return;
+  }
+  panel.innerHTML = notifQueue.map(n=>{
+    const time = new Date(n.createdAt).toLocaleString('pt-BR',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'});
+    return `<div onclick="openNotifClient('${n.clientId}')" style="padding:10px 16px;border-bottom:1px solid var(--border);cursor:pointer;">
+      <div style="font-size:12px;font-weight:600;">${n.clientName}</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${n.senderName||'Cliente'}: ${n.message}</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:2px;">${time}</div>
+    </div>`;
+  }).join('');
+}
+
+function openNotifClient(clientId){
+  toggleNotifPanel();
+  showPage('support');
+  // pequeno delay pra garantir que a lista de clientes da aba Suporte já renderizou
+  setTimeout(()=>selectSupportClient(clientId), 150);
+  notifQueue = notifQueue.filter(n=>n.clientId !== clientId);
+  updateNotifBadge();
+}
+
+// Fecha o painel de notificações ao clicar fora dele
+document.addEventListener('click', (e)=>{
+  const panel = document.getElementById('notifPanel');
+  const bell = e.target.closest('[onclick="toggleNotifPanel()"]');
+  if(panel && panel.style.display==='block' && !panel.contains(e.target) && !bell){
+    panel.style.display='none';
+  }
+});
+
 // ---------- SUPPORT (multi-cliente) ----------
 let supportSelectedClient = null;
 let supportUnreadCounts = {};
@@ -801,6 +964,11 @@ async function selectSupportClient(clientId){
   document.getElementById('supportChatHeader').textContent = supportSelectedClient.client_name;
   document.getElementById('supportChatInputBar').style.display='flex';
   await loadSupportChatMessages();
+  // Marca como visto: remove da fila de notificações e atualiza o badge da lista
+  notifQueue = notifQueue.filter(n=>n.clientId !== clientId);
+  updateNotifBadge();
+  const badge = document.querySelector(`.support-badge-${clientId}`);
+  if(badge) badge.style.display='none';
 }
 
 async function loadSupportChatMessages(){
@@ -864,6 +1032,37 @@ async function sendSupportReply(){
 }
 
 // ---------- UTILS ----------
+// ---------- PERFIL ----------
+function openProfileModal(){
+  document.getElementById('profile-name').value = currentUser.name;
+  document.getElementById('profile-password').value = '';
+  document.getElementById('profile-password-confirm').value = '';
+  document.getElementById('profileModal').classList.add('open');
+}
+
+async function saveProfile(){
+  const name = document.getElementById('profile-name').value.trim();
+  const pass = document.getElementById('profile-password').value;
+  const passConfirm = document.getElementById('profile-password-confirm').value;
+
+  if(!name){ showToast('Informe um nome.', 'error'); return; }
+  if(pass && pass !== passConfirm){ showToast('As senhas não coincidem.', 'error'); return; }
+  if(pass && pass.length < 4){ showToast('A senha deve ter pelo menos 4 caracteres.', 'error'); return; }
+
+  const data = { name };
+  if(pass) data.password = pass;
+
+  const { error } = await db.from('master_admins').update(data).eq('id', currentUser.id);
+  if(error){ showToast('Erro ao salvar perfil: '+error.message, 'error'); return; }
+
+  currentUser = { ...currentUser, ...data };
+  saveSession(currentUser);
+  document.getElementById('currentUserAvatar').textContent = initials(currentUser.name);
+  await loadAdmins();
+  showToast('Perfil atualizado!', 'success');
+  closeModal('profileModal');
+}
+
 function closeModal(id){document.getElementById(id).classList.remove('open');}
 function showToast(msg, type='success'){
   const t=document.getElementById('toast');
