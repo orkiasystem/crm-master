@@ -195,6 +195,7 @@
     <div class="tab active" id="tab-overview" onclick="showPage('overview')">Visão Geral</div>
     <div class="tab" id="tab-clients" onclick="showPage('clients')">Clientes</div>
     <div class="tab" id="tab-payments" onclick="showPage('payments')">Pagamentos</div>
+    <div class="tab" id="tab-support" onclick="showPage('support')">Suporte</div>
   </div>
 
   <!-- PAGE: OVERVIEW -->
@@ -291,6 +292,26 @@
         </table>
       </div>
       <div id="paymentsEmpty" class="empty-state" style="display:none;"><p>Nenhum pagamento registrado ainda.</p></div>
+    </div>
+  </div>
+
+  <!-- PAGE: SUPPORT -->
+  <div class="page" id="page-support">
+    <div style="display:grid;grid-template-columns:260px 1fr;gap:16px;height:calc(100vh - 180px);">
+      <div class="card" style="padding:0;overflow:hidden;display:flex;flex-direction:column;">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--border);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;">Clientes</div>
+        <div id="supportClientsList" style="flex:1;overflow-y:auto;"></div>
+      </div>
+      <div class="card" style="padding:0;display:flex;flex-direction:column;overflow:hidden;">
+        <div id="supportChatHeader" style="padding:14px 16px;border-bottom:1px solid var(--border);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;color:var(--text3);">
+          Selecione um cliente para ver as mensagens
+        </div>
+        <div id="supportChatMessages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;"></div>
+        <div id="supportChatInputBar" style="display:none;padding:12px;border-top:1px solid var(--border);gap:8px;">
+          <input type="text" id="supportReplyInput" placeholder="Responder..." style="flex:1;" onkeydown="if(event.key==='Enter')sendSupportReply()">
+          <button class="btn btn-primary btn-sm" onclick="sendSupportReply()">Enviar</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -461,8 +482,9 @@ function showPage(page){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   document.getElementById('tab-'+page).classList.add('active');
-  const titles={overview:'Visão Geral',clients:'Clientes',payments:'Pagamentos'};
+  const titles={overview:'Visão Geral',clients:'Clientes',payments:'Pagamentos',support:'Suporte'};
   document.getElementById('topbarTitle').textContent = titles[page];
+  if(page==='support') loadSupportClients();
 }
 
 // ---------- LOAD DATA ----------
@@ -726,6 +748,119 @@ function renderPaymentsTable(){
     <td>${fmtDate(p.next_due_date)}</td>
     <td>${p.notes||'—'}</td>
   </tr>`).join('');
+}
+
+// ---------- SUPPORT (multi-cliente) ----------
+let supportSelectedClient = null;
+let supportUnreadCounts = {};
+
+async function loadSupportClients(){
+  const clientsWithSupabase = allClients.filter(c=>c.supabase_url && c.supabase_key);
+  const list = document.getElementById('supportClientsList');
+  if(!clientsWithSupabase.length){
+    list.innerHTML = '<div class="empty-state" style="padding:24px 16px;"><p style="font-size:12px;">Nenhum cliente com Supabase cadastrado.</p></div>';
+    return;
+  }
+  list.innerHTML = clientsWithSupabase.map(c=>`
+    <div class="support-client-item" data-id="${c.id}" onclick="selectSupportClient('${c.id}')" style="padding:12px 16px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .1s;">
+      <span style="font-size:13px;">${c.client_name}</span>
+      <span class="support-badge-${c.id}" style="display:none;background:var(--accent);color:#fff;font-size:10px;padding:1px 7px;border-radius:10px;"></span>
+    </div>
+  `).join('');
+  // Carrega contagem de não lidas em paralelo, sem bloquear a lista
+  clientsWithSupabase.forEach(c=>checkSupportUnread(c));
+}
+
+async function fetchClientSupportTable(client, params=''){
+  const url = `${client.supabase_url}/rest/v1/support_messages?${params}`;
+  const res = await fetch(url, {
+    headers: { apikey: client.supabase_key, Authorization: `Bearer ${client.supabase_key}` }
+  });
+  if(!res.ok) throw new Error('Falha ao consultar '+client.client_name);
+  return res.json();
+}
+
+async function checkSupportUnread(client){
+  try{
+    const data = await fetchClientSupportTable(client, 'sender=eq.client&select=id&order=created_at.desc&limit=5');
+    // Heurística simples: mostra contagem de mensagens do cliente nas últimas 5 (sem campo "lida" no schema atual)
+    const badge = document.querySelector(`.support-badge-${client.id}`);
+    if(badge && data.length){
+      badge.style.display='inline-block';
+      badge.textContent = data.length;
+    }
+  }catch(e){
+    console.warn('Erro ao checar mensagens de', client.client_name, e.message);
+  }
+}
+
+async function selectSupportClient(clientId){
+  supportSelectedClient = allClients.find(c=>c.id===clientId);
+  if(!supportSelectedClient) return;
+  document.querySelectorAll('.support-client-item').forEach(el=>el.style.background = el.dataset.id===clientId ? 'rgba(61,126,255,.1)' : '');
+  document.getElementById('supportChatHeader').textContent = supportSelectedClient.client_name;
+  document.getElementById('supportChatInputBar').style.display='flex';
+  await loadSupportChatMessages();
+}
+
+async function loadSupportChatMessages(){
+  if(!supportSelectedClient) return;
+  const box = document.getElementById('supportChatMessages');
+  box.innerHTML = '<div class="loading">Carregando...</div>';
+  try{
+    const data = await fetchClientSupportTable(supportSelectedClient, 'select=*&order=created_at.asc&limit=200');
+    renderSupportChatMessages(data);
+  }catch(e){
+    box.innerHTML = `<div class="empty-state"><p>Não foi possível carregar (verifique se a tabela support_messages existe nesse cliente).</p></div>`;
+  }
+}
+
+function renderSupportChatMessages(messages){
+  const box = document.getElementById('supportChatMessages');
+  if(!messages.length){
+    box.innerHTML = '<div class="empty-state"><p>Nenhuma mensagem ainda.</p></div>';
+    return;
+  }
+  box.innerHTML = messages.map(m=>{
+    const fromSupport = m.sender === 'support';
+    const time = m.created_at ? new Date(m.created_at).toLocaleString('pt-BR',{hour:'2-digit',minute:'2-digit',day:'2-digit',month:'2-digit'}) : '';
+    return `<div style="align-self:${fromSupport?'flex-end':'flex-start'};max-width:75%;">
+      <div style="background:${fromSupport?'var(--accent)':'var(--bg3)'};color:${fromSupport?'#fff':'var(--text)'};padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.4;word-break:break-word;">${escapeHtmlSupport(m.message)}</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:3px;${fromSupport?'text-align:right;':''}">${fromSupport?'Você':(m.sender_name||'Cliente')} · ${time}</div>
+    </div>`;
+  }).join('');
+  box.scrollTop = box.scrollHeight;
+}
+
+function escapeHtmlSupport(str){
+  const d = document.createElement('div');
+  d.textContent = str||'';
+  return d.innerHTML;
+}
+
+async function sendSupportReply(){
+  if(!supportSelectedClient) return;
+  const input = document.getElementById('supportReplyInput');
+  const text = input.value.trim();
+  if(!text) return;
+  input.value='';
+  try{
+    const res = await fetch(`${supportSelectedClient.supabase_url}/rest/v1/support_messages`, {
+      method:'POST',
+      headers:{
+        apikey: supportSelectedClient.supabase_key,
+        Authorization:`Bearer ${supportSelectedClient.supabase_key}`,
+        'Content-Type':'application/json',
+        Prefer:'return=minimal'
+      },
+      body: JSON.stringify({ sender:'support', sender_name: currentUser?.name||'Suporte OrkIA', message: text })
+    });
+    if(!res.ok) throw new Error('Falha ao enviar');
+    await loadSupportChatMessages();
+  }catch(e){
+    showToast('Erro ao enviar resposta.','error');
+    input.value = text;
+  }
 }
 
 // ---------- UTILS ----------
