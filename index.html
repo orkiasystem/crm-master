@@ -797,6 +797,7 @@ function renderPaymentsTable(){
 // ---------- NOTIFICAÇÕES (som + sino) ----------
 let notifPollInterval = null;
 let notifLastSeen = {}; // { clientId: timestamp da última mensagem já notificada }
+let notifSeenAt = {}; // { clientId: Date.now() de quando a conversa foi marcada como vista, usado para descartar checagens de rede desatualizadas }
 let notifQueue = []; // mensagens não lidas acumuladas, pra exibir no painel do sino
 
 const NOTIF_STORAGE_KEY = 'orkia_master_notif_lastseen';
@@ -944,13 +945,24 @@ async function fetchClientSupportTable(client, params=''){
 }
 
 async function checkSupportUnread(client){
+  const requestStartedAt = Date.now();
   try{
-    const data = await fetchClientSupportTable(client, 'sender=eq.client&select=id&order=created_at.desc&limit=5');
-    // Heurística simples: mostra contagem de mensagens do cliente nas últimas 5 (sem campo "lida" no schema atual)
+    const data = await fetchClientSupportTable(client, 'sender=eq.client&select=id,created_at&order=created_at.desc&limit=10');
+    // Se o cliente foi marcado como visto DEPOIS que esta checagem começou, este resultado está
+    // desatualizado (corrida de tempo) — descarta para não sobrescrever o badge já zerado.
+    if(notifSeenAt[client.id] && notifSeenAt[client.id] > requestStartedAt) return;
     const badge = document.querySelector(`.support-badge-${client.id}`);
-    if(badge && data.length){
+    if(!badge) return;
+    if(!data.length){ badge.style.display='none'; return; }
+    const lastSeen = notifLastSeen[client.id] || null;
+    const unread = lastSeen ? data.filter(m=>new Date(m.created_at) > new Date(lastSeen)).length : 0;
+    // Sem lastSeen ainda (nunca visto): conta tudo que existe como não lido
+    const count = lastSeen ? unread : data.length;
+    if(count > 0){
       badge.style.display='inline-block';
-      badge.textContent = data.length;
+      badge.textContent = count;
+    } else {
+      badge.style.display='none';
     }
   }catch(e){
     console.warn('Erro ao checar mensagens de', client.client_name, e.message);
@@ -964,7 +976,10 @@ async function selectSupportClient(clientId){
   document.getElementById('supportChatHeader').textContent = supportSelectedClient.client_name;
   document.getElementById('supportChatInputBar').style.display='flex';
   await loadSupportChatMessages();
-  // Marca como visto: remove da fila de notificações e atualiza o badge da lista
+  // Marca como visto: atualiza lastSeen para agora, remove da fila de notificações e zera o badge
+  notifLastSeen[clientId] = new Date().toISOString();
+  notifSeenAt[clientId] = Date.now();
+  saveNotifLastSeen();
   notifQueue = notifQueue.filter(n=>n.clientId !== clientId);
   updateNotifBadge();
   const badge = document.querySelector(`.support-badge-${clientId}`);
