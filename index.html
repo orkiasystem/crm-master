@@ -315,8 +315,9 @@
         <div id="supportClientsList" style="flex:1;overflow-y:auto;"></div>
       </div>
       <div class="card" style="padding:0;display:flex;flex-direction:column;overflow:hidden;">
-        <div id="supportChatHeader" style="padding:14px 16px;border-bottom:1px solid var(--border);font-family:'Syne',sans-serif;font-weight:600;font-size:13px;color:var(--text3);">
-          Selecione um cliente para ver as mensagens
+        <div id="supportChatHeader" style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Syne',sans-serif;font-weight:600;font-size:13px;color:var(--text3);" id="supportChatHeaderName">Selecione um cliente para ver as mensagens</span>
+          <button id="finishSupportBtn" onclick="finishSupportConversation()" style="display:none;" class="btn btn-danger btn-sm">Finalizar atendimento</button>
         </div>
         <div id="supportChatMessages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;"></div>
         <div id="supportChatInputBar" style="display:none;padding:12px;border-top:1px solid var(--border);gap:8px;">
@@ -1107,8 +1108,9 @@ async function selectSupportClient(clientId){
   supportSelectedClient = allClients.find(c=>c.id===clientId);
   if(!supportSelectedClient) return;
   document.querySelectorAll('.support-client-item').forEach(el=>el.style.background = el.dataset.id===clientId ? 'rgba(61,126,255,.1)' : '');
-  document.getElementById('supportChatHeader').textContent = supportSelectedClient.client_name;
+  document.getElementById('supportChatHeaderName').textContent = supportSelectedClient.client_name;
   document.getElementById('supportChatInputBar').style.display='flex';
+  document.getElementById('finishSupportBtn').style.display='inline-flex';
   await loadSupportChatMessages();
   // Marca como visto: atualiza lastSeen para agora, remove da fila de notificações e zera o badge
   notifLastSeen[clientId] = new Date().toISOString();
@@ -1177,6 +1179,61 @@ async function sendSupportReply(){
   }catch(e){
     showToast('Erro ao enviar resposta.','error');
     input.value = text;
+  }
+}
+
+async function finishSupportConversation(){
+  if(!supportSelectedClient) return;
+  const client = supportSelectedClient;
+
+  if(!confirm(`Finalizar o atendimento de ${client.client_name}? O histórico será arquivado e a tela do cliente ficará em branco.`)) return;
+
+  const btn = document.getElementById('finishSupportBtn');
+  btn.disabled = true;
+  btn.textContent = 'Finalizando...';
+
+  try{
+    // 1. Busca todas as mensagens atuais no Supabase do cliente
+    const messages = await fetchClientSupportTable(client, 'select=*&order=created_at.asc&limit=500');
+
+    if(!messages.length){
+      showToast('Não há mensagens para arquivar.', 'error');
+      return;
+    }
+
+    // 2. Grava no Supabase Mãe, na tabela support_archive
+    const archiveRes = await fetch(`${SUPA_URL}/rest/v1/support_archive`, {
+      method: 'POST',
+      headers: { apikey: SUPA_KEY, Authorization: `Bearer ${SUPA_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        client_id: client.id,
+        client_name: client.client_name,
+        messages: messages,
+        finished_by: currentUser?.name || 'Admin'
+      })
+    });
+    if(!archiveRes.ok){
+      const errData = await archiveRes.json().catch(()=>({}));
+      throw new Error('Falha ao arquivar: ' + (errData.message || archiveRes.status));
+    }
+
+    // 3. Apaga as mensagens do Supabase do cliente (a tela do cliente fica em branco)
+    // O filtro id=gte.0000... é necessário porque o PostgREST exige uma condição WHERE no DELETE
+    // (não aceita "apagar tudo sem filtro"); como todo UUID é sempre >= ao menor UUID possível,
+    // isso efetivamente apaga todas as linhas da tabela.
+    const deleteRes = await fetch(`${client.supabase_url}/rest/v1/support_messages?id=gte.00000000-0000-0000-0000-000000000000`, {
+      method: 'DELETE',
+      headers: { apikey: client.supabase_key, Authorization: `Bearer ${client.supabase_key}` }
+    });
+    if(!deleteRes.ok) throw new Error('Mensagens arquivadas, mas falha ao limpar o chat do cliente.');
+
+    showToast('Atendimento finalizado e arquivado!', 'success');
+    await loadSupportChatMessages();
+  }catch(e){
+    showToast(e.message || 'Erro ao finalizar atendimento.', 'error');
+  }finally{
+    btn.disabled = false;
+    btn.textContent = 'Finalizar atendimento';
   }
 }
 
