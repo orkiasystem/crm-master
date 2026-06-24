@@ -684,15 +684,23 @@ async function startMfaSetup(){
   let { data, error } = await db.auth.mfa.enroll({ factorType: 'totp' });
 
   if(error){
-    // Causa mais comum desse erro: já existe um fator TOTP "pendente" de uma tentativa
-    // anterior que não foi concluída (ex: QR code não escaneado, ou a página foi recarregada
-    // no meio do processo). O Supabase não deixa criar um segundo fator enquanto o primeiro
-    // não for verificado ou removido — então removemos o pendente e tentamos de novo.
+    // Causa comum: já existe um fator TOTP de uma tentativa anterior que não foi concluída
+    // (ex: QR code que apareceu quebrado, página recarregada no meio do processo). O Supabase
+    // não deixa criar um fator novo com nome duplicado enquanto o antigo existir — então
+    // removemos qualquer fator TOTP já cadastrado (verificado ou não) e tentamos de novo.
+    // Seguro de fazer aqui porque este fluxo só roda quando o usuário ainda não tem MFA
+    // funcionando de verdade (senão cairia direto na tela de "digite o código", não nesta).
     const { data: factorsData } = await db.auth.mfa.listFactors();
-    const unverified = factorsData?.totp?.find(f => f.status === 'unverified');
+    const existingFactors = factorsData?.totp || [];
 
-    if(unverified){
-      await db.auth.mfa.unenroll({ factorId: unverified.id });
+    for(const factor of existingFactors){
+      const { error: unenrollError } = await db.auth.mfa.unenroll({ factorId: factor.id });
+      if(unenrollError){
+        console.warn('Falha ao remover fator MFA antigo:', unenrollError.message);
+      }
+    }
+
+    if(existingFactors.length){
       const retry = await db.auth.mfa.enroll({ factorType: 'totp' });
       data = retry.data;
       error = retry.error;
