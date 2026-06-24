@@ -163,15 +163,6 @@
     <div class="login-logo">Ork<span>AI</span></div>
     <div class="login-sub">Painel Mãe — Gestão central de sistemas</div>
     <h2>Entrar</h2>
-    <button class="btn btn-ghost btn-full" id="googleLoginBtn" onclick="loginWithGoogle()" style="margin-bottom:16px;gap:10px;">
-      <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Entrar com Google
-    </button>
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-      <div style="flex:1;height:1px;background:var(--border2);"></div>
-      <span style="font-size:11px;color:var(--text3);">ou com e-mail</span>
-      <div style="flex:1;height:1px;background:var(--border2);"></div>
-    </div>
     <div class="form-group">
       <label>E-mail</label>
       <input type="email" id="loginEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')doLogin()">
@@ -563,10 +554,6 @@
         <label>Confirmar nova senha</label>
         <input type="password" id="profile-password-confirm" placeholder="••••••••">
       </div>
-      <div style="border-top:1px solid var(--border);margin-top:18px;padding-top:16px;">
-        <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:10px;">Login com Google</label>
-        <div id="googleLinkStatus"></div>
-      </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('profileModal')">Cancelar</button>
@@ -597,19 +584,6 @@ const PRODUCT_CATEGORIES = {
 
 // ---------- LOGIN (Supabase Auth + MFA) ----------
 let pendingMfaFactorId = null;
-
-async function loginWithGoogle(){
-  const { error } = await db.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: window.location.href }
-  });
-  if(error){
-    document.getElementById('loginError').textContent = 'Erro ao conectar com Google: ' + error.message;
-    document.getElementById('loginError').style.display = 'block';
-  }
-  // O navegador é redirecionado pro Google e depois de volta pra esta página;
-  // o tratamento pós-login (checagem de MFA) acontece no DOMContentLoaded, não aqui.
-}
 
 async function doLogin(){
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
@@ -806,13 +780,6 @@ async function finishLoginAfterAuth(){
   document.getElementById('mfaSetupCode').value = '';
 
   onLoginSuccess();
-
-  // Se o usuário acabou de voltar do redirect de "Vincular conta Google" (sinalizado antes
-  // de sair da página), reabre o modal de perfil pra ele ver a confirmação do vínculo.
-  if(sessionStorage.getItem('orkia_linking_google')){
-    sessionStorage.removeItem('orkia_linking_google');
-    setTimeout(()=>openProfileModal(), 300);
-  }
 }
 
 function onLoginSuccess(){
@@ -839,8 +806,7 @@ function initials(name){return (name||'?').split(' ').map(p=>p[0]).join('').subs
 window.addEventListener('DOMContentLoaded', async ()=>{
   db = window.supabase.createClient(SUPA_URL, SUPA_KEY);
 
-  // Verifica se já existe uma sessão válida do Supabase Auth — seja persistida de uma
-  // visita anterior, ou recém-criada por um redirect de volta do login com Google.
+  // Verifica se já existe uma sessão válida do Supabase Auth, persistida de uma visita anterior
   const { data: { session } } = await db.auth.getSession();
   if(session){
     await checkMfaAndProceed();
@@ -849,9 +815,9 @@ window.addEventListener('DOMContentLoaded', async ()=>{
   document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
 });
 
-// Decide o que mostrar depois de qualquer autenticação bem-sucedida (e-mail/senha ou Google):
-// se o usuário já tem MFA verificado mas ainda não passou pelo desafio nesta sessão, exige o
-// código antes de liberar; se nunca configurou MFA, força a configuração; senão, libera direto.
+// Decide o que mostrar depois do login com e-mail/senha: se o usuário já tem MFA verificado
+// mas ainda não passou pelo desafio nesta sessão, exige o código antes de liberar; se nunca
+// configurou MFA, força a configuração; senão, libera direto.
 async function checkMfaAndProceed(){
   const { data: aalData } = await db.auth.mfa.getAuthenticatorAssuranceLevel();
 
@@ -1620,55 +1586,6 @@ function openProfileModal(){
   document.getElementById('profile-password').value = '';
   document.getElementById('profile-password-confirm').value = '';
   document.getElementById('profileModal').classList.add('open');
-  renderGoogleLinkStatus();
-}
-
-async function renderGoogleLinkStatus(){
-  const box = document.getElementById('googleLinkStatus');
-  box.innerHTML = '<div style="font-size:12px;color:var(--text3);">Verificando...</div>';
-
-  const { data: { user } } = await db.auth.getUser();
-  const googleIdentity = user?.identities?.find(i => i.provider === 'google');
-
-  if(googleIdentity){
-    box.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border-radius:8px;padding:10px 12px;">
-        <span style="font-size:12px;color:var(--green);">✓ Vinculado (${googleIdentity.identity_data?.email || 'conta Google'})</span>
-        <button class="btn btn-ghost btn-sm" onclick="unlinkGoogleAccount('${googleIdentity.identity_id}')">Desvincular</button>
-      </div>`;
-  } else {
-    box.innerHTML = `<button class="btn btn-ghost btn-full" onclick="linkGoogleAccount()" style="gap:8px;">
-      <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Vincular conta Google
-    </button>`;
-  }
-}
-
-async function linkGoogleAccount(){
-  sessionStorage.setItem('orkia_linking_google', '1');
-  const { error } = await db.auth.linkIdentity({
-    provider: 'google',
-    options: { redirectTo: window.location.href }
-  });
-  if(error){
-    sessionStorage.removeItem('orkia_linking_google');
-    showToast('Erro ao vincular: ' + error.message, 'error');
-  }
-  // O navegador é redirecionado pro Google e depois de volta — o retorno é tratado
-  // em finishLoginAfterAuth(), que reabre este modal automaticamente.
-}
-
-async function unlinkGoogleAccount(identityId){
-  if(!confirm('Remover o login com Google desta conta? Você continuará podendo entrar com e-mail e senha.')) return;
-  const { data: { user } } = await db.auth.getUser();
-  const identity = user.identities.find(i => i.identity_id === identityId);
-  const { error } = await db.auth.unlinkIdentity(identity);
-  if(error){
-    showToast('Erro ao desvincular: ' + error.message, 'error');
-    return;
-  }
-  showToast('Conta Google desvinculada.', 'success');
-  renderGoogleLinkStatus();
 }
 
 async function saveProfile(){
