@@ -202,8 +202,18 @@
   <div class="login-card" id="loginStepSetupMfa" style="display:none;width:380px;">
     <div class="login-logo">Ork<span>AI</span></div>
     <div class="login-sub" style="margin-bottom:20px;">Configure a verificação em duas etapas</div>
-    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5;">Escaneie o QR code abaixo com o Google Authenticator, Authy ou app similar.</p>
+    <div style="background:var(--bg3);border-radius:10px;padding:14px 16px;margin-bottom:18px;">
+      <div style="font-size:12px;color:var(--text3);font-weight:600;margin-bottom:8px;">Como configurar:</div>
+      <ol style="font-size:12px;color:var(--text2);line-height:1.7;padding-left:18px;margin:0;">
+        <li>Baixe um app autenticador no seu celular, se ainda não tiver: <strong>Google Authenticator</strong> ou <strong>Microsoft Authenticator</strong> (Authy também funciona)</li>
+        <li>Abra o app e escolha a opção de <strong>adicionar uma conta</strong> (geralmente um botão "+")</li>
+        <li>Escolha <strong>"Escanear QR code"</strong> e aponte a câmera para o código abaixo</li>
+        <li>O app vai mostrar um código de <strong>6 números</strong> que muda a cada 30 segundos</li>
+        <li>Digite esse código no campo abaixo e clique em <strong>Confirmar e ativar</strong></li>
+      </ol>
+    </div>
     <div id="mfaQrCode" style="display:flex;justify-content:center;margin-bottom:16px;background:#fff;padding:16px;border-radius:10px;"></div>
+    <style>#mfaQrCode svg{width:200px;height:200px;}</style>
     <div class="form-group">
       <label>Digite o código gerado pelo app para confirmar</label>
       <input type="text" id="mfaSetupCode" placeholder="000000" maxlength="6" inputmode="numeric" style="text-align:center;font-size:20px;letter-spacing:4px;">
@@ -679,7 +689,7 @@ async function startMfaSetup(){
   }
   pendingMfaFactorId = data.id;
   document.getElementById('loginStep1').style.display = 'none';
-  document.getElementById('mfaQrCode').innerHTML = `<img src="${data.totp.qr_code}" style="width:200px;height:200px;">`;
+  document.getElementById('mfaQrCode').innerHTML = data.totp.qr_code;
   document.getElementById('loginStepSetupMfa').style.display = 'block';
 }
 
