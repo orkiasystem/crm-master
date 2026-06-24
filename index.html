@@ -681,12 +681,30 @@ function cancelMfaStep(){
 }
 
 async function startMfaSetup(){
-  const { data, error } = await db.auth.mfa.enroll({ factorType: 'totp' });
+  let { data, error } = await db.auth.mfa.enroll({ factorType: 'totp' });
+
   if(error){
-    document.getElementById('loginError').textContent = 'Erro ao iniciar configuração de segurança. Contate o suporte.';
+    // Causa mais comum desse erro: já existe um fator TOTP "pendente" de uma tentativa
+    // anterior que não foi concluída (ex: QR code não escaneado, ou a página foi recarregada
+    // no meio do processo). O Supabase não deixa criar um segundo fator enquanto o primeiro
+    // não for verificado ou removido — então removemos o pendente e tentamos de novo.
+    const { data: factorsData } = await db.auth.mfa.listFactors();
+    const unverified = factorsData?.totp?.find(f => f.status === 'unverified');
+
+    if(unverified){
+      await db.auth.mfa.unenroll({ factorId: unverified.id });
+      const retry = await db.auth.mfa.enroll({ factorType: 'totp' });
+      data = retry.data;
+      error = retry.error;
+    }
+  }
+
+  if(error){
+    document.getElementById('loginError').textContent = 'Erro ao iniciar configuração de segurança: ' + error.message;
     document.getElementById('loginError').style.display = 'block';
     return;
   }
+
   pendingMfaFactorId = data.id;
   document.getElementById('loginStep1').style.display = 'none';
   document.getElementById('mfaQrCode').innerHTML = data.totp.qr_code;
