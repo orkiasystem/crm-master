@@ -158,21 +158,58 @@
 
 <!-- LOGIN -->
 <div class="login-screen show" id="loginScreen">
-  <div class="login-card">
+  <div class="login-card" id="loginStep1">
     <div class="login-logo-wrap"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iQ2FtYWRhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgOTAxLjA1IDQ5OS45MSI+CiAgPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDMwLjUuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDIuMS40IEJ1aWxkIDMpICAtLT4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLnN0MCB7CiAgICAgICAgZmlsbDogI2ZiZmNmYjsKICAgICAgfQoKICAgICAgLnN0MSB7CiAgICAgICAgZmlsbDogIzE5YTdiODsKICAgICAgfQoKICAgICAgLnN0MiB7CiAgICAgICAgZmlsbDogI2ZmZjsKICAgICAgfQoKICAgICAgLnN0MyB7CiAgICAgICAgZmlsbDogIzNiN2ZmZDsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPGcgaWQ9Ik9iamV0b19nZW5lcmF0aXZvIj4KICAgIDxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik04OTUuOTgsMzM2LjhjLTE5LjQyLDI1LjU2LTkxLjUsMzMuOTgtMTI0LjIyLDM2LjE5bC00OC4xNSwzLjI3Yy0xOC4xLDEuMjMtMzUuNjcsMy40OS01My4xMSw4LjgtMjAuMzcsNi4yMS0zOC4yMywxNy4wNS01NC43OSwzMC4yNi0xNy4wMiwxMy41Ni0zNC4wNCwyNi4xNC01Mi44MSwzNy4yLTM2LjA4LDIxLjI4LTc5Ljk3LDM2LjU1LTEyMi4wNiwzNS43OGwzNS4xOS0xMC41OGM0Ny4xMS0xNy42Miw4Ny4wNi00My44OSwxMTkuMy04Mi43NiwxMC42NS0xMi44NSwyMC4zMi0yNS45MSwyOS4xNi00MGwxMC43Ni0xOC43NGMzNS43Ny0yNS44Myw3Ny45Mi0zMi42NSwxMjEuMDktMjQuMjRsMzIuMTYsOC4xNywzNC41NSwxMC4xNWMxOC41Miw1LjQ0LDYxLjIyLDE0LjA5LDY1LjcxLTcuNTUsMi4zMy0xMS4yNC0xMC4xMy0zMC40Ny0xNy43Ni00MC40Ni0xMC4zOC0xMy41OC0yMS44Mi0yNS42NS0zNS4wOS0zNi41NC0zMS4zNC0yNS43NC02My4zNi00Mi43NS0xMDEuMTEtNTcuNTQtNTYuMjMtMjIuMDItMTExLjI4LTMyLjE3LTE3MS4wMy0zNy4zN2wtMTYuMi0yNy41OWMtOC41Ny0xNC41OS0xOS4yLTI3LjI1LTMwLjcyLTM5LjY3LTIyLjI4LTIzLjIzLTQ3LjI4LTQwLjY5LTc3Ljk4LTUwLjc3bC0xLjA2Ljc4LDEyLjE1LDIyLjU1YzE0Ljk0LDMwLjg2LDI0LjU2LDcxLjE5LDEuNzgsOTkuNzEtMTIuNTgsMTUuNzYtMzAuMDcsMjQuMzUtNDguNiwzMS42M2wtNDAuNDUsMTUuODhjLTIzLjk1LDkuNDEtNDYuNjcsMjAuODgtNjguODcsMzMuOTktMzYuMjEsMjEuMzktNjguOCw0OC4yNC05NS4yOSw4MC45OS0xNi40MywyMC4zMS0yOS45Niw0Mi41My00MS4wNSw2Ni4xbC0xNi45Nyw0My43NGMtMy4zNyw4LjctNi42NywxNi43NC0xMS4yMywyNC44Ny05LjY3LDE3LjI0LTIzLjg3LDMxLjE2LTQxLjkzLDM5LjM4LTI2Ljk5LDEyLjI3LTYwLjI4LDguMzctODcuMzUtMy44N2wyNS44OC4wM2MzOS45Ni0yLjUsNzEuOTctMjUuNiw5Mi45Mi01OC44OCw2LjYtMTAuNSwxMS41OS0yMS4xMSwxNi41OS0zMi40OSwyMS4yLTQ4LjMzLDQzLjM2LTg0Ljc2LDgwLjgyLTEyMi4zOCwxNy4zNy0xNy40NCwzNS45My0zMi44Miw1Ni4zOS00Ni40OSwzMi4yLTIxLjUyLDY4Ljg5LTM5LjgyLDEwNS4xMi01My4zOGwyNC42MS0xMC4zOGM5LjYyLTQuODUsMTguMTMtMTAuNzYsMjUuNTMtMTguNTIsMTQuMDYtMTQuNzQsMTkuOTctMzQuNTgsMTYuMzYtNTQuNzEtMi4zMy0xMy4wNC03LjAxLTI0Ljc1LTEzLjE4LTM2LjUxLTguNjQtMTYuNDctMjAuMDEtMzAuODEtMzIuOTUtNDQuMTJsLTEwLjQyLTEwLjczYzI4LjkzLjY4LDU2LjE0LDguNDUsODEuNDEsMjEuNzIsMTYuNjIsOC43MywzMS43NCwxOC45OSw0Ni4wNCwzMS4xMywxMi41OSwxMC42OSwyMy43NCwyMi4xLDM1LjAyLDM0LjE0bDI1Ljc3LDI3LjUzYzExLjI2LDEwLjIzLDI0Ljk0LDE2LjczLDM5LjYzLDIwLjMzbDE5LjI1LDMuNjhjNDkuMDksNy44Myw5Ni42MiwyMy4yOSwxNDAuNzYsNDYuMzUsMjUuMTYsMTMuMTUsNDguNTEsMjksNjkuNDksNDguMDYsMTguMDUsMTYuMzgsMzMuNCwzNS4wNSw0NS40NSw1Ni4xMSw4LjI4LDE0LjUsMTUuOTQsMzQsNS40OSw0Ny43NVoiLz4KICAgIDxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik01NDAuNzUsMzUxLjUybC05LjAzLDExLjA3Yy02LjIzLDkuNzItOS42NCwyMC4zLTEzLjU1LDMxLjE5LTYuMzksMjAuMzItMTcuMzEsMzguMjMtMzIuOTYsNTIuNjUtMTAuMTUsOC44NC0yMC44LDE2LjU2LTMzLjk2LDIwLjkyLDE5LjUyLTEzLjk3LDM0LjI5LTMxLjk2LDQ0LjA3LTUzLjcxLDUuOS0xMi40LDkuNzMtMjUuMTEsMTIuOTYtMzkuNWwtNTYuNjMtMjAuOTZjLTI1LjE4LTkuMzItNTAuNi0xNS44Ni03Ny4yNC0xOS41NS00OS40Ni02Ljg0LTEwMC4xLS41MS0xNDQuMzgsMjIuOTMtMTkuMDksMTAuMS0zNS43NSwyMy4yNS01MC42NiwzOC43MS0yLjY1LDIuNzQtNC42Miw1LjQ4LTguMDQsNy45LDEuOTUtNC4xNiw0Ljg4LTcuNDMsNy43OS0xMS4yMiwxMS4zOC0xNC44MSwyNC4yMS0yNy44MywzOS42Mi0zOC42OSwxNi40Mi0xMS41NywzMy43NC0yMC45NSw1Mi41OS0yOC4xNywyMi44MS04Ljc0LDQ2LjE5LTE0LjYsNzAuNS0xNi43OWwyMi43NS0xLjE3LDI0LjM5LDEuMjljMjQuNzYsMi4zMSw0OC41MSw4LjExLDcyLjE5LDE1Ljc4bDQ4Ljc0LDE3LjM0LDMwLjg1LDkuOThaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QwIiBkPSJNNzgyLjU2LDI4My44NGMtMjkuNzUsNy4xMy02My4zLS45Mi05MS0xMi41LTE2LjQ4LTYuODktMzEuNzUtMTUuMzQtNDUuNDEtMjYuNzYtLjYyLS41Mi0xLjA3LTEuMjUtMS4xNi0xLjc2LS41Mi0zLjA1LDEyLjk2LTguNjIsMTkuNzQtMTAuNTMsMTUuMjItNC4zMSwzMC42My00LjIsNDYuMTUtMS4wNiwxNy44LDMuNjEsMzMuOTMsMTAuOSw0Ny44MywyMi41Myw5Ljg4LDguMjgsMTguMTMsMTcuNzksMjMuODUsMzAuMDhaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QzIiBkPSJNNDUxLjY1LDM1My4xOGMtMjUuMTgtOS4zMi01MC42LTE1Ljg2LTc3LjI0LTE5LjU1LTQ5LjQ2LTYuODQtMTAwLjEtLjUxLTE0NC4zOCwyMi45My0xOS4wOSwxMC4xLTM1Ljc1LDIzLjI1LTUwLjY2LDM4LjcxLTIuNjUsMi43NC00LjYyLDUuNDgtOC4wNCw3LjksMS45NS00LjE2LDQuODgtNy40Myw3Ljc5LTExLjIyLDExLjM4LTE0LjgxLDI0LjIxLTI3LjgzLDM5LjYyLTM4LjY5LDE2LjQyLTExLjU3LDMzLjc0LTIwLjk1LDUyLjU5LTI4LjE3LDIyLjgxLTguNzQsNDYuMTktMTQuNiw3MC41LTE2Ljc5bDIyLjc1LTEuMTcsMjQuMzksMS4yOWMyNC43NiwyLjMxLDQ4LjUxLDguMTEsNzIuMTksMTUuNzhsNDguNzQsMTcuMzQsMzAuODUsOS45OC05LjAzLDExLjA3Yy02LjIzLDkuNzItOS42NCwyMC4zLTEzLjU1LDMxLjE5LTYuMzksMjAuMzItMTcuMzEsMzguMjMtMzIuOTYsNTIuNjUtMTAuMTUsOC44NC0yMC44LDE2LjU2LTMzLjk2LDIwLjkyLDE5LjUyLTEzLjk3LDM0LjI5LTMxLjk2LDQ0LjA3LTUzLjcxLDUuOS0xMi40LDkuNzMtMjUuMTEsMTIuOTYtMzkuNWwtNTYuNjMtMjAuOTZaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QyIiBkPSJNNjQ0Ljk5LDI0Mi44MmMtLjUyLTMuMDUsMTIuOTYtOC42MiwxOS43NC0xMC41MywxNS4yMi00LjMxLDMwLjYzLTQuMiw0Ni4xNS0xLjA2LDE3LjgsMy42MSwzMy45MywxMC45LDQ3LjgzLDIyLjUzLDkuODgsOC4yOCwxOC4xMywxNy43OSwyMy44NSwzMC4wOC0yOS43NSw3LjEzLTYzLjMtLjkyLTkxLTEyLjUtMTYuNDgtNi44OS0zMS43NS0xNS4zNC00NS40MS0yNi43Ni0uNjItLjUyLTEuMDctMS4yNS0xLjE2LTEuNzZaIi8+CiAgICA8cGF0aCBjbGFzcz0ic3QyIiBkPSJNODk1Ljk4LDMzNi44Yy0xOS40MiwyNS41Ni05MS41LDMzLjk4LTEyNC4yMiwzNi4xOWwtNDguMTUsMy4yN2MtMTguMSwxLjIzLTM1LjY3LDMuNDktNTMuMTEsOC44LTIwLjM3LDYuMjEtMzguMjMsMTcuMDUtNTQuNzksMzAuMjYtMTcuMDIsMTMuNTYtMzQuMDQsMjYuMTQtNTIuODEsMzcuMi0zNi4wOCwyMS4yOC03OS45NywzNi41NS0xMjIuMDYsMzUuNzhsMzUuMTktMTAuNThjNDcuMTEtMTcuNjIsODcuMDYtNDMuODksMTE5LjMtODIuNzYsMTAuNjUtMTIuODUsMjAuMzItMjUuOTEsMjkuMTYtNDBsMTAuNzYtMTguNzRjMzUuNzctMjUuODMsNzcuOTItMzIuNjUsMTIxLjA5LTI0LjI0bDMyLjE2LDguMTcsMzQuNTUsMTAuMTVjMTguNTIsNS40NCw2MS4yMiwxNC4wOSw2NS43MS03LjU1LDIuMzMtMTEuMjQtMTAuMTMtMzAuNDctMTcuNzYtNDAuNDYtMTAuMzgtMTMuNTgtMjEuODItMjUuNjUtMzUuMDktMzYuNTQtMzEuMzQtMjUuNzQtNjMuMzYtNDIuNzUtMTAxLjExLTU3LjU0LTU2LjIzLTIyLjAyLTExMS4yOC0zMi4xNy0xNzEuMDMtMzcuMzdsLTE2LjItMjcuNTljLTguNTctMTQuNTktMTkuMi0yNy4yNS0zMC43Mi0zOS42Ny0yMi4yOC0yMy4yMy00Ny4yOC00MC42OS03Ny45OC01MC43N2wtMS4wNi43OCwxMi4xNSwyMi41NWMxNC45NCwzMC44NiwyNC41Niw3MS4xOSwxLjc4LDk5LjcxLTEyLjU4LDE1Ljc2LTMwLjA3LDI0LjM1LTQ4LjYsMzEuNjNsLTQwLjQ1LDE1Ljg4Yy0yMy45NSw5LjQxLTQ2LjY3LDIwLjg4LTY4Ljg3LDMzLjk5LTM2LjIxLDIxLjM5LTY4LjgsNDguMjQtOTUuMjksODAuOTktMTYuNDMsMjAuMzEtMjkuOTYsNDIuNTMtNDEuMDUsNjYuMWwtMTYuOTcsNDMuNzRjLTMuMzcsOC43LTYuNjcsMTYuNzQtMTEuMjMsMjQuODctOS42NywxNy4yNC0yMy44NywzMS4xNi00MS45MywzOS4zOC0yNi45OSwxMi4yNy02MC4yOCw4LjM3LTg3LjM1LTMuODdsMjUuODguMDNjMzkuOTYtMi41LDcxLjk3LTI1LjYsOTIuOTItNTguODgsNi42LTEwLjUsMTEuNTktMjEuMTEsMTYuNTktMzIuNDksMjEuMi00OC4zMyw0My4zNi04NC43Niw4MC44Mi0xMjIuMzgsMTcuMzctMTcuNDQsMzUuOTMtMzIuODIsNTYuMzktNDYuNDksMzIuMi0yMS41Miw2OC44OS0zOS44MiwxMDUuMTItNTMuMzhsMjQuNjEtMTAuMzhjOS42Mi00Ljg1LDE4LjEzLTEwLjc2LDI1LjUzLTE4LjUyLDE0LjA2LTE0Ljc0LDE5Ljk3LTM0LjU4LDE2LjM2LTU0LjcxLTIuMzMtMTMuMDQtNy4wMS0yNC43NS0xMy4xOC0zNi41MS04LjY0LTE2LjQ3LTIwLjAxLTMwLjgxLTMyLjk1LTQ0LjEybC0xMC40Mi0xMC43M2MyOC45My42OCw1Ni4xNCw4LjQ1LDgxLjQxLDIxLjcyLDE2LjYyLDguNzMsMzEuNzQsMTguOTksNDYuMDQsMzEuMTMsMTIuNTksMTAuNjksMjMuNzQsMjIuMSwzNS4wMiwzNC4xNGwyNS43NywyNy41M2MxMS4yNiwxMC4yMywyNC45NCwxNi43MywzOS42MywyMC4zM2wxOS4yNSwzLjY4YzQ5LjA5LDcuODMsOTYuNjIsMjMuMjksMTQwLjc2LDQ2LjM1LDI1LjE2LDEzLjE1LDQ4LjUxLDI5LDY5LjQ5LDQ4LjA2LDE4LjA1LDE2LjM4LDMzLjQsMzUuMDUsNDUuNDUsNTYuMTEsOC4yOCwxNC41LDE1Ljk0LDM0LDUuNDksNDcuNzVaIi8+CiAgPC9nPgo8L3N2Zz4=" alt="OrkAI"></div>
     <div class="login-logo">Ork<span>AI</span></div>
     <div class="login-sub">Painel Mãe — Gestão central de sistemas</div>
     <h2>Entrar</h2>
+    <button class="btn btn-ghost btn-full" id="googleLoginBtn" onclick="loginWithGoogle()" style="margin-bottom:16px;gap:10px;">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Entrar com Google
+    </button>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+      <div style="flex:1;height:1px;background:var(--border2);"></div>
+      <span style="font-size:11px;color:var(--text3);">ou com e-mail</span>
+      <div style="flex:1;height:1px;background:var(--border2);"></div>
+    </div>
     <div class="form-group">
-      <label>Login</label>
-      <input type="text" id="loginUser" placeholder="seu login" onkeydown="if(event.key==='Enter')doLogin()">
+      <label>E-mail</label>
+      <input type="email" id="loginEmail" placeholder="seu@email.com" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
     <div class="form-group">
       <label>Senha</label>
       <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <button class="btn btn-primary btn-full" onclick="doLogin()">Entrar</button>
-    <div class="login-error" id="loginError">Login ou senha incorretos.</div>
+    <button class="btn btn-primary btn-full" id="loginBtn" onclick="doLogin()">Entrar</button>
+    <div class="login-error" id="loginError">E-mail ou senha incorretos.</div>
+  </div>
+
+  <!-- ETAPA 2: código do app autenticador -->
+  <div class="login-card" id="loginStep2" style="display:none;">
+    <div class="login-logo">Ork<span>AI</span></div>
+    <div class="login-sub" style="margin-bottom:24px;">Verificação em duas etapas</div>
+    <h2>Digite o código do seu app autenticador</h2>
+    <div class="form-group">
+      <label>Código de 6 dígitos</label>
+      <input type="text" id="mfaCode" placeholder="000000" maxlength="6" inputmode="numeric" style="text-align:center;font-size:20px;letter-spacing:4px;" onkeydown="if(event.key==='Enter')verifyMfaCode()">
+    </div>
+    <button class="btn btn-primary btn-full" id="mfaVerifyBtn" onclick="verifyMfaCode()">Verificar</button>
+    <div class="login-error" id="mfaError">Código inválido. Tente novamente.</div>
+    <div style="text-align:center;margin-top:14px;"><span class="logout-link" onclick="cancelMfaStep()">Cancelar e voltar</span></div>
+  </div>
+
+  <!-- ETAPA OPCIONAL: configurar MFA no primeiro acesso -->
+  <div class="login-card" id="loginStepSetupMfa" style="display:none;width:380px;">
+    <div class="login-logo">Ork<span>AI</span></div>
+    <div class="login-sub" style="margin-bottom:20px;">Configure a verificação em duas etapas</div>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.5;">Escaneie o QR code abaixo com o Google Authenticator, Authy ou app similar.</p>
+    <div id="mfaQrCode" style="display:flex;justify-content:center;margin-bottom:16px;background:#fff;padding:16px;border-radius:10px;"></div>
+    <div class="form-group">
+      <label>Digite o código gerado pelo app para confirmar</label>
+      <input type="text" id="mfaSetupCode" placeholder="000000" maxlength="6" inputmode="numeric" style="text-align:center;font-size:20px;letter-spacing:4px;">
+    </div>
+    <button class="btn btn-primary btn-full" id="mfaSetupConfirmBtn" onclick="confirmMfaSetup()">Confirmar e ativar</button>
+    <div class="login-error" id="mfaSetupError">Código inválido. Tente novamente.</div>
   </div>
 </div>
 
@@ -372,6 +409,10 @@
           <input type="text" id="c-supakey" placeholder="eyJ...">
         </div>
       </div>
+      <div class="form-group">
+        <label>Supabase service_role key (usada para resetar senha de vendedores)</label>
+        <input type="text" id="c-servicekey" placeholder="eyJ...">
+      </div>
       <div class="form-row3">
         <div class="form-group">
           <label>Status</label>
@@ -466,6 +507,25 @@
   </div>
 </div>
 
+<!-- MODAL: GERENCIAR VENDEDORES -->
+<div class="modal-overlay" id="sellersModal">
+  <div class="modal" style="width:480px;">
+    <div class="modal-header">
+      <div class="modal-title">Vendedores — <span id="sellers-client-name">—</span></div>
+      <button class="modal-close" onclick="closeModal('sellersModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="sellers-client-id">
+      <div id="sellersListBox" style="display:flex;flex-direction:column;gap:10px;max-height:400px;overflow-y:auto;">
+        <div class="loading">Carregando...</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('sellersModal')">Fechar</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: MEU PERFIL -->
 <div class="modal-overlay" id="profileModal">
   <div class="modal" style="width:380px;">
@@ -486,6 +546,10 @@
         <label>Confirmar nova senha</label>
         <input type="password" id="profile-password-confirm" placeholder="••••••••">
       </div>
+      <div style="border-top:1px solid var(--border);margin-top:18px;padding-top:16px;">
+        <label style="font-size:12px;color:var(--text3);display:block;margin-bottom:10px;">Login com Google</label>
+        <div id="googleLinkStatus"></div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('profileModal')">Cancelar</button>
@@ -504,10 +568,7 @@ const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsI
 const WORKER_URL = 'https://TROCAR-PELA-URL-DO-WORKER.workers.dev';
 // =============================================================================
 
-const SESSION_KEY = 'orkia_master_session';
-const SESSION_DAYS = 7;
-
-let db = null, allClients = [], allPayments = [], allAdmins = [], currentUser = null;
+let db = null, allClients = [], allPayments = [], currentUser = null;
 
 // Categorias de produto que a OrkAI oferece. Pra adicionar uma nova categoria no futuro,
 // basta incluir um item aqui — aparece automaticamente no formulário e no filtro.
@@ -517,35 +578,188 @@ const PRODUCT_CATEGORIES = {
   outro: 'Outro'
 };
 
-// ---------- SESSION ----------
-function saveSession(u){localStorage.setItem(SESSION_KEY,JSON.stringify({user:u,expires:Date.now()+SESSION_DAYS*86400000}));}
-function loadSession(){try{const r=localStorage.getItem(SESSION_KEY);if(!r)return null;const s=JSON.parse(r);if(Date.now()>s.expires){localStorage.removeItem(SESSION_KEY);return null;}return s.user;}catch(e){return null;}}
-function clearSession(){localStorage.removeItem(SESSION_KEY);}
+// ---------- LOGIN (Supabase Auth + MFA) ----------
+let pendingMfaFactorId = null;
 
-// ---------- LOGIN ----------
+async function loginWithGoogle(){
+  const { error } = await db.auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: window.location.href }
+  });
+  if(error){
+    document.getElementById('loginError').textContent = 'Erro ao conectar com Google: ' + error.message;
+    document.getElementById('loginError').style.display = 'block';
+  }
+  // O navegador é redirecionado pro Google e depois de volta pra esta página;
+  // o tratamento pós-login (checagem de MFA) acontece no DOMContentLoaded, não aqui.
+}
+
 async function doLogin(){
-  const u=document.getElementById('loginUser').value.trim().toLowerCase();
-  const p=document.getElementById('loginPass').value;
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPass').value;
   document.getElementById('loginError').style.display='none';
-  const admin = allAdmins.find(a=>a.login.toLowerCase()===u && a.password===p);
-  if(admin){
-    currentUser = admin;
-    saveSession(currentUser);
-    onLoginSuccess();
+
+  if(!email || !pass){
+    document.getElementById('loginError').textContent = 'Informe e-mail e senha.';
+    document.getElementById('loginError').style.display='block';
     return;
   }
-  document.getElementById('loginError').style.display='block';
+
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.textContent = 'Entrando...';
+
+  const { data, error } = await db.auth.signInWithPassword({ email, password: pass });
+
+  btn.disabled = false; btn.textContent = 'Entrar';
+
+  if(error){
+    document.getElementById('loginError').textContent = 'E-mail ou senha incorretos.';
+    document.getElementById('loginError').style.display='block';
+    return;
+  }
+
+  await checkMfaAndProceed();
 }
+
+async function verifyMfaCode(){
+  const code = document.getElementById('mfaCode').value.trim();
+  document.getElementById('mfaError').style.display = 'none';
+  if(!code || code.length !== 6){
+    document.getElementById('mfaError').textContent = 'Digite os 6 dígitos do código.';
+    document.getElementById('mfaError').style.display = 'block';
+    return;
+  }
+
+  const btn = document.getElementById('mfaVerifyBtn');
+  btn.disabled = true; btn.textContent = 'Verificando...';
+
+  const { data: challenge, error: challengeError } = await db.auth.mfa.challenge({ factorId: pendingMfaFactorId });
+  if(challengeError){
+    showMfaVerifyError('Erro ao iniciar verificação. Tente novamente.');
+    btn.disabled = false; btn.textContent = 'Verificar';
+    return;
+  }
+
+  const { error: verifyError } = await db.auth.mfa.verify({
+    factorId: pendingMfaFactorId,
+    challengeId: challenge.id,
+    code
+  });
+
+  btn.disabled = false; btn.textContent = 'Verificar';
+
+  if(verifyError){
+    showMfaVerifyError('Código inválido. Tente novamente.');
+    return;
+  }
+
+  await finishLoginAfterAuth();
+}
+
+function showMfaVerifyError(msg){
+  document.getElementById('mfaError').textContent = msg;
+  document.getElementById('mfaError').style.display = 'block';
+  document.getElementById('mfaCode').value = '';
+  document.getElementById('mfaCode').focus();
+}
+
+function cancelMfaStep(){
+  pendingMfaFactorId = null;
+  document.getElementById('mfaCode').value = '';
+  document.getElementById('loginStep2').style.display = 'none';
+  document.getElementById('loginStep1').style.display = 'block';
+}
+
+async function startMfaSetup(){
+  const { data, error } = await db.auth.mfa.enroll({ factorType: 'totp' });
+  if(error){
+    document.getElementById('loginError').textContent = 'Erro ao iniciar configuração de segurança. Contate o suporte.';
+    document.getElementById('loginError').style.display = 'block';
+    return;
+  }
+  pendingMfaFactorId = data.id;
+  document.getElementById('loginStep1').style.display = 'none';
+  document.getElementById('mfaQrCode').innerHTML = `<img src="${data.totp.qr_code}" style="width:200px;height:200px;">`;
+  document.getElementById('loginStepSetupMfa').style.display = 'block';
+}
+
+async function confirmMfaSetup(){
+  const code = document.getElementById('mfaSetupCode').value.trim();
+  document.getElementById('mfaSetupError').style.display = 'none';
+  if(!code || code.length !== 6){
+    document.getElementById('mfaSetupError').textContent = 'Digite os 6 dígitos do código.';
+    document.getElementById('mfaSetupError').style.display = 'block';
+    return;
+  }
+
+  const btn = document.getElementById('mfaSetupConfirmBtn');
+  btn.disabled = true; btn.textContent = 'Confirmando...';
+
+  const { data: challenge, error: challengeError } = await db.auth.mfa.challenge({ factorId: pendingMfaFactorId });
+  if(challengeError){
+    document.getElementById('mfaSetupError').textContent = 'Erro ao confirmar. Tente novamente.';
+    document.getElementById('mfaSetupError').style.display = 'block';
+    btn.disabled = false; btn.textContent = 'Confirmar e ativar';
+    return;
+  }
+
+  const { error: verifyError } = await db.auth.mfa.verify({
+    factorId: pendingMfaFactorId,
+    challengeId: challenge.id,
+    code
+  });
+
+  btn.disabled = false; btn.textContent = 'Confirmar e ativar';
+
+  if(verifyError){
+    document.getElementById('mfaSetupError').textContent = 'Código inválido. Verifique o app e tente novamente.';
+    document.getElementById('mfaSetupError').style.display = 'block';
+    return;
+  }
+
+  await finishLoginAfterAuth();
+}
+
+async function finishLoginAfterAuth(){
+  const { data: { user } } = await db.auth.getUser();
+  const { data: adminRow } = await db.from('master_admins').select('*').eq('auth_user_id', user.id).single();
+
+  currentUser = adminRow || { name: user.email.split('@')[0], id: user.id, auth_user_id: user.id };
+
+  document.getElementById('loginStep1').style.display = 'block';
+  document.getElementById('loginStep2').style.display = 'none';
+  document.getElementById('loginStepSetupMfa').style.display = 'none';
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPass').value = '';
+  document.getElementById('mfaCode').value = '';
+  document.getElementById('mfaSetupCode').value = '';
+
+  onLoginSuccess();
+
+  // Se o usuário acabou de voltar do redirect de "Vincular conta Google" (sinalizado antes
+  // de sair da página), reabre o modal de perfil pra ele ver a confirmação do vínculo.
+  if(sessionStorage.getItem('orkia_linking_google')){
+    sessionStorage.removeItem('orkia_linking_google');
+    setTimeout(()=>openProfileModal(), 300);
+  }
+}
+
 function onLoginSuccess(){
   document.getElementById('loginScreen').classList.remove('show');
   document.getElementById('currentUserAvatar').textContent = initials(currentUser.name);
   loadAll().then(()=>startNotificationPolling());
 }
-function logout(){
-  currentUser=null;clearSession();
-  document.getElementById('loginUser').value='';
+
+async function logout(){
+  await db.auth.signOut();
+  currentUser=null;
+  pendingMfaFactorId=null;
+  document.getElementById('loginEmail').value='';
   document.getElementById('loginPass').value='';
   document.getElementById('loginScreen').classList.add('show');
+  document.getElementById('loginStep1').style.display='block';
+  document.getElementById('loginStep2').style.display='none';
+  document.getElementById('loginStepSetupMfa').style.display='none';
   stopNotificationPolling();
 }
 function initials(name){return (name||'?').split(' ').map(p=>p[0]).join('').substring(0,2).toUpperCase();}
@@ -553,19 +767,41 @@ function initials(name){return (name||'?').split(' ').map(p=>p[0]).join('').subs
 // ---------- INIT ----------
 window.addEventListener('DOMContentLoaded', async ()=>{
   db = window.supabase.createClient(SUPA_URL, SUPA_KEY);
-  await loadAdmins();
-  const saved = loadSession();
-  if(saved){
-    const a = allAdmins.find(a=>a.id===saved.id);
-    if(a){ currentUser = a; onLoginSuccess(); }
+
+  // Verifica se já existe uma sessão válida do Supabase Auth — seja persistida de uma
+  // visita anterior, ou recém-criada por um redirect de volta do login com Google.
+  const { data: { session } } = await db.auth.getSession();
+  if(session){
+    await checkMfaAndProceed();
   }
+
   document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
 });
 
-async function loadAdmins(){
-  const {data, error} = await db.from('master_admins').select('*');
-  if(error){console.warn('Erro ao carregar admins:', error.message);return;}
-  allAdmins = data||[];
+// Decide o que mostrar depois de qualquer autenticação bem-sucedida (e-mail/senha ou Google):
+// se o usuário já tem MFA verificado mas ainda não passou pelo desafio nesta sessão, exige o
+// código antes de liberar; se nunca configurou MFA, força a configuração; senão, libera direto.
+async function checkMfaAndProceed(){
+  const { data: aalData } = await db.auth.mfa.getAuthenticatorAssuranceLevel();
+
+  // aal2 significa que o segundo fator JÁ foi verificado nesta sessão (Supabase controla isso
+  // internamente) — nesse caso, pode liberar direto, sem pedir o código de novo.
+  if(aalData?.currentLevel === 'aal2'){
+    await finishLoginAfterAuth();
+    return;
+  }
+
+  const { data: factorsData } = await db.auth.mfa.listFactors();
+  const verifiedTotp = factorsData?.totp?.find(f => f.status === 'verified');
+
+  if(verifiedTotp){
+    pendingMfaFactorId = verifiedTotp.id;
+    document.getElementById('loginStep1').style.display = 'none';
+    document.getElementById('loginStep2').style.display = 'block';
+    document.getElementById('mfaCode').focus();
+  } else {
+    await startMfaSetup();
+  }
 }
 
 // ---------- NAV ----------
@@ -715,6 +951,7 @@ function renderClientsTable(){
             : `<button class="btn btn-danger btn-sm" onclick="blockClient('${c.id}')">Bloquear</button>`}
           <button class="btn btn-amber btn-sm" onclick="openPaymentModal('${c.id}')">Pagamento</button>
           <button class="btn btn-sm" style="background:rgba(61,126,255,.15);color:var(--accent);border:1px solid rgba(61,126,255,.2);" onclick="openChargeModal('${c.id}')">Gerar cobrança</button>
+          <button class="btn btn-ghost btn-sm" onclick="openSellersModal('${c.id}')">Vendedores</button>
         </div>
       </td>
     </tr>`;
@@ -738,6 +975,7 @@ function openClientModal(){
   document.getElementById('c-whatsapp').value='';
   document.getElementById('c-supaurl').value='';
   document.getElementById('c-supakey').value='';
+  document.getElementById('c-servicekey').value='';
   document.getElementById('c-status').value='trial';
   document.getElementById('c-duedate').value='';
   document.getElementById('c-grace').value='3';
@@ -757,6 +995,7 @@ function editClient(id){
   document.getElementById('c-whatsapp').value=c.whatsapp||'';
   document.getElementById('c-supaurl').value=c.supabase_url||'';
   document.getElementById('c-supakey').value=c.supabase_key||'';
+  document.getElementById('c-servicekey').value=c.service_role_key||'';
   document.getElementById('c-status').value=c.status;
   document.getElementById('c-duedate').value=c.due_date;
   document.getElementById('c-grace').value=c.grace_days??3;
@@ -783,6 +1022,7 @@ async function saveClient(){
     whatsapp: document.getElementById('c-whatsapp').value.trim().replace(/\D/g,''),
     supabase_url: document.getElementById('c-supaurl').value.trim(),
     supabase_key: document.getElementById('c-supakey').value.trim(),
+    service_role_key: document.getElementById('c-servicekey').value.trim(),
     status: document.getElementById('c-status').value,
     due_date: due,
     grace_days: parseInt(document.getElementById('c-grace').value)||3,
@@ -877,6 +1117,71 @@ function copyChargeLink(){
   input.select();
   navigator.clipboard?.writeText(input.value);
   showToast('Link copiado!', 'success');
+}
+
+// ---------- GERENCIAR VENDEDORES (reset de senha via Worker) ----------
+async function openSellersModal(clientId){
+  const c = allClients.find(c=>c.id===clientId);
+  if(!c) return;
+  document.getElementById('sellers-client-id').value = c.id;
+  document.getElementById('sellers-client-name').textContent = c.client_name;
+  document.getElementById('sellersModal').classList.add('open');
+
+  const box = document.getElementById('sellersListBox');
+  box.innerHTML = '<div class="loading">Carregando...</div>';
+
+  if(!c.supabase_url || !c.supabase_key){
+    box.innerHTML = '<div class="empty-state"><p>Este cliente não tem Supabase cadastrado.</p></div>';
+    return;
+  }
+
+  try{
+    const res = await fetch(`${c.supabase_url}/rest/v1/sellers?select=*&order=name.asc`, {
+      headers: { apikey: c.supabase_key, Authorization: `Bearer ${c.supabase_key}` }
+    });
+    const sellers = await res.json();
+    renderSellersList(sellers, c);
+  }catch(e){
+    box.innerHTML = '<div class="empty-state"><p>Erro ao carregar vendedores.</p></div>';
+  }
+}
+
+function renderSellersList(sellers, client){
+  const box = document.getElementById('sellersListBox');
+  if(!sellers.length){
+    box.innerHTML = '<div class="empty-state"><p>Nenhum vendedor cadastrado neste cliente.</p></div>';
+    return;
+  }
+  box.innerHTML = sellers.map(s=>`
+    <div style="background:var(--bg3);border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <div style="font-size:13px;font-weight:500;">${s.name}${s.nickname?` (${s.nickname})`:''}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:2px;">${s.email || 'sem e-mail cadastrado'}</div>
+      </div>
+      <button class="btn btn-amber btn-sm" ${!s.email?'disabled title="Vendedor sem e-mail cadastrado"':''} onclick="resetSellerPassword('${s.id}','${s.email||''}','${client.id}')">Resetar senha</button>
+    </div>
+  `).join('');
+}
+
+async function resetSellerPassword(sellerId, sellerEmail, clientId){
+  if(!sellerEmail){ showToast('Este vendedor não tem e-mail cadastrado.', 'error'); return; }
+  if(!confirm(`Enviar e-mail de redefinição de senha para ${sellerEmail}?`)) return;
+
+  try{
+    const res = await fetch(`${WORKER_URL}/reset-seller-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ client_id: clientId, seller_email: sellerEmail })
+    });
+    const data = await res.json();
+    if(!res.ok){
+      showToast('Erro: ' + (data.error || 'falha desconhecida'), 'error');
+      return;
+    }
+    showToast(`E-mail de redefinição enviado para ${sellerEmail}!`, 'success');
+  }catch(e){
+    showToast('Erro de conexão ao resetar senha.', 'error');
+  }
 }
 
 function openPaymentModal(clientId){
@@ -1244,6 +1549,55 @@ function openProfileModal(){
   document.getElementById('profile-password').value = '';
   document.getElementById('profile-password-confirm').value = '';
   document.getElementById('profileModal').classList.add('open');
+  renderGoogleLinkStatus();
+}
+
+async function renderGoogleLinkStatus(){
+  const box = document.getElementById('googleLinkStatus');
+  box.innerHTML = '<div style="font-size:12px;color:var(--text3);">Verificando...</div>';
+
+  const { data: { user } } = await db.auth.getUser();
+  const googleIdentity = user?.identities?.find(i => i.provider === 'google');
+
+  if(googleIdentity){
+    box.innerHTML = `
+      <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg3);border-radius:8px;padding:10px 12px;">
+        <span style="font-size:12px;color:var(--green);">✓ Vinculado (${googleIdentity.identity_data?.email || 'conta Google'})</span>
+        <button class="btn btn-ghost btn-sm" onclick="unlinkGoogleAccount('${googleIdentity.identity_id}')">Desvincular</button>
+      </div>`;
+  } else {
+    box.innerHTML = `<button class="btn btn-ghost btn-full" onclick="linkGoogleAccount()" style="gap:8px;">
+      <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Vincular conta Google
+    </button>`;
+  }
+}
+
+async function linkGoogleAccount(){
+  sessionStorage.setItem('orkia_linking_google', '1');
+  const { error } = await db.auth.linkIdentity({
+    provider: 'google',
+    options: { redirectTo: window.location.href }
+  });
+  if(error){
+    sessionStorage.removeItem('orkia_linking_google');
+    showToast('Erro ao vincular: ' + error.message, 'error');
+  }
+  // O navegador é redirecionado pro Google e depois de volta — o retorno é tratado
+  // em finishLoginAfterAuth(), que reabre este modal automaticamente.
+}
+
+async function unlinkGoogleAccount(identityId){
+  if(!confirm('Remover o login com Google desta conta? Você continuará podendo entrar com e-mail e senha.')) return;
+  const { data: { user } } = await db.auth.getUser();
+  const identity = user.identities.find(i => i.identity_id === identityId);
+  const { error } = await db.auth.unlinkIdentity(identity);
+  if(error){
+    showToast('Erro ao desvincular: ' + error.message, 'error');
+    return;
+  }
+  showToast('Conta Google desvinculada.', 'success');
+  renderGoogleLinkStatus();
 }
 
 async function saveProfile(){
@@ -1253,18 +1607,20 @@ async function saveProfile(){
 
   if(!name){ showToast('Informe um nome.', 'error'); return; }
   if(pass && pass !== passConfirm){ showToast('As senhas não coincidem.', 'error'); return; }
-  if(pass && pass.length < 4){ showToast('A senha deve ter pelo menos 4 caracteres.', 'error'); return; }
+  if(pass && pass.length < 6){ showToast('A senha deve ter pelo menos 6 caracteres.', 'error'); return; }
 
-  const data = { name };
-  if(pass) data.password = pass;
+  // Nome fica salvo na tabela master_admins (vínculo com auth_user_id)
+  const { error: nameError } = await db.from('master_admins').update({ name }).eq('id', currentUser.id);
+  if(nameError){ showToast('Erro ao salvar nome: '+nameError.message, 'error'); return; }
 
-  const { error } = await db.from('master_admins').update(data).eq('id', currentUser.id);
-  if(error){ showToast('Erro ao salvar perfil: '+error.message, 'error'); return; }
+  // Senha é trocada via Supabase Auth, não mais na tabela
+  if(pass){
+    const { error: passError } = await db.auth.updateUser({ password: pass });
+    if(passError){ showToast('Nome salvo, mas erro ao trocar senha: '+passError.message, 'error'); return; }
+  }
 
-  currentUser = { ...currentUser, ...data };
-  saveSession(currentUser);
+  currentUser = { ...currentUser, name };
   document.getElementById('currentUserAvatar').textContent = initials(currentUser.name);
-  await loadAdmins();
   showToast('Perfil atualizado!', 'success');
   closeModal('profileModal');
 }
