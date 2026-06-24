@@ -680,6 +680,18 @@ function cancelMfaStep(){
   document.getElementById('loginStep1').style.display = 'block';
 }
 
+// O Supabase pode retornar o QR code como SVG puro (<svg>...) ou como data URI
+// (data:image/svg+xml...). Esta função detecta o formato e renderiza corretamente em ambos os casos.
+function renderQrCode(qrCodeValue){
+  const box = document.getElementById('mfaQrCode');
+  const trimmed = (qrCodeValue || '').trim();
+  if(trimmed.startsWith('data:')){
+    box.innerHTML = `<img src="${trimmed}" style="width:200px;height:200px;">`;
+  } else {
+    box.innerHTML = trimmed;
+  }
+}
+
 async function startMfaSetup(){
   let { data, error } = await db.auth.mfa.enroll({ factorType: 'totp' });
 
@@ -715,7 +727,7 @@ async function startMfaSetup(){
 
   pendingMfaFactorId = data.id;
   document.getElementById('loginStep1').style.display = 'none';
-  document.getElementById('mfaQrCode').innerHTML = data.totp.qr_code;
+  renderQrCode(data.totp.qr_code);
   document.getElementById('loginStepSetupMfa').style.display = 'block';
 }
 
