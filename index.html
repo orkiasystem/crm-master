@@ -708,7 +708,7 @@ function renderQrCode(qrCodeValue){
 }
 
 async function startMfaSetup(){
-  let { data, error } = await db.auth.mfa.enroll({ factorType: 'totp' });
+  let { data, error } = await db.auth.mfa.enroll({ factorType: 'totp', issuer: 'OrkAI', friendlyName: 'OrkAI Painel Mae' });
 
   if(error){
     // Causa comum: já existe um fator TOTP de uma tentativa anterior que não foi concluída
@@ -728,7 +728,7 @@ async function startMfaSetup(){
     }
 
     if(existingFactors.length){
-      const retry = await db.auth.mfa.enroll({ factorType: 'totp' });
+      const retry = await db.auth.mfa.enroll({ factorType: 'totp', issuer: 'OrkAI', friendlyName: 'OrkAI Painel Mae' });
       data = retry.data;
       error = retry.error;
     }
