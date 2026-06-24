@@ -681,12 +681,20 @@ function cancelMfaStep(){
 }
 
 // O Supabase pode retornar o QR code como SVG puro (<svg>...) ou como data URI
-// (data:image/svg+xml...). Esta função detecta o formato e renderiza corretamente em ambos os casos.
+// (data:image/svg+xml;utf8,<svg ...>). O SVG contém aspas duplas internamente (nos atributos
+// width="...", version="..." etc.), então NUNCA montar a tag <img> como string concatenada —
+// isso quebra o atributo src no primeiro " que aparecer dentro do SVG. Usamos setAttribute,
+// que trata o valor como dado bruto, sem esse problema de aspas conflitantes.
 function renderQrCode(qrCodeValue){
   const box = document.getElementById('mfaQrCode');
   const trimmed = (qrCodeValue || '').trim();
+  box.innerHTML = '';
   if(trimmed.startsWith('data:')){
-    box.innerHTML = `<img src="${trimmed}" style="width:200px;height:200px;">`;
+    const img = document.createElement('img');
+    img.setAttribute('src', trimmed);
+    img.style.width = '200px';
+    img.style.height = '200px';
+    box.appendChild(img);
   } else {
     box.innerHTML = trimmed;
   }
