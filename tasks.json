@@ -68,6 +68,32 @@
         "area": "orkai",
         "prioridade": "baixa"
       }
+    },
+    {
+      "id": "op-0005",
+      "type": "add",
+      "task": {
+        "id": "t-video-henry",
+        "titulo": "Finalizar vídeo do aniversário do Henry",
+        "descricao": "Vídeo da festa do filho da Thais (24/06, tema fazendinha). Edição já começada; música definida: a da fazendinha. Thais cobrando desde 04/07 — prioridade em entregar essa semana.",
+        "coluna": "doing",
+        "area": "pessoal",
+        "prioridade": "alta",
+        "checklist": [
+          {
+            "t": "Finalizar edição com a música da fazendinha",
+            "done": false
+          },
+          {
+            "t": "Renderizar e conferir qualidade",
+            "done": false
+          },
+          {
+            "t": "Enviar o vídeo pra Thais",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
