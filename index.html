@@ -1091,19 +1091,26 @@ function tkStartRealtime(){
 const TK_JSON_API='https://api.github.com/repos/orkiasystem/crm-master/contents/tasks.json';
 const TK_JSON_RAW='https://raw.githubusercontent.com/orkiasystem/crm-master/main/tasks.json';
 let tkEtag=localStorage.getItem('tk_etag')||'';
+let tkApiBlockUntil=Number(localStorage.getItem('tk_api_block')||0);
 // retorna: objeto JSON (mudou), 'same' (304, nada novo) ou null (falhou tudo)
 async function tkFetchJson(){
-  try{ // API do GitHub com ETag: 304 não conta no rate limit
-    const h={'Accept':'application/vnd.github.raw'};
-    if(tkEtag)h['If-None-Match']=tkEtag;
-    const r=await fetch(TK_JSON_API,{headers:h,cache:'no-store'});
-    if(r.status===304) return 'same';
-    if(r.ok){
-      const et=r.headers.get('etag');
-      if(et){tkEtag=et;localStorage.setItem('tk_etag',et);}
-      return await r.json();
-    }
-  }catch(e){}
+  if(Date.now()>tkApiBlockUntil){
+    try{ // API do GitHub com ETag: 304 não conta no rate limit
+      const h={'Accept':'application/vnd.github.raw'};
+      if(tkEtag)h['If-None-Match']=tkEtag;
+      const r=await fetch(TK_JSON_API,{headers:h,cache:'no-store'});
+      if(r.status===304) return 'same';
+      if(r.ok){
+        const et=r.headers.get('etag');
+        if(et){tkEtag=et;localStorage.setItem('tk_etag',et);}
+        return await r.json();
+      }
+      if(r.status===403){ // rate limit: pausa a API por 15 min e usa fallback
+        tkApiBlockUntil=Date.now()+15*60*1000;
+        localStorage.setItem('tk_api_block',tkApiBlockUntil);
+      }
+    }catch(e){}
+  }
   try{ // fallback 1: raw (cache curto do CDN)
     const r=await fetch(TK_JSON_RAW+'?t='+Math.floor(Date.now()/60000),{cache:'no-store'});
     if(r.ok) return await r.json();
