@@ -94,6 +94,49 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0006",
+      "type": "add",
+      "task": {
+        "id": "t-arte-sincera-hoje",
+        "titulo": "Soltar arte 'corretora sincera' pra Thais postar hoje",
+        "descricao": "Ela pediu de novo hoje de manhã (29/07): 'bora movimentar aquela parada'. Uma já foi entregue dia 28/07.",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "prazo": "2026-07-29"
+      }
+    },
+    {
+      "id": "op-0007",
+      "type": "add",
+      "task": {
+        "id": "t-artes-sincera-lote",
+        "titulo": "Identidade + lote de artes 'corretora sincera'",
+        "descricao": "Criar uma cara padrão pros posts da Thais (assinatura 'Thaís, corretora sincera') e produzir várias artes de uma vez pra deixar prontas — ela manda as referências, um post por dia.",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "media",
+        "checklist": [
+          {
+            "t": "Definir identidade visual (layout, fonte, assinatura)",
+            "done": false
+          },
+          {
+            "t": "Validar o padrão com a Thais",
+            "done": false
+          },
+          {
+            "t": "Produzir lote inicial (7-10 artes)",
+            "done": false
+          },
+          {
+            "t": "Entregar o pacote pra ela agendar",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
