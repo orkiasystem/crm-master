@@ -1128,7 +1128,7 @@ async function tkSyncOps(){
   if(!ops.length) return;
   const {data:applied}=await db.from('task_ops').select('op_id');
   const doneIds=new Set((applied||[]).map(o=>o.op_id));
-  let aplicou=false;
+  let aplicou=0;
   for(const op of ops){
     if(!op.id||doneIds.has(op.id)) continue;
     try{
@@ -1143,10 +1143,13 @@ async function tkSyncOps(){
         await db.from('tasks').upsert(op.task,{onConflict:'id'});
       }
       await db.from('task_ops').insert({op_id:op.id});
-      aplicou=true;
+      aplicou++;
     }catch(e){console.warn('op falhou',op.id,e);}
   }
-  if(aplicou) tkFetch();
+  if(aplicou){
+    tkFetch();
+    showToast(aplicou+' atualização(ões) do Claude aplicada(s)','success');
+  }
 }
 
 // Verificação automática: a cada 60s com a aba Tarefas aberta, e ao voltar pra janela
