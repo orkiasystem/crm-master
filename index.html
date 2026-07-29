@@ -85,6 +85,12 @@
   .tk-ck-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 2px;}
   .tk-ck-del:hover{color:var(--red);}
   @media(max-width:640px){.tk-col{min-width:82vw;width:82vw;}}
+  .tk-print{background:none;border:none;color:var(--text3);cursor:pointer;padding:2px;border-radius:5px;flex-shrink:0;line-height:0;}
+  .tk-print:hover{color:var(--accent);background:rgba(61,126,255,.1);}
+  .cfg-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
+  .cfg-row input[type=color]{width:34px;height:32px;padding:2px;border:1px solid var(--border2);border-radius:8px;background:var(--bg3);cursor:pointer;flex-shrink:0;}
+  .cfg-row input[type=text]{flex:1;}
+  .cfg-tpl{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:10px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;}
 
   /* BTNS */
   .btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .15s;font-family:'DM Sans',sans-serif;}
@@ -411,6 +417,7 @@
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
       <input type="text" id="tkSearch" placeholder="Buscar tarefa..." style="max-width:300px;" oninput="renderTasks()">
       <div style="margin-left:auto;display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="openCfgModal()">Configurar</button>
         <button class="btn btn-ghost btn-sm" onclick="loadTasks(true)">Atualizar</button>
         <button class="btn btn-primary btn-sm" onclick="openTaskModal()">+ Tarefa</button>
       </div>
@@ -438,12 +445,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>Área</label>
-          <select id="tk-area">
-            <option value="icasas">iCasas</option>
-            <option value="orkai">OrkAI</option>
-            <option value="pessoal">Pessoal</option>
-            <option value="freela">Freela</option>
-          </select>
+          <select id="tk-area"></select>
         </div>
         <div class="form-group">
           <label>Prioridade</label>
@@ -457,12 +459,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>Coluna</label>
-          <select id="tk-col">
-            <option value="todo">A Fazer</option>
-            <option value="doing">Em Andamento</option>
-            <option value="waiting">Aguardando</option>
-            <option value="done">Concluído</option>
-          </select>
+          <select id="tk-col"></select>
         </div>
         <div class="form-group">
           <label>Prazo</label>
@@ -471,6 +468,7 @@
       </div>
       <div class="form-group">
         <label>Checklist</label>
+        <select id="tk-template" onchange="tkApplyTemplate()" style="margin-bottom:8px;"></select>
         <div class="tk-ck-list" id="tkCkList"></div>
         <div style="display:flex;gap:8px;margin-top:8px;">
           <input type="text" id="tkCkNew" placeholder="Novo item..." style="flex:1;" onkeydown="if(event.key==='Enter')tkAddCk()">
@@ -480,8 +478,40 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-danger" id="tkDelBtn" onclick="deleteTask()" style="margin-right:auto;display:none;">Excluir</button>
+      <button class="btn btn-ghost" id="tkPrintBtn" onclick="tkPrint(tkEditing)" style="display:none;">Exportar PDF</button>
       <button class="btn btn-ghost" onclick="closeModal('taskModal')">Cancelar</button>
       <button class="btn btn-primary" onclick="saveTaskModal()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CONFIGURAR TAREFAS -->
+<div class="modal-overlay" id="cfgModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Configurar quadro</div>
+      <button class="modal-close" onclick="closeModal('cfgModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Colunas (ordem = posição no quadro)</label>
+        <div id="cfgColsList"></div>
+        <button class="btn btn-ghost btn-sm" onclick="cfgAdd('cols')" style="margin-top:6px;">+ Coluna</button>
+      </div>
+      <div class="form-group">
+        <label>Áreas</label>
+        <div id="cfgAreasList"></div>
+        <button class="btn btn-ghost btn-sm" onclick="cfgAdd('areas')" style="margin-top:6px;">+ Área</button>
+      </div>
+      <div class="form-group">
+        <label>Modelos de checklist</label>
+        <div id="cfgTplsList"></div>
+        <button class="btn btn-ghost btn-sm" onclick="cfgAdd('tpls')" style="margin-top:6px;">+ Modelo</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('cfgModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveCfg()">Salvar configuração</button>
     </div>
   </div>
 </div>
@@ -966,22 +996,43 @@ function showPage(page){
 }
 
 // ---------- TAREFAS ----------
-const TK_COLS=[
-  {id:'todo',nome:'A Fazer',cor:'var(--amber)'},
-  {id:'doing',nome:'Em Andamento',cor:'var(--accent)'},
-  {id:'waiting',nome:'Aguardando',cor:'var(--purple)'},
-  {id:'done',nome:'Concluído',cor:'var(--green)'}
-];
-const TK_AREAS={icasas:{n:'iCasas',c:'#3d7eff'},orkai:{n:'OrkAI',c:'#22c55e'},pessoal:{n:'Pessoal',c:'#a855f7'},freela:{n:'Freela',c:'#f59e0b'}};
+let TK_COLS=[{id:'todo',n:'A Fazer',c:'#f59e0b'},{id:'doing',n:'Em Andamento',c:'#3d7eff'},{id:'waiting',n:'Aguardando',c:'#a855f7'},{id:'done',n:'Concluído',c:'#22c55e'}];
+let TK_AREAS=[{id:'icasas',n:'iCasas',c:'#3d7eff'},{id:'orkai',n:'OrkAI',c:'#22c55e'},{id:'pessoal',n:'Pessoal',c:'#a855f7'},{id:'freela',n:'Freela',c:'#f59e0b'}];
+let TK_TEMPLATES=[];
 const TK_PRIOS={alta:'var(--red)',media:'var(--amber)',baixa:'var(--green)'};
-let tkTasks=[], tkEditing=null, tkCkTemp=[], tkSynced=false;
+let tkTasks=[], tkEditing=null, tkCkTemp=[], tkSynced=false, tkRealtimeOn=false;
+
+function tkArea(id){return TK_AREAS.find(a=>a.id===id)||{id,n:id||'—',c:'#8a90a0'};}
+
+async function loadTaskConfig(){
+  const {data}=await db.from('task_config').select('*').eq('id',1).maybeSingle();
+  if(data){
+    if(data.colunas&&data.colunas.length)TK_COLS=data.colunas;
+    if(data.areas&&data.areas.length)TK_AREAS=data.areas;
+    TK_TEMPLATES=data.templates||[];
+  }
+}
 
 async function loadTasks(force){
+  await loadTaskConfig();
   if(!tkSynced || force){ await tkSyncOps(); tkSynced=true; }
+  await tkFetch();
+  tkStartRealtime();
+}
+
+async function tkFetch(){
   const {data,error}=await db.from('tasks').select('*').order('criado',{ascending:true});
   if(error){showToast('Erro ao carregar tarefas: '+error.message,'error');return;}
   tkTasks=data||[];
   renderTasks();
+}
+
+function tkStartRealtime(){
+  if(tkRealtimeOn)return;
+  tkRealtimeOn=true;
+  db.channel('tasks-rt')
+    .on('postgres_changes',{event:'*',schema:'public',table:'tasks'},()=>{tkFetch();})
+    .subscribe();
 }
 
 // Lê tasks.json do repositório e aplica operações ainda não aplicadas
@@ -1001,6 +1052,8 @@ async function tkSyncOps(){
     try{
       if(op.type==='remove'&&op.task_id){
         await db.from('tasks').delete().eq('id',op.task_id);
+      }else if(op.type==='config'&&op.config){
+        await db.from('task_config').upsert({id:1,...op.config});
       }else if(op.type==='update'&&op.task&&op.task.id){
         const {id,...fields}=op.task;
         await db.from('tasks').update(fields).eq('id',id);
@@ -1015,10 +1068,14 @@ async function tkSyncOps(){
 function renderTasks(){
   const q=(document.getElementById('tkSearch').value||'').toLowerCase();
   const b=document.getElementById('tkBoard');b.innerHTML='';
-  TK_COLS.forEach(c=>{
-    const list=tkTasks.filter(t=>t.coluna===c.id&&(!q||t.titulo.toLowerCase().includes(q)||(t.descricao||'').toLowerCase().includes(q)));
+  const colIds=TK_COLS.map(c=>c.id);
+  TK_COLS.forEach((c,ci)=>{
+    const list=tkTasks.filter(t=>{
+      const col=colIds.includes(t.coluna)?t.coluna:colIds[0];
+      return col===c.id&&(!q||t.titulo.toLowerCase().includes(q)||(t.descricao||'').toLowerCase().includes(q));
+    });
     const col=document.createElement('div');col.className='tk-col';
-    col.innerHTML=`<div class="tk-col-h"><div class="tk-dot" style="background:${c.cor}"></div><b>${c.nome}</b><span class="tk-count">${list.length}</span></div><div class="tk-cards"></div>`;
+    col.innerHTML=`<div class="tk-col-h"><div class="tk-dot" style="background:${c.c}"></div><b>${tkEsc(c.n)}</b><span class="tk-count">${list.length}</span></div><div class="tk-cards"></div>`;
     const cards=col.querySelector('.tk-cards');
     list.forEach(t=>cards.appendChild(tkCardEl(t)));
     col.addEventListener('dragover',e=>{e.preventDefault();col.classList.add('dragover');});
@@ -1034,19 +1091,24 @@ function renderTasks(){
   });
 }
 
-function tkEsc(s){return (s||'').replace(/</g,'&lt;');}
+function tkEsc(s){return String(s||'').replace(/</g,'&lt;');}
 function tkCardEl(t){
-  const a=TK_AREAS[t.area]||{n:t.area||'—',c:'#8a90a0'};
+  const a=tkArea(t.area);
   const ck=t.checklist||[];const done=ck.filter(i=>i.done).length;
   const pct=ck.length?Math.round(done/ck.length*100):0;
   const late=t.prazo&&t.coluna!=='done'&&new Date(t.prazo+'T23:59')<new Date();
   const el=document.createElement('div');el.className='tk-card';el.draggable=true;
   el.innerHTML=`<div class="tk-strip" style="background:${TK_PRIOS[t.prioridade]||'var(--border2)'}"></div>
   <div class="tk-card-b">
-    <div class="tk-card-t">${tkEsc(t.titulo)}</div>
+    <div style="display:flex;align-items:flex-start;gap:8px;">
+      <div class="tk-card-t" style="flex:1;">${tkEsc(t.titulo)}</div>
+      <button class="tk-print" title="Exportar / imprimir" onclick="event.stopPropagation();tkPrint('${t.id}')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      </button>
+    </div>
     ${t.descricao?`<div class="tk-card-d">${tkEsc(t.descricao)}</div>`:''}
     <div class="tk-meta">
-      <span class="badge" style="background:${a.c}22;color:${a.c}">${a.n}</span>
+      <span class="badge" style="background:${a.c}22;color:${a.c}">${tkEsc(a.n)}</span>
       ${t.prazo?`<span class="tk-prazo${late?' late':''}">${t.prazo.split('-').reverse().slice(0,2).join('/')}</span>`:''}
     </div>
     ${ck.length?`<div class="tk-prog"><div class="tk-prog-bar"><div class="tk-prog-fill" style="width:${pct}%;background:${pct===100?'var(--green)':'var(--accent)'}"></div></div><div class="tk-prog-txt">${done}/${ck.length} itens</div></div>`:''}
@@ -1057,18 +1119,38 @@ function tkCardEl(t){
   return el;
 }
 
+// ---- Modal de tarefa ----
+function tkFillSelects(){
+  const sa=document.getElementById('tk-area');
+  sa.innerHTML=TK_AREAS.map(a=>`<option value="${a.id}">${tkEsc(a.n)}</option>`).join('');
+  const sc=document.getElementById('tk-col');
+  sc.innerHTML=TK_COLS.map(c=>`<option value="${c.id}">${tkEsc(c.n)}</option>`).join('');
+  const st=document.getElementById('tk-template');
+  st.innerHTML='<option value="">Aplicar modelo de checklist...</option>'+TK_TEMPLATES.map(m=>`<option value="${m.id}">${tkEsc(m.n)}</option>`).join('');
+  st.parentElement.style.display=TK_TEMPLATES.length?'block':'none';
+}
+function tkApplyTemplate(){
+  const id=document.getElementById('tk-template').value;
+  if(!id)return;
+  const m=TK_TEMPLATES.find(x=>x.id===id);
+  if(m)(m.items||[]).forEach(it=>tkCkTemp.push({t:it,done:false}));
+  document.getElementById('tk-template').value='';
+  tkRenderCk();
+}
 function openTaskModal(id){
   tkEditing=id||null;
+  tkFillSelects();
   const t=id?tkTasks.find(x=>x.id===id):null;
   document.getElementById('taskModalTitle').textContent=t?'Editar tarefa':'Nova tarefa';
   document.getElementById('tk-titulo').value=t?t.titulo:'';
   document.getElementById('tk-desc').value=t?(t.descricao||''):'';
-  document.getElementById('tk-area').value=t?(t.area||'pessoal'):'pessoal';
+  document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
-  document.getElementById('tk-col').value=t?t.coluna:'todo';
+  document.getElementById('tk-col').value=t&&TK_COLS.some(c=>c.id===t.coluna)?t.coluna:(TK_COLS[0]||{}).id;
   document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
   tkCkTemp=t?JSON.parse(JSON.stringify(t.checklist||[])):[];
   document.getElementById('tkDelBtn').style.display=t?'inline-flex':'none';
+  document.getElementById('tkPrintBtn').style.display=t?'inline-flex':'none';
   tkRenderCk();
   document.getElementById('taskModal').classList.add('open');
 }
@@ -1102,7 +1184,7 @@ async function saveTaskModal(){
   else{({error}=await db.from('tasks').insert({id:'t-'+Date.now().toString(36),...data}));}
   if(error){showToast('Erro ao salvar: '+error.message,'error');return;}
   closeModal('taskModal');showToast('Tarefa salva!','success');
-  loadTasks();
+  tkFetch();
 }
 async function deleteTask(){
   if(!tkEditing)return;
@@ -1110,7 +1192,114 @@ async function deleteTask(){
   const {error}=await db.from('tasks').delete().eq('id',tkEditing);
   if(error){showToast('Erro: '+error.message,'error');return;}
   closeModal('taskModal');showToast('Tarefa excluída.','success');
-  loadTasks();
+  tkFetch();
+}
+
+// ---- Exportar / imprimir card em PDF ----
+function tkPrint(id){
+  const t=tkTasks.find(x=>x.id===id);
+  if(!t)return;
+  const a=tkArea(t.area);
+  const col=TK_COLS.find(c=>c.id===t.coluna)||{n:t.coluna};
+  const ck=t.checklist||[];
+  const hoje=new Date().toLocaleDateString('pt-BR');
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${tkEsc(t.titulo)}</title>
+  <style>
+    @page{size:A4;margin:18mm 16mm;}
+    body{font-family:Arial,Helvetica,sans-serif;color:#111;margin:0;}
+    .top{border-bottom:3px solid #1a3c5e;padding-bottom:10px;margin-bottom:14px;}
+    .brand{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1a3c5e;font-weight:bold;}
+    h1{font-size:22px;margin:6px 0 0;}
+    .info{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:#444;margin:12px 0 18px;}
+    .info b{color:#111;}
+    .desc{font-size:13px;line-height:1.5;background:#f3f5f8;border-left:4px solid #1a3c5e;padding:10px 14px;margin-bottom:20px;white-space:pre-wrap;}
+    h2{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#1a3c5e;border-bottom:1px solid #ccc;padding-bottom:5px;}
+    .ck{list-style:none;padding:0;margin:10px 0 0;}
+    .ck li{display:flex;align-items:center;gap:12px;padding:9px 4px;border-bottom:1px solid #e4e7ec;font-size:14px;}
+    .box{width:17px;height:17px;border:2px solid #555;border-radius:3px;flex-shrink:0;position:relative;}
+    .box.x::after{content:"✓";position:absolute;top:-4px;left:1px;font-size:16px;font-weight:bold;color:#1a3c5e;}
+    li.done span{text-decoration:line-through;color:#888;}
+    .obs{margin-top:26px;}
+    .obs .line{border-bottom:1px solid #bbb;height:26px;}
+    .foot{margin-top:30px;font-size:10px;color:#999;text-align:center;}
+  </style></head><body>
+  <div class="top">
+    <div class="brand">OrkAI — Tarefa de campo</div>
+    <h1>${tkEsc(t.titulo)}</h1>
+  </div>
+  <div class="info">
+    <span><b>Área:</b> ${tkEsc(a.n)}</span>
+    <span><b>Status:</b> ${tkEsc(col.n)}</span>
+    <span><b>Prioridade:</b> ${tkEsc(t.prioridade||'—')}</span>
+    ${t.prazo?`<span><b>Prazo:</b> ${t.prazo.split('-').reverse().join('/')}</span>`:''}
+    <span><b>Impresso em:</b> ${hoje}</span>
+  </div>
+  ${t.descricao?`<div class="desc">${tkEsc(t.descricao)}</div>`:''}
+  ${ck.length?`<h2>Checklist</h2><ul class="ck">${ck.map(i=>`<li class="${i.done?'done':''}"><div class="box ${i.done?'x':''}"></div><span>${tkEsc(i.t)}</span></li>`).join('')}</ul>`:''}
+  <div class="obs"><h2>Observações</h2>${'<div class="line"></div>'.repeat(5)}</div>
+  <div class="foot">Gerado pelo Painel OrkAI</div>
+  <script>window.onload=function(){window.print();}<\/script>
+  </body></html>`);
+  w.document.close();
+}
+
+// ---- Modal de configuração (áreas, colunas, modelos) ----
+function tkRandColor(){const p=['#3d7eff','#22c55e','#a855f7','#f59e0b','#ef4444','#14b8a6','#ec4899'];return p[Math.floor(Math.random()*p.length)];}
+function tkSlug(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||('x'+Date.now().toString(36));}
+let cfgAreas=[],cfgCols=[],cfgTpls=[];
+
+function openCfgModal(){
+  cfgAreas=JSON.parse(JSON.stringify(TK_AREAS));
+  cfgCols=JSON.parse(JSON.stringify(TK_COLS));
+  cfgTpls=JSON.parse(JSON.stringify(TK_TEMPLATES));
+  cfgRender();
+  document.getElementById('cfgModal').classList.add('open');
+}
+function cfgRender(){
+  const rows=(list,key)=>list.map((it,ix)=>`
+    <div class="cfg-row" data-k="${key}" data-i="${ix}">
+      <input type="color" value="${it.c||'#3d7eff'}" onchange="cfgSet('${key}',${ix},'c',this.value)">
+      <input type="text" value="${tkEsc(it.n)}" oninput="cfgSet('${key}',${ix},'n',this.value)">
+      ${key==='cols'?`<button class="btn btn-ghost btn-sm" onclick="cfgMove(${ix},-1)" title="Mover pra esquerda">‹</button><button class="btn btn-ghost btn-sm" onclick="cfgMove(${ix},1)" title="Mover pra direita">›</button>`:''}
+      <button class="btn btn-danger btn-sm" onclick="cfgDel('${key}',${ix})">×</button>
+    </div>`).join('');
+  document.getElementById('cfgAreasList').innerHTML=rows(cfgAreas,'areas');
+  document.getElementById('cfgColsList').innerHTML=rows(cfgCols,'cols');
+  document.getElementById('cfgTplsList').innerHTML=cfgTpls.map((m,ix)=>`
+    <div class="cfg-tpl">
+      <input type="text" value="${tkEsc(m.n)}" oninput="cfgTpls[${ix}].n=this.value" placeholder="Nome do modelo">
+      <textarea rows="4" oninput="cfgTpls[${ix}].items=this.value.split('\\n').map(s=>s.trim()).filter(Boolean)" placeholder="Um item por linha">${(m.items||[]).map(tkEsc).join('\n')}</textarea>
+      <button class="btn btn-danger btn-sm" onclick="cfgTpls.splice(${ix},1);cfgRender()">Remover modelo</button>
+    </div>`).join('');
+}
+function cfgSet(key,ix,field,val){(key==='areas'?cfgAreas:cfgCols)[ix][field]=val;}
+function cfgDel(key,ix){
+  const list=key==='areas'?cfgAreas:cfgCols;
+  if(key==='cols'&&cfgCols.length<=1){showToast('Precisa de pelo menos 1 coluna.','error');return;}
+  list.splice(ix,1);cfgRender();
+}
+function cfgMove(ix,dir){
+  const j=ix+dir;
+  if(j<0||j>=cfgCols.length)return;
+  [cfgCols[ix],cfgCols[j]]=[cfgCols[j],cfgCols[ix]];
+  cfgRender();
+}
+function cfgAdd(key){
+  if(key==='areas')cfgAreas.push({id:tkSlug('area-'+Date.now().toString(36)),n:'Nova área',c:tkRandColor()});
+  else if(key==='cols')cfgCols.push({id:tkSlug('col-'+Date.now().toString(36)),n:'Nova coluna',c:tkRandColor()});
+  else cfgTpls.push({id:tkSlug('tpl-'+Date.now().toString(36)),n:'Novo modelo',items:[]});
+  cfgRender();
+}
+async function saveCfg(){
+  cfgAreas=cfgAreas.filter(a=>a.n.trim());cfgCols=cfgCols.filter(c=>c.n.trim());
+  if(!cfgCols.length){showToast('Precisa de pelo menos 1 coluna.','error');return;}
+  cfgTpls=cfgTpls.filter(m=>m.n.trim());
+  const {error}=await db.from('task_config').upsert({id:1,areas:cfgAreas,colunas:cfgCols,templates:cfgTpls});
+  if(error){showToast('Erro ao salvar: '+error.message,'error');return;}
+  TK_AREAS=cfgAreas;TK_COLS=cfgCols;TK_TEMPLATES=cfgTpls;
+  closeModal('cfgModal');showToast('Configuração salva!','success');
+  renderTasks();
 }
 
 // ---------- LOAD DATA ----------
