@@ -420,7 +420,7 @@
 
   <!-- PAGE: TAREFAS -->
   <div class="page" id="page-tasks">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
       <input type="text" id="tkSearch" placeholder="Buscar tarefa..." style="max-width:300px;" oninput="renderTasks()">
       <div style="margin-left:auto;display:flex;gap:8px;">
         <button class="btn btn-ghost btn-sm" onclick="openCfgModal()">Configurar</button>
@@ -428,6 +428,7 @@
         <button class="btn btn-primary btn-sm" onclick="openTaskModal()">+ Tarefa</button>
       </div>
     </div>
+    <div id="tkSyncInfo" style="font-size:11px;color:var(--text3);margin-bottom:12px;">Sincronização: aguardando...</div>
     <div class="tk-board" id="tkBoard"></div>
   </div>
 </div>
@@ -1092,6 +1093,8 @@ const TK_JSON_API='https://api.github.com/repos/orkiasystem/crm-master/contents/
 const TK_JSON_RAW='https://raw.githubusercontent.com/orkiasystem/crm-master/main/tasks.json';
 let tkEtag=localStorage.getItem('tk_etag')||'';
 let tkApiBlockUntil=Number(localStorage.getItem('tk_api_block')||0);
+let tkFonte='';
+function tkInfo(msg){const e=document.getElementById('tkSyncInfo');if(e)e.textContent=msg;}
 // retorna: objeto JSON (mudou), 'same' (304, nada novo) ou null (falhou tudo)
 async function tkFetchJson(){
   if(Date.now()>tkApiBlockUntil){
@@ -1099,10 +1102,11 @@ async function tkFetchJson(){
       const h={'Accept':'application/vnd.github.raw'};
       if(tkEtag)h['If-None-Match']=tkEtag;
       const r=await fetch(TK_JSON_API,{headers:h,cache:'no-store'});
-      if(r.status===304) return 'same';
+      if(r.status===304){tkFonte='API (sem mudanças)';return 'same';}
       if(r.ok){
         const et=r.headers.get('etag');
         if(et){tkEtag=et;localStorage.setItem('tk_etag',et);}
+        tkFonte='API';
         return await r.json();
       }
       if(r.status===403){ // rate limit: pausa a API por 15 min e usa fallback
@@ -1113,22 +1117,26 @@ async function tkFetchJson(){
   }
   try{ // fallback 1: raw (cache curto do CDN)
     const r=await fetch(TK_JSON_RAW+'?t='+Math.floor(Date.now()/60000),{cache:'no-store'});
-    if(r.ok) return await r.json();
+    if(r.ok){tkFonte='raw';return await r.json();}
   }catch(e){}
   try{ // fallback 2: arquivo servido pelo Pages
     const r=await fetch('tasks.json?t='+Date.now(),{cache:'no-store'});
-    if(r.ok) return await r.json();
+    if(r.ok){tkFonte='pages';return await r.json();}
   }catch(e){}
+  tkFonte='nenhuma';
   return null;
 }
 async function tkSyncOps(){
+  const hora=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
   const json=await tkFetchJson();
-  if(!json||json==='same') return;
+  if(!json){tkInfo('Sincronização '+hora+': FALHOU — nenhuma fonte respondeu');return;}
+  if(json==='same'){tkInfo('Sincronização '+hora+': ok ('+tkFonte+')');return;}
   const ops=json.ops||[];
-  if(!ops.length) return;
-  const {data:applied}=await db.from('task_ops').select('op_id');
+  if(!ops.length){tkInfo('Sincronização '+hora+': arquivo sem operações ('+tkFonte+')');return;}
+  const {data:applied,error:errSel}=await db.from('task_ops').select('op_id');
+  if(errSel){tkInfo('Sincronização '+hora+': ERRO Supabase (task_ops): '+errSel.message);return;}
   const doneIds=new Set((applied||[]).map(o=>o.op_id));
-  let aplicou=0;
+  let aplicou=0, falhas=[];
   for(const op of ops){
     if(!op.id||doneIds.has(op.id)) continue;
     try{
@@ -1138,14 +1146,20 @@ async function tkSyncOps(){
         await db.from('task_config').upsert({id:1,...op.config});
       }else if(op.type==='update'&&op.task&&op.task.id){
         const {id,...fields}=op.task;
-        await db.from('tasks').update(fields).eq('id',id);
+        const {error}=await db.from('tasks').update(fields).eq('id',id);
+        if(error)throw error;
       }else if(op.task&&op.task.id){ // add / upsert
-        await db.from('tasks').upsert(op.task,{onConflict:'id'});
+        const {error}=await db.from('tasks').upsert(op.task,{onConflict:'id'});
+        if(error)throw error;
       }
-      await db.from('task_ops').insert({op_id:op.id});
+      const {error:errIns}=await db.from('task_ops').insert({op_id:op.id});
+      if(errIns)throw errIns;
       aplicou++;
-    }catch(e){console.warn('op falhou',op.id,e);}
+    }catch(e){falhas.push(op.id+': '+(e.message||e));console.warn('op falhou',op.id,e);}
   }
+  let msg='Sincronização '+hora+': '+ops.length+' ops lidas ('+tkFonte+'), '+doneIds.size+' já aplicadas, '+aplicou+' novas';
+  if(falhas.length)msg+=' — FALHAS: '+falhas.join(' | ');
+  tkInfo(msg);
   if(aplicou){
     tkFetch();
     showToast(aplicou+' atualização(ões) do Claude aplicada(s)','success');
