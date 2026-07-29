@@ -163,6 +163,17 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0009",
+      "type": "add",
+      "task": {
+        "id": "t-ping-sync",
+        "titulo": "PING de sincronização — commit 17:44 (pode excluir)",
+        "coluna": "todo",
+        "area": "orkai",
+        "prioridade": "baixa"
+      }
     }
   ]
 }
