@@ -1257,7 +1257,10 @@ function openTaskModal(id){
   const t=id?tkTasks.find(x=>x.id===id):null;
   document.getElementById('taskModalTitle').textContent=t?'Editar tarefa':'Nova tarefa';
   document.getElementById('tk-titulo').value=t?t.titulo:'';
-  document.getElementById('tk-desc').value=t?(t.descricao||''):'';
+  const fd=document.getElementById('tk-desc');
+  fd.value=t?(t.descricao||''):'';
+  fd.style.height='auto';
+  fd.style.height=Math.min(Math.max(fd.scrollHeight,70),320)+'px';
   document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
   document.getElementById('tk-col').value=t&&TK_COLS.some(c=>c.id===t.coluna)?t.coluna:(TK_COLS[0]||{}).id;
