@@ -97,6 +97,9 @@
   .tk-ax-item a:hover{color:var(--accent);}
   .tk-ax-cover{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap;}
   .tk-ax-cover input{accent-color:var(--accent);cursor:pointer;}
+  .tk-card.filedrop{outline:2px dashed var(--accent);outline-offset:-3px;}
+  .tk-ax-drop{border:1px dashed var(--border2);border-radius:var(--radius);padding:10px;transition:border-color .15s;}
+  .tk-ax-drop.filedrop{border-color:var(--accent);background:rgba(61,126,255,.06);}
 
   /* BTNS */
   .btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .15s;font-family:'DM Sans',sans-serif;}
@@ -484,9 +487,12 @@
       </div>
       <div class="form-group">
         <label>Anexos</label>
-        <div id="tkAxList"></div>
-        <input type="file" id="tkAxInput" multiple style="display:none;" onchange="tkUploadAx(this.files)">
-        <button class="btn btn-ghost btn-sm" id="tkAxBtn" onclick="document.getElementById('tkAxInput').click()">+ Anexar arquivo</button>
+        <div class="tk-ax-drop" id="tkAxDrop">
+          <div id="tkAxList"></div>
+          <input type="file" id="tkAxInput" multiple style="display:none;" onchange="tkUploadAx(this.files)">
+          <button class="btn btn-ghost btn-sm" id="tkAxBtn" onclick="document.getElementById('tkAxInput').click()">+ Anexar arquivo</button>
+          <span style="font-size:11px;color:var(--text3);margin-left:8px;">ou arraste arquivos aqui</span>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
@@ -1018,21 +1024,56 @@ let tkTasks=[], tkEditing=null, tkCkTemp=[], tkAxTemp=[], tkSynced=false, tkReal
 const TK_IMG_EXT=/\.(jpe?g|png|gif|webp|avif|heic)$/i;
 function tkIsImg(a){return TK_IMG_EXT.test(a.name||'');}
 
+// sobe uma lista de File pro storage e devolve os objetos de anexo
+async function tkStoreFiles(files,prefix){
+  const out=[];
+  for(const f of files){
+    const path=(prefix||'nova')+'/'+Date.now()+'-'+f.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+    const {error}=await db.storage.from('task-files').upload(path,f);
+    if(error){showToast('Erro no upload de '+f.name+': '+error.message,'error');continue;}
+    const {data}=db.storage.from('task-files').getPublicUrl(path);
+    out.push({name:f.name,path,url:data.publicUrl,cover:false});
+  }
+  return out;
+}
+
+// arrastar arquivo direto num card do quadro: anexa e salva na hora
+async function tkDropOnCard(t,files){
+  showToast('Enviando '+files.length+' arquivo(s)...','success');
+  const novos=await tkStoreFiles(files,t.id);
+  if(!novos.length)return;
+  const lista=(t.anexos||[]).concat(novos);
+  const {error}=await db.from('tasks').update({anexos:lista}).eq('id',t.id);
+  if(error){showToast('Erro ao anexar: '+error.message,'error');return;}
+  showToast(novos.length+' arquivo(s) anexado(s) em "'+t.titulo.slice(0,30)+'"','success');
+  tkFetch();
+}
+
 async function tkUploadAx(files){
   if(!files||!files.length)return;
   const btn=document.getElementById('tkAxBtn');
   btn.disabled=true;btn.textContent='Enviando...';
-  for(const f of files){
-    const path=(tkEditing||'nova')+'/'+Date.now()+'-'+f.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-    const {error}=await db.storage.from('task-files').upload(path,f);
-    if(error){showToast('Erro no upload de '+f.name+': '+error.message,'error');continue;}
-    const {data}=db.storage.from('task-files').getPublicUrl(path);
-    tkAxTemp.push({name:f.name,path,url:data.publicUrl,cover:false});
-  }
+  const novos=await tkStoreFiles(files,tkEditing||'nova');
+  tkAxTemp.push(...novos);
   btn.disabled=false;btn.textContent='+ Anexar arquivo';
   document.getElementById('tkAxInput').value='';
   tkRenderAx();
 }
+
+// dropzone de anexos dentro do modal
+(function(){
+  const dz=document.getElementById('tkAxDrop');
+  if(!dz)return;
+  dz.addEventListener('dragover',e=>{
+    if([...e.dataTransfer.types].includes('Files')){e.preventDefault();dz.classList.add('filedrop');}
+  });
+  dz.addEventListener('dragleave',()=>dz.classList.remove('filedrop'));
+  dz.addEventListener('drop',e=>{
+    if(![...e.dataTransfer.types].includes('Files'))return;
+    e.preventDefault();dz.classList.remove('filedrop');
+    tkUploadAx(e.dataTransfer.files);
+  });
+})();
 function tkRenderAx(){
   const l=document.getElementById('tkAxList');l.innerHTML='';
   tkAxTemp.forEach((a,ix)=>{
@@ -1191,10 +1232,11 @@ function renderTasks(){
     col.innerHTML=`<div class="tk-col-h"><div class="tk-dot" style="background:${c.c}"></div><b>${tkEsc(c.n)}</b><span class="tk-count">${list.length}</span></div><div class="tk-cards"></div>`;
     const cards=col.querySelector('.tk-cards');
     list.forEach(t=>cards.appendChild(tkCardEl(t)));
-    col.addEventListener('dragover',e=>{e.preventDefault();col.classList.add('dragover');});
+    col.addEventListener('dragover',e=>{e.preventDefault();if(![...e.dataTransfer.types].includes('Files'))col.classList.add('dragover');});
     col.addEventListener('dragleave',()=>col.classList.remove('dragover'));
     col.addEventListener('drop',async e=>{
       e.preventDefault();col.classList.remove('dragover');
+      if([...e.dataTransfer.types].includes('Files'))return; // arquivo solto fora de um card: ignora
       const id=e.dataTransfer.getData('id');const t=tkTasks.find(x=>x.id===id);
       if(t&&t.coluna!==c.id){t.coluna=c.id;renderTasks();
         const {error}=await db.from('tasks').update({coluna:c.id}).eq('id',id);
@@ -1229,6 +1271,15 @@ function tkCardEl(t){
   </div>`;
   el.addEventListener('dragstart',e=>{e.dataTransfer.setData('id',t.id);el.classList.add('dragging');});
   el.addEventListener('dragend',()=>el.classList.remove('dragging'));
+  el.addEventListener('dragover',e=>{
+    if([...e.dataTransfer.types].includes('Files')){e.preventDefault();e.stopPropagation();el.classList.add('filedrop');}
+  });
+  el.addEventListener('dragleave',()=>el.classList.remove('filedrop'));
+  el.addEventListener('drop',e=>{
+    if(![...e.dataTransfer.types].includes('Files'))return;
+    e.preventDefault();e.stopPropagation();el.classList.remove('filedrop');
+    tkDropOnCard(t,[...e.dataTransfer.files]);
+  });
   el.addEventListener('click',()=>openTaskModal(t.id));
   return el;
 }
