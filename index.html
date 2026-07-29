@@ -54,6 +54,38 @@
   .page{display:none;padding:28px;}
   .page.active{display:block;}
 
+  /* TAREFAS (kanban) */
+  .tk-board{display:flex;gap:14px;overflow-x:auto;align-items:flex-start;padding-bottom:8px;}
+  .tk-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);min-width:280px;width:280px;flex-shrink:0;display:flex;flex-direction:column;max-height:calc(100vh - 230px);}
+  .tk-col-h{display:flex;align-items:center;gap:8px;padding:13px 14px;border-bottom:1px solid var(--border);}
+  .tk-dot{width:8px;height:8px;border-radius:50%;}
+  .tk-col-h b{font-family:'Syne',sans-serif;font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:600;}
+  .tk-count{margin-left:auto;background:var(--bg3);color:var(--text3);font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;}
+  .tk-cards{padding:10px;display:flex;flex-direction:column;gap:9px;overflow-y:auto;}
+  .tk-col.dragover{outline:2px dashed var(--accent);outline-offset:-4px;}
+  .tk-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:grab;transition:all .15s;}
+  .tk-card:hover{border-color:var(--border2);transform:translateY(-1px);}
+  .tk-card.dragging{opacity:.4;}
+  .tk-strip{height:4px;}
+  .tk-card-b{padding:10px 12px 11px;}
+  .tk-card-t{font-weight:500;font-size:13.5px;line-height:1.35;margin-bottom:5px;}
+  .tk-card-d{font-size:12px;color:var(--text2);line-height:1.4;margin-bottom:7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .tk-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .tk-prazo{font-size:11px;color:var(--text3);margin-left:auto;}
+  .tk-prazo.late{color:var(--red);font-weight:600;}
+  .tk-prog{margin-top:8px;}
+  .tk-prog-bar{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;}
+  .tk-prog-fill{height:100%;border-radius:2px;transition:width .3s;}
+  .tk-prog-txt{font-size:10px;color:var(--text3);margin-top:4px;}
+  .tk-ck-list{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
+  .tk-ck-item{display:flex;align-items:center;gap:9px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 11px;}
+  .tk-ck-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--green);cursor:pointer;flex-shrink:0;}
+  .tk-ck-item span{font-size:13px;flex:1;}
+  .tk-ck-item span.done{text-decoration:line-through;color:var(--text3);}
+  .tk-ck-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 2px;}
+  .tk-ck-del:hover{color:var(--red);}
+  @media(max-width:640px){.tk-col{min-width:82vw;width:82vw;}}
+
   /* BTNS */
   .btn{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:var(--radius);font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .15s;font-family:'DM Sans',sans-serif;}
   .btn-primary{background:var(--accent);color:#fff;}
@@ -246,6 +278,7 @@
     <div class="tab" id="tab-clients" onclick="showPage('clients')">Clientes</div>
     <div class="tab" id="tab-payments" onclick="showPage('payments')">Pagamentos</div>
     <div class="tab" id="tab-support" onclick="showPage('support')">Suporte</div>
+    <div class="tab" id="tab-tasks" onclick="showPage('tasks')">Tarefas</div>
   </div>
 
   <!-- PAGE: OVERVIEW -->
@@ -370,6 +403,85 @@
           <button class="btn btn-primary btn-sm" onclick="sendSupportReply()">Enviar</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- PAGE: TAREFAS -->
+  <div class="page" id="page-tasks">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;">
+      <input type="text" id="tkSearch" placeholder="Buscar tarefa..." style="max-width:300px;" oninput="renderTasks()">
+      <div style="margin-left:auto;display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="loadTasks(true)">Atualizar</button>
+        <button class="btn btn-primary btn-sm" onclick="openTaskModal()">+ Tarefa</button>
+      </div>
+    </div>
+    <div class="tk-board" id="tkBoard"></div>
+  </div>
+</div>
+
+<!-- MODAL: TAREFA -->
+<div class="modal-overlay" id="taskModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="taskModalTitle">Nova tarefa</div>
+      <button class="modal-close" onclick="closeModal('taskModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" id="tk-titulo">
+      </div>
+      <div class="form-group">
+        <label>Descrição</label>
+        <textarea id="tk-desc" rows="3"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Área</label>
+          <select id="tk-area">
+            <option value="icasas">iCasas</option>
+            <option value="orkai">OrkAI</option>
+            <option value="pessoal">Pessoal</option>
+            <option value="freela">Freela</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Prioridade</label>
+          <select id="tk-prio">
+            <option value="alta">Alta</option>
+            <option value="media" selected>Média</option>
+            <option value="baixa">Baixa</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Coluna</label>
+          <select id="tk-col">
+            <option value="todo">A Fazer</option>
+            <option value="doing">Em Andamento</option>
+            <option value="waiting">Aguardando</option>
+            <option value="done">Concluído</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Prazo</label>
+          <input type="date" id="tk-prazo">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Checklist</label>
+        <div class="tk-ck-list" id="tkCkList"></div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <input type="text" id="tkCkNew" placeholder="Novo item..." style="flex:1;" onkeydown="if(event.key==='Enter')tkAddCk()">
+          <button class="btn btn-ghost btn-sm" onclick="tkAddCk()">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger" id="tkDelBtn" onclick="deleteTask()" style="margin-right:auto;display:none;">Excluir</button>
+      <button class="btn btn-ghost" onclick="closeModal('taskModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveTaskModal()">Salvar</button>
     </div>
   </div>
 </div>
@@ -847,9 +959,158 @@ function showPage(page){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   document.getElementById('tab-'+page).classList.add('active');
-  const titles={overview:'Visão Geral',clients:'Clientes',payments:'Pagamentos',support:'Suporte'};
+  const titles={overview:'Visão Geral',clients:'Clientes',payments:'Pagamentos',support:'Suporte',tasks:'Tarefas'};
   document.getElementById('topbarTitle').textContent = titles[page];
   if(page==='support') loadSupportClients();
+  if(page==='tasks') loadTasks();
+}
+
+// ---------- TAREFAS ----------
+const TK_COLS=[
+  {id:'todo',nome:'A Fazer',cor:'var(--amber)'},
+  {id:'doing',nome:'Em Andamento',cor:'var(--accent)'},
+  {id:'waiting',nome:'Aguardando',cor:'var(--purple)'},
+  {id:'done',nome:'Concluído',cor:'var(--green)'}
+];
+const TK_AREAS={icasas:{n:'iCasas',c:'#3d7eff'},orkai:{n:'OrkAI',c:'#22c55e'},pessoal:{n:'Pessoal',c:'#a855f7'},freela:{n:'Freela',c:'#f59e0b'}};
+const TK_PRIOS={alta:'var(--red)',media:'var(--amber)',baixa:'var(--green)'};
+let tkTasks=[], tkEditing=null, tkCkTemp=[], tkSynced=false;
+
+async function loadTasks(force){
+  if(!tkSynced || force){ await tkSyncOps(); tkSynced=true; }
+  const {data,error}=await db.from('tasks').select('*').order('criado',{ascending:true});
+  if(error){showToast('Erro ao carregar tarefas: '+error.message,'error');return;}
+  tkTasks=data||[];
+  renderTasks();
+}
+
+// Lê tasks.json do repositório e aplica operações ainda não aplicadas
+async function tkSyncOps(){
+  let json;
+  try{
+    const r=await fetch('tasks.json?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok) return;
+    json=await r.json();
+  }catch(e){return;}
+  const ops=json.ops||[];
+  if(!ops.length) return;
+  const {data:applied}=await db.from('task_ops').select('op_id');
+  const doneIds=new Set((applied||[]).map(o=>o.op_id));
+  for(const op of ops){
+    if(!op.id||doneIds.has(op.id)) continue;
+    try{
+      if(op.type==='remove'&&op.task_id){
+        await db.from('tasks').delete().eq('id',op.task_id);
+      }else if(op.type==='update'&&op.task&&op.task.id){
+        const {id,...fields}=op.task;
+        await db.from('tasks').update(fields).eq('id',id);
+      }else if(op.task&&op.task.id){ // add / upsert
+        await db.from('tasks').upsert(op.task,{onConflict:'id'});
+      }
+      await db.from('task_ops').insert({op_id:op.id});
+    }catch(e){console.warn('op falhou',op.id,e);}
+  }
+}
+
+function renderTasks(){
+  const q=(document.getElementById('tkSearch').value||'').toLowerCase();
+  const b=document.getElementById('tkBoard');b.innerHTML='';
+  TK_COLS.forEach(c=>{
+    const list=tkTasks.filter(t=>t.coluna===c.id&&(!q||t.titulo.toLowerCase().includes(q)||(t.descricao||'').toLowerCase().includes(q)));
+    const col=document.createElement('div');col.className='tk-col';
+    col.innerHTML=`<div class="tk-col-h"><div class="tk-dot" style="background:${c.cor}"></div><b>${c.nome}</b><span class="tk-count">${list.length}</span></div><div class="tk-cards"></div>`;
+    const cards=col.querySelector('.tk-cards');
+    list.forEach(t=>cards.appendChild(tkCardEl(t)));
+    col.addEventListener('dragover',e=>{e.preventDefault();col.classList.add('dragover');});
+    col.addEventListener('dragleave',()=>col.classList.remove('dragover'));
+    col.addEventListener('drop',async e=>{
+      e.preventDefault();col.classList.remove('dragover');
+      const id=e.dataTransfer.getData('id');const t=tkTasks.find(x=>x.id===id);
+      if(t&&t.coluna!==c.id){t.coluna=c.id;renderTasks();
+        const {error}=await db.from('tasks').update({coluna:c.id}).eq('id',id);
+        if(error)showToast('Erro ao mover: '+error.message,'error');}
+    });
+    b.appendChild(col);
+  });
+}
+
+function tkEsc(s){return (s||'').replace(/</g,'&lt;');}
+function tkCardEl(t){
+  const a=TK_AREAS[t.area]||{n:t.area||'—',c:'#8a90a0'};
+  const ck=t.checklist||[];const done=ck.filter(i=>i.done).length;
+  const pct=ck.length?Math.round(done/ck.length*100):0;
+  const late=t.prazo&&t.coluna!=='done'&&new Date(t.prazo+'T23:59')<new Date();
+  const el=document.createElement('div');el.className='tk-card';el.draggable=true;
+  el.innerHTML=`<div class="tk-strip" style="background:${TK_PRIOS[t.prioridade]||'var(--border2)'}"></div>
+  <div class="tk-card-b">
+    <div class="tk-card-t">${tkEsc(t.titulo)}</div>
+    ${t.descricao?`<div class="tk-card-d">${tkEsc(t.descricao)}</div>`:''}
+    <div class="tk-meta">
+      <span class="badge" style="background:${a.c}22;color:${a.c}">${a.n}</span>
+      ${t.prazo?`<span class="tk-prazo${late?' late':''}">${t.prazo.split('-').reverse().slice(0,2).join('/')}</span>`:''}
+    </div>
+    ${ck.length?`<div class="tk-prog"><div class="tk-prog-bar"><div class="tk-prog-fill" style="width:${pct}%;background:${pct===100?'var(--green)':'var(--accent)'}"></div></div><div class="tk-prog-txt">${done}/${ck.length} itens</div></div>`:''}
+  </div>`;
+  el.addEventListener('dragstart',e=>{e.dataTransfer.setData('id',t.id);el.classList.add('dragging');});
+  el.addEventListener('dragend',()=>el.classList.remove('dragging'));
+  el.addEventListener('click',()=>openTaskModal(t.id));
+  return el;
+}
+
+function openTaskModal(id){
+  tkEditing=id||null;
+  const t=id?tkTasks.find(x=>x.id===id):null;
+  document.getElementById('taskModalTitle').textContent=t?'Editar tarefa':'Nova tarefa';
+  document.getElementById('tk-titulo').value=t?t.titulo:'';
+  document.getElementById('tk-desc').value=t?(t.descricao||''):'';
+  document.getElementById('tk-area').value=t?(t.area||'pessoal'):'pessoal';
+  document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
+  document.getElementById('tk-col').value=t?t.coluna:'todo';
+  document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
+  tkCkTemp=t?JSON.parse(JSON.stringify(t.checklist||[])):[];
+  document.getElementById('tkDelBtn').style.display=t?'inline-flex':'none';
+  tkRenderCk();
+  document.getElementById('taskModal').classList.add('open');
+}
+function tkRenderCk(){
+  const l=document.getElementById('tkCkList');l.innerHTML='';
+  tkCkTemp.forEach((i,ix)=>{
+    const d=document.createElement('div');d.className='tk-ck-item';
+    d.innerHTML=`<input type="checkbox" ${i.done?'checked':''}><span class="${i.done?'done':''}">${tkEsc(i.t)}</span><button class="tk-ck-del">×</button>`;
+    d.querySelector('input').addEventListener('change',e=>{i.done=e.target.checked;tkRenderCk();});
+    d.querySelector('.tk-ck-del').addEventListener('click',()=>{tkCkTemp.splice(ix,1);tkRenderCk();});
+    l.appendChild(d);
+  });
+}
+function tkAddCk(){
+  const inp=document.getElementById('tkCkNew');const v=inp.value.trim();
+  if(!v)return; tkCkTemp.push({t:v,done:false}); inp.value=''; tkRenderCk();
+}
+async function saveTaskModal(){
+  const titulo=document.getElementById('tk-titulo').value.trim();
+  if(!titulo){showToast('Título obrigatório.','error');return;}
+  const data={
+    titulo, descricao:document.getElementById('tk-desc').value.trim(),
+    area:document.getElementById('tk-area').value,
+    prioridade:document.getElementById('tk-prio').value,
+    coluna:document.getElementById('tk-col').value,
+    prazo:document.getElementById('tk-prazo').value||null,
+    checklist:tkCkTemp
+  };
+  let error;
+  if(tkEditing){({error}=await db.from('tasks').update(data).eq('id',tkEditing));}
+  else{({error}=await db.from('tasks').insert({id:'t-'+Date.now().toString(36),...data}));}
+  if(error){showToast('Erro ao salvar: '+error.message,'error');return;}
+  closeModal('taskModal');showToast('Tarefa salva!','success');
+  loadTasks();
+}
+async function deleteTask(){
+  if(!tkEditing)return;
+  if(!confirm('Excluir esta tarefa?'))return;
+  const {error}=await db.from('tasks').delete().eq('id',tkEditing);
+  if(error){showToast('Erro: '+error.message,'error');return;}
+  closeModal('taskModal');showToast('Tarefa excluída.','success');
+  loadTasks();
 }
 
 // ---------- LOAD DATA ----------
