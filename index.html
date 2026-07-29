@@ -1018,6 +1018,7 @@ async function loadTasks(force){
   if(!tkSynced || force){ await tkSyncOps(); tkSynced=true; }
   await tkFetch();
   tkStartRealtime();
+  tkStartPoll();
 }
 
 async function tkFetch(){
@@ -1036,17 +1037,26 @@ function tkStartRealtime(){
 }
 
 // Lê tasks.json do repositório e aplica operações ainda não aplicadas
-async function tkSyncOps(){
-  let json;
-  try{
+const TK_JSON_API='https://api.github.com/repos/orkiasystem/crm-master/contents/tasks.json';
+async function tkFetchJson(){
+  try{ // API do GitHub: sem cache, atualiza na hora do commit
+    const r=await fetch(TK_JSON_API,{headers:{'Accept':'application/vnd.github.raw'},cache:'no-store'});
+    if(r.ok) return await r.json();
+  }catch(e){}
+  try{ // fallback: arquivo servido pelo Pages
     const r=await fetch('tasks.json?t='+Date.now(),{cache:'no-store'});
-    if(!r.ok) return;
-    json=await r.json();
-  }catch(e){return;}
+    if(r.ok) return await r.json();
+  }catch(e){}
+  return null;
+}
+async function tkSyncOps(){
+  const json=await tkFetchJson();
+  if(!json) return;
   const ops=json.ops||[];
   if(!ops.length) return;
   const {data:applied}=await db.from('task_ops').select('op_id');
   const doneIds=new Set((applied||[]).map(o=>o.op_id));
+  let aplicou=false;
   for(const op of ops){
     if(!op.id||doneIds.has(op.id)) continue;
     try{
@@ -1061,8 +1071,22 @@ async function tkSyncOps(){
         await db.from('tasks').upsert(op.task,{onConflict:'id'});
       }
       await db.from('task_ops').insert({op_id:op.id});
+      aplicou=true;
     }catch(e){console.warn('op falhou',op.id,e);}
   }
+  if(aplicou) tkFetch();
+}
+
+// Verificação automática: a cada 60s com a aba Tarefas aberta, e ao voltar pra janela
+let tkPollTimer=null;
+function tkStartPoll(){
+  if(tkPollTimer) return;
+  tkPollTimer=setInterval(()=>{
+    if(document.getElementById('page-tasks').classList.contains('active') && !document.hidden) tkSyncOps();
+  },60000);
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden && document.getElementById('page-tasks').classList.contains('active')) tkSyncOps();
+  });
 }
 
 function renderTasks(){
