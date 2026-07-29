@@ -1,7 +1,73 @@
 {
   "ops": [
-    {"id":"op-0001","type":"add","task":{"id":"t-fotos-emp","titulo":"Fotografar empreendimento entregue","descricao":"2 fotos por cômodo + vídeo. Usar checklist impresso.","coluna":"todo","area":"icasas","prioridade":"alta","checklist":[{"t":"Imprimir checklist de fotos","done":false},{"t":"Confirmar acesso à casa","done":false},{"t":"Fotografar (2 por ambiente)","done":false},{"t":"Selecionar e editar fotos","done":false},{"t":"Subir na Vitrine dos Sonhos","done":false}]}},
-    {"id":"op-0002","type":"add","task":{"id":"t-cnpj-orkai","titulo":"Abrir CNPJ da OrkAI","coluna":"todo","area":"orkai","prioridade":"alta","prazo":"2026-08-31"}},
-    {"id":"op-0003","type":"add","task":{"id":"t-dominio","titulo":"Comprar domínio OrkAI","coluna":"todo","area":"orkai","prioridade":"media"}}
+    {
+      "id": "op-0001",
+      "type": "add",
+      "task": {
+        "id": "t-fotos-emp",
+        "titulo": "Fotografar empreendimento entregue",
+        "descricao": "2 fotos por cômodo + vídeo. Usar checklist impresso.",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "checklist": [
+          {
+            "t": "Imprimir checklist de fotos",
+            "done": false
+          },
+          {
+            "t": "Confirmar acesso à casa",
+            "done": false
+          },
+          {
+            "t": "Fotografar (2 por ambiente)",
+            "done": false
+          },
+          {
+            "t": "Selecionar e editar fotos",
+            "done": false
+          },
+          {
+            "t": "Subir na Vitrine dos Sonhos",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0002",
+      "type": "add",
+      "task": {
+        "id": "t-cnpj-orkai",
+        "titulo": "Abrir CNPJ da OrkAI",
+        "coluna": "todo",
+        "area": "orkai",
+        "prioridade": "alta",
+        "prazo": "2026-08-31"
+      }
+    },
+    {
+      "id": "op-0003",
+      "type": "add",
+      "task": {
+        "id": "t-dominio",
+        "titulo": "Comprar domínio OrkAI",
+        "coluna": "todo",
+        "area": "orkai",
+        "prioridade": "media"
+      }
+    },
+    {
+      "id": "op-0004",
+      "type": "add",
+      "task": {
+        "id": "t-teste-fluxo",
+        "titulo": "Testar fluxo de tarefas via Claude",
+        "descricao": "Tarefa criada pelo Claude direto no GitHub pra validar a sincronização. Pode excluir depois.",
+        "coluna": "doing",
+        "area": "orkai",
+        "prioridade": "baixa"
+      }
+    }
   ]
 }
