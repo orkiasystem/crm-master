@@ -1256,6 +1256,139 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0101",
+      "type": "add",
+      "task": {
+        "id": "t-link-crm-icasas",
+        "codigo": 16,
+        "titulo": "CRM ICASAS",
+        "coluna": "links",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "CRM de leads da iCasas — pipeline de atendimento dos corretores.\n\nhttps://mkticasas.github.io/crm-icasas/",
+        "checklist": [
+          {
+            "t": "Registrar onde fica o login",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0102",
+      "type": "add",
+      "task": {
+        "id": "t-link-obras-automacao",
+        "codigo": 17,
+        "titulo": "OBRAS + AUTOMAÇÃO",
+        "coluna": "links",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Acompanhamento de obras e automação.\n\nhttps://mkticasas.github.io/obras-automacao/",
+        "checklist": [
+          {
+            "t": "Registrar onde fica o login",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0103",
+      "type": "add",
+      "task": {
+        "id": "t-link-vitrine",
+        "codigo": 18,
+        "titulo": "VITRINE DOS SONHOS",
+        "coluna": "links",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Site de vitrine dos imóveis — o que o cliente vê.\n\nhttps://vitrine.icasasconstrutora.com.br",
+        "checklist": [
+          {
+            "t": "Registrar onde fica o login",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0104",
+      "type": "add",
+      "task": {
+        "id": "t-link-worker-obras",
+        "codigo": 19,
+        "titulo": "OBRAS — WORKER CLOUDFLARE",
+        "coluna": "links",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Worker que roda por trás do acompanhamento de obras.\n\nhttps://obras.mkt-icasas.workers.dev",
+        "checklist": [
+          {
+            "t": "Registrar onde fica o login",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0105",
+      "type": "add",
+      "task": {
+        "id": "t-link-cloudflare",
+        "codigo": 20,
+        "titulo": "CLOUDFLARE — PAINEL",
+        "coluna": "links",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Painel da Cloudflare: workers, DNS e domínios.\n\nhttps://dash.cloudflare.com/bd7cba738110d5e0f2ca3b4deb6aedfd/home",
+        "checklist": [
+          {
+            "t": "Registrar onde fica o login",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0106",
+      "type": "add",
+      "task": {
+        "id": "t-link-orkai-lp",
+        "codigo": 21,
+        "titulo": "ORKAI — LANDING PAGE",
+        "coluna": "links",
+        "area": "orkai",
+        "prioridade": "baixa",
+        "descricao": "Landing page institucional da OrkAI Systems — sistemas inteligentes sob medida.\n\nhttps://orkiasystem.github.io/orkai-lp/",
+        "checklist": [
+          {
+            "t": "Registrar onde fica o login",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0107",
+      "type": "add",
+      "task": {
+        "id": "t-link-orkai-crm-construtora",
+        "codigo": 22,
+        "titulo": "ORKAI CRM — ICASAS CONSTRUTORA",
+        "coluna": "links",
+        "area": "orkai",
+        "prioridade": "baixa",
+        "descricao": "CRM da iCasas Construtora rodando na OrkAI.\n\nhttps://orkiasystem.github.io/crm-icasas-construtora/",
+        "checklist": [
+          {
+            "t": "Registrar onde fica o login",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
