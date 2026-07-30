@@ -858,6 +858,70 @@
         "ordem": 10
       },
       "id": "op-0056"
+    },
+    {
+      "id": "op-0057",
+      "type": "update",
+      "task": {
+        "id": "t-frase-automacao",
+        "descricao": "Pedido do **Cris**: uma frase de automação para colocar **bem grande** na parede do escritório.\n\n*Print de referência está no card antigo do Trello — baixar e arrastar aqui como anexo.*\n\n---\n\n**COPY — opções (frase de parede)**\n\n- **A casa que entende você.**\n- **Tecnologia que mora com você.**\n- **Sua casa, no automático.**\n- **Aqui, a casa trabalha pra você.**\n- **Bem-vindo à casa que pensa.**\n\n*Regra pra parede: quanto menos palavra, maior a fonte e maior o impacto. As três primeiras funcionam melhor em letra caixa alta ocupando a parede inteira.*"
+      }
+    },
+    {
+      "id": "op-0058",
+      "type": "update",
+      "task": {
+        "id": "t-arte-missao-visao-valores",
+        "descricao": "Três placas para o escritório.\n\n**1ª — MISSÃO** *(nosso propósito)*\n- Realizar o sonho da casa dos sonhos\n\n**2ª — VISÃO** *(onde queremos chegar)*\n- Ser a maior empresa de casas inteligentes do Brasil\n\n**3ª — VALORES** *(o que não negociamos)*\n- Honestidade e transparência\n- Construímos relações sólidas baseadas em confiança e verdade\n\n---\n\n**COPY — versão polida (sugestão, precisa passar pelo Cris)**\n\n- **MISSÃO:** Transformar o sonho da casa própria em endereço.\n- **VISÃO:** Ser a maior empresa de casas inteligentes do Brasil.\n- **VALORES:** Honestidade e transparência. Relações sólidas, construídas na confiança e na verdade.\n\n*Motivo do ajuste na missão: \"sonho da casa dos sonhos\" repete a mesma palavra. A visão está boa como está.*\n\n---\n\n*As imagens de referência estão no card antigo do Trello — baixar e arrastar aqui como anexo.*"
+      }
+    },
+    {
+      "id": "op-0059",
+      "type": "update",
+      "task": {
+        "id": "t-arte-fachada-icasas-int",
+        "descricao": "**Formatos**\n- Totem vertical: 2,72 m × 1,32 m\n- Totem horizontal: 2,00 m × 3,80 m\n\nDuas versões para teste A/B de aprovação.\n\n---\n\n**COPY — Versão 1: Azul** *(institucional/tech)*\n- Headline: **iCASAS INTELIGENTES**\n- Sub: Automação residencial que funciona\n- Apoio: Som • Iluminação • Segurança • Tudo no aplicativo\n- Contato: [TELEFONE]\n\n**COPY — Versão 2: Verde** *(convite/proximidade)*\n- Headline: **iCASAS INTELIGENTES**\n- Sub: Sua casa na palma da mão\n- Apoio: Casa inteligente, sem complicação\n- Contato: [TELEFONE]\n\n---\n\n**Alternativas de subheadline pra testar**\n- A casa já vem inteligente. E pronta.\n- Automação de fábrica, não de gambiarra.\n- Toda casa nossa já nasce conectada.\n\n*Regra de totem: quem lê está passando de carro. Headline em no máximo 3 palavras, telefone do tamanho da headline, resto some.*"
+      }
+    },
+    {
+      "id": "op-0060",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-promo-garagem",
+        "descricao": "Promoção pensada para **julho** — ideia do Vini.\n\n- **Mecânica 1:** quem comprar com a gente concorre a uma garagem concretada\n- **Mecânica 2:** quem pagar X de entrada ganha a garagem concretada\n\n---\n\n**COPY — Nome da campanha**\n- **Garagem por nossa conta**\n\n**Headline (mecânica sorteio)**\n- Compre sua casa e concorra à garagem concretada.\n\n**Headline (mecânica entrada)**\n- Deu a entrada? A garagem é por nossa conta.\n\n**Apoios**\n- Sua casa já sai com o carro coberto.\n- Uma preocupação a menos depois da mudança.\n\n**CTA**\n- Fale com um corretor e garanta a sua.\n\n---\n\n*Definir antes de rodar: custo real da garagem, valor da entrada que ativa o benefício, período da campanha e regulamento.*"
+      }
+    },
+    {
+      "id": "op-0061",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-video-paralisado",
+        "descricao": "Formato de vídeo: **\"todo mundo paralisado\"** — cena estilo novela.\n\nReferência: reel da Izadora Oliveira — *\"Esse apê de 34m² prova que um espaço bem planejado faz toda diferença.\"*\n\nhttps://www.instagram.com/reel/DVeEtEJkTBQ/\n\n---\n\n**COPY — roteiro base**\n\n- **Abertura (corretora anda entre a família congelada):** \"Pausa. Deixa eu te mostrar o que você não tá vendo.\"\n- **Passagem pela sala:** \"Isso aqui não é sala grande. É sala bem planejada.\"\n- **Passagem pela cozinha:** \"Tomada no lugar certo. Parece detalhe, muda o dia todo.\"\n- **Passagem pelo quarto:** \"Cabe a cama, o guarda-roupa e ainda sobra chão.\"\n- **Fechamento (todo mundo volta a se mexer):** \"Play. E essa casa já pode ser sua.\"\n\n**Legenda do post**\n- Ninguém repara nos detalhes até morar neles. Aperta o play e olha de novo.\n\n---\n\n*Adaptação: gravar numa casa entregue, congelar a cena e destacar um diferencial por ambiente.*"
+      }
+    },
+    {
+      "id": "op-0062",
+      "type": "update",
+      "task": {
+        "id": "t-foto-assinatura-email",
+        "descricao": "Foto e assinatura padrão de e-mail.\n\n- Referência técnica: *Responsive CSS Inliner for Email Templates*\n- Definir se é só pra você ou padrão de toda a equipe\n\n---\n\n**COPY — estrutura da assinatura**\n\n- **[NOME]** — [Cargo]\n- iCasas Construtora\n- [TELEFONE] • WhatsApp\n- [SITE] • @icasasconstrutora\n- Assinatura de apoio: *Casas inteligentes, entregues prontas.*\n\n**Alternativas de linha de apoio**\n- Do projeto à chave na mão.\n- A casa própria mais perto do que parece.\n\n*Regra: assinatura boa cabe em 5 linhas e funciona sem imagem carregada. Logo em PNG leve, foto opcional e nunca como fundo.*"
+      }
+    },
+    {
+      "id": "op-0063",
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "descricao": "Loja da **Jumka** em marketplace. Verificado: ainda não existe loja com esse nome na Shopee.\n\n**Pedido do Jean (30/07)** — coletar:\n- Tabela de preço\n- Peso do produto embalado\n- Medidas\n\n**Comissões a considerar**\n- Shopee: **20%**\n- Mercado Livre: **17%** *(ele também está olhando o ML)*\n\n---\n\n**COPY — fórmula de título do anúncio**\n\n- **[Produto] + [Material/Modelo] + [Medida] + [Diferencial]**\n- Exemplo: *Mesa de Jantar 6 Lugares Madeira Maciça 1,80m Pronta Entrega*\n- Palavra-chave principal sempre nas primeiras palavras — é o que o buscador lê\n- Até 100 caracteres, sem CAPS LOCK e sem emoji no título\n\n**Estrutura da descrição**\n- Linha 1: pra quem serve e o problema que resolve\n- Medidas exatas (altura × largura × profundidade)\n- Material e acabamento\n- O que acompanha / se vem montado\n- Prazo de produção e envio\n- Garantia\n\n---\n\n**Atenção na precificação:** além da comissão tem taxa fixa por item vendido e custo de embalagem. Frete por dimensão pesa bastante em produto grande.\n\n*Sugestão: validar em um marketplace primeiro, não nos dois de uma vez.*"
+      }
+    },
+    {
+      "id": "op-0064",
+      "type": "update",
+      "task": {
+        "id": "t-fotos-emp",
+        "descricao": "**Padrão:** 2 fotos por cômodo + vídeo geral.\n\n- Foto 1: ângulo aberto, mostrando o ambiente inteiro\n- Foto 2: ângulo oposto ou o principal destaque do ambiente\n- Câmera a ~1,20 m de altura, linha do horizonte reta\n\n---\n\n**COPY — legenda base do post de casa pronta**\n\n- **Gancho:** Essa aqui já tá pronta pra receber alguém.\n- **Corpo:** [Nº] quartos, [nº] vagas, [bairro]. Entregue com [diferencial: automação, porcelanato, área gourmet].\n- **CTA:** Chama no direct que eu te mando a planta e as condições.\n\n**Variação pra entrega de chave**\n- Mais uma chave entregue. Essa foto vale mais que qualquer anúncio.\n\n---\n\n**Antes de ir a campo:** imprimir o checklist pelo botão *Exportar PDF* deste card e confirmar o acesso à casa com a corretora."
+      }
     }
   ]
 }
