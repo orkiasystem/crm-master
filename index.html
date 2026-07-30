@@ -118,6 +118,10 @@
   .tk-cm-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;margin-left:auto;padding:0 2px;}
   .tk-cm-del:hover{color:var(--red);}
   .tk-cm-count{font-size:11px;color:var(--text3);display:inline-flex;align-items:center;gap:3px;}
+  .tk-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+  .tk-link-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(61,126,255,.12);border:1px solid rgba(61,126,255,.35);color:var(--accent);font-size:12px;font-weight:500;padding:5px 11px;border-radius:20px;text-decoration:none;max-width:100%;transition:.15s;}
+  .tk-link-chip:hover{background:rgba(61,126,255,.22);}
+  .tk-link-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:260px;}
   .tk-ax-drop{border:1px dashed var(--border2);border-radius:var(--radius);padding:10px;transition:border-color .15s;}
   .tk-ax-drop.filedrop{border-color:var(--accent);background:rgba(61,126,255,.06);}
 
@@ -470,7 +474,8 @@
       </div>
       <div class="form-group">
         <label>Descrição</label>
-        <textarea id="tk-desc" rows="3"></textarea>
+        <textarea id="tk-desc" rows="3" oninput="tkRenderLinks()"></textarea>
+        <div class="tk-links" id="tkLinkList"></div>
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -1049,6 +1054,23 @@ let TK_TEMPLATES=[];
 const TK_PRIOS={alta:'var(--red)',media:'var(--amber)',baixa:'var(--green)'};
 let tkTasks=[], tkEditing=null, tkCkTemp=[], tkAxTemp=[], tkCmTemp=[], tkSynced=false, tkRealtimeOn=false;
 
+function tkExtractLinks(txt){
+  return (String(txt||'').match(/https?:\/\/[^\s<>"')\]]+/g)||[];
+}
+function tkLinkLabel(u){
+  try{
+    const url=new URL(u);
+    const host=url.hostname.replace(/^www\./,'');
+    const nomes={'instagram.com':'Instagram','youtube.com':'YouTube','youtu.be':'YouTube','tiktok.com':'TikTok','facebook.com':'Facebook','pinterest.com':'Pinterest','pin.it':'Pinterest','drive.google.com':'Google Drive','docs.google.com':'Google Docs','canva.com':'Canva','github.com':'GitHub','shopee.com.br':'Shopee','mercadolivre.com.br':'Mercado Livre'};
+    return nomes[host]||host;
+  }catch(e){return u.slice(0,40);}
+}
+function tkRenderLinks(){
+  const l=document.getElementById('tkLinkList');if(!l)return;
+  const links=tkExtractLinks(document.getElementById('tk-desc').value);
+  l.innerHTML=links.map(u=>`<a class="tk-link-chip" href="${tkEsc(u)}" target="_blank" rel="noopener">🔗 <span>${tkEsc(tkLinkLabel(u))}</span></a>`).join('');
+}
+
 function tkRenderCm(){
   const l=document.getElementById('tkCmList');l.innerHTML='';
   tkCmTemp.forEach((c,ix)=>{
@@ -1334,6 +1356,7 @@ function tkCardEl(t){
     <div class="tk-meta">
       <span class="badge" style="background:${a.c}22;color:${a.c}">${tkEsc(a.n)}</span>
       ${(t.comentarios&&t.comentarios.length)?`<span class="tk-cm-count">💬 ${t.comentarios.length}</span>`:''}
+      ${tkExtractLinks(t.descricao).length?`<span class="tk-cm-count">🔗 ${tkExtractLinks(t.descricao).length}</span>`:''}
       ${t.prazo?`<span class="tk-prazo${late?' late':''}">${t.prazo.split('-').reverse().slice(0,2).join('/')}</span>`:''}
     </div>
     ${ck.length?`<div class="tk-prog"><div class="tk-prog-bar"><div class="tk-prog-fill" style="width:${pct}%;background:${pct===100?'var(--green)':'var(--accent)'}"></div></div><div class="tk-prog-txt">${done}/${ck.length} itens</div></div>`:''}
@@ -1395,6 +1418,7 @@ function openTaskModal(id){
   fd.value=t?(t.descricao||''):'';
   fd.style.height='auto';
   fd.style.height=Math.min(Math.max(fd.scrollHeight,70),320)+'px';
+  tkRenderLinks();
   document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
   document.getElementById('tk-col').value=t&&TK_COLS.some(c=>c.id===t.coluna)?t.coluna:(TK_COLS[0]||{}).id;
