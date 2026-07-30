@@ -151,6 +151,9 @@
   #tkDescPrev::-webkit-scrollbar{width:5px;}
   #tkDescPrev::-webkit-scrollbar-track{background:transparent;}
   #tkDescPrev::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+  .tk-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.4px;color:var(--text3);background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:2px 6px;cursor:pointer;transition:.15s;}
+  .tk-code:hover{color:var(--accent);border-color:var(--accent);}
+  .modal-title .tk-code{font-size:11px;margin-left:8px;vertical-align:middle;}
   .tk-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
   .tk-link-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(61,126,255,.12);border:1px solid rgba(61,126,255,.35);color:var(--accent);font-size:12px;font-weight:500;padding:5px 11px;border-radius:20px;text-decoration:none;max-width:100%;transition:.15s;}
   .tk-link-chip:hover{background:rgba(61,126,255,.22);}
@@ -1294,6 +1297,19 @@ function tkRenderAx(){
   });
 }
 
+function tkCode(id){const s=String(id||'');return (s.indexOf('t-')===0?s.slice(2):s).toUpperCase();}
+function tkCopyCode(id,ev){
+  if(ev)ev.stopPropagation();
+  const c=tkCode(id);
+  if(navigator.clipboard)navigator.clipboard.writeText(c);
+  showToast('Código '+c+' copiado','success');
+}
+function tkNovoId(titulo){
+  const base=(tkSlug(titulo)||'').slice(0,28)||('x'+Date.now().toString(36));
+  let id='t-'+base,n=2;
+  while(tkTasks.some(function(x){return x.id===id;})){id='t-'+base+'-'+n;n++;}
+  return id;
+}
 function tkArea(id){return TK_AREAS.find(a=>a.id===id)||{id,n:id||'—',c:'#8a90a0'};}
 
 async function loadTaskConfig(){
@@ -1486,6 +1502,7 @@ function tkCardEl(t){
     </div>
     <div class="tk-meta">
       <span class="badge" style="background:${a.c}22;color:${a.c}">${tkEsc(a.n)}</span>
+      <span class="tk-code" title="Código do card — clique pra copiar" onclick="tkCopyCode('${t.id}',event)">${tkEsc(tkCode(t.id))}</span>
       ${(t.comentarios&&t.comentarios.length)?`<span class="tk-cm-count">💬 ${t.comentarios.length}</span>`:''}
       ${tkExtractLinks(t.descricao).length?`<span class="tk-cm-count">🔗 ${tkExtractLinks(t.descricao).length}</span>`:''}
       ${t.prazo?`<span class="tk-prazo${late?' late':''}">${t.prazo.split('-').reverse().slice(0,2).join('/')}</span>`:''}
@@ -1543,7 +1560,7 @@ function openTaskModal(id){
   tkEditing=id||null;
   tkFillSelects();
   const t=id?tkTasks.find(x=>x.id===id):null;
-  document.getElementById('taskModalTitle').textContent=t?'Editar tarefa':'Nova tarefa';
+  document.getElementById('taskModalTitle').innerHTML=t?('Editar tarefa <span class="tk-code" title="Código do card — clique pra copiar" onclick="tkCopyCode(\''+t.id+'\',event)">'+tkEsc(tkCode(t.id))+'</span>'):'Nova tarefa';
   document.getElementById('tk-titulo').value=t?t.titulo:'';
   const fd=document.getElementById('tk-desc');
   fd.value=t?(t.descricao||''):'';
@@ -1597,7 +1614,7 @@ async function saveTaskModal(){
   if(pend){data.comentarios=tkCmTemp.concat([{t:pend,data:new Date().toISOString(),autor:'Lucas'}]);}
   let error;
   if(tkEditing){({error}=await db.from('tasks').update(data).eq('id',tkEditing));}
-  else{({error}=await db.from('tasks').insert({id:'t-'+Date.now().toString(36),...data}));}
+  else{({error}=await db.from('tasks').insert({id:tkNovoId(titulo),...data}));}
   if(error){showToast('Erro ao salvar: '+error.message,'error');return;}
   closeModal('taskModal');showToast('Tarefa salva!','success');
   tkFetch();
