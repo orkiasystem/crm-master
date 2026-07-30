@@ -970,6 +970,126 @@
         "id": "t-portfolio-trello",
         "descricao": "**⚠️ PRECISO DE VOCÊ**\n- Portfólio da iCasas ou o seu pessoal?\n- Formato: site, PDF ou Behance?\n\n---\n\nCard veio do Trello **sem descrição**. Definir antes de executar:\n\n- Portfólio de quê: iCasas ou o seu pessoal?\n- Formato: site, PDF ou Behance?\n- Prazo"
       }
+    },
+    {
+      "id": "op-0071",
+      "type": "update",
+      "task": {
+        "id": "t-fotos-emp",
+        "codigo": 1
+      }
+    },
+    {
+      "id": "op-0072",
+      "type": "update",
+      "task": {
+        "id": "t-cnpj-orkai",
+        "codigo": 2
+      }
+    },
+    {
+      "id": "op-0073",
+      "type": "update",
+      "task": {
+        "id": "t-dominio",
+        "codigo": 3
+      }
+    },
+    {
+      "id": "op-0074",
+      "type": "update",
+      "task": {
+        "id": "t-video-henry",
+        "codigo": 4
+      }
+    },
+    {
+      "id": "op-0075",
+      "type": "update",
+      "task": {
+        "id": "t-arte-sincera-hoje",
+        "codigo": 5
+      }
+    },
+    {
+      "id": "op-0076",
+      "type": "update",
+      "task": {
+        "id": "t-artes-sincera-lote",
+        "codigo": 6
+      }
+    },
+    {
+      "id": "op-0077",
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "codigo": 7
+      }
+    },
+    {
+      "id": "op-0078",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-promo-garagem",
+        "codigo": 8
+      }
+    },
+    {
+      "id": "op-0079",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-video-paralisado",
+        "codigo": 9
+      }
+    },
+    {
+      "id": "op-0080",
+      "type": "update",
+      "task": {
+        "id": "t-arte-missao-visao-valores",
+        "codigo": 10
+      }
+    },
+    {
+      "id": "op-0081",
+      "type": "update",
+      "task": {
+        "id": "t-concorrentes-analise",
+        "codigo": 11
+      }
+    },
+    {
+      "id": "op-0082",
+      "type": "update",
+      "task": {
+        "id": "t-arte-fachada-icasas-int",
+        "codigo": 12
+      }
+    },
+    {
+      "id": "op-0083",
+      "type": "update",
+      "task": {
+        "id": "t-foto-assinatura-email",
+        "codigo": 13
+      }
+    },
+    {
+      "id": "op-0084",
+      "type": "update",
+      "task": {
+        "id": "t-frase-automacao",
+        "codigo": 14
+      }
+    },
+    {
+      "id": "op-0085",
+      "type": "update",
+      "task": {
+        "id": "t-portfolio-trello",
+        "codigo": 15
+      }
     }
   ]
 }
