@@ -1389,6 +1389,69 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0108",
+      "type": "update",
+      "task": {
+        "id": "t-link-crm-icasas",
+        "coluna": "utilitarios",
+        "ordem": 10
+      }
+    },
+    {
+      "id": "op-0109",
+      "type": "update",
+      "task": {
+        "id": "t-link-obras-automacao",
+        "coluna": "utilitarios",
+        "ordem": 20
+      }
+    },
+    {
+      "id": "op-0110",
+      "type": "update",
+      "task": {
+        "id": "t-link-vitrine",
+        "coluna": "utilitarios",
+        "ordem": 30
+      }
+    },
+    {
+      "id": "op-0111",
+      "type": "update",
+      "task": {
+        "id": "t-link-worker-obras",
+        "coluna": "utilitarios",
+        "ordem": 40
+      }
+    },
+    {
+      "id": "op-0112",
+      "type": "update",
+      "task": {
+        "id": "t-link-cloudflare",
+        "coluna": "utilitarios",
+        "ordem": 50
+      }
+    },
+    {
+      "id": "op-0113",
+      "type": "update",
+      "task": {
+        "id": "t-link-orkai-lp",
+        "coluna": "utilitarios",
+        "ordem": 60
+      }
+    },
+    {
+      "id": "op-0114",
+      "type": "update",
+      "task": {
+        "id": "t-link-orkai-crm-construtora",
+        "coluna": "utilitarios",
+        "ordem": 70
+      }
     }
   ]
 }
