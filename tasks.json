@@ -1452,6 +1452,37 @@
         "coluna": "utilitarios",
         "ordem": 70
       }
+    },
+    {
+      "id": "op-0115",
+      "type": "add",
+      "task": {
+        "id": "t-placa-jatobas",
+        "codigo": 23,
+        "titulo": "PLACA LOTEAMENTO JATOBÁS",
+        "coluna": "aguardando",
+        "area": "icasas",
+        "prioridade": "media",
+        "descricao": "Placa de via para o **Loteamento Jatobás** (migrado do Trello).\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirma se o contato da placa é o **17 99638-9193** ou outro número\n- Qual logo entra: iCasas Construtora ou a marca do loteamento?\n\n---\n\n**COPY — Opção 1: foco em entrada**\n- **SEU TERRENO NO JATOBÁS COM ENTRADA FACILITADA**\n- Condições especiais por tempo limitado\n\n**COPY — Opção 2: foco em ação imediata**\n- **JATOBÁS: ENTRADA FACILITADA**\n- Garanta o seu agora\n\n**COPY — Opção 3: foco em urgência pura**\n- **ÚLTIMAS UNIDADES NO JATOBÁS**\n- Entrada facilitada — corre que acaba\n\n**COPY — Opção 4: direto e curto** *(lê rápido de carro)*\n- **JATOBÁS**\n- Entrada facilitada. Fale já.\n\n**COPY — Opção 5: pergunta-gancho**\n- **JÁ PENSOU EM TER SEU TERRENO?**\n- No Jatobás, com entrada facilitada\n\n---\n\n**Recomendação**\n\nPlaca de via é lida por quem passa de carro ou moto, então a leitura precisa ser instantânea. A **Opção 4** é a mais segura: 4 palavras e um CTA curto, sem perder o gancho. As opções **1 e 3** funcionam se a placa for grande o suficiente pra comportar duas linhas com boa distância de leitura.\n\n*A arte de referência estava anexada no card do Trello — baixar e arrastar aqui como capa.*",
+        "checklist": [
+          {
+            "t": "Definir contato e logo com o Cris",
+            "done": false
+          },
+          {
+            "t": "Escolher a opção de copy",
+            "done": false
+          },
+          {
+            "t": "Montar o layout da placa",
+            "done": false
+          },
+          {
+            "t": "Enviar pra produção",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
