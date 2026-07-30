@@ -1054,8 +1054,9 @@ let TK_TEMPLATES=[];
 const TK_PRIOS={alta:'var(--red)',media:'var(--amber)',baixa:'var(--green)'};
 let tkTasks=[], tkEditing=null, tkCkTemp=[], tkAxTemp=[], tkCmTemp=[], tkSynced=false, tkRealtimeOn=false;
 
+const TK_URL_RE=new RegExp('https?://[^\\s<>"\'\\)\\]]+','g');
 function tkExtractLinks(txt){
-  return (String(txt||'').match(/https?:\/\/[^\s<>"')\]]+/g)||[];
+  return String(txt||'').match(TK_URL_RE)||[];
 }
 function tkLinkLabel(u){
   try{
