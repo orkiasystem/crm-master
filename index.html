@@ -63,7 +63,9 @@
   .tk-count{margin-left:auto;background:var(--bg3);color:var(--text3);font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;}
   .tk-cards{padding:10px;display:flex;flex-direction:column;gap:9px;overflow-y:auto;}
   .tk-col.dragover{outline:2px dashed var(--accent);outline-offset:-4px;}
-  .tk-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:grab;transition:all .15s;}
+  .tk-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:grab;transition:all .15s;flex-shrink:0;}
+  .tk-col .tk-col-h{flex-shrink:0;}
+  .tk-col .tk-cards{min-height:0;}
   .tk-card:hover{border-color:var(--border2);transform:translateY(-1px);}
   .tk-card.dragging{opacity:.4;}
   .tk-strip{height:4px;}
