@@ -1090,6 +1090,172 @@
         "id": "t-portfolio-trello",
         "codigo": 15
       }
+    },
+    {
+      "id": "op-0086",
+      "type": "update",
+      "task": {
+        "id": "t-fotos-emp",
+        "titulo": "FOTOGRAFAR EMPREENDIMENTO ENTREGUE"
+      }
+    },
+    {
+      "id": "op-0087",
+      "type": "update",
+      "task": {
+        "id": "t-cnpj-orkai",
+        "titulo": "ABRIR CNPJ DA ORKAI"
+      }
+    },
+    {
+      "id": "op-0088",
+      "type": "update",
+      "task": {
+        "id": "t-dominio",
+        "titulo": "COMPRAR DOMÍNIO ORKAI"
+      }
+    },
+    {
+      "id": "op-0089",
+      "type": "update",
+      "task": {
+        "id": "t-video-henry",
+        "titulo": "VÍDEO DE ANIVERSÁRIO DO HENRY"
+      }
+    },
+    {
+      "id": "op-0090",
+      "type": "update",
+      "task": {
+        "id": "t-arte-sincera-hoje",
+        "titulo": "ARTE AVULSA CORRETORA SINCERA"
+      }
+    },
+    {
+      "id": "op-0091",
+      "type": "update",
+      "task": {
+        "id": "t-artes-sincera-lote",
+        "titulo": "SÉRIE CORRETORA SINCERA — THAIS"
+      }
+    },
+    {
+      "id": "op-0092",
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "titulo": "LOJA JUMKA NA SHOPEE",
+        "descricao": "**⏳ AGUARDANDO VOCÊ**\n- Lista de produtos — você vai definir com a **Adriana** e me passar\n- Com o catálogo em mãos eu escrevo os títulos e as descrições reais\n\n---\n\nLoja da **Jumka** em marketplace. Verificado: ainda não existe loja com esse nome na Shopee.\n\n**Pedido do Jean (30/07)** — coletar:\n- Tabela de preço\n- Peso do produto embalado\n- Medidas\n\n**Comissões a considerar**\n- Shopee: **20%**\n- Mercado Livre: **17%** *(ele também está olhando o ML)*\n\n---\n\n**COPY — fórmula de título do anúncio**\n\n- **[Produto] + [Material/Modelo] + [Medida] + [Diferencial]**\n- Exemplo: *Mesa de Jantar 6 Lugares Madeira Maciça 1,80m Pronta Entrega*\n- Palavra-chave principal sempre nas primeiras palavras — é o que o buscador lê\n- Até 100 caracteres, sem CAPS LOCK e sem emoji no título\n\n**Estrutura da descrição**\n- Linha 1: pra quem serve e o problema que resolve\n- Medidas exatas (altura × largura × profundidade)\n- Material e acabamento\n- O que acompanha / se vem montado\n- Prazo de produção e envio\n- Garantia\n\n---\n\n**Atenção na precificação:** além da comissão tem taxa fixa por item vendido e custo de embalagem. Frete por dimensão pesa bastante em produto grande.\n\n*Sugestão: validar em um marketplace primeiro, não nos dois de uma vez.*"
+      }
+    },
+    {
+      "id": "op-0093",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-promo-garagem",
+        "titulo": "IDEIA: PROMOÇÃO GARAGEM CONCRETADA",
+        "descricao": "Promoção pensada para **julho** — ideia do Vini.\n\n- **Mecânica 1:** quem comprar com a gente concorre a uma garagem concretada\n- **Mecânica 2:** quem pagar X de entrada ganha a garagem concretada\n\n---\n\n**COPY — nome da campanha**\n- **Garagem por nossa conta**\n\n**Headline — mecânica sorteio**\n- Compre sua casa e concorra à garagem concretada.\n\n**Headline — mecânica entrada**\n- Deu a entrada? A garagem é por nossa conta.\n\n**Apoios**\n- Sua casa já sai com o carro coberto.\n- Uma preocupação a menos depois da mudança.\n\n**CTA**\n- Fale com um corretor e garanta a sua.\n\n---\n\n*A definir quando sair de Ideias: custo real da garagem, valor de entrada que ativa o benefício, período e regulamento.*"
+      }
+    },
+    {
+      "id": "op-0094",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-video-paralisado",
+        "titulo": "IDEIA: VÍDEO TODO MUNDO PARALISADO"
+      }
+    },
+    {
+      "id": "op-0095",
+      "type": "update",
+      "task": {
+        "id": "t-arte-missao-visao-valores",
+        "titulo": "ARTE MISSÃO, VISÃO E VALORES",
+        "descricao": "Três placas para o escritório. **Textos finais** — ajuste aprovado por você.\n\n**1ª — MISSÃO** *(nosso propósito)*\n- Transformar o sonho da casa própria em endereço.\n\n**2ª — VISÃO** *(onde queremos chegar)*\n- Ser a maior empresa de casas inteligentes do Brasil.\n\n**3ª — VALORES** *(o que não negociamos)*\n- Honestidade e transparência.\n- Relações sólidas, construídas na confiança e na verdade.\n\n---\n\n*Texto original da missão: \"Realizar o sonho da casa dos sonhos\" — trocado porque repetia a palavra sonho.*\n\n*As imagens de referência estão no card antigo do Trello — baixar e arrastar aqui como anexo.*"
+      }
+    },
+    {
+      "id": "op-0096",
+      "type": "update",
+      "task": {
+        "id": "t-concorrentes-analise",
+        "titulo": "ANALISAR CONCORRENTES"
+      }
+    },
+    {
+      "id": "op-0097",
+      "type": "update",
+      "task": {
+        "id": "t-arte-fachada-icasas-int",
+        "titulo": "TOTENS FACHADA ICASAS INTELIGENTES",
+        "descricao": "**Formatos**\n- Totem vertical: 2,72 m × 1,32 m\n- Totem horizontal: 2,00 m × 3,80 m\n\nDuas versões para teste A/B de aprovação.\n\n---\n\n**COPY — Versão 1: Azul** *(institucional/tech)*\n- Headline: **iCASAS INTELIGENTES**\n- Sub: Automação residencial que funciona\n- Apoio: Som • Iluminação • Segurança • Tudo no aplicativo\n- Contato: **17 99638-9193**\n\n**COPY — Versão 2: Verde** *(convite/proximidade)*\n- Headline: **iCASAS INTELIGENTES**\n- Sub: Sua casa na palma da mão\n- Apoio: Casa inteligente, sem complicação\n- Contato: **17 99638-9193**\n\n---\n\n**Alternativas de subheadline pra testar**\n- A casa já vem inteligente. E pronta.\n- Automação de fábrica, não de gambiarra.\n- Toda casa nossa já nasce conectada.\n\n*Regra de totem: quem lê está passando de carro. Headline em no máximo 3 palavras, telefone do tamanho da headline, o resto some.*"
+      }
+    },
+    {
+      "id": "op-0098",
+      "type": "update",
+      "task": {
+        "id": "t-foto-assinatura-email",
+        "titulo": "FOTO E ASSINATURA DE E-MAIL",
+        "descricao": "Assinatura padrão de e-mail. **Contato e cargo são definidos com cada pessoa** — o modelo é o mesmo, muda só o preenchimento.\n\nFerramenta usada pra montar e inlinear o HTML:\nhttps://htmlemail.io/inline/\n\n---\n\n**COPY — estrutura da assinatura**\n- **[NOME]** — [Cargo]\n- iCasas Construtora\n- [TELEFONE] • WhatsApp\n- [SITE] • @icasasconstrutora\n- Linha de apoio: *Casas inteligentes, entregues prontas.*\n\n**Alternativas de linha de apoio**\n- Do projeto à chave na mão.\n- A casa própria mais perto do que parece.\n\n---\n\n*Regra: assinatura boa cabe em 5 linhas e funciona mesmo sem carregar imagem. Logo em PNG leve, foto opcional e nunca como fundo.*",
+        "checklist": [
+          {
+            "t": "Tirar / escolher a foto",
+            "done": false
+          },
+          {
+            "t": "Montar o HTML no htmlemail.io/inline",
+            "done": false
+          },
+          {
+            "t": "Testar no Gmail e no Outlook",
+            "done": false
+          },
+          {
+            "t": "Distribuir o modelo pra equipe preencher",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0099",
+      "type": "update",
+      "task": {
+        "id": "t-frase-automacao",
+        "titulo": "FRASE DE AUTOMAÇÃO PARA A PAREDE"
+      }
+    },
+    {
+      "id": "op-0100",
+      "type": "update",
+      "task": {
+        "id": "t-portfolio-trello",
+        "titulo": "PORTFÓLIO INSTITUCIONAL ICASAS",
+        "descricao": "Portfólio **institucional da iCasas** — material para apresentar a empresa a outras pessoas: clientes, parceiros, fornecedores e investidores.\n\n**O que precisa mostrar**\n- Quem é a iCasas e as três frentes: Construtora, Automação e Inteligentes\n- Obras e casas entregues (usar as captações novas de foto)\n- Diferenciais: casa entregue pronta e automação de fábrica\n- Depoimentos de clientes\n- Números: casas entregues, tempo de mercado, bairros atendidos\n- Contato\n\n---\n\n**COPY — abertura sugerida**\n- **Gancho:** A gente não vende planta. Entrega chave.\n- **Apoio:** Construção, automação e acabamento na mesma casa — e com a mesma equipe.\n\n---\n\n*Definir: formato (PDF pra enviar, site ou apresentação) e se leva tabela de preços.*",
+        "checklist": [
+          {
+            "t": "Definir formato (PDF, site ou apresentação)",
+            "done": false
+          },
+          {
+            "t": "Levantar números e depoimentos",
+            "done": false
+          },
+          {
+            "t": "Selecionar fotos das obras entregues",
+            "done": false
+          },
+          {
+            "t": "Montar o material",
+            "done": false
+          },
+          {
+            "t": "Revisar com o Cris",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
