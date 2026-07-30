@@ -118,6 +118,20 @@
   .tk-cm-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;margin-left:auto;padding:0 2px;}
   .tk-cm-del:hover{color:var(--red);}
   .tk-cm-count{font-size:11px;color:var(--text3);display:inline-flex;align-items:center;gap:3px;}
+  .modal.modal-task{width:940px;}
+  .tk-modal-grid{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start;}
+  .tk-side-cm{border-left:1px solid var(--border);padding-left:20px;position:sticky;top:0;}
+  .tk-side-cm>label{margin-top:0;}
+  .tk-cm-new{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+  .tk-cm-new .btn{align-self:flex-end;}
+  #tkCmList{max-height:46vh;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+  #tkCmList::-webkit-scrollbar{width:5px;}
+  #tkCmList::-webkit-scrollbar-track{background:transparent;}
+  #tkCmList::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+  @media(max-width:900px){
+    .tk-modal-grid{grid-template-columns:1fr;gap:0;}
+    .tk-side-cm{border-left:none;padding-left:0;border-top:1px solid var(--border);padding-top:14px;margin-top:6px;position:static;}
+  }
   .tk-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
   .tk-link-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(61,126,255,.12);border:1px solid rgba(61,126,255,.35);color:var(--accent);font-size:12px;font-weight:500;padding:5px 11px;border-radius:20px;text-decoration:none;max-width:100%;transition:.15s;}
   .tk-link-chip:hover{background:rgba(61,126,255,.22);}
@@ -462,12 +476,14 @@
 
 <!-- MODAL: TAREFA -->
 <div class="modal-overlay" id="taskModal">
-  <div class="modal">
+  <div class="modal modal-task">
     <div class="modal-header">
       <div class="modal-title" id="taskModalTitle">Nova tarefa</div>
       <button class="modal-close" onclick="closeModal('taskModal')">×</button>
     </div>
     <div class="modal-body">
+     <div class="tk-modal-grid">
+      <div class="tk-side-main">
       <div class="form-group">
         <label>Título</label>
         <input type="text" id="tk-titulo">
@@ -519,14 +535,16 @@
           <span style="font-size:11px;color:var(--text3);margin-left:8px;">ou arraste arquivos aqui</span>
         </div>
       </div>
-      <div class="form-group">
-        <label>Comentários / Observações</label>
-        <div id="tkCmList"></div>
-        <div style="display:flex;gap:8px;margin-top:8px;">
-          <textarea id="tkCmNew" rows="2" placeholder="Escreva uma observação..." style="flex:1;"></textarea>
-          <button class="btn btn-ghost btn-sm" onclick="tkAddCm()" style="align-self:flex-end;">Adicionar</button>
-        </div>
       </div>
+      <div class="tk-side-cm">
+        <label>Comentários / Observações</label>
+        <div class="tk-cm-new">
+          <textarea id="tkCmNew" rows="2" placeholder="Escreva uma observação..."></textarea>
+          <button class="btn btn-ghost btn-sm" onclick="tkAddCm()">Adicionar</button>
+        </div>
+        <div id="tkCmList"></div>
+      </div>
+     </div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-danger" id="tkDelBtn" onclick="deleteTask()" style="margin-right:auto;display:none;">Excluir</button>
