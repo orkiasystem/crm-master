@@ -484,7 +484,7 @@
   <!-- PAGE: TAREFAS -->
   <div class="page" id="page-tasks">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
-      <input type="text" id="tkSearch" placeholder="Buscar tarefa..." style="max-width:300px;" oninput="renderTasks()">
+      <input type="text" id="tkSearch" placeholder="Buscar por título, texto ou código (#000007)" style="max-width:300px;" oninput="renderTasks()">
       <div style="margin-left:auto;display:flex;gap:8px;">
         <button class="btn btn-ghost btn-sm" onclick="openCfgModal()">Configurar</button>
         <button class="btn btn-ghost btn-sm" onclick="loadTasks(true)">Atualizar</button>
@@ -1441,6 +1441,18 @@ function tkStartPoll(){
   });
 }
 
+function tkMatch(t,q){
+  if(!q)return true;
+  if(String(t.titulo||'').toLowerCase().indexOf(q)>=0)return true;
+  if(String(t.descricao||'').toLowerCase().indexOf(q)>=0)return true;
+  const cm=(t.comentarios||[]).map(function(c){return c.t||'';}).join(' ').toLowerCase();
+  if(cm.indexOf(q)>=0)return true;
+  const cod=tkCode(t).toLowerCase();
+  if(cod&&cod.indexOf(q)>=0)return true;
+  const limpo=q.split('#').join('').trim();
+  if(limpo&&t.codigo!=null&&limpo===String(t.codigo))return true;
+  return false;
+}
 function tkColSorted(colId){
   const colIds=TK_COLS.map(c=>c.id);
   return tkTasks.filter(t=>(colIds.includes(t.coluna)?t.coluna:colIds[0])===colId)
@@ -1467,7 +1479,7 @@ function renderTasks(){
   const q=(document.getElementById('tkSearch').value||'').toLowerCase();
   const b=document.getElementById('tkBoard');b.innerHTML='';
   TK_COLS.forEach((c,ci)=>{
-    const list=tkColSorted(c.id).filter(t=>(!q||t.titulo.toLowerCase().includes(q)||(t.descricao||'').toLowerCase().includes(q)));
+    const list=tkColSorted(c.id).filter(t=>tkMatch(t,q));
     const col=document.createElement('div');col.className='tk-col';
     col.innerHTML=`<div class="tk-col-h"><div class="tk-dot" style="background:${c.c}"></div><b>${tkEsc(c.n)}</b><span class="tk-count">${list.length}</span></div><div class="tk-cards"></div>`;
     const cards=col.querySelector('.tk-cards');
