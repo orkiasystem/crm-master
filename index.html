@@ -1469,9 +1469,15 @@ function tkMatch(t,q){
   if(limpo&&t.codigo!=null&&limpo===String(t.codigo))return true;
   return false;
 }
+function tkResolveCol(v){
+  const ids=TK_COLS.map(c=>c.id);
+  if(ids.indexOf(v)>=0)return v;
+  const s=tkSlug(String(v||''));
+  const achou=TK_COLS.find(function(c){return c.id===s||tkSlug(c.n)===s;});
+  return achou?achou.id:(ids[0]||'todo');
+}
 function tkColSorted(colId){
-  const colIds=TK_COLS.map(c=>c.id);
-  return tkTasks.filter(t=>(colIds.includes(t.coluna)?t.coluna:colIds[0])===colId)
+  return tkTasks.filter(t=>tkResolveCol(t.coluna)===colId)
     .sort((a,b)=>{
       const oa=a.ordem==null?Infinity:a.ordem, ob=b.ordem==null?Infinity:b.ordem;
       if(oa!==ob)return oa-ob;
@@ -1522,10 +1528,10 @@ function tkCardEl(t){
   const a=tkArea(t.area);
   const ck=t.checklist||[];const done=ck.filter(i=>i.done).length;
   const pct=ck.length?Math.round(done/ck.length*100):0;
-  const late=t.prazo&&t.coluna!=='done'&&new Date(t.prazo+'T23:59')<new Date();
+  const late=t.prazo&&tkResolveCol(t.coluna)!=='done'&&new Date(t.prazo+'T23:59')<new Date();
   const el=document.createElement('div');el.className='tk-card';el.draggable=true;
   const capa=(t.anexos||[]).find(x=>x.cover&&x.url);
-  const faixa=t.coluna==='done'?'var(--green)':(TK_PRIOS[t.prioridade]||'var(--border2)');
+  const faixa=tkResolveCol(t.coluna)==='done'?'var(--green)':(TK_PRIOS[t.prioridade]||'var(--border2)');
   el.innerHTML=`<div class="tk-strip" style="background:${faixa}"></div>
   ${capa?`<img class="tk-cover" src="${capa.url}" loading="lazy" alt="">`:''}
   <div class="tk-card-b">
@@ -1605,7 +1611,7 @@ function openTaskModal(id){
   tkRenderLinks();
   document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
-  document.getElementById('tk-col').value=t&&TK_COLS.some(c=>c.id===t.coluna)?t.coluna:(TK_COLS[0]||{}).id;
+  document.getElementById('tk-col').value=t?tkResolveCol(t.coluna):(TK_COLS[0]||{}).id;
   document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
   tkCkTemp=t?JSON.parse(JSON.stringify(t.checklist||[])):[];
   tkAxTemp=t?JSON.parse(JSON.stringify(t.anexos||[])):[];
