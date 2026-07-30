@@ -98,6 +98,7 @@
   .tk-ax-cover{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap;}
   .tk-ax-cover input{accent-color:var(--accent);cursor:pointer;}
   .tk-card.filedrop{outline:2px dashed var(--accent);outline-offset:-3px;}
+  .tk-card.insertpos{box-shadow:0 -3px 0 0 var(--accent);}
   .tk-ax-drop{border:1px dashed var(--border2);border-radius:var(--radius);padding:10px;transition:border-color .15s;}
   .tk-ax-drop.filedrop{border-color:var(--accent);background:rgba(61,126,255,.06);}
 
@@ -1219,15 +1220,33 @@ function tkStartPoll(){
   });
 }
 
+function tkColSorted(colId){
+  const colIds=TK_COLS.map(c=>c.id);
+  return tkTasks.filter(t=>(colIds.includes(t.coluna)?t.coluna:colIds[0])===colId)
+    .sort((a,b)=>{
+      const oa=a.ordem==null?Infinity:a.ordem, ob=b.ordem==null?Infinity:b.ordem;
+      if(oa!==ob)return oa-ob;
+      return (a.criado||'')<(b.criado||'')?-1:1;
+    });
+}
+// grava a ordem sequencial de uma coluna (só atualiza o que mudou)
+async function tkApplyOrder(colId, orderedIds){
+  for(let i=0;i<orderedIds.length;i++){
+    const t=tkTasks.find(x=>x.id===orderedIds[i]);
+    if(!t)continue;
+    const novo=(i+1)*10;
+    if(t.ordem!==novo||t.coluna!==colId){
+      t.ordem=novo;t.coluna=colId;
+      const {error}=await db.from('tasks').update({ordem:novo,coluna:colId}).eq('id',t.id);
+      if(error){showToast('Erro ao reordenar: '+error.message,'error');return;}
+    }
+  }
+}
 function renderTasks(){
   const q=(document.getElementById('tkSearch').value||'').toLowerCase();
   const b=document.getElementById('tkBoard');b.innerHTML='';
-  const colIds=TK_COLS.map(c=>c.id);
   TK_COLS.forEach((c,ci)=>{
-    const list=tkTasks.filter(t=>{
-      const col=colIds.includes(t.coluna)?t.coluna:colIds[0];
-      return col===c.id&&(!q||t.titulo.toLowerCase().includes(q)||(t.descricao||'').toLowerCase().includes(q));
-    });
+    const list=tkColSorted(c.id).filter(t=>(!q||t.titulo.toLowerCase().includes(q)||(t.descricao||'').toLowerCase().includes(q)));
     const col=document.createElement('div');col.className='tk-col';
     col.innerHTML=`<div class="tk-col-h"><div class="tk-dot" style="background:${c.c}"></div><b>${tkEsc(c.n)}</b><span class="tk-count">${list.length}</span></div><div class="tk-cards"></div>`;
     const cards=col.querySelector('.tk-cards');
@@ -1238,9 +1257,12 @@ function renderTasks(){
       e.preventDefault();col.classList.remove('dragover');
       if([...e.dataTransfer.types].includes('Files'))return; // arquivo solto fora de um card: ignora
       const id=e.dataTransfer.getData('id');const t=tkTasks.find(x=>x.id===id);
-      if(t&&t.coluna!==c.id){t.coluna=c.id;renderTasks();
-        const {error}=await db.from('tasks').update({coluna:c.id}).eq('id',id);
-        if(error)showToast('Erro ao mover: '+error.message,'error');}
+      if(t){
+        const ids=tkColSorted(c.id).map(x=>x.id).filter(x=>x!==id);
+        ids.push(id);
+        t.coluna=c.id;renderTasks();
+        await tkApplyOrder(c.id,ids);
+      }
     });
     b.appendChild(col);
   });
@@ -1273,12 +1295,26 @@ function tkCardEl(t){
   el.addEventListener('dragend',()=>el.classList.remove('dragging'));
   el.addEventListener('dragover',e=>{
     if([...e.dataTransfer.types].includes('Files')){e.preventDefault();e.stopPropagation();el.classList.add('filedrop');}
+    else{e.preventDefault();e.stopPropagation();el.classList.add('insertpos');}
   });
-  el.addEventListener('dragleave',()=>el.classList.remove('filedrop'));
-  el.addEventListener('drop',e=>{
-    if(![...e.dataTransfer.types].includes('Files'))return;
-    e.preventDefault();e.stopPropagation();el.classList.remove('filedrop');
-    tkDropOnCard(t,[...e.dataTransfer.files]);
+  el.addEventListener('dragleave',()=>{el.classList.remove('filedrop');el.classList.remove('insertpos');});
+  el.addEventListener('drop',async e=>{
+    if([...e.dataTransfer.types].includes('Files')){
+      e.preventDefault();e.stopPropagation();el.classList.remove('filedrop');
+      tkDropOnCard(t,[...e.dataTransfer.files]);
+      return;
+    }
+    e.preventDefault();e.stopPropagation();el.classList.remove('insertpos');
+    const id=e.dataTransfer.getData('id');
+    if(!id||id===t.id)return;
+    const d=tkTasks.find(x=>x.id===id);
+    if(!d)return;
+    const ids=tkColSorted(t.coluna).map(x=>x.id).filter(x=>x!==id);
+    ids.splice(ids.indexOf(t.id),0,id); // insere antes do card alvo
+    d.coluna=t.coluna;
+    d.ordem=null;renderTasks();
+    await tkApplyOrder(t.coluna,ids);
+    renderTasks();
   });
   el.addEventListener('click',()=>openTaskModal(t.id));
   return el;
