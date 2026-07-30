@@ -1611,7 +1611,7 @@ function openTaskModal(id){
   tkRenderLinks();
   document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
-  document.getElementById('tk-col').value=t?tkResolveCol(t.coluna):(TK_COLS[0]||{}).id;
+  document.getElementById('tk-col').value=t?tkResolveCol(t.coluna):tkResolveCol('todo');
   document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
   tkCkTemp=t?JSON.parse(JSON.stringify(t.checklist||[])):[];
   tkAxTemp=t?JSON.parse(JSON.stringify(t.anexos||[])):[];
