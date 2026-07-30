@@ -1469,12 +1469,16 @@ function tkMatch(t,q){
   if(limpo&&t.codigo!=null&&limpo===String(t.codigo))return true;
   return false;
 }
+function tkColPadrao(){
+  const p=TK_COLS.find(function(c){return c.id==='todo'||tkSlug(c.n)==='a-fazer';});
+  return p?p.id:((TK_COLS[0]||{}).id||'todo');
+}
 function tkResolveCol(v){
   const ids=TK_COLS.map(c=>c.id);
   if(ids.indexOf(v)>=0)return v;
   const s=tkSlug(String(v||''));
   const achou=TK_COLS.find(function(c){return c.id===s||tkSlug(c.n)===s;});
-  return achou?achou.id:(ids[0]||'todo');
+  return achou?achou.id:tkColPadrao();
 }
 function tkColSorted(colId){
   return tkTasks.filter(t=>tkResolveCol(t.coluna)===colId)
