@@ -253,6 +253,67 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0014",
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "coluna": "todo",
+        "prioridade": "alta",
+        "checklist": [
+          {
+            "t": "Falar com o Jean: já existe conta/loja criada?",
+            "done": true
+          },
+          {
+            "t": "Coletar tabela de preço dos produtos",
+            "done": false
+          },
+          {
+            "t": "Levantar peso de cada produto embalado",
+            "done": false
+          },
+          {
+            "t": "Levantar medidas dos produtos embalados",
+            "done": false
+          },
+          {
+            "t": "Calcular preço de venda com comissão: 20% Shopee / 17% Mercado Livre",
+            "done": false
+          },
+          {
+            "t": "Ver com a noiva como funciona vender na Shopee",
+            "done": false
+          },
+          {
+            "t": "Entender frete e logística (JadLog)",
+            "done": false
+          },
+          {
+            "t": "Criar a conta com o CNPJ da Jumka",
+            "done": false
+          },
+          {
+            "t": "Cadastrar os primeiros produtos",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0015",
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "comentarios": [
+          {
+            "t": "Resposta do Jean (30/07): pediu pra coletar tabela de preço, peso do produto embalado e medidas. Considerar comissão de 20% na Shopee e 17% no Mercado Livre — ou seja, ele também está considerando vender no ML.",
+            "data": "2026-07-30T10:19:00-03:00",
+            "autor": "Claude"
+          }
+        ]
+      }
     }
   ]
 }
