@@ -145,7 +145,7 @@
   .tk-md .tk-ul li{margin-bottom:2px;}
   .tk-md .tk-hr{border:none;border-top:1px solid var(--border2);margin:10px 0;}
   .tk-md .tk-md-gap{height:7px;}
-  #tkDescPrev{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;max-height:320px;overflow-y:auto;cursor:text;transition:border-color .15s;}
+  #tkDescPrev{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;min-height:170px;max-height:460px;overflow-y:auto;cursor:text;transition:border-color .15s;}
   #tkDescPrev:hover{border-color:var(--border2);}
   #tkDescPrev{scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
   #tkDescPrev::-webkit-scrollbar{width:5px;}
@@ -1179,7 +1179,7 @@ function tkPrevMode(modo,focar){
     pv.style.display='none';ta.style.display='block';
     fb.style.display='flex';bt.textContent='Ver formatado';bt.classList.add('on');
     ta.style.height='auto';
-    ta.style.height=Math.min(Math.max(ta.scrollHeight,70),320)+'px';
+    ta.style.height=Math.min(Math.max(ta.scrollHeight,170),460)+'px';
     if(focar)ta.focus();
   }
 }
@@ -1548,7 +1548,7 @@ function openTaskModal(id){
   const fd=document.getElementById('tk-desc');
   fd.value=t?(t.descricao||''):'';
   fd.style.height='auto';
-  fd.style.height=Math.min(Math.max(fd.scrollHeight,70),320)+'px';
+  fd.style.height=Math.min(Math.max(fd.scrollHeight,170),460)+'px';
   tkPrevMode(t?'view':'edit');
   tkRenderLinks();
   document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
