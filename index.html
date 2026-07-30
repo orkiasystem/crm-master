@@ -66,6 +66,16 @@
   .tk-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:grab;transition:all .15s;flex-shrink:0;}
   .tk-col .tk-col-h{flex-shrink:0;}
   .tk-col .tk-cards{min-height:0;}
+  .tk-cards,.tk-board{scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+  .tk-cards::-webkit-scrollbar{width:5px;}
+  .tk-board::-webkit-scrollbar{height:6px;}
+  .tk-cards::-webkit-scrollbar-track,.tk-board::-webkit-scrollbar-track{background:transparent;}
+  .tk-cards::-webkit-scrollbar-thumb,.tk-board::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+  .tk-cards::-webkit-scrollbar-thumb:hover,.tk-board::-webkit-scrollbar-thumb:hover{background:var(--text3);}
+  .modal::-webkit-scrollbar{width:5px;}
+  .modal::-webkit-scrollbar-track{background:transparent;}
+  .modal::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+  .modal{scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
   .tk-card:hover{border-color:var(--border2);transform:translateY(-1px);}
   .tk-card.dragging{opacity:.4;}
   .tk-strip{height:4px;}
