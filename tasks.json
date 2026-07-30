@@ -219,6 +219,40 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0013",
+      "type": "add",
+      "task": {
+        "id": "t-jumka-shopee",
+        "titulo": "Criar loja da Jumka na Shopee",
+        "descricao": "Verificado: ainda não existe loja com o nome na Shopee. Decisão: alinhar com o Jean antes de criar a conta, pra não duplicar caso ele já tenha mexido nisso. Pontos levantados: noiva já vendeu na Shopee e pode explicar o funcionamento; entender frete (muita coisa chega via JadLog) por causa do valor dos produtos; usar o CNPJ da Jumka na criação.",
+        "coluna": "waiting",
+        "area": "freela",
+        "prioridade": "media",
+        "checklist": [
+          {
+            "t": "Falar com o Jean: já existe conta/loja criada?",
+            "done": false
+          },
+          {
+            "t": "Ver com a noiva como funciona vender na Shopee",
+            "done": false
+          },
+          {
+            "t": "Entender frete e logística (JadLog) pros valores dos produtos",
+            "done": false
+          },
+          {
+            "t": "Criar a conta com o CNPJ da Jumka",
+            "done": false
+          },
+          {
+            "t": "Cadastrar os primeiros produtos",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
