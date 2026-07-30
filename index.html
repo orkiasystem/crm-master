@@ -150,7 +150,7 @@
   .tk-md .tk-hr{border:none;border-top:1px solid var(--border2);margin:10px 0;}
   .tk-md .tk-md-gap{height:7px;}
   #tkDescPrev{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;min-height:170px;max-height:460px;overflow-y:auto;cursor:text;transition:border-color .15s;}
-  #tkDescPrev:hover{border-color:var(--border2);}
+  
   #tkDescPrev{scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
   #tkDescPrev::-webkit-scrollbar{width:5px;}
   #tkDescPrev::-webkit-scrollbar-track{background:transparent;}
@@ -529,7 +529,7 @@
           <button type="button" onclick="tkTogglePrev()" id="tkPrevBtn" style="margin-left:auto;">Editar</button>
         </div>
         <textarea id="tk-desc" rows="3" oninput="tkRenderLinks()"></textarea>
-        <div class="tk-md" id="tkDescPrev" style="display:none;" onclick="tkPrevMode('edit',true)" title="Clique para editar"></div>
+        <div class="tk-md" id="tkDescPrev" style="display:none;" title="Use o botão Editar para alterar"></div>
         <div class="tk-links" id="tkLinkList"></div>
       </div>
       <div class="form-row">
