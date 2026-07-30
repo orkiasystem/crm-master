@@ -145,7 +145,12 @@
   .tk-md .tk-ul li{margin-bottom:2px;}
   .tk-md .tk-hr{border:none;border-top:1px solid var(--border2);margin:10px 0;}
   .tk-md .tk-md-gap{height:7px;}
-  #tkDescPrev{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;max-height:320px;overflow-y:auto;}
+  #tkDescPrev{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;max-height:320px;overflow-y:auto;cursor:text;transition:border-color .15s;}
+  #tkDescPrev:hover{border-color:var(--border2);}
+  #tkDescPrev{scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+  #tkDescPrev::-webkit-scrollbar{width:5px;}
+  #tkDescPrev::-webkit-scrollbar-track{background:transparent;}
+  #tkDescPrev::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
   .tk-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
   .tk-link-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(61,126,255,.12);border:1px solid rgba(61,126,255,.35);color:var(--accent);font-size:12px;font-weight:500;padding:5px 11px;border-radius:20px;text-decoration:none;max-width:100%;transition:.15s;}
   .tk-link-chip:hover{background:rgba(61,126,255,.22);}
@@ -505,14 +510,16 @@
       <div class="form-group">
         <label>Descrição</label>
         <div class="tk-fmt">
-          <button type="button" onclick="tkFmtWrap('tk-desc','**')" title="Negrito"><b>B</b></button>
-          <button type="button" onclick="tkFmtWrap('tk-desc','*')" title="Itálico"><i>I</i></button>
-          <button type="button" onclick="tkFmtLine('tk-desc','- ')" title="Lista">• Lista</button>
-          <button type="button" onclick="tkFmtInsert('tk-desc','\n---\n')" title="Linha divisória">— Divisor</button>
-          <button type="button" onclick="tkTogglePrev()" id="tkPrevBtn" style="margin-left:auto;">Prévia</button>
+          <span id="tkFmtBtns" style="display:flex;gap:5px;">
+            <button type="button" onclick="tkFmtWrap('tk-desc','**')" title="Negrito"><b>B</b></button>
+            <button type="button" onclick="tkFmtWrap('tk-desc','*')" title="Itálico"><i>I</i></button>
+            <button type="button" onclick="tkFmtLine('tk-desc','- ')" title="Lista">• Lista</button>
+            <button type="button" onclick="tkFmtInsert('tk-desc','\n---\n')" title="Linha divisória">— Divisor</button>
+          </span>
+          <button type="button" onclick="tkTogglePrev()" id="tkPrevBtn" style="margin-left:auto;">Editar</button>
         </div>
         <textarea id="tk-desc" rows="3" oninput="tkRenderLinks()"></textarea>
-        <div class="tk-md" id="tkDescPrev" style="display:none;"></div>
+        <div class="tk-md" id="tkDescPrev" style="display:none;" onclick="tkPrevMode('edit',true)" title="Clique para editar"></div>
         <div class="tk-links" id="tkLinkList"></div>
       </div>
       <div class="form-row">
@@ -1161,14 +1168,24 @@ function tkFmtInsert(id,txt){
   t.focus();t.setSelectionRange(a+txt.length,a+txt.length);
   if(id==='tk-desc')tkRenderLinks();
 }
-function tkTogglePrev(){
-  const ta=document.getElementById('tk-desc'),pv=document.getElementById('tkDescPrev'),bt=document.getElementById('tkPrevBtn');
-  if(pv.style.display==='none'){
-    pv.innerHTML=tkMd(ta.value)||'<p style="color:var(--text3)">Sem descrição.</p>';
-    pv.style.display='block';ta.style.display='none';bt.textContent='Editar';bt.classList.add('on');
+function tkPrevMode(modo,focar){
+  const ta=document.getElementById('tk-desc'),pv=document.getElementById('tkDescPrev'),
+        bt=document.getElementById('tkPrevBtn'),fb=document.getElementById('tkFmtBtns');
+  if(modo==='view'){
+    pv.innerHTML=tkMd(ta.value)||'<p style="color:var(--text3)">Sem descrição — clique para adicionar.</p>';
+    pv.style.display='block';ta.style.display='none';
+    fb.style.display='none';bt.textContent='Editar';bt.classList.remove('on');
   }else{
-    pv.style.display='none';ta.style.display='block';bt.textContent='Prévia';bt.classList.remove('on');
+    pv.style.display='none';ta.style.display='block';
+    fb.style.display='flex';bt.textContent='Ver formatado';bt.classList.add('on');
+    ta.style.height='auto';
+    ta.style.height=Math.min(Math.max(ta.scrollHeight,70),320)+'px';
+    if(focar)ta.focus();
   }
+}
+function tkTogglePrev(){
+  const pv=document.getElementById('tkDescPrev');
+  tkPrevMode(pv.style.display==='none'?'view':'edit',true);
 }
 function tkLinkLabel(u){
   try{
@@ -1531,8 +1548,7 @@ function openTaskModal(id){
   fd.value=t?(t.descricao||''):'';
   fd.style.height='auto';
   fd.style.height=Math.min(Math.max(fd.scrollHeight,70),320)+'px';
-  const pv=document.getElementById('tkDescPrev');
-  if(pv&&pv.style.display!=='none')tkTogglePrev();
+  tkPrevMode(t?'view':'edit');
   tkRenderLinks();
   document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
