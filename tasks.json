@@ -1509,6 +1509,35 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0117",
+      "type": "update",
+      "task": {
+        "id": "t-placa-jatobas",
+        "checklist": [
+          {
+            "t": "Definir qual logo entra",
+            "done": false
+          },
+          {
+            "t": "Escolher a opção de copy",
+            "done": false
+          },
+          {
+            "t": "Montar o layout da placa",
+            "done": false
+          },
+          {
+            "t": "Conferir o telefone na arte (17 99638-9193)",
+            "done": false
+          },
+          {
+            "t": "Enviar pra produção",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
