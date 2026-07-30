@@ -132,6 +132,20 @@
     .tk-modal-grid{grid-template-columns:1fr;gap:0;}
     .tk-side-cm{border-left:none;padding-left:0;border-top:1px solid var(--border);padding-top:14px;margin-top:6px;position:static;}
   }
+  .tk-fmt{display:flex;gap:5px;margin-bottom:6px;align-items:center;}
+  .tk-fmt button{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:6px;padding:4px 9px;font-size:12px;font-family:inherit;cursor:pointer;line-height:1.3;transition:.15s;}
+  .tk-fmt button:hover{border-color:var(--border2);color:var(--text);}
+  .tk-fmt button.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .tk-md{font-size:13px;line-height:1.5;}
+  .tk-md p{margin:0 0 4px;}
+  .tk-md strong{font-weight:700;color:var(--text);}
+  .tk-md em{font-style:italic;}
+  .tk-md a{color:var(--accent);}
+  .tk-md .tk-ul{margin:2px 0 6px;padding-left:20px;}
+  .tk-md .tk-ul li{margin-bottom:2px;}
+  .tk-md .tk-hr{border:none;border-top:1px solid var(--border2);margin:10px 0;}
+  .tk-md .tk-md-gap{height:7px;}
+  #tkDescPrev{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:11px 13px;max-height:320px;overflow-y:auto;}
   .tk-links{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
   .tk-link-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(61,126,255,.12);border:1px solid rgba(61,126,255,.35);color:var(--accent);font-size:12px;font-weight:500;padding:5px 11px;border-radius:20px;text-decoration:none;max-width:100%;transition:.15s;}
   .tk-link-chip:hover{background:rgba(61,126,255,.22);}
@@ -490,7 +504,15 @@
       </div>
       <div class="form-group">
         <label>Descrição</label>
+        <div class="tk-fmt">
+          <button type="button" onclick="tkFmtWrap('tk-desc','**')" title="Negrito"><b>B</b></button>
+          <button type="button" onclick="tkFmtWrap('tk-desc','*')" title="Itálico"><i>I</i></button>
+          <button type="button" onclick="tkFmtLine('tk-desc','- ')" title="Lista">• Lista</button>
+          <button type="button" onclick="tkFmtInsert('tk-desc','\n---\n')" title="Linha divisória">— Divisor</button>
+          <button type="button" onclick="tkTogglePrev()" id="tkPrevBtn" style="margin-left:auto;">Prévia</button>
+        </div>
         <textarea id="tk-desc" rows="3" oninput="tkRenderLinks()"></textarea>
+        <div class="tk-md" id="tkDescPrev" style="display:none;"></div>
         <div class="tk-links" id="tkLinkList"></div>
       </div>
       <div class="form-row">
@@ -539,6 +561,12 @@
       <div class="tk-side-cm">
         <label>Comentários / Observações</label>
         <div class="tk-cm-new">
+          <div class="tk-fmt">
+            <button type="button" onclick="tkFmtWrap('tkCmNew','**')" title="Negrito"><b>B</b></button>
+            <button type="button" onclick="tkFmtWrap('tkCmNew','*')" title="Itálico"><i>I</i></button>
+            <button type="button" onclick="tkFmtLine('tkCmNew','- ')" title="Lista">• Lista</button>
+            <button type="button" onclick="tkFmtInsert('tkCmNew','\n---\n')" title="Linha divisória">—</button>
+          </div>
           <textarea id="tkCmNew" rows="2" placeholder="Escreva uma observação..."></textarea>
           <button class="btn btn-ghost btn-sm" onclick="tkAddCm()">Adicionar</button>
         </div>
@@ -1076,6 +1104,72 @@ const TK_URL_RE=new RegExp('https?://[^\\s<>"\'\\)\\]]+','g');
 function tkExtractLinks(txt){
   return String(txt||'').match(TK_URL_RE)||[];
 }
+
+// ---- markdown-lite: **negrito**, *itálico*, "- item" e "---" ----
+function tkMdInline(s){
+  s=s.replace(new RegExp('\\*\\*([^*]+)\\*\\*','g'),'<strong>$1</strong>');
+  s=s.replace(new RegExp('__([^_]+)__','g'),'<strong>$1</strong>');
+  s=s.replace(new RegExp('(^|[^*])\\*([^*\\n]+)\\*','g'),'$1<em>$2</em>');
+  return s;
+}
+function tkMd(txt){
+  if(!txt)return '';
+  const links=[];
+  let s=tkEsc(txt).replace(TK_URL_RE,function(m){links.push(m);return '\u0001'+(links.length-1)+'\u0001';});
+  const hrRe=new RegExp('^\\s*(-{3,}|_{3,}|—+)\\s*$');
+  const liRe=new RegExp('^\\s*[-*\u2022]\\s+(.*)$');
+  let out='',lista=false;
+  s.split('\n').forEach(function(l){
+    if(hrRe.test(l)){if(lista){out+='</ul>';lista=false;}out+='<hr class="tk-hr">';return;}
+    const m=l.match(liRe);
+    if(m){if(!lista){out+='<ul class="tk-ul">';lista=true;}out+='<li>'+tkMdInline(m[1])+'</li>';return;}
+    if(lista){out+='</ul>';lista=false;}
+    if(!l.trim()){out+='<div class="tk-md-gap"></div>';return;}
+    out+='<p>'+tkMdInline(l)+'</p>';
+  });
+  if(lista)out+='</ul>';
+  return out.replace(new RegExp('\\u0001(\\d+)\\u0001','g'),function(m,i){
+    return '<a href="'+links[i]+'" target="_blank" rel="noopener">'+links[i]+'</a>';
+  });
+}
+
+// ---- barra de formatação ----
+function tkFmtWrap(id,mark){
+  const t=document.getElementById(id);
+  const a=t.selectionStart,b=t.selectionEnd;
+  const sel=t.value.slice(a,b)||'texto';
+  t.value=t.value.slice(0,a)+mark+sel+mark+t.value.slice(b);
+  t.focus();t.setSelectionRange(a+mark.length,a+mark.length+sel.length);
+  if(id==='tk-desc')tkRenderLinks();
+}
+function tkFmtLine(id,prefixo){
+  const t=document.getElementById(id);
+  let a=t.selectionStart,b=t.selectionEnd;
+  const ini=t.value.lastIndexOf('\n',a-1)+1;
+  const fimIdx=t.value.indexOf('\n',b);
+  const fim=fimIdx===-1?t.value.length:fimIdx;
+  const bloco=t.value.slice(ini,fim)||'item';
+  const novo=bloco.split('\n').map(function(l){return l.startsWith(prefixo)?l:prefixo+l;}).join('\n');
+  t.value=t.value.slice(0,ini)+novo+t.value.slice(fim);
+  t.focus();t.setSelectionRange(ini,ini+novo.length);
+  if(id==='tk-desc')tkRenderLinks();
+}
+function tkFmtInsert(id,txt){
+  const t=document.getElementById(id);
+  const a=t.selectionStart;
+  t.value=t.value.slice(0,a)+txt+t.value.slice(a);
+  t.focus();t.setSelectionRange(a+txt.length,a+txt.length);
+  if(id==='tk-desc')tkRenderLinks();
+}
+function tkTogglePrev(){
+  const ta=document.getElementById('tk-desc'),pv=document.getElementById('tkDescPrev'),bt=document.getElementById('tkPrevBtn');
+  if(pv.style.display==='none'){
+    pv.innerHTML=tkMd(ta.value)||'<p style="color:var(--text3)">Sem descrição.</p>';
+    pv.style.display='block';ta.style.display='none';bt.textContent='Editar';bt.classList.add('on');
+  }else{
+    pv.style.display='none';ta.style.display='block';bt.textContent='Prévia';bt.classList.remove('on');
+  }
+}
 function tkLinkLabel(u){
   try{
     const url=new URL(u);
@@ -1095,7 +1189,7 @@ function tkRenderCm(){
   tkCmTemp.forEach((c,ix)=>{
     const dt=c.data?new Date(c.data).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
     const d=document.createElement('div');d.className='tk-cm-item';
-    d.innerHTML=`<div class="tk-cm-txt">${tkEsc(c.t)}</div>
+    d.innerHTML=`<div class="tk-cm-txt tk-md">${tkMd(c.t)}</div>
       <div class="tk-cm-meta"><span class="tk-cm-data">${c.autor?tkEsc(c.autor)+' · ':''}${dt}</span><button class="tk-cm-del">×</button></div>`;
     d.querySelector('.tk-cm-del').addEventListener('click',()=>{tkCmTemp.splice(ix,1);tkRenderCm();});
     l.appendChild(d);
@@ -1437,6 +1531,8 @@ function openTaskModal(id){
   fd.value=t?(t.descricao||''):'';
   fd.style.height='auto';
   fd.style.height=Math.min(Math.max(fd.scrollHeight,70),320)+'px';
+  const pv=document.getElementById('tkDescPrev');
+  if(pv&&pv.style.display!=='none')tkTogglePrev();
   tkRenderLinks();
   document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
@@ -1519,7 +1615,14 @@ function tkPrint(id){
     h1{font-size:20px;margin:3px 0 0;color:#fff;}
     .info{display:flex;gap:24px;flex-wrap:wrap;font-size:12px;color:#444;margin:0 0 18px;}
     .info b{color:#111;}
-    .desc{font-size:13px;line-height:1.5;background:#f3f5f8;border-left:4px solid #10141d;padding:10px 14px;margin-bottom:20px;white-space:pre-wrap;}
+    .desc{font-size:13px;line-height:1.5;background:#f3f5f8;border-left:4px solid #10141d;padding:10px 14px;margin-bottom:20px;}
+    .desc p{margin:0 0 4px;}
+    .desc strong{font-weight:bold;}
+    .desc em{font-style:italic;}
+    .desc .tk-ul{margin:3px 0 7px;padding-left:20px;}
+    .desc .tk-hr{border:none;border-top:1px solid #bbb;margin:9px 0;}
+    .desc .tk-md-gap{height:6px;}
+    .desc a{color:#10141d;}
     h2{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#10141d;border-bottom:1px solid #ccc;padding-bottom:5px;}
     .ck{list-style:none;padding:0;margin:10px 0 0;}
     .ck li{display:flex;align-items:center;gap:12px;padding:9px 4px;border-bottom:1px solid #e4e7ec;font-size:14px;}
@@ -1544,7 +1647,7 @@ function tkPrint(id){
     ${t.prazo?`<span><b>Prazo:</b> ${t.prazo.split('-').reverse().join('/')}</span>`:''}
     <span><b>Impresso em:</b> ${hoje}</span>
   </div>
-  ${t.descricao?`<div class="desc">${tkEsc(t.descricao)}</div>`:''}
+  ${t.descricao?`<div class="desc">${tkMd(t.descricao)}</div>`:''}
   ${ck.length?`<h2>Checklist</h2><ul class="ck">${ck.map(i=>`<li class="${i.done?'done':''}"><div class="box ${i.done?'x':''}"></div><span>${tkEsc(i.t)}</span></li>`).join('')}</ul>`:''}
   <div class="obs"><h2>Observações</h2>${'<div class="line"></div>'.repeat(5)}</div>
   <div class="foot">Gerado pelo Painel OrkAI</div>
