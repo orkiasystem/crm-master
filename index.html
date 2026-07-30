@@ -1474,7 +1474,8 @@ function tkCardEl(t){
   const late=t.prazo&&t.coluna!=='done'&&new Date(t.prazo+'T23:59')<new Date();
   const el=document.createElement('div');el.className='tk-card';el.draggable=true;
   const capa=(t.anexos||[]).find(x=>x.cover&&x.url);
-  el.innerHTML=`<div class="tk-strip" style="background:${TK_PRIOS[t.prioridade]||'var(--border2)'}"></div>
+  const faixa=t.coluna==='done'?'var(--green)':(TK_PRIOS[t.prioridade]||'var(--border2)');
+  el.innerHTML=`<div class="tk-strip" style="background:${faixa}"></div>
   ${capa?`<img class="tk-cover" src="${capa.url}" loading="lazy" alt="">`:''}
   <div class="tk-card-b">
     <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;">
