@@ -99,6 +99,13 @@
   .tk-ax-cover input{accent-color:var(--accent);cursor:pointer;}
   .tk-card.filedrop{outline:2px dashed var(--accent);outline-offset:-3px;}
   .tk-card.insertpos{box-shadow:0 -3px 0 0 var(--accent);}
+  .tk-cm-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:9px 12px;margin-bottom:7px;}
+  .tk-cm-txt{font-size:13px;line-height:1.45;white-space:pre-wrap;}
+  .tk-cm-meta{display:flex;align-items:center;gap:8px;margin-top:5px;}
+  .tk-cm-data{font-size:10px;color:var(--text3);}
+  .tk-cm-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;margin-left:auto;padding:0 2px;}
+  .tk-cm-del:hover{color:var(--red);}
+  .tk-cm-count{font-size:11px;color:var(--text3);display:inline-flex;align-items:center;gap:3px;}
   .tk-ax-drop{border:1px dashed var(--border2);border-radius:var(--radius);padding:10px;transition:border-color .15s;}
   .tk-ax-drop.filedrop{border-color:var(--accent);background:rgba(61,126,255,.06);}
 
@@ -493,6 +500,14 @@
           <input type="file" id="tkAxInput" multiple style="display:none;" onchange="tkUploadAx(this.files)">
           <button class="btn btn-ghost btn-sm" id="tkAxBtn" onclick="document.getElementById('tkAxInput').click()">+ Anexar arquivo</button>
           <span style="font-size:11px;color:var(--text3);margin-left:8px;">ou arraste arquivos aqui</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Comentários / Observações</label>
+        <div id="tkCmList"></div>
+        <div style="display:flex;gap:8px;margin-top:8px;">
+          <textarea id="tkCmNew" rows="2" placeholder="Escreva uma observação..." style="flex:1;"></textarea>
+          <button class="btn btn-ghost btn-sm" onclick="tkAddCm()" style="align-self:flex-end;">Adicionar</button>
         </div>
       </div>
     </div>
@@ -1020,7 +1035,26 @@ let TK_COLS=[{id:'todo',n:'A Fazer',c:'#f59e0b'},{id:'doing',n:'Em Andamento',c:
 let TK_AREAS=[{id:'icasas',n:'iCasas',c:'#3d7eff'},{id:'orkai',n:'OrkAI',c:'#22c55e'},{id:'pessoal',n:'Pessoal',c:'#a855f7'},{id:'freela',n:'Freela',c:'#f59e0b'}];
 let TK_TEMPLATES=[];
 const TK_PRIOS={alta:'var(--red)',media:'var(--amber)',baixa:'var(--green)'};
-let tkTasks=[], tkEditing=null, tkCkTemp=[], tkAxTemp=[], tkSynced=false, tkRealtimeOn=false;
+let tkTasks=[], tkEditing=null, tkCkTemp=[], tkAxTemp=[], tkCmTemp=[], tkSynced=false, tkRealtimeOn=false;
+
+function tkRenderCm(){
+  const l=document.getElementById('tkCmList');l.innerHTML='';
+  tkCmTemp.forEach((c,ix)=>{
+    const dt=c.data?new Date(c.data).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+    const d=document.createElement('div');d.className='tk-cm-item';
+    d.innerHTML=`<div class="tk-cm-txt">${tkEsc(c.t)}</div>
+      <div class="tk-cm-meta"><span class="tk-cm-data">${c.autor?tkEsc(c.autor)+' · ':''}${dt}</span><button class="tk-cm-del">×</button></div>`;
+    d.querySelector('.tk-cm-del').addEventListener('click',()=>{tkCmTemp.splice(ix,1);tkRenderCm();});
+    l.appendChild(d);
+  });
+}
+function tkAddCm(){
+  const inp=document.getElementById('tkCmNew');const v=inp.value.trim();
+  if(!v)return;
+  tkCmTemp.push({t:v,data:new Date().toISOString(),autor:'Lucas'});
+  inp.value='';
+  tkRenderCm();
+}
 
 const TK_IMG_EXT=/\.(jpe?g|png|gif|webp|avif|heic)$/i;
 function tkIsImg(a){return TK_IMG_EXT.test(a.name||'');}
@@ -1287,6 +1321,7 @@ function tkCardEl(t){
     </div>
     <div class="tk-meta">
       <span class="badge" style="background:${a.c}22;color:${a.c}">${tkEsc(a.n)}</span>
+      ${(t.comentarios&&t.comentarios.length)?`<span class="tk-cm-count">💬 ${t.comentarios.length}</span>`:''}
       ${t.prazo?`<span class="tk-prazo${late?' late':''}">${t.prazo.split('-').reverse().slice(0,2).join('/')}</span>`:''}
     </div>
     ${ck.length?`<div class="tk-prog"><div class="tk-prog-bar"><div class="tk-prog-fill" style="width:${pct}%;background:${pct===100?'var(--green)':'var(--accent)'}"></div></div><div class="tk-prog-txt">${done}/${ck.length} itens</div></div>`:''}
@@ -1354,10 +1389,13 @@ function openTaskModal(id){
   document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
   tkCkTemp=t?JSON.parse(JSON.stringify(t.checklist||[])):[];
   tkAxTemp=t?JSON.parse(JSON.stringify(t.anexos||[])):[];
+  tkCmTemp=t?JSON.parse(JSON.stringify(t.comentarios||[])):[];
+  document.getElementById('tkCmNew').value='';
   document.getElementById('tkDelBtn').style.display=t?'inline-flex':'none';
   document.getElementById('tkPrintBtn').style.display=t?'inline-flex':'none';
   tkRenderCk();
   tkRenderAx();
+  tkRenderCm();
   document.getElementById('taskModal').classList.add('open');
 }
 function tkRenderCk(){
@@ -1384,8 +1422,11 @@ async function saveTaskModal(){
     coluna:document.getElementById('tk-col').value,
     prazo:document.getElementById('tk-prazo').value||null,
     checklist:tkCkTemp,
-    anexos:tkAxTemp
+    anexos:tkAxTemp,
+    comentarios:tkCmTemp
   };
+  const pend=document.getElementById('tkCmNew').value.trim();
+  if(pend){data.comentarios=tkCmTemp.concat([{t:pend,data:new Date().toISOString(),autor:'Lucas'}]);}
   let error;
   if(tkEditing){({error}=await db.from('tasks').update(data).eq('id',tkEditing));}
   else{({error}=await db.from('tasks').insert({id:'t-'+Date.now().toString(36),...data}));}
