@@ -457,6 +457,407 @@
         "prioridade": "baixa",
         "descricao": "Card veio do Trello sem descrição. Definir: portfólio de quê (iCasas? pessoal?), formato e prazo."
       }
+    },
+    {
+      "type": "remove",
+      "task_id": "t-teste-fluxo",
+      "id": "op-0025"
+    },
+    {
+      "type": "remove",
+      "task_id": "t-ping-sync",
+      "id": "op-0026"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-fotos-emp",
+        "prioridade": "alta",
+        "descricao": "**Padrão:** 2 fotos por cômodo + vídeo geral.\n\n- Foto 1: ângulo aberto, mostrando o ambiente inteiro\n- Foto 2: ângulo oposto ou o principal destaque do ambiente\n- Câmera a ~1,20 m de altura, linha do horizonte reta\n\n---\n\n**Antes de ir a campo:** imprimir o checklist pelo botão *Exportar PDF* deste card e confirmar o acesso à casa com a corretora."
+      },
+      "id": "op-0027"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-cnpj-orkai",
+        "prioridade": "alta",
+        "prazo": "2026-08-31",
+        "descricao": "Abrir o CNPJ da **OrkAI Systems** para faturar sistemas e freelas.\n\n- Definir CNAE (desenvolvimento de software / publicidade)\n- Escolher o regime tributário com o contador\n- Abrir conta PJ",
+        "checklist": [
+          {
+            "t": "Definir CNAE e regime com o contador",
+            "done": false
+          },
+          {
+            "t": "Abrir o CNPJ",
+            "done": false
+          },
+          {
+            "t": "Abrir conta PJ",
+            "done": false
+          },
+          {
+            "t": "Emitir a primeira nota",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0028"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-dominio",
+        "descricao": "Registrar o domínio da **OrkAI** para o painel e o site institucional.\n\n- Verificar disponibilidade (.com.br e .com)\n- Registrar\n- Apontar o DNS para o GitHub Pages",
+        "checklist": [
+          {
+            "t": "Verificar disponibilidade do domínio",
+            "done": false
+          },
+          {
+            "t": "Registrar",
+            "done": false
+          },
+          {
+            "t": "Apontar DNS / GitHub Pages",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0029"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-video-henry",
+        "coluna": "doing",
+        "prioridade": "alta",
+        "prazo": "2026-08-02",
+        "descricao": "Vídeo da festa de aniversário do **Henry** (filho da Thais) — tema fazendinha, festa em 24/06.\n\n- Edição já iniciada\n- Música definida: a da fazendinha\n\n---\n\n*Cobrado desde 04/07. Fechar essa semana.*"
+      },
+      "id": "op-0030"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-arte-sincera-hoje",
+        "coluna": "done",
+        "prioridade": "baixa",
+        "titulo": "Arte 'corretora sincera' avulsa (entregue)",
+        "descricao": "Arte avulsa entregue no dia 28/07.\n\n**Substituída pelo lote** — daqui pra frente as artes saem do card *Identidade + lote de artes 'corretora sincera'*."
+      },
+      "id": "op-0031"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-artes-sincera-lote",
+        "coluna": "doing",
+        "prioridade": "alta",
+        "titulo": "Artes 'corretora sincera' — série da Thais",
+        "descricao": "Série de artes para a **Thaís** postar (1 por dia). Referências dela: bandeirão de protesto e lousa escrita à mão.\n\n**Identidade fixa da série**\n- Tipografia condensada bold em todas\n- Cor de destaque: **laranja #FF6B00** em 1 ou 2 palavras-chave\n- Assinatura: *Thaís • corretora sincera*\n- Muda o cenário, não a voz\n\n---\n\n**LOTE 1 — produzido (8 artes)**\n- Aluguel também é parcela. Só que da casa do outro. — *bandeirão*\n- Quanto mais você adia, maior o preço e menor o imóvel — *lousa*\n- Parcelou o iPhone em 12x mas acha financiamento caro — *fundo preto*\n- Entrada não se acha, se constrói — *placa de obra*\n- O banco não aprova sonho. Aprova comprovação. — *outdoor*\n- Score alto não aprova teu crédito — *muro com lambe*\n- Sua conta não precisa ser gorda, precisa ter histórico — *vidro de escritório*\n- Primeiro a casa que você pode, depois a casa que você quer — *placa de jardim*\n\n---\n\n**LOTE 2 — em produção (7 artes)**\n- Movimentar 30 mil não é renda se você não comprovar — *bandeirão*\n- Quem financia primeiro o carro, não financia casa — *outdoor*\n- Limite no cartão não é poder de compra — *fundo preto*\n- Nome limpo não é mérito, é o mínimo — *muro com lambe*\n- FGTS parado não compra nada. Usado, compra casa. — *lousa*\n- Não existe momento certo. Existe estar preparado quando ele chegar. — *caderno*\n- Casa própria não cabe no orçamento de quem não faz orçamento — *placa de obra*\n\n---\n\n**Banco de estilos:** bandeirão, lousa, vidro de escritório, muro com lambe, outdoor, placa de obra, placa de jardim, fundo preto, página de caderno.\n\n**Próximo ciclo:** puxar frases das dúvidas reais que os leads mandam no WhatsApp da Thais.",
+        "checklist": [
+          {
+            "t": "Validar frases e estilos com a Thais",
+            "done": true
+          },
+          {
+            "t": "Definir identidade visual (tipografia, laranja, assinatura)",
+            "done": true
+          },
+          {
+            "t": "Produzir lote 1 (8 artes)",
+            "done": true
+          },
+          {
+            "t": "Produzir lote 2 (7 artes)",
+            "done": false
+          },
+          {
+            "t": "Entregar o pacote pra ela agendar",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0032"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "prioridade": "alta",
+        "descricao": "Loja da **Jumka** em marketplace. Verificado: ainda não existe loja com esse nome na Shopee.\n\n**Pedido do Jean (30/07)** — coletar:\n- Tabela de preço\n- Peso do produto embalado\n- Medidas\n\n**Comissões a considerar**\n- Shopee: **20%**\n- Mercado Livre: **17%** *(ele também está olhando o ML)*\n\n---\n\n**Atenção na precificação:** além da comissão tem taxa fixa por item vendido e custo de embalagem. Frete por dimensão pesa bastante em produto grande.\n\n*Sugestão: validar em um marketplace primeiro, não nos dois de uma vez.*"
+      },
+      "id": "op-0033"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-ideia-promo-garagem",
+        "descricao": "Promoção pensada para **julho** — ideia do Vini.\n\n- **Mecânica 1:** quem comprar com a gente concorre a uma garagem concretada\n- **Mecânica 2:** quem pagar X de entrada ganha a garagem concretada\n\n---\n\n*Definir antes de rodar: custo real da garagem, período da campanha e regulamento.*"
+      },
+      "id": "op-0034"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-ideia-video-paralisado",
+        "descricao": "Formato de vídeo: **\"todo mundo paralisado\"** — cena estilo novela.\n\nReferência: reel da Izadora Oliveira — *\"Esse apê de 34m² prova que um espaço bem planejado faz toda diferença.\"*\n\nhttps://www.instagram.com/reel/DVeEtEJkTBQ/\n\n---\n\n*Ideia de adaptação: paralisar a cena numa casa entregue e destacar os diferenciais um a um.*"
+      },
+      "id": "op-0035"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-arte-missao-visao-valores",
+        "descricao": "Três placas para o escritório.\n\n**1ª — MISSÃO** *(nosso propósito)*\n- Realizar o sonho da casa dos sonhos\n\n**2ª — VISÃO** *(onde queremos chegar)*\n- Ser a maior empresa de casas inteligentes do Brasil\n\n**3ª — VALORES** *(o que não negociamos)*\n- Honestidade e transparência\n- Construímos relações sólidas baseadas em confiança e verdade\n\n---\n\n*As imagens de referência estão no card antigo do Trello — baixar e arrastar aqui como anexo.*"
+      },
+      "id": "op-0036"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-concorrentes-analise",
+        "titulo": "Analisar concorrentes — um de cada vez",
+        "descricao": "Levantar concorrente por concorrente, **um de cada vez** — sem tentar mapear todos de uma vez.\n\nPara cada um, registrar:\n- Pontos fortes e pontos fracos\n- O que vale copiar e o que evitar\n- Anúncios ativos (Biblioteca de Anúncios do Meta)\n- Posicionamento, faixa de preço e frequência de post",
+        "checklist": [
+          {
+            "t": "Listar os concorrentes principais",
+            "done": false
+          },
+          {
+            "t": "Analisar 1 por semana",
+            "done": false
+          },
+          {
+            "t": "Consolidar num documento comparativo",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0037"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-arte-fachada-icasas-int",
+        "descricao": "**Formatos**\n- Totem vertical: 2,72 m × 1,32 m\n- Totem horizontal: 2,00 m × 3,80 m\n\nDuas versões para teste A/B de aprovação.\n\n---\n\n**Versão 1 — Azul** *(institucional/tech)*\n- Headline: iCASAS INTELIGENTES\n- Sub: Automação residencial de verdade\n- Apoio: Som • Iluminação • Controle por aplicativo\n- Contato: [TELEFONE]\n\n**Versão 2 — Verde** *(convite/proximidade)*\n- Headline: iCASAS INTELIGENTES\n- Sub: Sua casa, no controle da sua mão\n- Apoio: Casa inteligente sem complicação\n- Contato: [TELEFONE]",
+        "checklist": [
+          {
+            "t": "Produzir versão azul",
+            "done": false
+          },
+          {
+            "t": "Produzir versão verde",
+            "done": false
+          },
+          {
+            "t": "Aprovar com o Cris",
+            "done": false
+          },
+          {
+            "t": "Enviar pra produção",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0038"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-foto-assinatura-email",
+        "descricao": "Foto e assinatura padrão de e-mail.\n\n- Referência técnica: *Responsive CSS Inliner for Email Templates*\n- Definir se é só pra você ou padrão de toda a equipe",
+        "checklist": [
+          {
+            "t": "Tirar / escolher a foto",
+            "done": false
+          },
+          {
+            "t": "Montar a assinatura em HTML",
+            "done": false
+          },
+          {
+            "t": "Testar no Gmail e no Outlook",
+            "done": false
+          },
+          {
+            "t": "Distribuir pra equipe",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0039"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-frase-automacao",
+        "descricao": "Pedido do **Cris**: uma frase de automação para colocar **bem grande** na parede do escritório.\n\n*Print de referência está no card antigo do Trello — baixar e arrastar aqui como anexo.*",
+        "checklist": [
+          {
+            "t": "Propor 3 a 5 frases",
+            "done": false
+          },
+          {
+            "t": "Aprovar com o Cris",
+            "done": false
+          },
+          {
+            "t": "Produzir a arte no tamanho da parede",
+            "done": false
+          },
+          {
+            "t": "Enviar pra produção",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0040"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-portfolio-trello",
+        "titulo": "Portfólio — definir escopo",
+        "descricao": "Card veio do Trello **sem descrição**. Definir antes de executar:\n\n- Portfólio de quê: iCasas ou o seu pessoal?\n- Formato: site, PDF ou Behance?\n- Prazo",
+        "checklist": [
+          {
+            "t": "Definir escopo e formato",
+            "done": false
+          },
+          {
+            "t": "Selecionar os trabalhos",
+            "done": false
+          },
+          {
+            "t": "Montar",
+            "done": false
+          }
+        ]
+      },
+      "id": "op-0041"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-fotos-emp",
+        "ordem": 10
+      },
+      "id": "op-0042"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-frase-automacao",
+        "ordem": 20
+      },
+      "id": "op-0043"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-arte-missao-visao-valores",
+        "ordem": 30
+      },
+      "id": "op-0044"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-arte-fachada-icasas-int",
+        "ordem": 40
+      },
+      "id": "op-0045"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "ordem": 50
+      },
+      "id": "op-0046"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-cnpj-orkai",
+        "ordem": 60
+      },
+      "id": "op-0047"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-dominio",
+        "ordem": 70
+      },
+      "id": "op-0048"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-concorrentes-analise",
+        "ordem": 80
+      },
+      "id": "op-0049"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-foto-assinatura-email",
+        "ordem": 90
+      },
+      "id": "op-0050"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-portfolio-trello",
+        "ordem": 100
+      },
+      "id": "op-0051"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-video-henry",
+        "ordem": 10
+      },
+      "id": "op-0052"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-artes-sincera-lote",
+        "ordem": 20
+      },
+      "id": "op-0053"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-ideia-promo-garagem",
+        "ordem": 10
+      },
+      "id": "op-0054"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-ideia-video-paralisado",
+        "ordem": 20
+      },
+      "id": "op-0055"
+    },
+    {
+      "type": "update",
+      "task": {
+        "id": "t-arte-sincera-hoje",
+        "ordem": 10
+      },
+      "id": "op-0056"
     }
   ]
 }
