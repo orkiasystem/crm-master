@@ -1617,7 +1617,7 @@ function tkAddCk(){
   if(!v)return; tkCkTemp.push({t:v,done:false}); inp.value=''; tkRenderCk();
 }
 async function saveTaskModal(){
-  const titulo=document.getElementById('tk-titulo').value.trim();
+  const titulo=document.getElementById('tk-titulo').value.trim().toUpperCase();
   if(!titulo){showToast('Título obrigatório.','error');return;}
   const data={
     titulo, descricao:document.getElementById('tk-desc').value.trim(),
