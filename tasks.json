@@ -314,6 +314,149 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0016",
+      "type": "config",
+      "config": {
+        "colunas": [
+          {
+            "id": "todo",
+            "n": "A Fazer",
+            "c": "#f59e0b"
+          },
+          {
+            "id": "doing",
+            "n": "Em Andamento",
+            "c": "#3d7eff"
+          },
+          {
+            "id": "waiting",
+            "n": "Aguardando",
+            "c": "#a855f7"
+          },
+          {
+            "id": "done",
+            "n": "Concluído",
+            "c": "#22c55e"
+          },
+          {
+            "id": "ideias",
+            "n": "Ideias",
+            "c": "#14b8a6"
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0017",
+      "type": "add",
+      "task": {
+        "id": "t-ideia-promo-garagem",
+        "titulo": "Ideia (Vini): promoção garagem concretada — pós-iPhone",
+        "coluna": "ideias",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Promoção pensada pra julho (migrado do Trello).\nMecânica 1: quem comprar com a gente concorre a garagem concretada.\nMecânica 2: quem pagar X valor na entrada ganha a garagem concretada."
+      }
+    },
+    {
+      "id": "op-0018",
+      "type": "add",
+      "task": {
+        "id": "t-ideia-video-paralisado",
+        "titulo": "Ideia: vídeo 'todo mundo paralisado' — novela",
+        "coluna": "ideias",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Referência (do Trello): reel da Izadora Oliveira no Instagram — 'Esse apê de 34m² prova que um espaço bem planejado faz toda diferença! 34m² entregam muito mais do que você imagina.'"
+      }
+    },
+    {
+      "id": "op-0019",
+      "type": "add",
+      "task": {
+        "id": "t-arte-missao-visao-valores",
+        "titulo": "Arte Missão, Visão e Valores",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "media",
+        "descricao": "3 placas (migrado do Trello):\n1ª MISSÃO — nosso propósito: realizar o sonho da casa dos sonhos.\n2ª VISÃO — onde queremos chegar: ser a maior empresa de casas inteligentes do Brasil.\n3ª VALORES — o que não negociamos: honestidade e transparência; construímos relações sólidas baseadas em confiança e verdade.\nObs: as imagens de referência estão no card antigo do Trello — arrastar pra cá como anexo.",
+        "checklist": [
+          {
+            "t": "Finalizar as 3 artes",
+            "done": false
+          },
+          {
+            "t": "Aprovar com o Cris",
+            "done": false
+          },
+          {
+            "t": "Enviar pra produção/impressão",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0020",
+      "type": "add",
+      "task": {
+        "id": "t-concorrentes-analise",
+        "titulo": "Analisar concorrentes — pontos fortes e fracos, um de cada vez",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "media",
+        "descricao": "Migrado do Trello (card do Cristopher). Levantar concorrente por concorrente: pontos fortes, fracos e o que copiar/evitar."
+      }
+    },
+    {
+      "id": "op-0021",
+      "type": "add",
+      "task": {
+        "id": "t-arte-fachada-icasas-int",
+        "titulo": "Arte da fachada iCasas Inteligentes (totens)",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "media",
+        "descricao": "Formato: Totem Vertical (2,72m × 1,32m) e Totem Horizontal (2,00m × 3,80m). 2 versões pra teste A/B de aprovação:\nVersão 1 — Azul (institucional/tech): headline 'iCASAS INTELIGENTES', sub 'Automação residencial de verdade', apoio 'Som • Iluminação • Controle por aplicativo', contato [TELEFONE].\nVersão 2 — Verde (convite/proximidade): headline 'iCASAS INTELIGENTES', sub 'Sua casa, no controle da sua mão', apoio 'Casa inteligente sem complicação', contato [TELEFONE]."
+      }
+    },
+    {
+      "id": "op-0022",
+      "type": "add",
+      "task": {
+        "id": "t-foto-assinatura-email",
+        "titulo": "Foto e assinatura de e-mail",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Migrado do Trello. Referência técnica salva: Responsive CSS Inliner for Email Templates."
+      }
+    },
+    {
+      "id": "op-0023",
+      "type": "add",
+      "task": {
+        "id": "t-frase-automacao",
+        "titulo": "Frase pra automação (parede do escritório)",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "media",
+        "descricao": "Pedido do Cris (migrado do Trello): uma frase pra automação pra colocar bem grande na parede/fachada interna do escritório. Print de referência está no card antigo do Trello — arrastar pra cá como anexo."
+      }
+    },
+    {
+      "id": "op-0024",
+      "type": "add",
+      "task": {
+        "id": "t-portfolio-trello",
+        "titulo": "Portfólio (migrado do Trello — detalhar escopo)",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "baixa",
+        "descricao": "Card veio do Trello sem descrição. Definir: portfólio de quê (iCasas? pessoal?), formato e prazo."
+      }
     }
   ]
 }
