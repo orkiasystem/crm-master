@@ -1230,6 +1230,18 @@ function tkAddCm(){
   tkRenderCm();
 }
 
+let tkUrlCache={};
+// gera links temporários (assinados) para os arquivos do bucket privado
+async function tkAssinar(paths,segs){
+  const novos=(paths||[]).filter(function(p){return p&&!tkUrlCache[p];});
+  if(!novos.length)return;
+  try{
+    const {data,error}=await db.storage.from('task-files').createSignedUrls(novos,segs||86400);
+    if(error)return;
+    (data||[]).forEach(function(r){if(r.path&&r.signedUrl)tkUrlCache[r.path]=r.signedUrl;});
+  }catch(e){}
+}
+function tkUrlDe(a){return (a&&a.path&&tkUrlCache[a.path])||(a&&a.url)||'';}
 const TK_IMG_EXT=/\.(jpe?g|png|gif|webp|avif|heic)$/i;
 function tkIsImg(a){return TK_IMG_EXT.test(a.name||'');}
 
@@ -1240,8 +1252,7 @@ async function tkStoreFiles(files,prefix){
     const path=(prefix||'nova')+'/'+Date.now()+'-'+f.name.replace(/[^a-zA-Z0-9._-]/g,'_');
     const {error}=await db.storage.from('task-files').upload(path,f);
     if(error){showToast('Erro no upload de '+f.name+': '+error.message,'error');continue;}
-    const {data}=db.storage.from('task-files').getPublicUrl(path);
-    out.push({name:f.name,path,url:data.publicUrl,cover:false});
+    out.push({name:f.name,path:path,cover:false});
   }
   return out;
 }
@@ -1251,6 +1262,7 @@ async function tkDropOnCard(t,files){
   showToast('Enviando '+files.length+' arquivo(s)...','success');
   const novos=await tkStoreFiles(files,t.id);
   if(!novos.length)return;
+  await tkAssinar(novos.map(function(a){return a.path;}));
   const lista=(t.anexos||[]).concat(novos);
   const {error}=await db.from('tasks').update({anexos:lista}).eq('id',t.id);
   if(error){showToast('Erro ao anexar: '+error.message,'error');return;}
@@ -1263,6 +1275,7 @@ async function tkUploadAx(files){
   const btn=document.getElementById('tkAxBtn');
   btn.disabled=true;btn.textContent='Enviando...';
   const novos=await tkStoreFiles(files,tkEditing||'nova');
+  await tkAssinar(novos.map(function(a){return a.path;}));
   tkAxTemp.push(...novos);
   btn.disabled=false;btn.textContent='+ Anexar arquivo';
   document.getElementById('tkAxInput').value='';
@@ -1287,7 +1300,7 @@ function tkRenderAx(){
   const l=document.getElementById('tkAxList');l.innerHTML='';
   tkAxTemp.forEach((a,ix)=>{
     const d=document.createElement('div');d.className='tk-ax-item';
-    d.innerHTML=`<a href="${a.url}" target="_blank" title="${tkEsc(a.name)}">${tkEsc(a.name)}</a>
+    d.innerHTML=`<a href="${tkUrlDe(a)}" target="_blank" title="${tkEsc(a.name)}">${tkEsc(a.name)}</a>
       ${tkIsImg(a)?`<label class="tk-ax-cover"><input type="checkbox" ${a.cover?'checked':''}> capa</label>`:''}
       <button class="tk-ck-del">×</button>`;
     const cb=d.querySelector('.tk-ax-cover input');
@@ -1348,6 +1361,9 @@ async function tkFetch(){
   if(error){showToast('Erro ao carregar tarefas: '+error.message,'error');return;}
   tkTasks=data||[];
   renderTasks();
+  const capas=[];
+  tkTasks.forEach(function(t){(t.anexos||[]).forEach(function(a){if(a.cover&&a.path)capas.push(a.path);});});
+  if(capas.length){await tkAssinar(capas);renderTasks();}
 }
 
 function tkStartRealtime(){
@@ -1534,10 +1550,10 @@ function tkCardEl(t){
   const pct=ck.length?Math.round(done/ck.length*100):0;
   const late=t.prazo&&tkResolveCol(t.coluna)!=='done'&&new Date(t.prazo+'T23:59')<new Date();
   const el=document.createElement('div');el.className='tk-card';el.draggable=true;
-  const capa=(t.anexos||[]).find(x=>x.cover&&x.url);
+  const capa=(t.anexos||[]).find(x=>x.cover&&(x.path||x.url));
   const faixa=tkResolveCol(t.coluna)==='done'?'var(--green)':(TK_PRIOS[t.prioridade]||'var(--border2)');
   el.innerHTML=`<div class="tk-strip" style="background:${faixa}"></div>
-  ${capa?`<img class="tk-cover" src="${capa.url}" loading="lazy" alt="">`:''}
+  ${(capa&&tkUrlDe(capa))?`<img class="tk-cover" src="${tkUrlDe(capa)}" loading="lazy" alt="">`:''}
   <div class="tk-card-b">
     <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;">
       <div class="tk-card-t" style="flex:1;">${tkEsc(t.titulo)}</div>
@@ -1626,6 +1642,8 @@ function openTaskModal(id){
   tkRenderCk();
   tkRenderAx();
   tkRenderCm();
+  const ps=tkAxTemp.map(function(a){return a.path;}).filter(Boolean);
+  if(ps.length)tkAssinar(ps).then(tkRenderAx);
   document.getElementById('taskModal').classList.add('open');
 }
 function tkRenderCk(){
