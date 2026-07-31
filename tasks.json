@@ -1538,6 +1538,144 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0118",
+      "type": "update",
+      "task": {
+        "id": "t-link-crm-icasas",
+        "descricao": "CRM de leads da iCasas — pipeline de atendimento dos corretores.\n\nhttps://mkticasas.github.io/crm-icasas/\n\n---\n\n**ACESSO**\n- Login de usuário + senha **fixos no código** do próprio HTML\n- Sessão fica salva 30 dias no navegador\n- ⚠️ O repositório é público: quem abre o código-fonte enxerga a senha. Ver card de revisão de acessos.",
+        "checklist": [
+          {
+            "t": "Guardar a credencial no gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0119",
+      "type": "update",
+      "task": {
+        "id": "t-link-obras-automacao",
+        "descricao": "Acompanhamento de obras e automação.\n\nhttps://mkticasas.github.io/obras-automacao/\n\n---\n\n**ACESSO**\n- Supabase Auth: e-mail + senha, uma conta por pessoa\n- Perfis separados: gestor (acesso total) e técnico (restrito), com RLS no banco\n- Contas criadas por você pelo painel admin do próprio sistema",
+        "checklist": [
+          {
+            "t": "Guardar a credencial no gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0120",
+      "type": "update",
+      "task": {
+        "id": "t-link-vitrine",
+        "descricao": "Site de vitrine dos imóveis — o que o cliente vê.\n\nhttps://vitrine.icasasconstrutora.com.br\n\n---\n\n**ACESSO**\n- Supabase Auth: e-mail + senha (já migrado, não tem mais senha fixa no código)\n- Troca de senha pelo próprio painel admin do site\n- Área pública não exige login — só a administração",
+        "checklist": [
+          {
+            "t": "Guardar a credencial no gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0121",
+      "type": "update",
+      "task": {
+        "id": "t-link-worker-obras",
+        "descricao": "Worker que roda por trás do acompanhamento de obras.\n\nhttps://obras.mkt-icasas.workers.dev\n\n---\n\n**ACESSO**\n- Não tem tela de login: é o backend que responde às chamadas do sistema\n- Quem administra entra pela conta da Cloudflare",
+        "checklist": [
+          {
+            "t": "Guardar a credencial no gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0122",
+      "type": "update",
+      "task": {
+        "id": "t-link-cloudflare",
+        "descricao": "Painel da Cloudflare: workers, DNS e domínios.\n\nhttps://dash.cloudflare.com/bd7cba738110d5e0f2ca3b4deb6aedfd/home\n\n---\n\n**ACESSO**\n- Conta Cloudflare: e-mail + senha\n- ⚠️ Conferir se o 2FA está ligado — essa conta controla os domínios e o backend",
+        "checklist": [
+          {
+            "t": "Guardar a credencial no gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0123",
+      "type": "update",
+      "task": {
+        "id": "t-link-orkai-lp",
+        "descricao": "Landing page institucional da OrkAI Systems — sistemas inteligentes sob medida.\n\nhttps://orkiasystem.github.io/orkai-lp/\n\n---\n\n**ACESSO**\n- Site estático, sem login. Publicação é pelo repositório no GitHub",
+        "checklist": [
+          {
+            "t": "Guardar a credencial no gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0124",
+      "type": "update",
+      "task": {
+        "id": "t-link-orkai-crm-construtora",
+        "descricao": "CRM da iCasas Construtora rodando na OrkAI.\n\nhttps://orkiasystem.github.io/crm-icasas-construtora/\n\n---\n\n**ACESSO**\n- Supabase Auth: e-mail + senha + **MFA** por app autenticador\n- E-mail de admin ainda é o seu pessoal, em caráter temporário — trocar pelo e-mail do cliente quando entrar em produção",
+        "checklist": [
+          {
+            "t": "Guardar a credencial no gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0125",
+      "type": "add",
+      "task": {
+        "id": "t-seguranca-acessos",
+        "codigo": 24,
+        "titulo": "REVISAR SENHAS FIXAS NOS SISTEMAS",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "ordem": 5,
+        "descricao": "Revisão de segurança dos acessos. Levantado a partir do histórico dos projetos.\n\n**⚠️ Sistemas com senha fixa dentro do código, em repositório público**\n- CRM iCasas *(mkticasas.github.io/crm-icasas)*\n- Cardápio da Pastelaria do Ditinho\n- Kanban de obras antigo *(o que usa data.json)*\n\nNesses, qualquer pessoa que abrir o código-fonte do site vê a senha e entra como admin. No caso do CRM, isso dá acesso à base de leads com dados pessoais de clientes.\n\n**✅ Sistemas já com login de verdade**\n- Painel Mãe e CRM da OrkAI: Supabase Auth + MFA\n- Vitrine dos Sonhos: Supabase Auth\n- Obras + Automação: Supabase Auth com perfis e RLS\n\n---\n\n**Plano sugerido, na ordem**\n- Migrar o **CRM iCasas** para Supabase Auth (é o mais crítico: tem dado de lead)\n- Trocar todas as senhas que já ficaram expostas no código, mesmo depois de migrar\n- Ligar 2FA na conta Cloudflare e na conta GitHub\n- Migrar o cardápio do Ditinho e aposentar o Kanban antigo\n- Guardar tudo num gerenciador de senhas — nunca no board\n\n---\n\n*Nenhuma senha fica registrada neste sistema. Os cards de Utilitários dizem só como se entra em cada um.*",
+        "checklist": [
+          {
+            "t": "Migrar CRM iCasas para Supabase Auth",
+            "done": false
+          },
+          {
+            "t": "Trocar as senhas que ficaram expostas no código",
+            "done": false
+          },
+          {
+            "t": "Ligar 2FA na Cloudflare e no GitHub",
+            "done": false
+          },
+          {
+            "t": "Migrar o cardápio do Ditinho",
+            "done": false
+          },
+          {
+            "t": "Aposentar o Kanban de obras antigo",
+            "done": false
+          },
+          {
+            "t": "Centralizar tudo num gerenciador de senhas",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
