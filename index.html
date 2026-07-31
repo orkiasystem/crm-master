@@ -107,6 +107,13 @@
   .tk-ax-item{display:flex;align-items:center;gap:9px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 11px;margin-bottom:6px;}
   .tk-ax-item a{flex:1;font-size:13px;color:var(--text);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .tk-ax-item a:hover{color:var(--accent);}
+  .img-viewer{position:fixed;inset:0;background:rgba(5,8,14,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:60px 24px 24px;}
+  .img-viewer.open{display:flex;}
+  .img-viewer img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;}
+  .img-viewer-bar{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;gap:10px;padding:0 18px;background:rgba(12,15,22,.85);}
+  .img-viewer-bar span{flex:1;font-size:13px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .img-viewer-bar button{background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:7px;padding:6px 12px;font-family:inherit;font-size:13px;cursor:pointer;transition:.15s;}
+  .img-viewer-bar button:hover{border-color:var(--accent);color:var(--accent);}
   .tk-ax-thumb{width:46px;height:46px;object-fit:cover;border-radius:6px;display:block;background:var(--bg);border:1px solid var(--border);flex-shrink:0;transition:.15s;}
   .tk-ax-thumb:hover{border-color:var(--accent);}
   .tk-ax-ico{width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:18px;flex-shrink:0;}
@@ -822,6 +829,15 @@
   </div>
 </div>
 
+<div class="img-viewer" id="imgViewer">
+  <div class="img-viewer-bar">
+    <span id="imgViewerNome"></span>
+    <button onclick="tkBaixarImg()" title="Baixar">⬇ Baixar</button>
+    <button onclick="tkFecharImg()" title="Fechar">✕</button>
+  </div>
+  <img id="imgViewerImg" src="" alt="">
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -1299,14 +1315,46 @@ async function tkUploadAx(files){
     tkUploadAx(e.dataTransfer.files);
   });
 })();
+let tkViewerUrl='',tkViewerNome='';
+function tkAbrirImg(url,nome){
+  tkViewerUrl=url;tkViewerNome=nome||'imagem';
+  document.getElementById('imgViewerImg').src=url;
+  document.getElementById('imgViewerNome').textContent=tkViewerNome;
+  document.getElementById('imgViewer').classList.add('open');
+}
+function tkFecharImg(){
+  document.getElementById('imgViewer').classList.remove('open');
+  document.getElementById('imgViewerImg').src='';
+}
+async function tkBaixarImg(){
+  if(!tkViewerUrl)return;
+  try{
+    const r=await fetch(tkViewerUrl);
+    const b=await r.blob();
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(b);
+    a.download=tkViewerNome||'imagem';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1500);
+  }catch(e){window.open(tkViewerUrl,'_blank');}
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.getElementById('imgViewer').classList.contains('open'))tkFecharImg();
+});
 function tkRenderAx(){
   const l=document.getElementById('tkAxList');l.innerHTML='';
   tkAxTemp.forEach((a,ix)=>{
     const d=document.createElement('div');d.className='tk-ax-item';
-    d.innerHTML=`${(tkIsImg(a)&&tkUrlDe(a))?`<a href="${tkUrlDe(a)}" target="_blank"><img class="tk-ax-thumb" src="${tkUrlDe(a)}" loading="lazy" alt=""></a>`:'<span class="tk-ax-ico">📄</span>'}
-      <a href="${tkUrlDe(a)}" target="_blank" title="${tkEsc(a.name)}">${tkEsc(a.name)}</a>
+    const ehImg=tkIsImg(a)&&tkUrlDe(a);
+    d.innerHTML=`${ehImg?`<img class="tk-ax-thumb" src="${tkUrlDe(a)}" loading="lazy" alt="">`:'<span class="tk-ax-ico">📄</span>'}
+      <a href="${tkUrlDe(a)}" ${ehImg?'':'target="_blank"'} title="${tkEsc(a.name)}">${tkEsc(a.name)}</a>
       ${tkIsImg(a)?`<label class="tk-ax-cover"><input type="checkbox" ${a.cover?'checked':''}> capa</label>`:''}
       <button class="tk-ck-del">×</button>`;
+    if(ehImg){
+      const abrir=function(e){e.preventDefault();tkAbrirImg(tkUrlDe(a),a.name);};
+      d.querySelector('.tk-ax-thumb').addEventListener('click',abrir);
+      d.querySelector('a').addEventListener('click',abrir);
+    }
     const cb=d.querySelector('.tk-ax-cover input');
     if(cb)cb.addEventListener('change',e=>{
       tkAxTemp.forEach(x=>x.cover=false);
