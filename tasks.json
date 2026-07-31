@@ -1676,6 +1676,50 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0126",
+      "type": "add",
+      "task": {
+        "id": "t-migrar-supabase",
+        "codigo": 25,
+        "titulo": "MIGRAR SUPABASES PARA UMA CONTA SÓ",
+        "coluna": "todo",
+        "area": "orkai",
+        "prioridade": "baixa",
+        "ordem": 200,
+        "descricao": "Juntar os 3 Supabases (contas separadas) numa conta só da OrkAI, quando a receita começar.\n\n**Por que agora não:** o plano gratuito limita projetos ativos por organização e pausa os inativos. Consolidar exige plano pago.\n\n---\n\n**PASSO A PASSO**\n\n- Criar a conta definitiva com **e-mail da OrkAI**, não pessoal — vai ser a conta da empresa\n- Criar a organização nela e **subir pro Pro antes** de transferir qualquer coisa\n- Convidar as outras contas como membros dessa organização\n- Em cada conta antiga: **Settings → General → Transfer project** → escolher a organização nova\n- Remover os convites depois que tudo estiver migrado\n\n**O que NÃO muda:** URL do projeto, chaves de API, banco, storage, edge functions e domínio customizado. Nenhum sistema precisa ser alterado.\n\n---\n\n**CUSTO**\n\n- Pro: **US$ 25/mês por organização**, com US$ 10 de crédito de compute (cobre 1 instância Micro)\n- Cada projeto adicional: **US$ 10/mês** (Micro)\n- Hoje, pagando Pro em 3 contas: US$ 75/mês. Consolidado com 4 projetos: **US$ 55/mês**\n\n**Custo por cliente da OrkAI**\n- Compute fixo: US$ 10/mês\n- Egress e storage: variável, cobrado por GB acima da franquia — e a franquia é da **organização**, não do projeto, então um cliente pesado consome a dos outros\n- **Regra de precificação:** considerar US$ 15 a 20 de custo por cliente, não US$ 10\n\n---\n\n**CUIDADOS ANTES DE TRANSFERIR**\n\n- Transferência é bloqueada se o projeto tiver integração com GitHub ativa, log drains ou roles com escopo de projeto — desconectar antes e reconectar depois\n- Transferência **não muda região**: projeto em outra região continua onde está\n- Conferir a fatura por projeto uma vez por mês pra identificar cliente fora da curva",
+        "checklist": [
+          {
+            "t": "Criar conta definitiva com e-mail da OrkAI",
+            "done": false
+          },
+          {
+            "t": "Criar a organização e subir pro plano Pro",
+            "done": false
+          },
+          {
+            "t": "Convidar as contas antigas como membros",
+            "done": false
+          },
+          {
+            "t": "Desconectar integrações do GitHub nos projetos",
+            "done": false
+          },
+          {
+            "t": "Transferir projeto por projeto",
+            "done": false
+          },
+          {
+            "t": "Remover os convites e conferir a fatura",
+            "done": false
+          },
+          {
+            "t": "Embutir o custo por cliente na mensalidade da OrkAI",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
