@@ -1720,6 +1720,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0127",
+      "type": "add",
+      "task": {
+        "id": "t-video-obra-vidro",
+        "codigo": 26,
+        "titulo": "VÍDEO OBRA DE VIDRO — VINICIUS",
+        "coluna": "todo",
+        "area": "freela",
+        "prioridade": "alta",
+        "ordem": 15,
+        "descricao": "Vídeo da **obra de vidro do Vinicius** — freela combinado por WhatsApp (30/07).\n\n**Combinado**\n- Valor: **R$ 100**\n- O Vini grava o \"antes\" (a obra ainda vazia, sem nada instalado)\n- Você vai no local gravar o \"depois\" — captação de vários ângulos e cômodos\n- Formato: trend de transição com música de pagode, estilo \"clareou\"\n- Prazo: **essa semana**\n\n---\n\n**REFERÊNCIAS**\n\nhttps://www.instagram.com/reel/DY8M3W1sNrN/\n\nhttps://www.instagram.com/reel/DYx_Qu6xYCJ/\n\n---\n\n**COPY — legenda sugerida**\n- **Gancho:** Antes e depois que ninguém acredita que é o mesmo lugar.\n- **Corpo:** Vidro instalado, ambiente pronto. [Bairro/cidade].\n- **CTA:** Quer o seu assim? Chama no direct.\n\n---\n\n**Dica de captação pro antes e depois funcionar**\n- Marcar a posição exata dos pés no chão de cada enquadramento do \"antes\" — o \"depois\" precisa bater no mesmo ponto\n- Mesma altura de câmera e mesma ordem de cômodos nas duas gravações\n- Pedir pro Vini gravar na horizontal e na vertical, por garantia\n- Combinar com ele o corte da música antes de gravar, pra saber quantos segundos por ambiente",
+        "checklist": [
+          {
+            "t": "Confirmar data e endereço com o Vini",
+            "done": false
+          },
+          {
+            "t": "Alinhar os enquadramentos do 'antes' com ele",
+            "done": false
+          },
+          {
+            "t": "Receber o material do 'antes'",
+            "done": false
+          },
+          {
+            "t": "Gravar o 'depois' no local",
+            "done": false
+          },
+          {
+            "t": "Editar na trend do pagode",
+            "done": false
+          },
+          {
+            "t": "Entregar e receber os R$ 100",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
