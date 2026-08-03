@@ -56,6 +56,7 @@
 
   /* TAREFAS (kanban) */
   .tk-board{display:flex;gap:14px;overflow-x:auto;align-items:flex-start;padding-bottom:8px;}
+  #smBoard .tk-col{min-width:230px;width:230px;}
   .tk-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);min-width:280px;width:280px;flex-shrink:0;display:flex;flex-direction:column;max-height:calc(100vh - 230px);}
   .tk-col-h{display:flex;align-items:center;gap:8px;padding:13px 14px;border-bottom:1px solid var(--border);}
   .tk-dot{width:8px;height:8px;border-radius:50%;}
@@ -399,6 +400,7 @@
     <div class="tab" id="tab-payments" onclick="showPage('payments')">Pagamentos</div>
     <div class="tab" id="tab-support" onclick="showPage('support')">Suporte</div>
     <div class="tab active" id="tab-tasks" onclick="showPage('tasks')">Tarefas</div>
+    <div class="tab" id="tab-semana" onclick="showPage('semana')">Semana</div>
   </div>
 
   <!-- PAGE: OVERVIEW -->
@@ -527,6 +529,42 @@
   </div>
 
   <!-- PAGE: TAREFAS -->
+  <!-- PAGE: SEMANA -->
+  <div class="page" id="page-semana">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
+      <div id="smResumo" style="font-size:13px;color:var(--text2);"></div>
+      <div style="margin-left:auto;display:flex;gap:8px;">
+        <button class="btn btn-ghost btn-sm" onclick="smPuxar()">+ Puxar tarefa</button>
+        <button class="btn btn-ghost btn-sm" onclick="smFecharSemana()">Fechar semana</button>
+      </div>
+    </div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:12px;">Arraste os cards entre os dias. "Fechar semana" manda tudo que sobrou pra Revisão.</div>
+    <div class="tk-board" id="smBoard"></div>
+  </div>
+
+  <!-- MODAL: PUXAR TAREFA PRA SEMANA -->
+  <div class="modal-overlay" id="smPickModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">Puxar tarefa pra semana</div>
+        <button class="modal-close" onclick="closeModal('smPickModal')">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Dia</label>
+            <select id="smPickDia"></select>
+          </div>
+          <div class="form-group">
+            <label>Buscar</label>
+            <input type="text" id="smPickBusca" placeholder="Título ou código..." oninput="smPickRender()">
+          </div>
+        </div>
+        <div id="smPickLista"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="page active" id="page-tasks">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
       <div class="tk-search-wrap">
@@ -596,6 +634,18 @@
         <div class="form-group">
           <label>Prazo</label>
           <input type="date" id="tk-prazo">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Dia da semana</label>
+          <select id="tk-dia">
+            <option value="">— fora da semana —</option>
+            <option value="seg">Segunda</option><option value="ter">Terça</option>
+            <option value="qua">Quarta</option><option value="qui">Quinta</option>
+            <option value="sex">Sexta</option><option value="sab">Sábado</option>
+            <option value="dom">Domingo</option><option value="revisao">Revisão</option>
+          </select>
         </div>
       </div>
       <div class="form-group">
@@ -1172,10 +1222,11 @@ function showPage(page){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
   document.getElementById('tab-'+page).classList.add('active');
-  const titles={overview:'Visão Geral',clients:'Clientes',payments:'Pagamentos',support:'Suporte',tasks:'Tarefas'};
+  const titles={overview:'Visão Geral',clients:'Clientes',payments:'Pagamentos',support:'Suporte',tasks:'Tarefas',semana:'Semana'};
   document.getElementById('topbarTitle').textContent = titles[page];
   if(page==='support') loadSupportClients();
   if(page==='tasks') loadTasks();
+  if(page==='semana') loadSemana();
 }
 
 // ---------- TAREFAS ----------
@@ -1793,6 +1844,7 @@ function openTaskModal(id){
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
   document.getElementById('tk-col').value=t?tkResolveCol(t.coluna):tkResolveCol('todo');
   document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
+  document.getElementById('tk-dia').value=t?(t.dia||''):'';
   tkCkTemp=t?JSON.parse(JSON.stringify(t.checklist||[])):[];
   tkAxTemp=t?JSON.parse(JSON.stringify(t.anexos||[])):[];
   tkCmTemp=t?JSON.parse(JSON.stringify(t.comentarios||[])):[];
@@ -1829,6 +1881,7 @@ async function saveTaskModal(){
     prioridade:document.getElementById('tk-prio').value,
     coluna:document.getElementById('tk-col').value,
     prazo:document.getElementById('tk-prazo').value||null,
+    dia:document.getElementById('tk-dia').value||null,
     checklist:tkCkTemp,
     anexos:tkAxTemp,
     comentarios:tkCmTemp
@@ -1969,6 +2022,104 @@ async function saveCfg(){
   TK_AREAS=cfgAreas;TK_COLS=cfgCols;TK_TEMPLATES=cfgTpls;
   closeModal('cfgModal');showToast('Configuração salva!','success');
   renderTasks();
+}
+
+// ---------- SEMANA ----------
+const SM_DIAS=[
+ {id:'seg',n:'Segunda',c:'#3d7eff'},{id:'ter',n:'Terça',c:'#3d7eff'},
+ {id:'qua',n:'Quarta',c:'#3d7eff'},{id:'qui',n:'Quinta',c:'#3d7eff'},
+ {id:'sex',n:'Sexta',c:'#3d7eff'},{id:'sab',n:'Sábado',c:'#a855f7'},
+ {id:'dom',n:'Domingo',c:'#a855f7'},{id:'revisao',n:'Revisão',c:'#f59e0b'}
+];
+async function loadSemana(){
+  if(!tkTasks.length) await loadTasks();
+  renderSemana();
+}
+function smCard(t){
+  const a=tkArea(t.area);
+  const ck=t.checklist||[];const done=ck.filter(function(i){return i.done;}).length;
+  const pct=ck.length?Math.round(done/ck.length*100):0;
+  const feito=tkResolveCol(t.coluna)==='done';
+  const el=document.createElement('div');el.className='tk-card';el.draggable=true;
+  el.innerHTML='<div class="tk-strip" style="background:'+(feito?'var(--green)':(TK_PRIOS[t.prioridade]||'var(--border2)'))+'"></div>'+
+    '<div class="tk-card-b"><div class="tk-card-t">'+tkEsc(t.titulo)+'</div>'+
+    '<div class="tk-meta"><span class="badge" style="background:'+a.c+'22;color:'+a.c+'">'+tkEsc(a.n)+'</span>'+
+    (feito?'<span class="tk-cm-count" style="color:var(--green)">✓ feito</span>':'')+
+    (tkCode(t)?'<span class="tk-code">'+tkCode(t)+'</span>':'')+'</div>'+
+    (ck.length?'<div class="tk-prog"><div class="tk-prog-bar"><div class="tk-prog-fill" style="width:'+pct+'%;background:'+(pct===100?'var(--green)':'var(--accent)')+'"></div></div><div class="tk-prog-txt">'+done+'/'+ck.length+' itens</div></div>':'')+
+    '</div>';
+  el.addEventListener('dragstart',function(e){e.dataTransfer.setData('id',t.id);el.classList.add('dragging');});
+  el.addEventListener('dragend',function(){el.classList.remove('dragging');});
+  el.addEventListener('click',function(){openTaskModal(t.id);});
+  return el;
+}
+async function smMover(id,dia){
+  const t=tkTasks.find(function(x){return x.id===id;});
+  if(!t||t.dia===dia)return;
+  t.dia=dia;renderSemana();
+  const {error}=await db.from('tasks').update({dia:dia}).eq('id',id);
+  if(error)showToast('Erro ao mover: '+error.message,'error');
+}
+function renderSemana(){
+  const b=document.getElementById('smBoard');b.innerHTML='';
+  let naSemana=0,feitos=0;
+  SM_DIAS.forEach(function(d){
+    const list=tkTasks.filter(function(t){return t.dia===d.id;});
+    if(d.id!=='revisao'){naSemana+=list.length;feitos+=list.filter(function(t){return tkResolveCol(t.coluna)==='done';}).length;}
+    const col=document.createElement('div');col.className='tk-col';
+    col.innerHTML='<div class="tk-col-h"><div class="tk-dot" style="background:'+d.c+'"></div><b>'+d.n+'</b><span class="tk-count">'+list.length+'</span></div><div class="tk-cards"></div>';
+    const cards=col.querySelector('.tk-cards');
+    list.forEach(function(t){cards.appendChild(smCard(t));});
+    col.addEventListener('dragover',function(e){e.preventDefault();col.classList.add('dragover');});
+    col.addEventListener('dragleave',function(){col.classList.remove('dragover');});
+    col.addEventListener('drop',function(e){
+      e.preventDefault();col.classList.remove('dragover');
+      if([].indexOf.call(e.dataTransfer.types,'Files')>=0)return;
+      smMover(e.dataTransfer.getData('id'),d.id);
+    });
+    b.appendChild(col);
+  });
+  const rev=tkTasks.filter(function(t){return t.dia==='revisao';}).length;
+  document.getElementById('smResumo').innerHTML='<b>'+naSemana+'</b> na semana · <b>'+feitos+'</b> concluída(s) · <b>'+rev+'</b> em revisão';
+}
+async function smFecharSemana(){
+  const alvo=tkTasks.filter(function(t){return t.dia&&t.dia!=='revisao';});
+  if(!alvo.length){showToast('Nenhuma tarefa na semana.','error');return;}
+  if(!confirm('Mandar '+alvo.length+' tarefa(s) da semana pra Revisão?'))return;
+  for(const t of alvo){
+    t.dia='revisao';
+    await db.from('tasks').update({dia:'revisao'}).eq('id',t.id);
+  }
+  renderSemana();showToast('Semana fechada — tudo em Revisão','success');
+}
+function smPuxar(){
+  const s=document.getElementById('smPickDia');
+  s.innerHTML=SM_DIAS.map(function(d){return '<option value="'+d.id+'">'+d.n+'</option>';}).join('');
+  document.getElementById('smPickBusca').value='';
+  smPickRender();
+  document.getElementById('smPickModal').classList.add('open');
+}
+function smPickRender(){
+  const q=(document.getElementById('smPickBusca').value||'').toLowerCase();
+  const l=document.getElementById('smPickLista');
+  const lista=tkTasks.filter(function(t){
+    if(t.dia)return false;
+    if(tkResolveCol(t.coluna)==='done')return false;
+    return tkMatch(t,q);
+  }).slice(0,50);
+  if(!lista.length){l.innerHTML='<p style="color:var(--text3);font-size:13px;">Nada disponível.</p>';return;}
+  l.innerHTML=lista.map(function(t,i){
+    const a=tkArea(t.area);
+    return '<div class="ref-item" data-i="'+i+'"><div class="ref-tit">'+tkEsc(t.titulo)+'</div>'+
+      '<div class="ref-meta">'+tkEsc(a.n)+(tkCode(t)?' · '+tkCode(t):'')+'</div></div>';
+  }).join('');
+  [].forEach.call(l.querySelectorAll('.ref-item'),function(el){
+    el.addEventListener('click',function(){
+      smMover(lista[+el.dataset.i].id,document.getElementById('smPickDia').value);
+      closeModal('smPickModal');
+      showToast('Tarefa adicionada na semana','success');
+    });
+  });
 }
 
 // ---------- LOAD DATA ----------
