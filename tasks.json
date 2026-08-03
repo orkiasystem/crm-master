@@ -1931,6 +1931,167 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0132",
+      "type": "add",
+      "task": {
+        "id": "t-grandena-captacao",
+        "codigo": 29,
+        "titulo": "CAPTAÇÃO EM CAMPO — GRANDENA (#000028)",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "ordem": 9,
+        "descricao": "Subtarefa do card **#000028 — Anúncios Residencial Grandena**. Roteiro de captação pra levar impresso.\n\n*Use o botão **Exportar PDF** deste card pra imprimir e ir ticando em campo.*\n\n---\n\n**ANTES DE SAIR**\n- Bateria cheia + cartão/armazenamento livre\n- Lente limpa\n- Autorização de acesso confirmada com a MRV\n- Levar: estabilizador, microfone e pano pra reflexo em vidro\n\n**O QUE OS ANÚNCIOS PRECISAM**\n- R1 e L4 dependem do **quintal da unidade térrea** — é a captação mais importante do dia\n- R2 depende do **lazer completo** (pet place, pomar, pista)\n- R3 depende do **acesso ao Anel Viário**\n- R4 depende de **obra em andamento**\n\n---\n\n**REGRA DE OURO**\nFoto na horizontal e na vertical do mesmo enquadramento. Vídeo sempre na vertical 9:16. Câmera a ~1,20 m. Nunca gravar de costas pro sol.",
+        "checklist": [
+          {
+            "t": "FACHADA — entrada do condomínio (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "FACHADA — portaria e guarita (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "FACHADA — vista geral dos blocos (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "OBRA — andamento dos blocos (2 fotos + vídeo)",
+            "done": false
+          },
+          {
+            "t": "TÉRREA — quintal privativo, aberto e amplo (4 fotos)",
+            "done": false
+          },
+          {
+            "t": "TÉRREA — quintal com pessoa/pet na cena (vídeo)",
+            "done": false
+          },
+          {
+            "t": "TÉRREA — porta da sala abrindo pro quintal (vídeo)",
+            "done": false
+          },
+          {
+            "t": "DECORADO — sala integrada (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "DECORADO — cozinha (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "DECORADO — dormitório 1 (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "DECORADO — dormitório 2 (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "DECORADO — banheiro (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "DECORADO — área de serviço (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "DECORADO — tour completo em vídeo vertical",
+            "done": false
+          },
+          {
+            "t": "LAZER — playground (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "LAZER — pet place (2 fotos + vídeo)",
+            "done": false
+          },
+          {
+            "t": "LAZER — quadra gramada (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "LAZER — churrasqueira e salão de festas (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "LAZER — pomar e pista de caminhada (2 fotos)",
+            "done": false
+          },
+          {
+            "t": "LAZER — bicicletário (1 foto)",
+            "done": false
+          },
+          {
+            "t": "ENTORNO — acesso ao Anel Viário J. Hawilla (vídeo do carro)",
+            "done": false
+          },
+          {
+            "t": "ENTORNO — comércio próximo: mercado, escola, posto (3 fotos)",
+            "done": false
+          },
+          {
+            "t": "EXTRA — vídeo de caminhada da portaria até a unidade",
+            "done": false
+          },
+          {
+            "t": "EXTRA — depoimento do corretor no local (vídeo)",
+            "done": false
+          },
+          {
+            "t": "Anotar: nº de unidades térreas ainda disponíveis",
+            "done": false
+          },
+          {
+            "t": "Pegar tabela de preços atualizada com a MRV",
+            "done": false
+          },
+          {
+            "t": "Backup do material no mesmo dia",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0133",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-anuncios",
+        "checklist": [
+          {
+            "t": "Validar tabela de preços e condições com a MRV",
+            "done": false
+          },
+          {
+            "t": "Confirmar disponibilidade das unidades térreas com quintal",
+            "done": false
+          },
+          {
+            "t": "Captação em campo — ver card #000029",
+            "done": false
+          },
+          {
+            "t": "Produzir 4 criativos de reconhecimento",
+            "done": false
+          },
+          {
+            "t": "Produzir 5 criativos de captação",
+            "done": false
+          },
+          {
+            "t": "Subir reconhecimento e deixar 2 semanas",
+            "done": false
+          },
+          {
+            "t": "Ligar captação com retargeting",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
