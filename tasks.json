@@ -2237,6 +2237,54 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0138",
+      "type": "add",
+      "task": {
+        "id": "t-grandena-falas",
+        "codigo": 31,
+        "titulo": "FALAS DO CORRETOR — GRANDENA (#000030)",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "ordem": 11,
+        "descricao": "Falas prontas pro corretor decorar e gravar. **Cada linha é uma fala.** Grava na ordem, pausa entre uma e outra.\n*Valores entre [ ] — trocar depois de validar com a MRV.*\n\n---\n\n# ENGAJAMENTO\n\n**E1 · O QUINTAL**\n1. \"Todo mundo me fala a mesma coisa: apartamento não tem espaço pra criança correr.\"\n2. \"Aí eu abro essa porta.\"\n3. \"Isso aqui é quintal privativo. Vinte e nove metros. Na unidade térrea.\"\n4. \"E ainda tem a segurança de um condomínio fechado.\"\n\n**E2 · O LAZER**\n1. \"Isso aqui é Minha Casa Minha Vida. Sério.\"\n2. \"Pet place.\"\n3. \"Pomar.\"\n4. \"Pista de caminhada.\"\n5. \"Quadra gramada.\"\n6. \"E playground. Tudo dentro do condomínio, com portaria vinte e quatro horas.\"\n\n**E3 · LOCALIZAÇÃO**\n1. \"Tô entrando no Anel Viário agora.\"\n2. \"O Grandena é bem aqui do lado.\"\n3. \"Você sai da cidade sem passar pelo centro.\"\n4. \"E aqui na porta tem mercado, escola e posto.\"\n\n**E4 · A OBRA**\n1. \"Tá vendo essa obra atrás de mim?\"\n2. \"É por isso que quem compra agora escolhe a posição da unidade.\"\n3. \"E paga preço de obra, não preço de pronto.\"\n4. \"Entrega prevista pra [MÊS/ANO].\"\n\n---\n\n# CAPTAÇÃO\n\n**C1 · ALUGUEL**\n1. \"Você paga aluguel em Rio Preto?\"\n2. \"Esse valor pode virar a parcela do seu apartamento.\"\n3. \"Subsídio de até [R$ X]. Financiamento em até [X] meses.\"\n4. \"Manda sua renda no direct. Eu simulo e te falo a verdade.\"\n\n**C2 · SUBSÍDIO**\n1. \"Você tem direito a [R$ X] e não sabe.\"\n2. \"Depende da sua renda e de você nunca ter financiado imóvel.\"\n3. \"Isso é [R$ X] a menos no seu financiamento.\"\n4. \"Me manda sua renda. Eu te falo se dá — mesmo que a resposta seja não.\"\n\n**C3 · ENTRADA**\n1. \"A entrada trava você?\"\n2. \"Aqui ela parcela em até [X] vezes.\"\n3. \"E a documentação é por conta da construtora.\"\n4. \"Chama aqui. Eu te mando as condições hoje.\"\n\n**C4 · RENDA**\n1. \"Sua renda familiar é até [R$ X]?\"\n2. \"Então isso aqui é pra você.\"\n3. \"Dois dormitórios, condomínio fechado, Zona Norte.\"\n4. \"Manda uma mensagem. Em cinco minutos eu te falo quanto fica.\"\n\n---\n\n# COMO USAR\n\n- Engajamento: fala calma, corretor mostrando o lugar\n- Captação: fala seca, olhando na câmera, sem sorrir demais\n- Frase curta, ponto final, próxima frase — nunca emendar\n- 2 takes de cada fala. O segundo é sempre melhor\n- Fechar com *Imagens ilustrativas. Consulte condições.*",
+        "checklist": [
+          {
+            "t": "E1 — quintal",
+            "done": false
+          },
+          {
+            "t": "E2 — lazer",
+            "done": false
+          },
+          {
+            "t": "E3 — localização",
+            "done": false
+          },
+          {
+            "t": "E4 — obra",
+            "done": false
+          },
+          {
+            "t": "C1 — aluguel",
+            "done": false
+          },
+          {
+            "t": "C2 — subsídio",
+            "done": false
+          },
+          {
+            "t": "C3 — entrada",
+            "done": false
+          },
+          {
+            "t": "C4 — renda",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
