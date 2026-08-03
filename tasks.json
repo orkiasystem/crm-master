@@ -1887,6 +1887,50 @@
         "dia": "sex",
         "coluna": "doing"
       }
+    },
+    {
+      "id": "op-0131",
+      "type": "add",
+      "task": {
+        "id": "t-grandena-anuncios",
+        "codigo": 28,
+        "titulo": "ANÚNCIOS RESIDENCIAL GRANDENA (MRV)",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "ordem": 8,
+        "descricao": "Captação e anúncios do **Residencial Grandena** (MRV) — levantamento feito na internet em 03/08.\n\n**FICHA DO EMPREENDIMENTO**\n- Construtora: MRV · condomínio fechado com **448 unidades**\n- Endereço: Estrada Dr. José Perozin, 820 — Zona Norte, região da Vila Elmaz/Talhado, ao lado do **Anel Viário J. Hawilla**\n- Apartamentos de **2 dormitórios, 39,30 m², 1 vaga**\n- Unidades térreas com **quintal de até 29,64 m²**\n- Lazer: playground, churrasqueira, quadra gramada, pet place, pomar, bicicletário, pista de caminhada, portaria 24h, salão de festas\n- Enquadrado no **Minha Casa Minha Vida + Casa Paulista**\n- Subsídio de até **R$ 55 mil** · financiamento em até **420x** · entrada em até **48x** · documentação grátis (condições de lançamento)\n- Preços divulgados a partir de **R$ 196.990** (média ~R$ 194 mil)\n- Status: **em construção**, entrega prevista **mar/2027**\n\n**⚠️ CONFERIR ANTES DE ANUNCIAR**\n- Preço, subsídio e condições mudam — validar tabela atual com a MRV antes de subir qualquer anúncio\n- Confirmar se ainda há unidades térreas com quintal disponíveis (é o maior diferencial)\n\n---\n\n**ÂNGULOS QUE DIFERENCIAM ESSE EMPREENDIMENTO**\n- Apartamento térreo com quintal — resolve a objeção de quem não quer apê por causa de criança e pet\n- Pet place + pomar + pista de caminhada — lazer acima do padrão da faixa MCMV\n- Anel Viário J. Hawilla ao lado — sai da cidade sem enfrentar trânsito\n- Entrega em 2027 — quem compra agora paga preço de obra\n\n---\n\n**ANÚNCIOS DE RECONHECIMENTO** *(topo — não pede lead, pede atenção)*\n\n**R1 — O quintal**\n- Título: Apartamento com quintal existe. E é aqui.\n- Corpo: Unidades térreas do Grandena têm até 29 m² de quintal. Espaço pra criança correr e pro cachorro ser cachorro — sem abrir mão da segurança do condomínio fechado.\n\n**R2 — O lazer**\n- Título: Pet place, pomar e pista de caminhada. No Minha Casa Minha Vida.\n- Corpo: Zona Norte de Rio Preto, condomínio fechado, 448 apartamentos. O tipo de lazer que ninguém espera nessa faixa.\n\n**R3 — A localização**\n- Título: Do lado do Anel Viário. Longe do trânsito, perto de tudo.\n- Corpo: Supermercado, escola e posto na porta. E quando precisar sair da cidade, é só entrar no Anel Viário J. Hawilla.\n\n**R4 — Bastidor de obra**\n- Título: Ainda dá tempo de escolher o seu andar.\n- Corpo: O Grandena está em obra, com entrega prevista pra 2027. Quem entra agora escolhe posição e paga preço de obra.\n\n---\n\n**ANÚNCIOS DE CAPTAÇÃO DE LEAD** *(fundo — pede a conversa)*\n\n**L1 — Sair do aluguel**\n- Título: Você paga aluguel de apartamento em Rio Preto?\n- Corpo: No Grandena, com o Minha Casa Minha Vida, a parcela pode caber no mesmo valor. Subsídio de até R$ 55 mil e financiamento em até 420 meses.\n- CTA: **Simular minha parcela**\n\n**L2 — Subsídio**\n- Título: Até R$ 55 mil de subsídio. Você tem direito?\n- Corpo: Depende da sua renda e de você nunca ter financiado imóvel. Me manda uma mensagem que eu simulo em 5 minutos e te falo a verdade.\n- CTA: **Descobrir se tenho direito**\n\n**L3 — Entrada parcelada**\n- Título: A entrada trava seu sonho? Ela pode ser parcelada em até 48x.\n- Corpo: Grandena, Zona Norte. 2 dormitórios, condomínio fechado com lazer completo. Documentação por conta da construtora.\n- CTA: **Quero as condições**\n\n**L4 — Quintal (o mais forte pra remarketing)**\n- Título: Ele queria casa por causa do cachorro. Achamos apartamento com quintal.\n- Corpo: As unidades térreas do Grandena têm até 29 m² de quintal privativo. São poucas. Quer saber se ainda tem?\n- CTA: **Ver disponibilidade**\n\n**L5 — Investidor**\n- Título: R$ 196 mil hoje, entrega em 2027.\n- Corpo: 448 unidades, Zona Norte, MCMV. Faixa que aluga rápido e valoriza na entrega.\n- CTA: **Receber a tabela**\n\n---\n\n**RECOMENDAÇÃO DE VEICULAÇÃO**\n- Reconhecimento: vídeo ou carrossel, público amplo Rio Preto + 30 km, 25-45 anos, sem lead form\n- Captação: mensagem no WhatsApp, retargeting de quem viu 50%+ dos vídeos de reconhecimento\n- Todo anúncio precisa de: *\"Imagens ilustrativas. Consulte condições.\"*\n- Não usar o preço sem asterisco — condição de MCMV varia por renda e é o que mais gera reclamação",
+        "checklist": [
+          {
+            "t": "Validar tabela de preços e condições com a MRV",
+            "done": false
+          },
+          {
+            "t": "Confirmar disponibilidade das unidades térreas com quintal",
+            "done": false
+          },
+          {
+            "t": "Captar fotos e vídeo da obra e do decorado",
+            "done": false
+          },
+          {
+            "t": "Produzir 4 criativos de reconhecimento",
+            "done": false
+          },
+          {
+            "t": "Produzir 5 criativos de captação",
+            "done": false
+          },
+          {
+            "t": "Subir reconhecimento e deixar 2 semanas",
+            "done": false
+          },
+          {
+            "t": "Ligar captação com retargeting",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
