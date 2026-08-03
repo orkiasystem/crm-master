@@ -2092,6 +2092,54 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0134",
+      "type": "add",
+      "task": {
+        "id": "t-grandena-videos",
+        "codigo": 30,
+        "titulo": "ROTEIROS DE VÍDEO — GRANDENA (#000028)",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "ordem": 10,
+        "descricao": "Roteiros de vídeo do **#000028 — Anúncios Residencial Grandena**. Todos verticais 9:16, texto na tela + narração.\n\n*Números e condições estão como placeholder — trocar depois de validar a tabela com a MRV.*\n\n---\n\n**V1 — RECONHECIMENTO · O QUINTAL** *(o mais forte, começa por esse)*\n**Duração:** 25s\n\n- **0-3s** — Imagem: porta da sala abrindo pro quintal. Texto na tela: **APARTAMENTO COM QUINTAL**\n- **3-8s** — Narração: \"Todo mundo diz que apartamento não tem espaço pra criança correr.\"\n- **8-15s** — Imagem: câmera andando pelo quintal, criança ou pet na cena. Narração: \"As unidades térreas do Grandena têm até 29 m² de quintal privativo.\"\n- **15-21s** — Imagem: lazer do condomínio ao fundo. Narração: \"Com a segurança de um condomínio fechado, na Zona Norte de Rio Preto.\"\n- **21-25s** — Texto na tela: **GRANDENA · MRV · ZONA NORTE** · *Imagens ilustrativas. Consulte condições.*\n\n*Legenda:* Ele queria casa por causa do cachorro. Achou apartamento com quintal. 🐾\n\n---\n\n**V2 — RECONHECIMENTO · O LAZER**\n**Duração:** 30s\n\n- **0-3s** — Texto na tela: **ISSO AQUI É MINHA CASA MINHA VIDA**\n- **3-6s** — Imagem: pet place. Texto: pet place\n- **6-9s** — Imagem: pomar. Texto: pomar\n- **9-12s** — Imagem: pista de caminhada. Texto: pista de caminhada\n- **12-15s** — Imagem: quadra gramada. Texto: quadra gramada\n- **15-18s** — Imagem: playground e churrasqueira\n- **18-24s** — Narração: \"Tudo isso dentro de um condomínio fechado, com portaria 24 horas.\"\n- **24-30s** — Texto: **RESIDENCIAL GRANDENA · ZONA NORTE** · *Imagens ilustrativas.*\n\n*Legenda:* Ninguém espera esse lazer nessa faixa de preço. A gente também não esperava.\n\n---\n\n**V3 — RECONHECIMENTO · LOCALIZAÇÃO**\n**Duração:** 20s\n\n- **0-4s** — Imagem: gravado do carro entrando no Anel Viário. Texto: **DO LADO DO ANEL VIÁRIO**\n- **4-10s** — Narração: \"Zona Norte, ao lado do Anel Viário J. Hawilla. Você sai da cidade sem enfrentar o centro.\"\n- **10-16s** — Imagem: mercado, escola e posto próximos. Narração: \"E tem mercado, escola e posto na porta.\"\n- **16-20s** — Texto: **GRANDENA · ESTRADA JOSÉ PEROZIN, 820**\n\n*Legenda:* Longe do trânsito. Perto de tudo.\n\n---\n\n**V4 — RECONHECIMENTO · OBRA**\n**Duração:** 22s\n\n- **0-4s** — Imagem: obra em andamento. Texto: **AINDA DÁ TEMPO DE ESCOLHER**\n- **4-12s** — Narração: \"O Grandena está em obra. Quem compra agora escolhe a posição da unidade e paga preço de obra.\"\n- **12-18s** — Imagem: maquete ou decorado. Narração: \"Entrega prevista pra [MÊS/ANO].\"\n- **18-22s** — Texto: **QUEM ENTRA ANTES, ESCOLHE MELHOR**\n\n*Legenda:* Depois da entrega, sobra o que ninguém quis. Agora, você escolhe.\n\n---\n\n**V5 — CAPTAÇÃO · SAIR DO ALUGUEL**\n**Duração:** 28s · CTA WhatsApp\n\n- **0-4s** — Corretor falando pra câmera. Texto: **VOCÊ PAGA ALUGUEL EM RIO PRETO?**\n- **4-12s** — Narração: \"Se você paga [R$ X] de aluguel, esse valor pode virar a parcela do seu apartamento.\"\n- **12-20s** — Imagem: decorado. Narração: \"No Grandena, com Minha Casa Minha Vida, tem subsídio de até [R$ X] e financiamento em até [X] meses.\"\n- **20-25s** — Corretor: \"Me manda uma mensagem que eu faço a simulação com o seu nome e a sua renda.\"\n- **25-28s** — Texto: **CHAMA NO WHATSAPP** · *Consulte condições.*\n\n*Legenda:* Aluguel também é parcela. Só que da casa do outro.\n\n---\n\n**V6 — CAPTAÇÃO · SUBSÍDIO**\n**Duração:** 25s · CTA WhatsApp\n\n- **0-4s** — Corretor pra câmera. Texto: **ATÉ [R$ X] DE SUBSÍDIO**\n- **4-10s** — Narração: \"Muita gente tem direito e não sabe. Depende da sua renda e de você nunca ter financiado imóvel.\"\n- **10-18s** — Imagem: decorado e lazer. Narração: \"No Grandena, isso pode significar [R$ X] a menos no seu financiamento.\"\n- **18-22s** — Corretor: \"Manda sua renda no direct que eu te falo a verdade, mesmo que a resposta seja não.\"\n- **22-25s** — Texto: **DESCOBRIR SE TENHO DIREITO**\n\n*Legenda:* Simulo em 5 minutos e falo a verdade — mesmo quando não dá.\n\n---\n\n**V7 — CAPTAÇÃO · ENTRADA PARCELADA**\n**Duração:** 24s · CTA WhatsApp\n\n- **0-4s** — Texto: **A ENTRADA TRAVA SEU SONHO?**\n- **4-12s** — Narração: \"No Grandena, a entrada pode ser parcelada em até [X] vezes. E a documentação é por conta da construtora.\"\n- **12-19s** — Imagem: tour rápido do decorado. Narração: \"Dois dormitórios, condomínio fechado, lazer completo.\"\n- **19-24s** — Corretor: \"Chama aqui que eu te mando as condições atualizadas.\"\n\n*Legenda:* Entrada não se acha, se constrói. E aqui ela parcela.\n\n---\n\n**REGRAS DE PRODUÇÃO**\n- Gancho nos 3 primeiros segundos, sempre. Sem introdução e sem logo na abertura\n- Texto na tela grande o bastante pra ler sem som — a maioria assiste mudo\n- Vídeos de captação com o corretor aparecendo convertem mais que vídeo só de imagem\n- Todo vídeo fecha com *\"Imagens ilustrativas. Consulte condições.\"*",
+        "checklist": [
+          {
+            "t": "Validar números e condições com a MRV",
+            "done": false
+          },
+          {
+            "t": "V1 — quintal (prioridade)",
+            "done": false
+          },
+          {
+            "t": "V2 — lazer",
+            "done": false
+          },
+          {
+            "t": "V3 — localização",
+            "done": false
+          },
+          {
+            "t": "V4 — obra",
+            "done": false
+          },
+          {
+            "t": "V5 — sair do aluguel (com corretor)",
+            "done": false
+          },
+          {
+            "t": "V6 — subsídio (com corretor)",
+            "done": false
+          },
+          {
+            "t": "V7 — entrada parcelada (com corretor)",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
