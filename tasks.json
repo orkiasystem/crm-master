@@ -1851,6 +1851,42 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0130",
+      "type": "update",
+      "task": {
+        "id": "t-video-obra-vidro",
+        "descricao": "Vídeo da **obra de vidro do Vinicius** — freela combinado por WhatsApp (30/07).\n\n**Combinado — fechado com o Vini (30/07)**\n- Valor: **R$ 100** — aceito por ele\n- **Data: sexta-feira, 14h**\n- Local: perto do **Georgina** — ele vai mandar o endereço exato\n- Obra de vidro de uns **20 m²**, com vários ângulos pra captar\n- O Vini grava o \"antes\" (obra ainda vazia)\n- Você vai no local gravar o \"depois\" — vários ângulos e cômodos\n- Formato: trend de transição com música de pagode, estilo \"clareou\"\n\n**⚠️ FALTA CONFIRMAR**\n- Endereço exato (ele vai mandar)\n\n---\n\n**REFERÊNCIAS**\n\nhttps://www.instagram.com/reel/DY8M3W1sNrN/\n\nhttps://www.instagram.com/reel/DYx_Qu6xYCJ/\n\n---\n\n**COPY — legenda sugerida**\n- **Gancho:** Antes e depois que ninguém acredita que é o mesmo lugar.\n- **Corpo:** Vidro instalado, ambiente pronto. [Bairro/cidade].\n- **CTA:** Quer o seu assim? Chama no direct.\n\n---\n\n**Dica de captação pro antes e depois funcionar**\n- Marcar a posição exata dos pés no chão de cada enquadramento do \"antes\" — o \"depois\" precisa bater no mesmo ponto\n- Mesma altura de câmera e mesma ordem de cômodos nas duas gravações\n- Pedir pro Vini gravar na horizontal e na vertical, por garantia\n- Combinar com ele o corte da música antes de gravar, pra saber quantos segundos por ambiente",
+        "checklist": [
+          {
+            "t": "Receber o endereço exato (perto do Georgina)",
+            "done": false
+          },
+          {
+            "t": "Alinhar os enquadramentos do 'antes' com ele",
+            "done": false
+          },
+          {
+            "t": "Receber o material do 'antes'",
+            "done": false
+          },
+          {
+            "t": "Gravar o 'depois' no local — sexta 14h",
+            "done": false
+          },
+          {
+            "t": "Editar na trend do pagode",
+            "done": false
+          },
+          {
+            "t": "Entregar e receber os R$ 100",
+            "done": false
+          }
+        ],
+        "dia": "sex",
+        "coluna": "doing"
+      }
     }
   ]
 }
