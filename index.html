@@ -841,7 +841,10 @@
       <button class="modal-close" onclick="closeModal('refModal')">×</button>
     </div>
     <div class="modal-body">
-      <input type="text" id="refBusca" placeholder="Buscar por título, categoria ou tipo..." oninput="tkRefRender()">
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="refBusca" placeholder="Buscar por título, categoria ou tipo..." style="flex:1;" oninput="tkRefRender()">
+        <button class="btn btn-ghost btn-sm" onclick="tkRefCopiar()" title="Copia todas as referências em JSON pra colar no chat do Claude">Copiar JSON</button>
+      </div>
       <div id="refLista" style="margin-top:12px;"></div>
     </div>
   </div>
@@ -1280,6 +1283,15 @@ function tkRefRender(){
   [].forEach.call(l.querySelectorAll('.ref-item'),function(el){
     el.addEventListener('click',function(){tkRefUsar(lista[+el.dataset.i]);});
   });
+}
+async function tkRefCopiar(){
+  await tkRefCarregar();
+  const enxuto=(tkRefs||[]).map(function(r){
+    return {titulo:r.titulo,tipo:r.tipo,categoria:r.categoria,url:r.url,descricao:r.descricao};
+  });
+  const txt=JSON.stringify(enxuto,null,1);
+  if(navigator.clipboard)navigator.clipboard.writeText(txt);
+  showToast(enxuto.length+' referências copiadas','success');
 }
 function tkRefUsar(r){
   if(!r)return;
