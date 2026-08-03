@@ -2285,6 +2285,14 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0139",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-falas",
+        "descricao": "Falas prontas pro corretor. **Cada linha é uma fala.** Grava na ordem, com pausa entre uma e outra.\n*Valores entre [ ] — confirmar com a MRV antes de gravar.*\n\n---\n\n**ENGAJAMENTO**\n\n**E1 · O QUINTAL**\n- 1. \"Todo mundo me fala a mesma coisa: apartamento não tem espaço pra criança correr.\"\n- 2. \"Aí eu abro essa porta.\"\n- 3. \"Isso aqui é quintal privativo. Vinte e nove metros. Na unidade térrea.\"\n- 4. \"E ainda tem a segurança de um condomínio fechado.\"\n\n**E2 · O LAZER**\n- 1. \"Isso aqui é Minha Casa Minha Vida. Sério.\"\n- 2. \"Pet place.\"\n- 3. \"Pomar.\"\n- 4. \"Pista de caminhada.\"\n- 5. \"Quadra gramada.\"\n- 6. \"E playground. Tudo dentro do condomínio, com portaria vinte e quatro horas.\"\n\n**E3 · LOCALIZAÇÃO**\n- 1. \"Tô entrando no Anel Viário agora.\"\n- 2. \"O Grandena é bem aqui do lado.\"\n- 3. \"Você sai da cidade sem passar pelo centro.\"\n- 4. \"E aqui na porta tem mercado, escola e posto.\"\n\n**E4 · A OBRA**\n- 1. \"Tá vendo essa obra atrás de mim?\"\n- 2. \"É por isso que quem compra agora escolhe a posição da unidade.\"\n- 3. \"E paga preço de obra, não preço de pronto.\"\n- 4. \"Entrega prevista pra [MÊS/ANO].\"\n\n---\n\n**CAPTAÇÃO**\n\n**C1 · ALUGUEL**\n- 1. \"Você paga aluguel em Rio Preto?\"\n- 2. \"Esse valor pode virar a parcela do seu apartamento.\"\n- 3. \"Subsídio de até [R$ X]. Financiamento em até [X] meses.\"\n- 4. \"Manda sua renda no direct. Eu simulo e te falo a verdade.\"\n\n**C2 · SUBSÍDIO**\n- 1. \"Você tem direito a [R$ X] e não sabe.\"\n- 2. \"Depende da sua renda e de você nunca ter financiado imóvel.\"\n- 3. \"Isso é [R$ X] a menos no seu financiamento.\"\n- 4. \"Me manda sua renda. Eu te falo se dá — mesmo que a resposta seja não.\"\n\n**C3 · ENTRADA**\n- 1. \"A entrada trava você?\"\n- 2. \"Aqui ela parcela em até [X] vezes.\"\n- 3. \"E a documentação é por conta da construtora.\"\n- 4. \"Chama aqui. Eu te mando as condições hoje.\"\n\n**C4 · RENDA**\n- 1. \"Sua renda familiar é até [R$ X]?\"\n- 2. \"Então isso aqui é pra você.\"\n- 3. \"Dois dormitórios, condomínio fechado, Zona Norte.\"\n- 4. \"Manda uma mensagem. Em cinco minutos eu te falo quanto fica.\"\n\n---\n\n**NA HORA DE GRAVAR**\n- Engajamento: fala calma, andando e mostrando o lugar\n- Captação: fala seca, parado, olhando na câmera\n- Frase curta, ponto final, próxima frase — nunca emendar\n- 2 takes de cada fala. O segundo é sempre melhor\n- Microfone de lapela em tudo\n- Fechar com *Imagens ilustrativas. Consulte condições.*"
+      }
     }
   ]
 }
