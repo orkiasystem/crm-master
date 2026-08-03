@@ -108,6 +108,12 @@
   .tk-ax-item{display:flex;align-items:center;gap:9px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 11px;margin-bottom:6px;}
   .tk-ax-item a{flex:1;font-size:13px;color:var(--text);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .tk-ax-item a:hover{color:var(--accent);}
+  .modal.modal-pick{width:960px;max-width:100%;}
+  .pick-board{margin-top:4px;align-items:flex-start;}
+  .pick-board .tk-col{min-width:225px;width:225px;max-height:56vh;}
+  .pick-card{cursor:pointer;}
+  .pick-card:hover{border-color:var(--accent);}
+  @media(max-width:760px){.pick-board .tk-col{min-width:78vw;width:78vw;}}
   .ref-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:10px 13px;margin-bottom:7px;cursor:pointer;transition:.15s;}
   .ref-item:hover{border-color:var(--accent);}
   .ref-tit{font-size:13.5px;font-weight:500;margin-bottom:3px;}
@@ -544,7 +550,7 @@
 
   <!-- MODAL: PUXAR TAREFA PRA SEMANA -->
   <div class="modal-overlay" id="smPickModal">
-    <div class="modal">
+    <div class="modal modal-pick">
       <div class="modal-header">
         <div class="modal-title">Puxar tarefa pra semana</div>
         <button class="modal-close" onclick="closeModal('smPickModal')">×</button>
@@ -2096,29 +2102,44 @@ function smPuxar(){
   const s=document.getElementById('smPickDia');
   s.innerHTML=SM_DIAS.map(function(d){return '<option value="'+d.id+'">'+d.n+'</option>';}).join('');
   document.getElementById('smPickBusca').value='';
+  document.getElementById('smPickLista').className='';
   smPickRender();
   document.getElementById('smPickModal').classList.add('open');
 }
 function smPickRender(){
   const q=(document.getElementById('smPickBusca').value||'').toLowerCase();
   const l=document.getElementById('smPickLista');
-  const lista=tkTasks.filter(function(t){
+  const disp=tkTasks.filter(function(t){
     if(t.dia)return false;
     if(tkResolveCol(t.coluna)==='done')return false;
     return tkMatch(t,q);
-  }).slice(0,50);
-  if(!lista.length){l.innerHTML='<p style="color:var(--text3);font-size:13px;">Nada disponível.</p>';return;}
-  l.innerHTML=lista.map(function(t,i){
-    const a=tkArea(t.area);
-    return '<div class="ref-item" data-i="'+i+'"><div class="ref-tit">'+tkEsc(t.titulo)+'</div>'+
-      '<div class="ref-meta">'+tkEsc(a.n)+(tkCode(t)?' · '+tkCode(t):'')+'</div></div>';
-  }).join('');
-  [].forEach.call(l.querySelectorAll('.ref-item'),function(el){
-    el.addEventListener('click',function(){
-      smMover(lista[+el.dataset.i].id,document.getElementById('smPickDia').value);
-      closeModal('smPickModal');
-      showToast('Tarefa adicionada na semana','success');
+  });
+  if(!disp.length){l.innerHTML='<p style="color:var(--text3);font-size:13px;">Nada disponível.</p>';return;}
+  l.className='tk-board pick-board';
+  l.innerHTML='';
+  TK_COLS.forEach(function(c){
+    if(c.id==='done')return;
+    const list=disp.filter(function(t){return tkResolveCol(t.coluna)===c.id;});
+    const col=document.createElement('div');col.className='tk-col';
+    col.innerHTML='<div class="tk-col-h"><div class="tk-dot" style="background:'+c.c+'"></div><b>'+tkEsc(c.n)+'</b><span class="tk-count">'+list.length+'</span></div><div class="tk-cards"></div>';
+    const cards=col.querySelector('.tk-cards');
+    list.forEach(function(t){
+      const a=tkArea(t.area);
+      const ck=t.checklist||[];const done=ck.filter(function(i){return i.done;}).length;
+      const el=document.createElement('div');el.className='tk-card pick-card';
+      el.innerHTML='<div class="tk-strip" style="background:'+(TK_PRIOS[t.prioridade]||'var(--border2)')+'"></div>'+
+        '<div class="tk-card-b"><div class="tk-card-t">'+tkEsc(t.titulo)+'</div>'+
+        '<div class="tk-meta"><span class="badge" style="background:'+a.c+'22;color:'+a.c+'">'+tkEsc(a.n)+'</span>'+
+        (ck.length?'<span class="tk-cm-count">'+done+'/'+ck.length+'</span>':'')+
+        (tkCode(t)?'<span class="tk-code">'+tkCode(t)+'</span>':'')+'</div></div>';
+      el.addEventListener('click',function(){
+        smMover(t.id,document.getElementById('smPickDia').value);
+        closeModal('smPickModal');
+        showToast('"'+t.titulo.slice(0,28)+'" adicionada na semana','success');
+      });
+      cards.appendChild(el);
     });
+    l.appendChild(col);
   });
 }
 
