@@ -107,6 +107,10 @@
   .tk-ax-item{display:flex;align-items:center;gap:9px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 11px;margin-bottom:6px;}
   .tk-ax-item a{flex:1;font-size:13px;color:var(--text);text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .tk-ax-item a:hover{color:var(--accent);}
+  .ref-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:10px 13px;margin-bottom:7px;cursor:pointer;transition:.15s;}
+  .ref-item:hover{border-color:var(--accent);}
+  .ref-tit{font-size:13.5px;font-weight:500;margin-bottom:3px;}
+  .ref-meta{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;}
   .img-viewer{position:fixed;inset:0;background:rgba(5,8,14,.92);z-index:9999;display:none;align-items:center;justify-content:center;padding:60px 24px 24px;}
   .img-viewer.open{display:flex;}
   .img-viewer img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;}
@@ -535,6 +539,7 @@
             <button type="button" onclick="tkFmtWrap('tk-desc','*')" title="Itálico"><i>I</i></button>
             <button type="button" onclick="tkFmtLine('tk-desc','- ')" title="Lista">• Lista</button>
             <button type="button" onclick="tkFmtInsert('tk-desc','\n---\n')" title="Linha divisória">— Divisor</button>
+            <button type="button" onclick="tkRefAbrir()" title="Banco de Referências">📚 Referência</button>
           </span>
           <button type="button" onclick="tkTogglePrev()" id="tkPrevBtn" style="margin-left:auto;">Editar</button>
         </div>
@@ -825,6 +830,19 @@
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('profileModal')">Cancelar</button>
       <button class="btn btn-primary" onclick="saveProfile()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="refModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Banco de Referências</div>
+      <button class="modal-close" onclick="closeModal('refModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <input type="text" id="refBusca" placeholder="Buscar por título, categoria ou tipo..." oninput="tkRefRender()">
+      <div id="refLista" style="margin-top:12px;"></div>
     </div>
   </div>
 </div>
@@ -1224,6 +1242,56 @@ function tkLinkLabel(u){
     return nomes[host]||host;
   }catch(e){return u.slice(0,40);}
 }
+// ---- Banco de Referências (site rukasut.github.io/banco-referencia) ----
+const REF_URL='https://jzaeywnwjnbrjddyqlvt.supabase.co/rest/v1/referencias';
+const REF_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6YWV5d253am5icmpkZHlxbHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0NTk3NzgsImV4cCI6MjA5NTAzNTc3OH0.aeNdHkSp_C0I-WrpvInRCHCaGYsNJcqLHOqOWKvu4sQ';
+let tkRefs=null;
+async function tkRefCarregar(){
+  if(tkRefs)return tkRefs;
+  try{
+    const r=await fetch(REF_URL+'?select=*&order=created_at.desc&limit=300',
+      {headers:{apikey:REF_KEY,Authorization:'Bearer '+REF_KEY}});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    tkRefs=await r.json();
+  }catch(e){tkRefs=[];showToast('Não consegui carregar o banco de referências','error');}
+  return tkRefs;
+}
+async function tkRefAbrir(){
+  document.getElementById('refBusca').value='';
+  document.getElementById('refLista').innerHTML='<p style="color:var(--text3);font-size:13px;">Carregando...</p>';
+  document.getElementById('refModal').classList.add('open');
+  await tkRefCarregar();
+  tkRefRender();
+}
+function tkRefRender(){
+  const q=(document.getElementById('refBusca').value||'').toLowerCase();
+  const l=document.getElementById('refLista');
+  const lista=(tkRefs||[]).filter(function(r){
+    if(!q)return true;
+    return [r.titulo,r.categoria,r.tipo,r.descricao].join(' ').toLowerCase().indexOf(q)>=0;
+  }).slice(0,60);
+  if(!lista.length){l.innerHTML='<p style="color:var(--text3);font-size:13px;">Nada encontrado.</p>';return;}
+  l.innerHTML=lista.map(function(r,i){
+    return '<div class="ref-item" data-i="'+i+'">'+
+      '<div class="ref-tit">'+tkEsc(r.titulo||'(sem título)')+'</div>'+
+      '<div class="ref-meta">'+tkEsc([r.tipo,r.categoria].filter(Boolean).join(' · '))+'</div>'+
+      '</div>';
+  }).join('');
+  [].forEach.call(l.querySelectorAll('.ref-item'),function(el){
+    el.addEventListener('click',function(){tkRefUsar(lista[+el.dataset.i]);});
+  });
+}
+function tkRefUsar(r){
+  if(!r)return;
+  const ta=document.getElementById('tk-desc');
+  const bloco='\n\n**Referência:** '+(r.titulo||'')+(r.tipo?' *('+r.tipo+')*':'')+'\n'+(r.url||'');
+  ta.value=(ta.value||'').replace(/\s+$/,'')+bloco;
+  closeModal('refModal');
+  tkPrevMode('edit');
+  tkRenderLinks();
+  showToast('Referência anexada','success');
+}
+
 function tkRenderLinks(){
   const l=document.getElementById('tkLinkList');if(!l)return;
   const links=tkExtractLinks(document.getElementById('tk-desc').value);
