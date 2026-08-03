@@ -1799,6 +1799,58 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0129",
+      "type": "add",
+      "task": {
+        "id": "t-campanha-engajamento",
+        "codigo": 27,
+        "titulo": "CAMPANHA DE ENGAJAMENTO — TERRENO E CONSTRUÇÃO",
+        "coluna": "todo",
+        "area": "icasas",
+        "prioridade": "alta",
+        "ordem": 12,
+        "descricao": "Campanha de **engajamento como meio**, não como fim: o objetivo é encher os públicos de retargeting que vão alimentar as campanhas de conversão/WhatsApp.\n\n**Marca/oferta:** iCasas Construtora — Terreno e Construção\n**Ativos disponíveis:** engajamento IG/FB 365d · Pixel com volume (90d) · base do CRM exportável (leads + clientes fechados)\n\n---\n\n**ESTRUTURA DE CAMPANHAS**\n\n**C1 — ENGAJAMENTO (topo, encher o funil)**\n- Objetivo: Engajamento → Visualizações de vídeo (ThruPlay) ou Interação com publicação\n- Posicionamento: Instagram + Facebook, só feed e reels\n- Conjunto A: público amplo na região (raio 30 km de Rio Preto), 25 a 55 anos, sem interesse\n- Conjunto B: lookalike 1% dos **clientes fechados** do CRM\n- Conjunto C: lookalike 1% de quem já **converteu no Pixel** (90d)\n- Verba sugerida: 60% no A, 20% no B, 20% no C\n- Regra: **exclui** de todos os conjuntos quem já é lead no CRM (base de e-mail/telefone)\n\n**C2 — RETARGETING / CONVERSÃO (meio e fundo)**\n- Objetivo: Vendas ou Cadastros → Mensagens no WhatsApp\n- Conjunto D *(morno)*: quem viu 50%+ dos vídeos da C1 nos últimos 30d\n- Conjunto E *(quente)*: engajou com o perfil nos últimos 30d + visitou o site 90d (Pixel)\n- Conjunto F *(muito quente)*: adicionou item/iniciou conversa e não fechou, últimos 14d\n- Verba: começa 70% no D, migra pra E e F conforme os públicos encherem\n- Regra: **exclui** clientes fechados do CRM em todos\n\n---\n\n**PÚBLICOS A CRIAR NO GERENCIADOR**\n\n*Personalizados (fonte própria)*\n- ENG-IG-365 — engajou no Instagram, 365d\n- ENG-FB-365 — engajou na página do Facebook, 365d\n- VID-50-30 — assistiu 50%+ de vídeo, 30d\n- SITE-90 — visitantes do site, 90d (Pixel)\n- CRM-LEADS — lista de leads do CRM (upload)\n- CRM-FECHADOS — lista de clientes fechados (upload)\n\n*Semelhantes*\n- LAL-1-FECHADOS — 1% de CRM-FECHADOS *(o mais valioso: quem já comprou)*\n- LAL-1-PIXEL — 1% de quem converteu no Pixel\n- LAL-2-3-FECHADOS — 2-3% pra escalar depois que o 1% saturar\n\n---\n\n**CRIATIVOS DA C1** *(engajamento precisa de retenção, não de venda)*\n- Antes e depois de terreno virando casa\n- Bastidor de obra: o que ninguém vê antes da chave\n- Entrega de chave real, com reação do cliente\n- Mitos do financiamento — série curta, formato \"corretora sincera\"\n- Tour de casa entregue por cômodo\n\n*Regra: nada de preço nem CTA forte na C1. Conteúdo que prende é o que gera público qualificado barato.*\n\n---\n\n**MEDIÇÃO**\n\n- **C1 não se mede por lead.** Métricas: custo por ThruPlay, taxa de retenção e crescimento semanal dos públicos personalizados\n- **C2 se mede por lead e por venda:** custo por conversa iniciada no WhatsApp e custo por lead que vira visita\n- Métrica que amarra as duas: **custo por lead na C2 caindo mês a mês** — se a C1 está funcionando, a C2 fica mais barata\n- Marcar a origem no CRM pra separar lead de retargeting de lead frio\n\n---\n\n**ORDEM DE EXECUÇÃO**\n\n- Semana 1: criar todos os públicos e deixar maturar (público novo precisa de volume)\n- Semana 1 e 2: só C1 rodando, acumulando audiência\n- Semana 3: liga a C2 com o conjunto D\n- Semana 4 em diante: E e F conforme encherem, e realoca verba pelo custo por conversa\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Verba mensal disponível pra dividir entre C1 e C2\n- Confirmar se o Pixel está com evento de conversa/WhatsApp configurado — sem isso a C2 não otimiza direito",
+        "checklist": [
+          {
+            "t": "Definir a verba mensal e a divisão C1/C2",
+            "done": false
+          },
+          {
+            "t": "Conferir evento de WhatsApp no Pixel",
+            "done": false
+          },
+          {
+            "t": "Exportar CRM: leads e clientes fechados separados",
+            "done": false
+          },
+          {
+            "t": "Criar os 6 públicos personalizados",
+            "done": false
+          },
+          {
+            "t": "Criar os lookalikes (1% fechados e 1% pixel)",
+            "done": false
+          },
+          {
+            "t": "Produzir 5 criativos da C1",
+            "done": false
+          },
+          {
+            "t": "Subir a C1 e deixar rodar 2 semanas",
+            "done": false
+          },
+          {
+            "t": "Subir a C2 com o público morno",
+            "done": false
+          },
+          {
+            "t": "Marcar origem do lead no CRM pra medir",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
