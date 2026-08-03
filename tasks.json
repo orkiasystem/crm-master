@@ -2198,6 +2198,45 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0137",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-videos",
+        "titulo": "MODELOS DE VÍDEO — ENGAJAMENTO E CAPTAÇÃO",
+        "descricao": "Dois modelos de vídeo com o corretor em cena. Serve pro Grandena e pra qualquer empreendimento.\n*Valores entre [ ] são placeholder — trocar depois de validar com a MRV.*\n\n---\n\n# MODELO A — ENGAJAMENTO\n\n**Serve pra:** aparecer, ser salvo e compartilhado. **Não pede nada.**\n**Duração:** 20 a 30s · **Ritmo:** calmo\n\n**Estrutura**\n- **1. Gancho (3s)** — o corretor contraria uma crença comum\n- **2. Prova (10s)** — ele mostra fisicamente que aquilo é verdade\n- **3. Detalhe (10s)** — um dado concreto que surpreende\n- **4. Fecho (4s)** — nome do empreendimento, sem CTA\n\n**Regras**\n- Nada de preço, nada de \"chama no direct\"\n- O corretor mostra, não vende\n- Texto grande na tela, legível sem som\n\n**EXEMPLO PRONTO — O QUINTAL**\n\n- **Cena 1** — corretor de costas pro quintal, mão na maçaneta\n- **Cena 2** — abre a porta e caminha pro quintal, câmera seguindo\n- **Cena 3** — ele parado no meio do quintal\n- **Cena 4** — lazer ao fundo\n\n**Fala:**\n\"Todo mundo me fala a mesma coisa: apartamento não tem espaço pra criança correr.\"\n*(abre a porta)*\n\"Isso aqui é quintal privativo. Vinte e nove metros. Na unidade térrea.\"\n\"E ainda tem a segurança de um condomínio fechado.\"\n\n**Texto na tela:** APARTAMENTO COM QUINTAL\n**Legenda:** Ele queria casa por causa do cachorro. Achou apartamento com quintal. 🐾\n\n---\n\n# MODELO B — CAPTAÇÃO\n\n**Serve pra:** gerar conversa no WhatsApp. **Pede na cara.**\n**Duração:** 15 a 20s · **Ritmo:** rápido, sem rodeio\n\n**Estrutura**\n- **1. Pergunta direta (3s)** — o corretor fala com quem tem o problema\n- **2. Número (5s)** — o valor que resolve, dito de uma vez\n- **3. Condição (4s)** — o que a pessoa precisa ter\n- **4. Ordem (4s)** — não é convite, é instrução\n\n**Regras**\n- Sem \"que tal\", sem \"aproveite\", sem \"não perca\"\n- Frase curta. Ponto final. Próxima frase.\n- Termina mandando fazer: \"manda\", \"chama\", \"me fala\"\n- O corretor olha na câmera o tempo todo\n\n**EXEMPLO PRONTO — ALUGUEL**\n\n- **Cena 1** — corretor pra câmera, decorado ao fundo\n- **Cena 2** — ele andando pela sala enquanto fala\n- **Cena 3** — de volta pra câmera, parado\n\n**Fala:**\n\"Você paga aluguel em Rio Preto?\"\n\"Esse valor pode virar a parcela do seu apartamento.\"\n\"Subsídio de até [R$ X]. Financiamento em até [X] meses.\"\n\"Manda sua renda no direct. Eu simulo e te falo a verdade — mesmo que a resposta seja não.\"\n\n**Texto na tela:** VOCÊ PAGA ALUGUEL EM RIO PRETO?\n**CTA:** Chama no WhatsApp\n**Legenda:** Aluguel também é parcela. Só que da casa do outro.\n\n---\n\n# BANCO DE GANCHOS\n\n**Engajamento** *(modelo A)*\n- \"Dizem que apartamento não tem espaço pra criança.\"\n- \"Isso aqui é Minha Casa Minha Vida. Sério.\"\n- \"Tá vendo essa obra atrás de mim?\"\n- \"Ninguém compra apartamento por causa do pomar. Mas olha isso.\"\n\n**Captação** *(modelo B)*\n- \"Você paga aluguel em Rio Preto?\"\n- \"Você tem direito a [R$ X] e não sabe.\"\n- \"A entrada trava você? Ela parcela em [X] vezes.\"\n- \"Sua renda é até [R$ X]? Então isso é pra você.\"\n\n---\n\n# COMO GRAVAR NO DIA\n\n- Grava tudo numa tacada: mesma roupa, mesmo dia\n- Ordem: chegada de carro → externo → lazer → decorado por último\n- Microfone de lapela — áudio ruim mata vídeo bom\n- 2 takes de cada fala. O segundo é sempre melhor\n- Gancho nos 3 primeiros segundos: sem \"oi gente\", sem logo na abertura\n- Fechar com *Imagens ilustrativas. Consulte condições.*",
+        "checklist": [
+          {
+            "t": "Validar números e condições com a MRV",
+            "done": false
+          },
+          {
+            "t": "Confirmar corretor e data da gravação",
+            "done": false
+          },
+          {
+            "t": "Escolher 2 ganchos de engajamento",
+            "done": false
+          },
+          {
+            "t": "Escolher 2 ganchos de captação",
+            "done": false
+          },
+          {
+            "t": "Gravar os de engajamento (modelo A)",
+            "done": false
+          },
+          {
+            "t": "Gravar os de captação (modelo B)",
+            "done": false
+          },
+          {
+            "t": "Editar e subir",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
