@@ -2395,6 +2395,61 @@
         "dia": "qua",
         "prioridade": "alta"
       }
+    },
+    {
+      "id": "op-0144",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-falas",
+        "titulo": "ROTEIROS GRANDENA — GRAVAÇÃO EM CAMPO",
+        "descricao": "Roteiros pra gravar com o corretor no Residencial Grandena.\n*Valores entre [ ] — confirmar com a MRV. Medir as distâncias no Maps antes de gravar.*\n\n---\n\n**PONTOS PRÓXIMOS CONFIRMADOS**\n- Shopping Cidade Norte — Av. Alfredo Antônio de Oliveira, 2077\n- VS Supermercados — Av. 25 de Janeiro, 3570, Vila Elmaz\n- E.E. Darcy Pacheco Federici — Vila Elmaz\n- UPA Norte — Jardim Antunes\n- Anel Viário J. Hawilla — ao lado\n\n---\n\n**R1 · CURTO** — 20s\n\n- 1. *(0:00)* \"Com [R$ X] de entrada e [R$ X] de parcela por mês, você sai do aluguel e ainda ganha quintal.\"\n- 2. *(0:07)* \"Estamos a [X] minutos do Shopping Cidade Norte, do VS Supermercados e da UPA Norte — e coladinho no Anel Viário J. Hawilla.\"\n- 3. *(0:14)* \"E o melhor: condomínio fechado com pet place, pomar e pista de caminhada. Tudo no Minha Casa Minha Vida.\"\n- 4. *(0:19)* \"Quer saber se você tem direito ao subsídio? Se cadastre aqui e saia na frente.\"\n\n---\n\n**R2 · COMPLETO** — 45s\n*Corretor andando pelo empreendimento. Uma cena por fala.*\n\n- 1. *(na entrada do condomínio)*\n  \"Esse é o Residencial Grandena, Zona Norte de Rio Preto.\"\n- 2. *(portaria ao fundo)*\n  \"Condomínio fechado, quatrocentas e quarenta e oito unidades, portaria vinte e quatro horas.\"\n- 3. *(caminhando pra dentro)*\n  \"Apartamento de dois dormitórios, uma vaga, dentro do Minha Casa Minha Vida.\"\n- 4. *(no lazer, em movimento)*\n  \"E olha o que tem aqui dentro: pet place, pomar, pista de caminhada, quadra gramada, playground e salão de festas.\"\n- 5. *(no decorado)*\n  \"Por dentro é assim: sala integrada com a cozinha, dois quartos e área de serviço. E tem unidade térrea com quintal, pra quem tem criança ou pet.\"\n- 6. *(na entrada, apontando pra rua)*\n  \"Do lado de fora, o Anel Viário J. Hawilla. Você sai da cidade sem passar pelo centro. E a [X] minutos tem Shopping Cidade Norte, mercado, escola e UPA.\"\n- 7. *(obra ao fundo)*\n  \"A obra tá em andamento, entrega prevista pra [MÊS/ANO]. Quem entra agora escolhe a posição e paga preço de obra.\"\n- 8. *(fechando, de frente pra câmera)*\n  \"Se cadastre aqui que eu te mando a planta e as condições.\"\n\n*Texto na tela:* RESIDENCIAL GRANDENA · ZONA NORTE\n*Legenda:* Condomínio fechado, Minha Casa Minha Vida, ao lado do Anel Viário.\n\n---\n\n**ORDEM DE GRAVAÇÃO DO R2**\n- 1. Entrada e portaria (falas 1 e 2)\n- 2. Caminhada pra dentro (fala 3)\n- 3. Lazer, em movimento (fala 4)\n- 4. Decorado (fala 5)\n- 5. Entrada / rua (fala 6)\n- 6. Obra ao fundo (fala 7)\n- 7. Fecho (fala 8)\n\n---\n\n**NA HORA DE GRAVAR**\n- Frase curta, ponto final, próxima frase — nunca emendar\n- 2 takes de cada fala. O segundo é sempre melhor\n- Microfone de lapela em tudo\n- Gancho nos 3 primeiros segundos: sem \"oi gente\", sem logo na abertura\n- Fechar com *Imagens ilustrativas. Consulte condições.*",
+        "checklist": [
+          {
+            "t": "R1 · fala 1 (entrada e parcela)",
+            "done": false
+          },
+          {
+            "t": "R1 · fala 2 (localização)",
+            "done": false
+          },
+          {
+            "t": "R1 · fala 3 (lazer e MCMV)",
+            "done": false
+          },
+          {
+            "t": "R1 · fala 4 (cadastro)",
+            "done": false
+          },
+          {
+            "t": "R2 · falas 1 e 2 (entrada e portaria)",
+            "done": false
+          },
+          {
+            "t": "R2 · fala 3 (caminhada pra dentro)",
+            "done": false
+          },
+          {
+            "t": "R2 · fala 4 (lazer)",
+            "done": false
+          },
+          {
+            "t": "R2 · fala 5 (decorado)",
+            "done": false
+          },
+          {
+            "t": "R2 · fala 6 (rua / Anel Viário)",
+            "done": false
+          },
+          {
+            "t": "R2 · fala 7 (obra)",
+            "done": false
+          },
+          {
+            "t": "R2 · fala 8 (fecho)",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
