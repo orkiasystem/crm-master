@@ -1554,7 +1554,14 @@ function tkNovoId(titulo){
   while(tkTasks.some(function(x){return x.id===id;})){id='t-'+base+'-'+n;n++;}
   return id;
 }
-function tkArea(id){return TK_AREAS.find(a=>a.id===id)||{id,n:id||'—',c:'#8a90a0'};}
+function tkArea(id){
+  const direto=TK_AREAS.find(function(a){return a.id===id;});
+  if(direto)return direto;
+  const s=tkSlug(String(id||''));
+  const porNome=TK_AREAS.find(function(a){return tkSlug(a.n)===s;});
+  return porNome||{id:id,n:id||'—',c:'#8a90a0'};
+}
+function tkResolveArea(v){return tkArea(v).id;}
 
 async function loadTaskConfig(){
   const {data}=await db.from('task_config').select('*').eq('id',1).maybeSingle();
@@ -1846,7 +1853,7 @@ function openTaskModal(id){
   fd.style.height=Math.min(Math.max(fd.scrollHeight,170),460)+'px';
   tkPrevMode(t?'view':'edit');
   tkRenderLinks();
-  document.getElementById('tk-area').value=t&&TK_AREAS.some(a=>a.id===t.area)?t.area:(TK_AREAS[0]||{}).id;
+  document.getElementById('tk-area').value=t?tkResolveArea(t.area):(TK_AREAS[0]||{}).id;
   document.getElementById('tk-prio').value=t?(t.prioridade||'media'):'media';
   document.getElementById('tk-col').value=t?tkResolveCol(t.coluna):tkResolveCol('todo');
   document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
