@@ -98,6 +98,8 @@
   .tk-ck-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:15px;padding:0 2px;}
   .tk-ck-del:hover{color:var(--red);}
   @media(max-width:640px){.tk-col{min-width:82vw;width:82vw;}}
+  .sm-remove{background:none;border:none;color:var(--text3);cursor:pointer;font-size:16px;line-height:1;padding:0 3px;border-radius:5px;flex-shrink:0;}
+  .sm-remove:hover{color:var(--red);background:rgba(239,68,68,.12);}
   .tk-print{background:none;border:none;color:var(--text3);cursor:pointer;padding:2px;border-radius:5px;flex-shrink:0;line-height:0;}
   .tk-print:hover{color:var(--accent);background:rgba(61,126,255,.1);}
   .cfg-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
@@ -1876,10 +1878,24 @@ function tkRenderCk(){
   tkCkTemp.forEach((i,ix)=>{
     const d=document.createElement('div');d.className='tk-ck-item';
     d.innerHTML=`<input type="checkbox" ${i.done?'checked':''}><span class="${i.done?'done':''}">${tkEsc(i.t)}</span><button class="tk-ck-del">×</button>`;
-    d.querySelector('input').addEventListener('change',e=>{i.done=e.target.checked;tkRenderCk();});
+    d.querySelector('input').addEventListener('change',e=>{i.done=e.target.checked;tkRenderCk();tkChecarConclusao();});
     d.querySelector('.tk-ck-del').addEventListener('click',()=>{tkCkTemp.splice(ix,1);tkRenderCk();});
     l.appendChild(d);
   });
+}
+function tkChecarConclusao(){
+  if(!tkEditing||!tkCkTemp.length)return;
+  const sel=document.getElementById('tk-col');
+  const feitos=tkCkTemp.filter(function(i){return i.done;}).length;
+  const colDone=(TK_COLS.find(function(c){return c.id==='done'||tkSlug(c.n)==='concluido';})||{}).id;
+  if(!colDone)return;
+  if(feitos===tkCkTemp.length&&sel.value!==colDone){
+    sel.value=colDone;
+    showToast('Checklist completo — movido pra Concluído','success');
+  }else if(feitos<tkCkTemp.length&&sel.value===colDone){
+    const padrao=tkColPadrao();
+    if(padrao)sel.value=padrao;
+  }
 }
 function tkAddCk(){
   const inp=document.getElementById('tkCkNew');const v=inp.value.trim();
@@ -2055,16 +2071,29 @@ function smCard(t){
   const feito=tkResolveCol(t.coluna)==='done';
   const el=document.createElement('div');el.className='tk-card';el.draggable=true;
   el.innerHTML='<div class="tk-strip" style="background:'+(feito?'var(--green)':(TK_PRIOS[t.prioridade]||'var(--border2)'))+'"></div>'+
-    '<div class="tk-card-b"><div class="tk-card-t">'+tkEsc(t.titulo)+'</div>'+
+    '<div class="tk-card-b"><div style="display:flex;align-items:flex-start;gap:8px;">'+
+    '<div class="tk-card-t" style="flex:1;">'+tkEsc(t.titulo)+'</div>'+
+    '<button class="sm-remove" title="Tirar da semana">×</button></div>'+
     '<div class="tk-meta"><span class="badge" style="background:'+a.c+'22;color:'+a.c+'">'+tkEsc(a.n)+'</span>'+
     (feito?'<span class="tk-cm-count" style="color:var(--green)">✓ feito</span>':'')+
     (tkCode(t)?'<span class="tk-code">'+tkCode(t)+'</span>':'')+'</div>'+
     (ck.length?'<div class="tk-prog"><div class="tk-prog-bar"><div class="tk-prog-fill" style="width:'+pct+'%;background:'+(pct===100?'var(--green)':'var(--accent)')+'"></div></div><div class="tk-prog-txt">'+done+'/'+ck.length+' itens</div></div>':'')+
     '</div>';
+  el.querySelector('.sm-remove').addEventListener('click',function(e){
+    e.stopPropagation();smTirar(t.id);
+  });
   el.addEventListener('dragstart',function(e){e.dataTransfer.setData('id',t.id);el.classList.add('dragging');});
   el.addEventListener('dragend',function(){el.classList.remove('dragging');});
   el.addEventListener('click',function(){openTaskModal(t.id);});
   return el;
+}
+async function smTirar(id){
+  const t=tkTasks.find(function(x){return x.id===id;});
+  if(!t)return;
+  t.dia=null;renderSemana();
+  const {error}=await db.from('tasks').update({dia:null}).eq('id',id);
+  if(error){showToast('Erro ao remover: '+error.message,'error');return;}
+  showToast('Tarefa tirada da semana','success');
 }
 async function smMover(id,dia){
   const t=tkTasks.find(function(x){return x.id===id;});
