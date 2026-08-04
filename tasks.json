@@ -2467,6 +2467,14 @@
         "id": "t-grandena-falas",
         "area": "iCasas – Constutora"
       }
+    },
+    {
+      "id": "op-0147",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-falas",
+        "area": "iCasas – Construtora"
+      }
     }
   ]
 }
