@@ -2450,6 +2450,15 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0145",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-falas",
+        "checklist": [],
+        "area": "icasas construtora"
+      }
     }
   ]
 }
