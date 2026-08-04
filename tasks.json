@@ -2459,6 +2459,14 @@
         "checklist": [],
         "area": "icasas construtora"
       }
+    },
+    {
+      "id": "op-0146",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-falas",
+        "area": "iCasas – Constutora"
+      }
     }
   ]
 }
