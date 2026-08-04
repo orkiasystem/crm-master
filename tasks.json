@@ -2375,6 +2375,26 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0142",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-captacao",
+        "descricao": "**AGENDADO: amanhã (quarta), 10:30 — confirmado.**\n\nSubtarefa do card **#000028 — Anúncios Residencial Grandena**. Roteiro de captação pra levar impresso.\n\n*Use o botão **Exportar PDF** deste card pra imprimir e ir ticando em campo.*\n\n---\n\n**ANTES DE SAIR**\n- Bateria cheia + cartão/armazenamento livre\n- Lente limpa\n- Autorização de acesso confirmada com a MRV\n- Levar: estabilizador, microfone e pano pra reflexo em vidro\n\n**O QUE OS ANÚNCIOS PRECISAM**\n- R1 e L4 dependem do **quintal da unidade térrea** — é a captação mais importante do dia\n- R2 depende do **lazer completo** (pet place, pomar, pista)\n- R3 depende do **acesso ao Anel Viário**\n- R4 depende de **obra em andamento**\n\n---\n\n**REGRA DE OURO**\nFoto na horizontal e na vertical do mesmo enquadramento. Vídeo sempre na vertical 9:16. Câmera a ~1,20 m. Nunca gravar de costas pro sol.",
+        "dia": "qua",
+        "coluna": "doing",
+        "prioridade": "alta"
+      }
+    },
+    {
+      "id": "op-0143",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-falas",
+        "dia": "qua",
+        "prioridade": "alta"
+      }
     }
   ]
 }
