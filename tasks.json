@@ -2475,6 +2475,99 @@
         "id": "t-grandena-falas",
         "area": "iCasas – Construtora"
       }
+    },
+    {
+      "id": "op-0148",
+      "type": "config",
+      "config": {
+        "areas": [
+          {
+            "id": "icasas",
+            "n": "iCasas – Automação",
+            "c": "#3d7eff"
+          },
+          {
+            "id": "orkai",
+            "n": "OrkAI",
+            "c": "#22c55e"
+          },
+          {
+            "id": "pessoal",
+            "n": "Pessoal",
+            "c": "#a855f7"
+          },
+          {
+            "id": "freela",
+            "n": "Freela",
+            "c": "#ef4444"
+          },
+          {
+            "id": "trafego",
+            "n": "Tráfego",
+            "c": "#14b8a6"
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0149",
+      "type": "add",
+      "task": {
+        "id": "t-publicos-meta",
+        "codigo": 32,
+        "titulo": "REFAZER PÚBLICOS DA META DO ZERO",
+        "coluna": "todo",
+        "area": "trafego",
+        "prioridade": "alta",
+        "ordem": 6,
+        "descricao": "Reconstruir todos os públicos do zero. As campanhas antigas geravam lead ruim — público idoso demais.\n\n**CAUSAS DO PROBLEMA ANTIGO**\n- Faixa etária sem limite superior: a Meta entrega pra 55+, que clica muito e financia pouco\n- Advantage+ de público ligado, estourando a segmentação\n- Otimização por clique em vez de conversa\n- 374 dos 783 leads do CRM estão como perdidos · 548 vieram do Facebook\n\n**CORREÇÃO:** 25 a 45 anos · Advantage+ desligado · otimizar por conversa iniciada.\n\n---\n\n**ARQUIVOS DO CRM JÁ PRONTOS** *(gerados a partir da exportação de 06/08)*\n- CRM-LEADS — 715 pessoas, usar pra **excluir** das campanhas\n- CRM-INTERESSE-REAL — 81 pessoas (fechados + negociação + visita + reunião), futura origem de semelhante\n- CRM-FECHADOS — 23 pessoas\n\n*Atualizar essas listas uma vez por mês, reexportando o CRM.*\n\n---\n\n**PÚBLICOS A CRIAR**\n\n*Listas do CRM — sempre marcar \"Inclusões ou exclusões\"*\n- CRM-LEADS\n- CRM-INTERESSE-REAL\n- CRM-FECHADOS\n\n*Engajamento — janela 365 dias*\n- ENG-IG-365 — perfil do Instagram, todas as interações\n- ENG-FB-365 — página do Facebook, todas as interações\n\n*Mensagem — substituem o WhatsApp por enquanto*\n- MSG-IG-365 — enviaram mensagem pro perfil\n- MSG-FB-365 — enviaram mensagem pra página\n\n*Vídeo — janela 365 dias, selecionar todos os vídeos*\n- VID-50-365 — assistiram 50%+\n- VID-95-365 — assistiram 95%+ *(o mais quente sem ser cliente)*\n\n*Site (Pixel) — janela 180 dias*\n- SITE-180 — todos os visitantes\n- SITE-VITRINE — URL contém vitrine.icasasconstrutora.com.br\n\n*Semelhantes — só quando a origem passar de 100 correspondidas*\n- LAL-1-INTERESSE — origem CRM-INTERESSE-REAL, 1%, Brasil\n- LAL-1-MSG — origem MSG-IG-365, 1%, Brasil\n\n---\n\n**PENDÊNCIA: WHATSAPP NÃO VINCULADO**\n\nA fonte WhatsApp não aparece no criador de públicos porque a conta não está ligada ao portfólio comercial.\n\n- Gerenciador de Negócios → Configurações do negócio → Contas do WhatsApp → adicionar → atribuir à conta de anúncios\n- Sem esse vínculo a Meta **não otimiza por conversa iniciada** — que é justamente o que corrige o lead ruim\n- Resolver antes de subir a campanha do Grandena\n\n---\n\n**COMO USAR DEPOIS**\n- Campanha de lead com verba mínima: público amplo 25-45, sem interesses, excluindo CRM-LEADS e CRM-FECHADOS\n- Quando tiver verba pra 2 conjuntos: o segundo com LAL-1-INTERESSE\n- Retargeting: VID-95-365 + SITE-180 + MSG-IG-365, sempre excluindo CRM-FECHADOS\n- Marcar a origem do lead no CRM — sem isso não dá pra saber qual campanha traz quem fecha",
+        "checklist": [
+          {
+            "t": "Excluir os públicos antigos",
+            "done": false
+          },
+          {
+            "t": "Subir CRM-LEADS",
+            "done": false
+          },
+          {
+            "t": "Subir CRM-INTERESSE-REAL",
+            "done": false
+          },
+          {
+            "t": "Subir CRM-FECHADOS",
+            "done": false
+          },
+          {
+            "t": "Criar ENG-IG-365 e ENG-FB-365",
+            "done": false
+          },
+          {
+            "t": "Criar MSG-IG-365 e MSG-FB-365",
+            "done": false
+          },
+          {
+            "t": "Criar VID-50-365 e VID-95-365",
+            "done": false
+          },
+          {
+            "t": "Criar SITE-180 e SITE-VITRINE",
+            "done": false
+          },
+          {
+            "t": "Vincular WhatsApp Business ao portfólio comercial",
+            "done": false
+          },
+          {
+            "t": "Criar WPP-CONVERSOU depois do vínculo",
+            "done": false
+          },
+          {
+            "t": "Tentar LAL-1-INTERESSE e LAL-1-MSG",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
