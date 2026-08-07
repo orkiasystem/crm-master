@@ -55,6 +55,11 @@
   .page.active{display:block;}
 
   /* TAREFAS (kanban) */
+  .tk-filtros{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px;}
+  .tk-chip{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:20px;padding:5px 12px;font-family:inherit;font-size:12px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:6px;}
+  .tk-chip:hover{border-color:var(--border2);color:var(--text);}
+  .tk-chip.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .tk-chip span{font-size:10.5px;opacity:.75;}
   .tk-geral{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:11px 14px;margin-bottom:14px;}
   .tk-geral-topo{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--text2);margin-bottom:8px;}
   .tk-geral-dir{color:var(--text3);}
@@ -93,9 +98,9 @@
   .tk-prazo{font-size:11px;color:var(--text3);margin-left:auto;}
   .tk-prazo.late{color:var(--red);font-weight:600;}
   .tk-prog{margin-top:8px;}
-  .tk-prog-bar{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;}
+  .tk-prog-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;}
   .tk-prog-fill{height:100%;border-radius:2px;transition:width .3s;}
-  .tk-prog-txt{font-size:10px;color:var(--text3);margin-top:4px;}
+  .tk-prog-txt{font-size:10.5px;color:var(--text3);margin-top:4px;font-weight:500;}
   .tk-ck-prog{margin-bottom:10px;}
   .tk-ck-prog-topo{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:5px;}
   .tk-ck-prog-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;}
@@ -595,8 +600,8 @@
         <button class="btn btn-primary btn-sm" onclick="openTaskModal()">+ Tarefa</button>
       </div>
     </div>
+    <div id="tkFiltros" class="tk-filtros"></div>
     <div id="tkSyncInfo" style="font-size:11px;color:var(--text3);margin-bottom:12px;">Sincronização: aguardando...</div>
-    <div id="tkGeral" class="tk-geral"></div>
     <div class="tk-board" id="tkBoard"></div>
   </div>
 </div>
@@ -1763,7 +1768,7 @@ function renderTasks(){
   const q=(document.getElementById('tkSearch').value||'').toLowerCase();
   const b=document.getElementById('tkBoard');b.innerHTML='';
   TK_COLS.forEach((c,ci)=>{
-    const list=tkColSorted(c.id).filter(t=>tkMatch(t,q));
+    const list=tkColSorted(c.id).filter(t=>tkMatch(t,q)&&(!tkFiltroArea||tkArea(t.area).id===tkFiltroArea));
     const col=document.createElement('div');col.className='tk-col';
     col.innerHTML=`<div class="tk-col-h"><div class="tk-dot" style="background:${c.c}"></div><b>${tkEsc(c.n)}</b><span class="tk-count">${list.length}</span></div><div class="tk-cards"></div>`;
     const cards=col.querySelector('.tk-cards');
@@ -1783,24 +1788,30 @@ function renderTasks(){
     });
     b.appendChild(col);
   });
-  tkProgressoGeral();
+  tkRenderFiltros();
 }
 
-function tkProgressoGeral(){
-  const el=document.getElementById('tkGeral');
+let tkFiltroArea='';
+function tkRenderFiltros(){
+  const el=document.getElementById('tkFiltros');
   if(!el)return;
-  const comCk=tkTasks.filter(function(t){return (t.checklist||[]).length;});
-  let itens=0,feitos=0;
-  comCk.forEach(function(t){
-    itens+=t.checklist.length;
-    feitos+=t.checklist.filter(function(i){return i.done;}).length;
+  const cont={};
+  tkTasks.forEach(function(t){
+    const a=tkArea(t.area);
+    cont[a.id]=(cont[a.id]||0)+1;
   });
-  const cards=tkTasks.length;
-  const concl=tkTasks.filter(function(t){return tkResolveCol(t.coluna)==='done';}).length;
-  const pct=itens?Math.round(feitos/itens*100):0;
-  el.innerHTML='<div class="tk-geral-topo"><span><b>'+feitos+'</b> de <b>'+itens+'</b> itens de checklist concluídos</span>'+
-    '<span class="tk-geral-dir">'+concl+' de '+cards+' cards em Concluído · <b>'+pct+'%</b></span></div>'+
-    '<div class="tk-geral-bar"><div class="tk-geral-fill" style="width:'+pct+'%;background:'+(pct===100?'var(--green)':'var(--accent)')+'"></div></div>';
+  let html='<button class="tk-chip'+(tkFiltroArea?'':' on')+'" onclick="tkSetFiltro(\'\')">Todas <span>'+tkTasks.length+'</span></button>';
+  TK_AREAS.forEach(function(a){
+    const n=cont[a.id]||0;
+    if(!n)return;
+    const ativo=tkFiltroArea===a.id;
+    html+='<button class="tk-chip'+(ativo?' on':'')+'" style="'+(ativo?'background:'+a.c+'22;border-color:'+a.c+';color:'+a.c:'')+'" onclick="tkSetFiltro(\''+a.id+'\')">'+tkEsc(a.n)+' <span>'+n+'</span></button>';
+  });
+  el.innerHTML=html;
+}
+function tkSetFiltro(id){
+  tkFiltroArea=(tkFiltroArea===id)?'':id;
+  renderTasks();
 }
 function tkEsc(s){return String(s||'').replace(/</g,'&lt;');}
 function tkCardEl(t){
