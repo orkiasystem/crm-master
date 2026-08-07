@@ -2671,6 +2671,190 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0154",
+      "type": "update",
+      "task": {
+        "id": "t-fotos-emp",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0155",
+      "type": "update",
+      "task": {
+        "id": "t-arte-sincera-hoje",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0156",
+      "type": "update",
+      "task": {
+        "id": "t-artes-sincera-lote",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0157",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-promo-garagem",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0158",
+      "type": "update",
+      "task": {
+        "id": "t-ideia-video-paralisado",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0159",
+      "type": "update",
+      "task": {
+        "id": "t-arte-missao-visao-valores",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0160",
+      "type": "update",
+      "task": {
+        "id": "t-concorrentes-analise",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0161",
+      "type": "update",
+      "task": {
+        "id": "t-arte-fachada-icasas-int",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0162",
+      "type": "update",
+      "task": {
+        "id": "t-foto-assinatura-email",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0163",
+      "type": "update",
+      "task": {
+        "id": "t-frase-automacao",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0164",
+      "type": "update",
+      "task": {
+        "id": "t-portfolio-trello",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0165",
+      "type": "update",
+      "task": {
+        "id": "t-placa-jatobas",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0166",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-captacao",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0167",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-videos",
+        "area": "iCasas – Construtora"
+      }
+    },
+    {
+      "id": "op-0168",
+      "type": "update",
+      "task": {
+        "id": "t-campanha-engajamento",
+        "area": "Tráfego"
+      }
+    },
+    {
+      "id": "op-0169",
+      "type": "update",
+      "task": {
+        "id": "t-grandena-anuncios",
+        "area": "Tráfego"
+      }
+    },
+    {
+      "id": "op-0170",
+      "type": "update",
+      "task": {
+        "id": "t-seguranca-acessos",
+        "area": "iCasas – Automação"
+      }
+    },
+    {
+      "id": "op-0171",
+      "type": "update",
+      "task": {
+        "id": "t-link-crm-icasas",
+        "area": "iCasas – Automação"
+      }
+    },
+    {
+      "id": "op-0172",
+      "type": "update",
+      "task": {
+        "id": "t-link-obras-automacao",
+        "area": "iCasas – Automação"
+      }
+    },
+    {
+      "id": "op-0173",
+      "type": "update",
+      "task": {
+        "id": "t-link-vitrine",
+        "area": "iCasas – Automação"
+      }
+    },
+    {
+      "id": "op-0174",
+      "type": "update",
+      "task": {
+        "id": "t-link-worker-obras",
+        "area": "iCasas – Automação"
+      }
+    },
+    {
+      "id": "op-0175",
+      "type": "update",
+      "task": {
+        "id": "t-link-cloudflare",
+        "area": "iCasas – Automação"
+      }
+    },
+    {
+      "id": "op-0176",
+      "type": "update",
+      "task": {
+        "id": "t-jumka-shopee",
+        "area": "Jumka"
+      }
     }
   ]
 }
