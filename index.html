@@ -1801,7 +1801,9 @@ function tkRenderFiltros(){
     cont[a.id]=(cont[a.id]||0)+1;
   });
   let html='<button class="tk-chip'+(tkFiltroArea?'':' on')+'" onclick="tkSetFiltro(\'\')">Todas <span>'+tkTasks.length+'</span></button>';
-  TK_AREAS.forEach(function(a){
+  TK_AREAS.slice().sort(function(x,y){
+    return String(x.n||'').localeCompare(String(y.n||''),'pt-BR',{sensitivity:'base'});
+  }).forEach(function(a){
     const n=cont[a.id]||0;
     if(!n)return;
     const ativo=tkFiltroArea===a.id;
