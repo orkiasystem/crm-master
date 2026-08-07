@@ -2911,6 +2911,41 @@
         "id": "t-link-orkai-crm-construtora",
         "area": "Pessoal"
       }
+    },
+    {
+      "id": "op-0184",
+      "type": "add",
+      "task": {
+        "id": "t-gustavo-bolsas",
+        "codigo": 36,
+        "titulo": "VÍDEO BOLSAS E MOCHILAS — GUSTAVO",
+        "coluna": "todo",
+        "area": "Freela",
+        "prioridade": "media",
+        "descricao": "Copys para vídeo de **bolsas e mochilas** — Gustavo.\n*Valores entre [ ] — preencher com os dados dele.*\n\n---\n\n**V1 · O TESTE** *(engajamento)*\n- 1. \"Todo mundo compra mochila olhando o preço.\"\n- 2. \"Depois reclama que o zíper abriu no primeiro mês.\"\n- 3. *(puxando o zíper com força)* \"Essa aqui aguenta.\"\n- 4. \"Costura reforçada, fundo duplo e compartimento pra notebook.\"\n\n*Legenda:* Mochila barata sai cara. Pergunta pra quem já comprou duas no mesmo ano.\n\n---\n\n**V2 · O QUE CABE** *(engajamento)*\n- 1. \"Você acha que não cabe.\"\n- 2. *(colocando item por item)* \"Notebook. Carregador. Garrafa. Guarda-chuva.\"\n- 3. \"E ainda sobra o bolso da frente.\"\n- 4. \"É por isso que essa é a mais vendida.\"\n\n*Legenda:* Testei ao vivo. Cabe mais do que parece.\n\n---\n\n**V3 · CATÁLOGO** *(captação)*\n- 1. \"Chegaram modelos novos.\"\n- 2. \"Mochila, bolsa de mão e transversal.\"\n- 3. \"A partir de [R$ X], com entrega em [cidade].\"\n- 4. \"Chama no direct que eu te mando o catálogo completo.\"\n\n*Legenda:* Modelos novos na loja. Chama que eu mando as fotos.\n\n---\n\n**GANCHOS AVULSOS**\n- \"Para de comprar mochila que não dura um ano.\"\n- \"Essa é a que mais sai. E eu vou te mostrar por quê.\"\n- \"Bolsa boa não é a mais cara. É a que aguenta.\"\n- \"Se você carrega notebook, essa parte importa.\"\n\n**FRASES DE ARTE**\n- Zíper reforçado. Costura dupla. Sem enrolação.\n- A mochila que aguenta o ano todo.\n- Modelos novos chegaram.\n- Do trabalho pra faculdade, sem trocar de mochila.\n\n---\n\n**COMO GRAVAR**\n- Mostrar o produto sendo maltratado: puxar zíper, encher até o limite, molhar\n- Enquadrar em uso real — alguém carregando, não parado em cima da mesa\n- Bolsa se vende por resistência e capacidade, não por foto bonita\n- Vertical 9:16, legenda queimada",
+        "checklist": [
+          {
+            "t": "Pegar preços e modelos com o Gustavo",
+            "done": false
+          },
+          {
+            "t": "Gravar V1 — o teste",
+            "done": false
+          },
+          {
+            "t": "Gravar V2 — o que cabe",
+            "done": false
+          },
+          {
+            "t": "Gravar V3 — catálogo",
+            "done": false
+          },
+          {
+            "t": "Editar e entregar",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
