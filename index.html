@@ -96,6 +96,10 @@
   .tk-prog-bar{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;}
   .tk-prog-fill{height:100%;border-radius:2px;transition:width .3s;}
   .tk-prog-txt{font-size:10px;color:var(--text3);margin-top:4px;}
+  .tk-ck-prog{margin-bottom:10px;}
+  .tk-ck-prog-topo{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:5px;}
+  .tk-ck-prog-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;}
+  .tk-ck-prog-fill{height:100%;border-radius:3px;transition:width .3s;}
   .tk-ck-list{display:flex;flex-direction:column;gap:6px;margin-top:6px;}
   .tk-ck-item{display:flex;align-items:center;gap:9px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 11px;}
   .tk-ck-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--green);cursor:pointer;flex-shrink:0;}
@@ -666,6 +670,10 @@
       <div class="form-group">
         <label>Checklist</label>
         <select id="tk-template" onchange="tkApplyTemplate()" style="margin-bottom:8px;"></select>
+        <div id="tkCkProg" class="tk-ck-prog" style="display:none;">
+          <div class="tk-ck-prog-topo"><span id="tkCkProgTxt"></span><span id="tkCkProgPct"></span></div>
+          <div class="tk-ck-prog-bar"><div class="tk-ck-prog-fill" id="tkCkProgFill"></div></div>
+        </div>
         <div class="tk-ck-list" id="tkCkList"></div>
         <div style="display:flex;gap:8px;margin-top:8px;">
           <input type="text" id="tkCkNew" placeholder="Novo item..." style="flex:1;" onkeydown="if(event.key==='Enter')tkAddCk()">
@@ -1898,6 +1906,19 @@ function openTaskModal(id){
   if(ps.length)tkAssinar(ps).then(tkRenderAx);
   document.getElementById('taskModal').classList.add('open');
 }
+function tkCkProgresso(){
+  const box=document.getElementById('tkCkProg');
+  if(!box)return;
+  if(!tkCkTemp.length){box.style.display='none';return;}
+  const feitos=tkCkTemp.filter(function(i){return i.done;}).length;
+  const pct=Math.round(feitos/tkCkTemp.length*100);
+  box.style.display='block';
+  document.getElementById('tkCkProgTxt').textContent=feitos+' de '+tkCkTemp.length+' concluídos';
+  document.getElementById('tkCkProgPct').textContent=pct+'%';
+  const f=document.getElementById('tkCkProgFill');
+  f.style.width=pct+'%';
+  f.style.background=pct===100?'var(--green)':'var(--accent)';
+}
 function tkRenderCk(){
   const l=document.getElementById('tkCkList');l.innerHTML='';
   tkCkTemp.forEach((i,ix)=>{
@@ -1907,6 +1928,7 @@ function tkRenderCk(){
     d.querySelector('.tk-ck-del').addEventListener('click',()=>{tkCkTemp.splice(ix,1);tkRenderCk();});
     l.appendChild(d);
   });
+  tkCkProgresso();
 }
 function tkChecarConclusao(){
   if(!tkEditing||!tkCkTemp.length)return;
@@ -1921,6 +1943,7 @@ function tkChecarConclusao(){
     const padrao=tkColPadrao();
     if(padrao)sel.value=padrao;
   }
+  tkCkProgresso();
 }
 function tkAddCk(){
   const inp=document.getElementById('tkCkNew');const v=inp.value.trim();
