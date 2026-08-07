@@ -590,11 +590,11 @@
 
   <div class="page active" id="page-tasks">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;">
-      <div id="tkFiltros" class="tk-filtros"></div>
       <div class="tk-search-wrap">
         <input type="text" id="tkSearch" placeholder="Buscar por título, texto ou código (#000007)" oninput="tkSearchUI()">
         <button id="tkSearchClear" onclick="tkSearchLimpar()" title="Limpar busca" style="display:none;">×</button>
       </div>
+      <div id="tkFiltros" class="tk-filtros"></div>
       <div style="margin-left:auto;display:flex;gap:8px;">
         <button class="btn btn-ghost btn-sm" onclick="openCfgModal()">Configurar</button>
         <button class="btn btn-ghost btn-sm" onclick="loadTasks(true)">Atualizar</button>
