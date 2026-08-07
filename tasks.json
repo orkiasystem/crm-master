@@ -2855,6 +2855,62 @@
         "id": "t-jumka-shopee",
         "area": "Jumka"
       }
+    },
+    {
+      "id": "op-0177",
+      "type": "update",
+      "task": {
+        "id": "t-link-crm-icasas",
+        "area": "Pessoal"
+      }
+    },
+    {
+      "id": "op-0178",
+      "type": "update",
+      "task": {
+        "id": "t-link-obras-automacao",
+        "area": "Pessoal"
+      }
+    },
+    {
+      "id": "op-0179",
+      "type": "update",
+      "task": {
+        "id": "t-link-vitrine",
+        "area": "Pessoal"
+      }
+    },
+    {
+      "id": "op-0180",
+      "type": "update",
+      "task": {
+        "id": "t-link-worker-obras",
+        "area": "Pessoal"
+      }
+    },
+    {
+      "id": "op-0181",
+      "type": "update",
+      "task": {
+        "id": "t-link-cloudflare",
+        "area": "Pessoal"
+      }
+    },
+    {
+      "id": "op-0182",
+      "type": "update",
+      "task": {
+        "id": "t-link-orkai-lp",
+        "area": "Pessoal"
+      }
+    },
+    {
+      "id": "op-0183",
+      "type": "update",
+      "task": {
+        "id": "t-link-orkai-crm-construtora",
+        "area": "Pessoal"
+      }
     }
   ]
 }
