@@ -2594,6 +2594,83 @@
         "prioridade": "media",
         "descricao": "Ação de vendas inspirada no case da **Cury** — trazer fisicamente um público com poder de compra que ninguém procura.\n\n**Referência (carrossel):**\nhttps://www.instagram.com/reel/Dba1M-9JryZ/\n\n---\n\n**O QUE A CURY FEZ**\n- Insight: motoboy ganha bem, paga aluguel alto na periferia e não tem patrimônio. É exatamente quem precisa de apartamento econômico — mas não está no banco de dados de nenhuma corretora\n- Execução: a equipe abriu iFood, 99 e Zé Delivery e fez **600 pedidos simultâneos pro endereço do plantão de vendas**\n- Na chegada, equipe preparada com um pitch pronto: transformar o valor do aluguel em investimento na casa própria\n- Timing: a Caixa tinha acabado de reconhecer renda informal de entregador de app como comprovação\n- Resultado: 100+ apartamentos vendidos, R$ 31 milhões de VGV num único evento\n\n**A LÓGICA A COPIAR** — não é o motoboy, é a pergunta: *qual público de Rio Preto tem poder de compra e ninguém procura?*\n\n---\n\n**PÚBLICOS INVISÍVEIS EM RIO PRETO**\n- Entregadores de app *(Caixa já aceita a renda)*\n- Motoristas de app — 99 e Uber\n- Autônomos sem holerite: barbeiro, manicure, diarista, feirante, vendedor comissionado\n- Trabalhadores de turno da indústria e do frigorífico\n\n---\n\n**ADAPTAÇÃO ENXUTA — \"PLANTÃO DO ENTREGADOR\"**\n- Um sábado, no plantão de vendas ou no escritório\n- 40 a 60 pedidos simultâneos em vez de 600 — mesma mecânica, custo baixo\n- Água e lanche na chegada, recepção preparada\n- Equipe com simulação pronta em até 5 minutos\n- Pitch: *\"o que você paga de aluguel vira a parcela da sua casa\"*\n\n**VANTAGEM QUE A ICASAS JÁ TEM**\n- Já existe conteúdo gravado com a Thais sobre comprovação de renda por aplicativo — o assunto já foi validado com o público\n\n---\n\n**RISCOS A EVITAR**\n- Entregador que perde tempo e sai irritado: pagar a corrida e a gorjeta, e receber bem\n- Pedido cancelado em massa pode gerar bloqueio nas plataformas — os pedidos precisam ser reais\n- Sem equipe preparada, o evento vira tumulto sem venda. O pitch tem que estar pronto antes\n\n---\n\n**ANTES DE EXECUTAR**\n- Confirmar com a Caixa quais plataformas e qual período de extrato são aceitos hoje\n- Definir qual produto entra: terreno e construção ou empreendimento parceiro\n- Escalar quantos corretores ficam de plantão\n- Preparar material de captação: o evento em si vira conteúdo de reconhecimento"
       }
+    },
+    {
+      "id": "op-0152",
+      "type": "config",
+      "config": {
+        "areas": [
+          {
+            "id": "icasas",
+            "n": "iCasas – Automação",
+            "c": "#3d7eff"
+          },
+          {
+            "id": "orkai",
+            "n": "OrkAI",
+            "c": "#22c55e"
+          },
+          {
+            "id": "pessoal",
+            "n": "Pessoal",
+            "c": "#a855f7"
+          },
+          {
+            "id": "freela",
+            "n": "Freela",
+            "c": "#ef4444"
+          },
+          {
+            "id": "trafego",
+            "n": "Tráfego",
+            "c": "#14b8a6"
+          },
+          {
+            "id": "jumka",
+            "n": "Jumka",
+            "c": "#ec4899"
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0153",
+      "type": "add",
+      "task": {
+        "id": "t-jumka-antes-depois",
+        "codigo": 35,
+        "titulo": "CRIATIVO 1 JUMKA — ANTES E DEPOIS",
+        "coluna": "todo",
+        "area": "jumka",
+        "prioridade": "media",
+        "descricao": "Criativo 1 da Jumka — **antes e depois de reforma**, formato vídeo. Alinhado com o Jean em 06/08.\n\n**Gancho:** \"Olha só como esse sofá chegou aqui na Jumka — e veja como ele ficou.\"\n\n*O Jean colocou sofá como exemplo, mas serve pra qualquer móvel.*\n\n---\n\n**O TRUQUE DO \"ANTES\"**\n\nNão precisa ter fotografado o móvel antes da reforma:\n- Pega uma foto de um móvel **já restaurado**, bem acabado\n- Joga na IA pedindo a versão **desgastada**: tecido rasgado, espuma aparente, madeira riscada, cor desbotada\n- Usa a imagem gerada como o \"antes\" e a foto real como o \"depois\"\n\n*Importante: essa é uma reconstituição, não a peça real. Não usar em caso onde o cliente possa achar que é o móvel dele.*\n\n---\n\n**ESTRUTURA DO VÍDEO** — 15 a 20s, vertical\n\n- 1. Abre no \"antes\" — 2 a 3 segundos, sem falar nada\n- 2. Corte seco na batida da música para o \"depois\"\n- 3. Detalhes do acabamento: costura, tecido, pé do móvel\n- 4. Fecho com a marca e o CTA\n\n---\n\n**COPYS DE ABERTURA**\n- \"Esse sofá ia pro lixo.\"\n- \"Olha como esse sofá chegou aqui.\"\n- \"O dono já tinha desistido dele.\"\n- \"Reformar sai mais barato que comprar. Muito mais.\"\n\n**LEGENDAS**\n- Antes de jogar fora, manda pra gente. Quase tudo tem conserto.\n- Móvel bom não se troca. Se reforma.\n- Seu sofá não morreu. Só cansou.\n\n**CTA**\n- Manda a foto do seu móvel no WhatsApp que a gente faz o orçamento.\n\n---\n\n**PARA OS PRÓXIMOS**\nMesma estrutura serve pra poltrona, cabeceira, cadeira de jantar e banco de canto. Vira série de conteúdo — um móvel por semana.",
+        "checklist": [
+          {
+            "t": "Escolher o móvel restaurado que vira o 'depois'",
+            "done": false
+          },
+          {
+            "t": "Gerar o 'antes' desgastado na IA",
+            "done": false
+          },
+          {
+            "t": "Captar os detalhes de acabamento",
+            "done": false
+          },
+          {
+            "t": "Editar com corte na batida",
+            "done": false
+          },
+          {
+            "t": "Aprovar com o Jean",
+            "done": false
+          },
+          {
+            "t": "Publicar",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
