@@ -2946,6 +2946,45 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0185",
+      "type": "add",
+      "task": {
+        "id": "t-campanha-terreno-1199",
+        "codigo": 37,
+        "titulo": "CAMPANHA TERRENO E CONSTRUÇÃO — R$ 1.199",
+        "coluna": "todo",
+        "area": "iCasas – Construtora",
+        "prioridade": "alta",
+        "descricao": "Campanha de **captação de leads** da arte \"Sua casa própria em Rio Preto por R$ 1.199/mês\".\n\n---\n\n**COPY — versão 1 (parcela)**\n\n*Texto principal:*\nCasa própria em Rio Preto por R$ 1.199 por mês.\n\nTerreno e construção no mesmo financiamento, pelo Minha Casa Minha Vida.\n\nCasa com suíte e closet, projeto personalizado e acompanhamento de arquiteto e engenheiro do início ao fim. E já entregue automatizada — você controla as luzes pela Alexa ou pelo aplicativo.\n\nVocê escolhe onde quer morar. A gente constrói.\n\nResponde 3 perguntas e o corretor te manda a simulação com a sua renda.\n\n---\n\n**COPY — versão 2 (aluguel)**\n\n*Texto principal:*\nVocê paga aluguel em Rio Preto?\n\nEsse valor pode virar a parcela da sua casa própria — a partir de R$ 1.199 por mês, com terreno e construção juntos.\n\nSuíte com closet, projeto personalizado e casa entregue automatizada.\n\nSe cadastre e descubra em quanto fica a sua.\n\n---\n\n**Título:** Casa própria por R$ 1.199/mês\n**Descrição:** Terreno e construção pelo MCMV. Consulte condições.\n**Chamada:** Cadastre-se\n\n*O R$ 1.199 precisa ter asterisco também no texto, não só na arte.*\n\n---\n\n**CONFIGURAÇÃO DO CONJUNTO**\n- Local: Rio Preto + 25 km — **pessoas que moram neste local**\n- Idade: **25 a 45**\n- Gênero: todos\n- Advantage+ de público: **desligado**\n- Excluir: CRM-LEADS e CRM-FECHADOS\n- Posicionamento manual: Feed e Reels (IG + FB) — **sem Audience Network**\n- Otimização: leads · formulário instantâneo, tipo **maior intenção**\n\n---\n\n**DIRECIONAMENTO DETALHADO**\n\nA Meta removeu boa parte das opções de perfil (estado civil, evento de vida, idade dos filhos), então o \"if e if\" com dois blocos não roda mais nessa conta.\n\n*Confirmados na conta:*\n- Home construction (construction)\n- Residential area (real estate)\n- Nova casa (lugar)\n\n*Tentar na busca, um por um:* Caixa Econômica Federal · Empréstimo hipotecário · Propriedade imobiliária · Imóveis · Construção civil\n*Usar o botão \"Sugestões\" depois de adicionar os três primeiros — lista o que existe de verdade.*\n\n**Decisão: um bloco só, sem limitar.** Os interesses que sobraram são todos do mesmo tema — cruzar \"construção\" com \"imóveis\" não qualifica ninguém, só derruba o alcance. Se ficar abaixo de 80 mil pessoas, tirar os interesses e subir amplo.\n\n---\n\n**ONDE ESTÁ O FILTRO DE VERDADE**\n- Idade 25-45 — corrige o problema de lead idoso\n- As 3 perguntas do formulário: renda, primeiro financiamento e prazo de compra\n- O criativo: preço e MCMV na arte afastam quem não é público\n- Advantage+ desligado e sem Audience Network\n\n*O formulário virou o \"segundo if\" — aplicado depois do clique, não antes.*\n\n---\n\n**ANTES DE SUBIR**\n- Testar um cadastro e conferir se cai no CRM\n- Marcar a origem do lead no CRM\n- Não editar por 7 dias — cada edição reinicia o aprendizado\n- Se o gerenciador pedir categoria especial de anúncio, o direcionamento fica bloqueado: subir amplo",
+        "checklist": [
+          {
+            "t": "Montar o formulário com as 3 perguntas",
+            "done": false
+          },
+          {
+            "t": "Adicionar os interesses que existem na conta",
+            "done": false
+          },
+          {
+            "t": "Conferir alcance estimado (mínimo ~80 mil)",
+            "done": false
+          },
+          {
+            "t": "Excluir CRM-LEADS e CRM-FECHADOS",
+            "done": false
+          },
+          {
+            "t": "Testar um cadastro e ver se cai no CRM",
+            "done": false
+          },
+          {
+            "t": "Subir e não mexer por 7 dias",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
