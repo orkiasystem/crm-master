@@ -2985,6 +2985,49 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0186",
+      "type": "add",
+      "task": {
+        "id": "t-jumka-campanhas",
+        "codigo": 38,
+        "titulo": "CAMPANHAS JUMKA — REFORMA, RECONHECIMENTO E OFERTA",
+        "coluna": "todo",
+        "area": "Jumka",
+        "prioridade": "alta",
+        "descricao": "Três campanhas alinhadas com o **Jean** por WhatsApp (08/08).\n\n**Insight dele:** o móvel que mais gera interesse é a **mesa de madeira**.\n\n---\n\n**CAMPANHA 1 · REFORMA DE MÓVEIS**\n\n*Anúncio 01 — vídeo de antes e depois*\n\n**Gancho (fala do Jean):**\n\"Tá vendo esse jogo de sofá aqui? Ele chegou todo detonado. O cliente viu nas redes sociais e entrou em contato perguntando se tinha solução.\"\n\n*Estrutura:*\n- 1. Abre no \"antes\" — 2 a 3 segundos, sem falar\n- 2. Corte seco na batida para o \"depois\"\n- 3. Detalhes do acabamento: costura, tecido, pé do móvel\n- 4. Fecho com a marca e o CTA\n\n*Legendas:*\n- Antes de jogar fora, manda pra gente. Quase tudo tem conserto.\n- Móvel bom não se troca. Se reforma.\n- Seu sofá não morreu. Só cansou.\n\n*CTA:* Manda a foto do seu móvel no WhatsApp que a gente faz o orçamento.\n\n---\n\n**CAMPANHA 2 · RECONHECIMENTO**\n\n*Anúncio 01 — vídeo*\n\n**Gancho (do Jean):**\n\"Você tá procurando móveis pra área externa? Então conhece a Jumka Móveis.\"\n\n*Sugestões de continuação:*\n- \"Mesa de madeira maciça, banco, deck e área gourmet.\"\n- \"Feito pra pegar sol e chuva sem estragar.\"\n- \"A gente faz sob medida pro seu espaço.\"\n\n*Ganchos alternativos pra testar:*\n- \"Móvel de área externa que dura é feito de quê? Vou te mostrar.\"\n- \"Todo mundo erra na hora de comprar móvel pra área externa.\"\n\n---\n\n**CAMPANHA 3 · OFERTA**\n\n*Carrossel com foto dos produtos e valores.*\n\n- **Começar pela mesa de madeira** — é o que mais gera interesse, então é o primeiro card do carrossel\n- Um produto por card, com o preço na imagem\n- Foto do móvel em uso, não isolado no fundo branco\n- Último card: chamada pro WhatsApp\n\n*Copys de apoio:*\n- Mesa de madeira maciça a partir de [R$ X]\n- Sob medida pro seu espaço\n- Fala com a gente e monte o seu\n\n---\n\n**REFERÊNCIAS**\nO Jean vai mandar referências de vídeo de reforma — anexar aqui quando chegarem.\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Preços dos produtos que entram no carrossel da campanha 3\n- Confirmar se o \"antes\" do sofá vai ser foto real ou gerada por IA\n- As referências de vídeo que o Jean citou",
+        "checklist": [
+          {
+            "t": "Receber as referências de vídeo do Jean",
+            "done": false
+          },
+          {
+            "t": "Pegar os preços pro carrossel",
+            "done": false
+          },
+          {
+            "t": "Campanha 1 — gravar antes e depois do sofá",
+            "done": false
+          },
+          {
+            "t": "Campanha 2 — gravar vídeo de área externa",
+            "done": false
+          },
+          {
+            "t": "Campanha 3 — montar carrossel começando pela mesa",
+            "done": false
+          },
+          {
+            "t": "Aprovar tudo com o Jean",
+            "done": false
+          },
+          {
+            "t": "Subir as campanhas",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
