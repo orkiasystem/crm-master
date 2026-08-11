@@ -101,6 +101,10 @@
   .tk-prog-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;}
   .tk-prog-fill{height:100%;border-radius:2px;transition:width .3s;}
   .tk-prog-txt{font-size:10.5px;color:var(--text3);margin-top:4px;font-weight:500;}
+  .emp-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px;}
+  .emp-check{display:flex;align-items:center;gap:8px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 11px;font-size:13px;cursor:pointer;}
+  .emp-check input{accent-color:var(--accent);cursor:pointer;}
+  @media(max-width:640px){.emp-grid{grid-template-columns:1fr;}}
   .tk-ck-prog{margin-bottom:10px;}
   .tk-ck-prog-topo{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:5px;}
   .tk-ck-prog-bar{height:6px;background:var(--bg);border-radius:3px;overflow:hidden;}
@@ -674,7 +678,10 @@
       </div>
       <div class="form-group">
         <label>Checklist</label>
-        <select id="tk-template" onchange="tkApplyTemplate()" style="margin-bottom:8px;"></select>
+        <div style="display:flex;gap:8px;margin-bottom:8px;">
+          <select id="tk-template" onchange="tkApplyTemplate()" style="flex:1;"></select>
+          <button type="button" class="btn btn-ghost btn-sm" onclick="tkEmpAbrir()" title="Gerar checklist de captação a partir dos cômodos">🏠 Empreendimento</button>
+        </div>
         <div id="tkCkProg" class="tk-ck-prog" style="display:none;">
           <div class="tk-ck-prog-topo"><span id="tkCkProgTxt"></span><span id="tkCkProgPct"></span></div>
           <div class="tk-ck-prog-bar"><div class="tk-ck-prog-fill" id="tkCkProgFill"></div></div>
@@ -935,6 +942,36 @@
     <div class="modal-footer">
       <button class="btn btn-ghost" onclick="closeModal('profileModal')">Cancelar</button>
       <button class="btn btn-primary" onclick="saveProfile()">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="empModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Checklist de captação — empreendimento</div>
+      <button class="modal-close" onclick="closeModal('empModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:12px;color:var(--text3);margin-bottom:14px;">Preencha os cômodos da casa. O checklist é gerado com 2 fotos por ambiente.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Quartos simples</label><input type="number" id="emp-quartos" value="2" min="0" max="10"></div>
+        <div class="form-group"><label>Suítes</label><input type="number" id="emp-suites" value="1" min="0" max="10"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Banheiros sociais</label><input type="number" id="emp-banheiros" value="1" min="0" max="10"></div>
+        <div class="form-group"><label>Vagas de garagem</label><input type="number" id="emp-vagas" value="2" min="0" max="10"></div>
+      </div>
+      <label>Ambientes</label>
+      <div class="emp-grid" id="empAmbientes"></div>
+      <div class="form-group">
+        <label>Outros ambientes (separe por vírgula)</label>
+        <input type="text" id="emp-extras" placeholder="Ex.: escritório, despensa, varanda">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('empModal')">Cancelar</button>
+      <button class="btn btn-primary" onclick="tkEmpGerar()">Gerar checklist</button>
     </div>
   </div>
 </div>
@@ -1880,6 +1917,82 @@ function tkFillSelects(){
   const st=document.getElementById('tk-template');
   st.innerHTML='<option value="">Aplicar modelo de checklist...</option>'+TK_TEMPLATES.map(m=>`<option value="${m.id}">${tkEsc(m.n)}</option>`).join('');
   st.parentElement.style.display=TK_TEMPLATES.length?'block':'none';
+}
+const EMP_AMB=[
+ ['sala','Sala de estar',true],
+ ['cozinha','Cozinha',true],
+ ['integrado','Sala e cozinha integradas',false],
+ ['gourmet','Área gourmet / varanda',true],
+ ['lavanderia','Lavanderia / área de serviço',true],
+ ['closet','Closet',false],
+ ['quintal','Quintal / fundos',true],
+ ['piscina','Piscina',false],
+ ['corredor','Corredor / circulação',false],
+ ['automacao','Itens de automação',true],
+ ['lazer','Área de lazer do condomínio',false],
+ ['entorno','Entorno: comércio, escola, acesso',false]
+];
+function tkEmpAbrir(){
+  const g=document.getElementById('empAmbientes');
+  g.innerHTML=EMP_AMB.map(function(a){
+    return '<label class="emp-check"><input type="checkbox" id="emp-'+a[0]+'"'+(a[2]?' checked':'')+'> '+a[1]+'</label>';
+  }).join('');
+  document.getElementById('empModal').classList.add('open');
+}
+function tkEmpGerar(){
+  const n=function(id){return Math.max(0,parseInt(document.getElementById(id).value||'0',10));};
+  const on=function(id){const e=document.getElementById('emp-'+id);return e&&e.checked;};
+  const itens=[];
+  const add=function(t){itens.push({t:t,done:false});};
+
+  add('Conferir luzes acesas e ambientes limpos');
+  add('Fachada frontal (2 fotos)');
+  add('Fachada em ângulo / diagonal (2 fotos)');
+  add('Entrada e portão (2 fotos)');
+
+  if(on('integrado')) add('Sala e cozinha integradas (4 fotos)');
+  else{
+    if(on('sala')) add('Sala de estar (2 fotos)');
+    if(on('cozinha')) add('Cozinha (2 fotos)');
+  }
+  if(on('gourmet')) add('Área gourmet / varanda (2 fotos)');
+
+  const su=n('emp-suites');
+  for(let i=1;i<=su;i++){
+    add('Suíte '+i+' (2 fotos)');
+    add('Banheiro da suíte '+i+' (2 fotos)');
+  }
+  const qt=n('emp-quartos');
+  for(let i=1;i<=qt;i++) add('Quarto '+i+' (2 fotos)');
+  if(on('closet')) add('Closet (2 fotos)');
+
+  const ba=n('emp-banheiros');
+  for(let i=1;i<=ba;i++) add('Banheiro social'+(ba>1?' '+i:'')+' (2 fotos)');
+
+  if(on('corredor')) add('Corredor / circulação (2 fotos)');
+  if(on('lavanderia')) add('Lavanderia / área de serviço (2 fotos)');
+
+  const vg=n('emp-vagas');
+  if(vg) add('Garagem — '+vg+' vaga(s) (2 fotos)');
+  if(on('quintal')) add('Quintal / fundos (2 fotos)');
+  if(on('piscina')) add('Piscina (2 fotos)');
+  if(on('lazer')) add('Área de lazer do condomínio (2 fotos)');
+
+  if(on('automacao')) add('Itens de automação em funcionamento (2 fotos + vídeo)');
+  add('Acabamentos: porcelanato, bancadas, esquadrias (2 fotos)');
+
+  (document.getElementById('emp-extras').value||'').split(',').forEach(function(x){
+    x=x.trim(); if(x) add(x.charAt(0).toUpperCase()+x.slice(1)+' (2 fotos)');
+  });
+
+  if(on('entorno')) add('Entorno: comércio, escola e acesso (3 fotos)');
+  add('Vídeo geral da casa (vertical)');
+  add('Backup do material no mesmo dia');
+
+  tkCkTemp.push.apply(tkCkTemp,itens);
+  closeModal('empModal');
+  tkRenderCk();
+  showToast(itens.length+' itens adicionados ao checklist','success');
 }
 function tkApplyTemplate(){
   const id=document.getElementById('tk-template').value;
