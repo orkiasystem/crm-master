@@ -149,6 +149,8 @@
   .tk-ax-thumb{width:46px;height:46px;object-fit:cover;border-radius:6px;display:block;background:var(--bg);border:1px solid var(--border);flex-shrink:0;transition:.15s;}
   .tk-ax-thumb:hover{border-color:var(--accent);}
   .tk-ax-ico{width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:18px;flex-shrink:0;}
+  .tk-ax-del{background:none;border:1px solid var(--border);color:var(--text3);border-radius:6px;padding:4px 10px;font-family:inherit;font-size:11.5px;cursor:pointer;transition:.15s;flex-shrink:0;}
+  .tk-ax-del:hover{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.1);}
   .tk-ax-cover{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap;}
   .tk-ax-cover input{accent-color:var(--accent);cursor:pointer;}
   .tk-card.filedrop{outline:2px dashed var(--accent);outline-offset:-3px;}
@@ -1573,7 +1575,7 @@ function tkRenderAx(){
     d.innerHTML=`${ehImg?`<img class="tk-ax-thumb" src="${tkUrlDe(a)}" loading="lazy" alt="">`:'<span class="tk-ax-ico">📄</span>'}
       <a href="${tkUrlDe(a)}" ${ehImg?'':'target="_blank"'} title="${tkEsc(a.name)}">${tkEsc(a.name)}</a>
       ${tkIsImg(a)?`<label class="tk-ax-cover"><input type="checkbox" ${a.cover?'checked':''}> capa</label>`:''}
-      <button class="tk-ck-del">×</button>`;
+      <button class="tk-ax-del" title="Remover anexo">Remover</button>`;
     if(ehImg){
       const abrir=function(e){e.preventDefault();tkAbrirImg(tkUrlDe(a),a.name);};
       d.querySelector('.tk-ax-thumb').addEventListener('click',abrir);
@@ -1585,9 +1587,18 @@ function tkRenderAx(){
       a.cover=e.target.checked;
       tkRenderAx();
     });
-    d.querySelector('.tk-ck-del').addEventListener('click',async()=>{
+    d.querySelector('.tk-ax-del').addEventListener('click',async()=>{
+      if(!confirm('Remover "'+a.name+'"?\n\nO arquivo é apagado do sistema e não tem como desfazer.'))return;
+      tkAxTemp.splice(ix,1);
+      tkRenderAx();
+      // grava na hora quando o card já existe, pra não ficar inconsistente se cancelar
+      if(tkEditing){
+        const {error}=await db.from('tasks').update({anexos:tkAxTemp}).eq('id',tkEditing);
+        if(error){showToast('Erro ao remover: '+error.message,'error');return;}
+      }
       if(a.path){await db.storage.from('task-files').remove([a.path]);}
-      tkAxTemp.splice(ix,1);tkRenderAx();
+      showToast('Anexo removido','success');
+      if(tkEditing)tkFetch();
     });
     l.appendChild(d);
   });
