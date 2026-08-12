@@ -218,6 +218,7 @@
   #tkDescPrev::-webkit-scrollbar{width:5px;}
   #tkDescPrev::-webkit-scrollbar-track{background:transparent;}
   #tkDescPrev::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+  .tk-vinc{font-size:11px;color:var(--text3);opacity:.7;}
   .tk-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.5px;color:var(--text3);opacity:.55;cursor:pointer;transition:.15s;}
   .tk-code:hover{opacity:1;color:var(--accent);}
   .modal-title .tk-code{font-size:11px;margin-left:8px;vertical-align:middle;}
@@ -687,6 +688,10 @@
         </div>
       </div>
       <div class="form-row">
+        <div class="form-group">
+          <label>Vinculado ao card</label>
+          <select id="tk-pai"></select>
+        </div>
         <div class="form-group">
           <label>Dia da semana</label>
           <select id="tk-dia">
@@ -1765,6 +1770,15 @@ async function tkSyncOps(){
     try{
       if(op.type==='remove'&&op.task_id){
         await db.from('tasks').delete().eq('id',op.task_id);
+      }else if(op.type==='col_add'&&op.coluna){
+        const {data:cfg}=await db.from('task_config').select('colunas').eq('id',1).maybeSingle();
+        let cols=(cfg&&cfg.colunas)||TK_COLS.slice();
+        if(!cols.some(function(c){return c.id===op.coluna.id;})){
+          const i=cols.findIndex(function(c){return c.id===op.depois;});
+          if(i>=0)cols.splice(i+1,0,op.coluna); else cols.push(op.coluna);
+          await db.from('task_config').upsert({id:1,colunas:cols});
+          TK_COLS=cols;
+        }
       }else if(op.type==='config'&&op.config){
         await db.from('task_config').upsert({id:1,...op.config});
       }else if(op.type==='update'&&op.task&&op.task.id){
@@ -1874,6 +1888,7 @@ function renderTasks(){
         ids.push(id);
         t.coluna=c.id;renderTasks();
         await tkApplyOrder(c.id,ids);
+        await tkSincronizarPai(t);
       }
     });
     b.appendChild(col);
@@ -1926,6 +1941,7 @@ function tkCardEl(t){
     <div class="tk-meta">
       <span class="badge" style="background:${a.c}22;color:${a.c}">${tkEsc(a.n)}</span>
       ${tkCode(t)?`<span class="tk-code" title="Código do card — clique pra copiar" onclick="tkCopyCode('${tkCode(t)}',event)">${tkCode(t)}</span>`:''}
+      ${t.pai?`<span class="tk-vinc" title="Vinculado a um card mãe">↳</span>`:''}
       ${(t.comentarios&&t.comentarios.length)?`<span class="tk-cm-count">💬 ${t.comentarios.length}</span>`:''}
       ${tkExtractLinks(t.descricao).length?`<span class="tk-cm-count">🔗 ${tkExtractLinks(t.descricao).length}</span>`:''}
       ${t.prazo?`<span class="tk-prazo${late?' late':''}">${t.prazo.split('-').reverse().slice(0,2).join('/')}</span>`:''}
@@ -2069,6 +2085,7 @@ function openTaskModal(id){
   document.getElementById('tk-col').value=t?tkResolveCol(t.coluna):tkResolveCol('todo');
   document.getElementById('tk-prazo').value=t?(t.prazo||''):'';
   document.getElementById('tk-dia').value=t?(t.dia||''):'';
+  tkPreencherPais(t);
   tkCkTemp=t?JSON.parse(JSON.stringify(t.checklist||[])):[];
   tkAxTemp=t?JSON.parse(JSON.stringify(t.anexos||[])):[];
   tkCmTemp=t?JSON.parse(JSON.stringify(t.comentarios||[])):[];
@@ -2174,6 +2191,41 @@ function tkDraftAgenda(){
   clearTimeout(tkDraftTimer);
   tkDraftTimer=setTimeout(function(){tkSalvarRascunho(false);},800);
 }
+function tkPreencherPais(t){
+  const s=document.getElementById('tk-pai');
+  if(!s)return;
+  const opts=['<option value="">— nenhum —</option>'];
+  tkTasks.slice()
+    .filter(function(x){return !t||x.id!==t.id;})
+    .sort(function(a,b){return (a.codigo||0)-(b.codigo||0);})
+    .forEach(function(x){
+      opts.push('<option value="'+x.id+'">'+(tkCode(x)?tkCode(x)+' · ':'')+tkEsc(x.titulo)+'</option>');
+    });
+  s.innerHTML=opts.join('');
+  s.value=(t&&t.pai)||'';
+}
+// marca ou desmarca o item do card mãe conforme o filho conclui
+async function tkSincronizarPai(filho){
+  if(!filho||!filho.pai)return;
+  const pai=tkTasks.find(function(x){return x.id===filho.pai;});
+  if(!pai||!(pai.checklist||[]).length)return;
+  const feito=tkResolveCol(filho.coluna)==='done';
+  const alvo=String(filho.titulo||'').trim().toLowerCase();
+  let mudou=false;
+  const ck=pai.checklist.map(function(i){
+    const t=String(i.t||'').trim().toLowerCase();
+    if(t===alvo||t.indexOf(alvo)>=0||alvo.indexOf(t)>=0){
+      if(i.done!==feito){mudou=true;return {t:i.t,done:feito};}
+    }
+    return i;
+  });
+  if(!mudou)return;
+  pai.checklist=ck;
+  const {error}=await db.from('tasks').update({checklist:ck}).eq('id',pai.id);
+  if(error){showToast('Erro ao atualizar o card mãe: '+error.message,'error');return;}
+  showToast('Item marcado no card '+(tkCode(pai)||'mãe'),'success');
+  renderTasks();
+}
 function tkChecarConclusao(){
   if(!tkEditing||!tkCkTemp.length)return;
   const sel=document.getElementById('tk-col');
@@ -2203,6 +2255,7 @@ async function saveTaskModal(){
     coluna:document.getElementById('tk-col').value,
     prazo:document.getElementById('tk-prazo').value||null,
     dia:document.getElementById('tk-dia').value||null,
+    pai:document.getElementById('tk-pai').value||null,
     checklist:tkCkTemp,
     anexos:tkAxTemp,
     comentarios:tkCmTemp
@@ -2215,7 +2268,9 @@ async function saveTaskModal(){
   if(error){showToast('Erro ao salvar: '+error.message,'error');return;}
   tkLimparRascunho();tkRascFechar();
   closeModal('taskModal');showToast('Tarefa salva!','success');
-  tkFetch();
+  await tkFetch();
+  const salvo=tkTasks.find(function(x){return x.id===(tkEditing||'');});
+  if(salvo)await tkSincronizarPai(salvo);
 }
 async function deleteTask(){
   if(!tkEditing)return;
