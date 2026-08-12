@@ -1788,6 +1788,10 @@ async function tkSyncOps(){
       }else if(op.task&&op.task.id){ // add / upsert
         const {error}=await db.from('tasks').upsert(op.task,{onConflict:'id'});
         if(error)throw error;
+      }else{
+        // tipo desconhecido (versão antiga do painel): não marca como aplicada
+        console.warn('op ignorada, tipo nao suportado nesta versao:',op.id,op.type);
+        continue;
       }
       const {error:errIns}=await db.from('task_ops').insert({op_id:op.id});
       if(errIns)throw errIns;
