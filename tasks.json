@@ -3067,6 +3067,45 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0188",
+      "type": "add",
+      "task": {
+        "id": "t-copys-tc-descontraido",
+        "codigo": 40,
+        "titulo": "COPYS TERRENO E CONSTRUÇÃO — TOM DESCONTRAÍDO",
+        "coluna": "todo",
+        "area": "iCasas – Construtora",
+        "prioridade": "alta",
+        "descricao": "Copys de **terreno e construção** em tom descontraído. Separadas por onde cada uma rende.\n*Valores entre [ ] — preencher com a tabela atual.*\n\n**Lógica:** patrocinado quebra objeção e pede ação · orgânico gera confiança e é compartilhado.\n\n---\n\n**VÍDEOS PRA PATROCINAR · CAPTAÇÃO**\n\n**P1 · O ALUGUEL É SEU AMIGO?** ⭐ *começa por esta*\n- 1. \"Todo mês você paga uma parcela.\"\n- 2. \"A diferença é que no fim dela, a casa é do outro cara.\"\n- 3. \"Terreno e construção, financiamento único, Minha Casa Minha Vida.\"\n- 4. \"Bora fazer essa conta juntos? Se cadastra aí.\"\n\n**P2 · NÃO SEI CONSTRUIR**\n- 1. \"'Ah, mas eu não entendo nada de obra.'\"\n- 2. \"Nem precisa, meu amigo.\"\n- 3. \"Tem arquiteto, tem engenheiro, tem gente cuidando de tudo.\"\n- 4. \"Você só escolhe o terreno e depois pega a chave.\"\n\n**P3 · O ERRO CLÁSSICO**\n- 1. \"Quer o conselho que ninguém te dá?\"\n- 2. \"Não compra terreno antes de simular.\"\n- 3. \"Muita gente compra o lote e descobre depois que não passa no financiamento.\"\n- 4. \"Faz o contrário: simula primeiro, compra depois.\"\n\n**P4 · SUÍTE E CLOSET**\n- 1. \"Closet em casa do Minha Casa Minha Vida?\"\n- 2. \"Pois é.\"\n- 3. \"Suíte com closet, área gourmet e acabamento que não é o básico.\"\n- 4. \"Vem ver de perto que você não vai acreditar.\"\n\n---\n\n**VÍDEOS PRA PATROCINAR · RECONHECIMENTO**\n\n**R1 · O TERRENO É SEU, A ESCOLHA TAMBÉM** ⭐ *melhor pra encher público*\n- 1. \"Apartamento é tipo pizza de rodízio: você come o que passar.\"\n- 2. \"Casa é à la carte.\"\n- 3. \"Você escolhe o bairro, a rua, a planta.\"\n- 4. \"Perto da sua mãe ou bem longe — problema é seu.\"\n\n**R2 · A CASA JÁ VEM ESPERTA**\n- 1. \"Chegou em casa de mão cheia?\"\n- 2. *(em voz alta)* \"Alexa, acende a luz da sala.\"\n- 3. \"Pronto.\"\n- 4. \"Todas as nossas casas saem assim. De fábrica.\"\n\n---\n\n**VÍDEOS PRA POSTAR · ORGÂNICO**\n\n**O1 · ENTREGA DA CHAVE** ⭐ *o que mais rende no orgânico*\nVídeo da entrega real, sem roteiro.\n*Legenda:* Mais uma chave entregue. Essa foto vale mais que qualquer anúncio.\n\n**O2 · BASTIDOR DE OBRA**\n- 1. \"Isso aqui é o que ninguém vê.\"\n- 2. \"Fundação, estrutura, elétrica passando.\"\n- 3. \"Três meses antes daquela foto bonita que você vê no feed.\"\n\n**O3 · ANTES E DEPOIS DO TERRENO**\nTransição do lote vazio pra casa pronta, mesma posição de câmera.\n*Legenda:* Seis meses separam essas duas fotos.\n\n**O4 · PERGUNTA DE CLIENTE**\n- 1. \"Me perguntaram essa semana: dá pra escolher a planta?\"\n- 2. \"Dá. O projeto é personalizado.\"\n- 3. \"Você não compra o que sobrou. Você desenha o que quer.\"\n\n---\n\n**ARTES · ENGAJAMENTO** *(sem preço, sem CTA)*\n\n- **Aluguel é aquele amigo que pega emprestado e nunca devolve**\n  Apoio: Terreno e construção no Minha Casa Minha Vida\n- **Apartamento é rodízio. Casa é à la carte.**\n  Apoio: Você escolhe o bairro, a rua e a planta\n- **\"Alexa, acende a luz da sala.\"**\n  Apoio: Todas as nossas casas saem assim. De fábrica.\n- **Closet no Minha Casa Minha Vida? Pois é.**\n  Apoio: Suíte com closet, área gourmet e acabamento que não é o básico\n- **Ninguém quer ver obra. Todo mundo quer ver chave.**\n  Apoio: Arquiteto e engenheiro do começo ao fim\n- **Sua mãe vai querer visitar**\n  Apoio: Só depende de onde você escolher o terreno\n\n*Dica: fundo escuro, uma palavra em laranja, sem foto de casa. Parece post de opinião, não anúncio — é isso que faz ser salvo.*\n\n---\n\n**ARTES · CAPTAÇÃO** *(preço na frente, CTA no fim)*\n\n- **CASA PRÓPRIA POR [R$ X]/MÊS**\n  Apoio: Terreno + construção, um financiamento só · CTA: Simula a sua\n- **ATÉ [R$ X] DE SUBSÍDIO. VOCÊ TEM?**\n  Apoio: Descobre em 5 minutos, de graça · CTA: Quero saber\n- **A ENTRADA TRAVA VOCÊ? ELA PARCELA.**\n  Apoio: E a documentação a gente acompanha · CTA: Ver condições\n- **SIMULA ANTES DE COMPRAR O TERRENO**\n  Apoio: Muita gente compra o lote e descobre depois que não passa · CTA: Fazer simulação\n- **2 QUARTOS, SUÍTE, CLOSET E JÁ AUTOMATIZADA**\n  Apoio: A partir de [R$ X]/mês, pelo MCMV · CTA: Quero as condições\n\n---\n\n**O QUE PATROCINAR PRIMEIRO**\n\nCom verba mínima, **dois criativos, não sete** — dividir mata o aprendizado.\n- **P1 (aluguel)** — objeção mais universal, é a que mais gera cadastro\n- **R1 (rodízio)** — enche os públicos de vídeo que alimentam o retargeting\n\nOs outros entram como substituição quando um cansar, não em paralelo.\n\n*Por que não patrocinar os orgânicos: entrega de chave e bastidor funcionam porque parecem reais. Virou anúncio, perdem a credibilidade — e quem assiste no orgânico entra no retargeting do mesmo jeito.*",
+        "checklist": [
+          {
+            "t": "Gravar P1 — o aluguel é seu amigo",
+            "done": false
+          },
+          {
+            "t": "Gravar R1 — pizza de rodízio",
+            "done": false
+          },
+          {
+            "t": "Subir só esses dois patrocinados",
+            "done": false
+          },
+          {
+            "t": "Produzir as 6 artes de engajamento",
+            "done": false
+          },
+          {
+            "t": "Produzir as 5 artes de captação",
+            "done": false
+          },
+          {
+            "t": "Postar O1 e O2 no orgânico",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
