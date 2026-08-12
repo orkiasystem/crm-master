@@ -3028,6 +3028,45 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0187",
+      "type": "add",
+      "task": {
+        "id": "t-jumka-mesa-bistro",
+        "codigo": 39,
+        "titulo": "POST MESA POSTA E BISTRÔ — JUMKA",
+        "coluna": "todo",
+        "area": "Jumka",
+        "prioridade": "alta",
+        "descricao": "Pedido da **Jumka** por áudio (08/08). Produção de foto pro feed.\n\n**O QUE MONTAR**\n- **Mesa**: deixar **posta e montada**, com petisqueira de **3 repartições** com petisco dentro\n- **Bistrô**: mesma pegada, montado, com as **duas cadeiras**\n- Ela prefere o modelo **quadradinho** no bistrô — confirmar se é banqueta ou cadeira\n\n**REGRA DO POST**\n- **Sem preço.** Os dois já apareceram em outro post com o preço antigo, que mudou\n- A conversa começa no direct — assim a tabela atualiza sem gerar cobrança do valor velho\n\n---\n\n**COPY — legenda ambientação**\nMesa posta, petisco servido e a tarde inteira pela frente.\n\nMadeira maciça, feita pra durar sol, chuva e visita que não vai embora.\n\nChama no direct que a gente monta o seu conjunto.\n\n**COPY — legenda bistrô**\nNão precisa de espaço grande. Precisa do móvel certo.\n\nBistrô com duas cadeiras: cabe na varanda, no canto da área ou embaixo da árvore.\n\nFala com a gente e monte o seu cantinho.\n\n**COPY — legenda curta**\nSua área externa merece mais que uma cadeira de plástico.\n\n**FRASES PRA ARTE**\n- Mesa posta é convite.\n- Feito pra pegar sol e chuva.\n- Cabe na varanda. Sobra estilo.\n\n**CTA:** Chama no direct que a gente monta o seu.\n\n---\n\n**CAPTAÇÃO**\n- Fotografar em uso e ambientado, nunca isolado no fundo branco\n- Luz natural, fim de tarde rende melhor em madeira\n- Foto aberta do conjunto + detalhe da petisqueira + detalhe da madeira\n- Vertical pro feed e uma horizontal de reserva\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar com ela se o bistrô fica com banqueta quadrada ou cadeira quadrada\n- Ela disse que manda assim que você montar — combinar o dia",
+        "checklist": [
+          {
+            "t": "Confirmar banqueta ou cadeira quadrada no bistrô",
+            "done": false
+          },
+          {
+            "t": "Montar a mesa posta com a petisqueira de 3 repartições",
+            "done": false
+          },
+          {
+            "t": "Montar o bistrô com as duas cadeiras",
+            "done": false
+          },
+          {
+            "t": "Fotografar: aberta, detalhe da petisqueira e da madeira",
+            "done": false
+          },
+          {
+            "t": "Editar e enviar pra ela aprovar",
+            "done": false
+          },
+          {
+            "t": "Postar no feed — sem preço",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
