@@ -41,6 +41,13 @@
   .topbar-sep{color:var(--border2);font-size:18px;}
   .topbar-title{font-family:'Syne',sans-serif;font-weight:600;font-size:15px;color:var(--text2);}
   .topbar-right{display:flex;align-items:center;gap:14px;}
+  .avatar-sm img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block;}
+  .avatar-lg{width:72px;height:72px;border-radius:50%;background:var(--accent2);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:600;color:#fff;flex-shrink:0;overflow:hidden;}
+  .avatar-lg img{width:100%;height:100%;object-fit:cover;display:block;}
+  .perf-topo{display:flex;align-items:center;gap:16px;margin-bottom:6px;}
+  .perf-cores{display:flex;gap:8px;flex-wrap:wrap;}
+  .perf-cor{width:28px;height:28px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;}
+  .perf-cor.on{border-color:var(--text);box-shadow:0 0 0 2px var(--bg2) inset;}
   .avatar-sm{width:30px;height:30px;border-radius:50%;background:var(--accent2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;flex-shrink:0;cursor:pointer;}
   .logout-link{font-size:12px;color:var(--text3);cursor:pointer;}
   .logout-link:hover{color:var(--red);}
@@ -162,10 +169,17 @@
   .tk-cm-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:14px;margin-left:auto;padding:0 2px;}
   .tk-cm-del:hover{color:var(--red);}
   .tk-cm-count{font-size:11px;color:var(--text3);display:inline-flex;align-items:center;gap:3px;}
-  .modal.modal-task{width:940px;}
+  .modal.modal-task{width:1040px;max-width:96vw;}
   .modal.modal-task .modal-footer{position:sticky;bottom:0;background:var(--bg2);border-top:1px solid var(--border);margin:0 -22px -22px;padding:14px 22px;justify-content:flex-end;gap:8px;z-index:5;}
-  .modal.modal-task .modal-footer #tkDelBtn{margin-right:auto!important;}
+  .modal.modal-task .modal-footer #tkDelBtn{margin-right:auto!important;margin-left:6px;}
   @media(max-width:760px){.modal.modal-task .modal-footer{margin:0 -16px -16px;padding:12px 16px;}}
+  .rasc-aviso{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(90px);display:flex;align-items:center;gap:12px;background:var(--bg2);border:1px solid rgba(245,158,11,.5);border-left:4px solid var(--amber);border-radius:10px;padding:12px 14px 12px 16px;font-size:13px;z-index:120;opacity:0;transition:.3s;pointer-events:none;box-shadow:0 8px 28px rgba(0,0,0,.45);}
+  .rasc-aviso.on{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto;}
+  .rasc-txt{cursor:pointer;line-height:1.4;}
+  .rasc-txt span{font-size:11.5px;color:var(--text3);}
+  .rasc-txt:hover{color:var(--amber);}
+  .rasc-x{background:none;border:none;color:var(--text3);font-size:18px;line-height:1;cursor:pointer;padding:0 4px;border-radius:5px;}
+  .rasc-x:hover{color:var(--text);background:var(--bg3);}
   .tk-draft-aviso{display:flex;align-items:center;gap:10px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:var(--amber);border-radius:var(--radius);padding:9px 13px;font-size:12.5px;margin-bottom:14px;}
   .tk-draft-aviso button{margin-left:auto;background:none;border:1px solid currentColor;color:inherit;border-radius:6px;padding:3px 10px;font-family:inherit;font-size:11.5px;cursor:pointer;}
   .tk-modal-grid{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start;}
@@ -283,7 +297,7 @@
   /* MODAL */
   .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
   .modal-overlay.open{display:flex;}
-  .modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);width:540px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+  .modal{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--radius-lg);width:540px;max-width:95vw;max-height:92vh;overflow-y:auto;}
   .modal-header{padding:20px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
   .modal-title{font-family:'Syne',sans-serif;font-size:16px;font-weight:600;}
   .modal-close{background:none;border:none;color:var(--text2);cursor:pointer;padding:4px;border-radius:6px;font-size:20px;line-height:1;transition:color .15s;}
@@ -934,9 +948,22 @@
       <button class="modal-close" onclick="closeModal('profileModal')">×</button>
     </div>
     <div class="modal-body">
+      <div class="perf-topo">
+        <div class="avatar-lg" id="perfPreview">--</div>
+        <div style="flex:1;">
+          <input type="file" id="perfFoto" accept="image/*" style="display:none;" onchange="perfSubirFoto(this.files)">
+          <button class="btn btn-ghost btn-sm" id="perfFotoBtn" onclick="document.getElementById('perfFoto').click()">Escolher foto</button>
+          <button class="btn btn-ghost btn-sm" onclick="perfTirarFoto()">Remover</button>
+          <div style="font-size:11px;color:var(--text3);margin-top:6px;">JPG ou PNG, de preferência quadrada.</div>
+        </div>
+      </div>
       <div class="form-group">
         <label>Nome</label>
-        <input type="text" id="profile-name">
+        <input type="text" id="profile-name" oninput="perfPreviewAtualiza()">
+      </div>
+      <div class="form-group">
+        <label>Cor do avatar (quando não houver foto)</label>
+        <div class="perf-cores" id="perfCores"></div>
       </div>
       <div class="form-group">
         <label>Nova senha (deixe em branco para não alterar)</label>
@@ -1010,6 +1037,10 @@
 </div>
 
 <div class="toast" id="toast"></div>
+<div id="tkRascAviso" class="rasc-aviso">
+  <div class="rasc-txt" id="tkRascTxt" onclick="tkRascVoltar()"></div>
+  <button class="rasc-x" onclick="tkRascFechar()" title="Dispensar">×</button>
+</div>
 
 <script>
 // ===== CONFIGURAÇÃO — TROCAR PELOS DADOS DO SEU PROJETO SUPABASE MASTER =====
@@ -1233,6 +1264,7 @@ function onLoginSuccess(){
   document.getElementById('loginScreen').classList.remove('show');
   document.getElementById('currentUserAvatar').textContent = initials(currentUser.name);
   loadAll().then(()=>startNotificationPolling());
+  setTimeout(function(){try{perfAplicarAvatar();}catch(e){}},1200);
   showPage('tasks');
 }
 
@@ -2048,6 +2080,7 @@ function openTaskModal(id){
   tkRenderCm();
   const ps=tkAxTemp.map(function(a){return a.path;}).filter(Boolean);
   if(ps.length)tkAssinar(ps).then(tkRenderAx);
+  tkRascFechar();
   document.getElementById('taskModal').classList.add('open');
   tkMarcarOriginal();
   tkAplicarRascunho();
@@ -2089,13 +2122,25 @@ function tkColetar(){
 let tkOrig='';
 function tkMarcarOriginal(){try{tkOrig=JSON.stringify(tkColetar());}catch(e){tkOrig='';}}
 function tkMudou(){try{return JSON.stringify(tkColetar())!==tkOrig;}catch(e){return false;}}
+let tkRascAlvo=null;
+function tkRascMostrar(id,titulo){
+  tkRascAlvo=id;
+  const el=document.getElementById('tkRascAviso');
+  document.getElementById('tkRascTxt').innerHTML='Alterações não salvas em <b>'+tkEsc(titulo||'nova tarefa')+'</b><br><span>Clique aqui pra voltar e continuar</span>';
+  el.classList.add('on');
+}
+function tkRascFechar(){document.getElementById('tkRascAviso').classList.remove('on');}
+function tkRascVoltar(){
+  tkRascFechar();
+  if(tkRascAlvo)openTaskModal(tkRascAlvo); else openTaskModal();
+}
 function tkSalvarRascunho(avisar){
   if(!document.getElementById('taskModal').classList.contains('open'))return;
   if(!tkMudou()){tkLimparRascunho();return;}   // nada mudou: não guarda rascunho
   const d=tkColetar(); d.quando=Date.now();
   try{
     localStorage.setItem(tkDraftKey(),JSON.stringify(d));
-    if(avisar)showToast('Rascunho salvo — reabra o card pra continuar','success');
+    if(avisar)tkRascMostrar(tkEditing,d.titulo);
   }catch(e){}
 }
 function tkLimparRascunho(){try{localStorage.removeItem(tkDraftKey());}catch(e){}}
@@ -2168,7 +2213,7 @@ async function saveTaskModal(){
   if(tkEditing){({error}=await db.from('tasks').update(data).eq('id',tkEditing));}
   else{({error}=await db.from('tasks').insert({id:tkNovoId(titulo),codigo:tkProxCodigo(),...data}));}
   if(error){showToast('Erro ao salvar: '+error.message,'error');return;}
-  tkLimparRascunho();
+  tkLimparRascunho();tkRascFechar();
   closeModal('taskModal');showToast('Tarefa salva!','success');
   tkFetch();
 }
@@ -2177,7 +2222,7 @@ async function deleteTask(){
   if(!confirm('Excluir esta tarefa?'))return;
   const {error}=await db.from('tasks').delete().eq('id',tkEditing);
   if(error){showToast('Erro: '+error.message,'error');return;}
-  tkLimparRascunho();
+  tkLimparRascunho();tkRascFechar();
   closeModal('taskModal');showToast('Tarefa excluída.','success');
   tkFetch();
 }
@@ -3178,10 +3223,63 @@ async function finishSupportConversation(){
 
 // ---------- UTILS ----------
 // ---------- PERFIL ----------
-function openProfileModal(){
+const PERF_CORES=['#3d7eff','#22c55e','#a855f7','#f59e0b','#ef4444','#14b8a6','#ec4899','#8a90a0'];
+let perfFotoUrl='', perfFotoPath='', perfCor='';
+function perfPreviewAtualiza(){
+  const el=document.getElementById('perfPreview');
+  const nome=(document.getElementById('profile-name').value||'').trim();
+  const ini=nome?nome.trim().charAt(0).toUpperCase():'--';
+  if(perfFotoUrl){el.innerHTML='<img src="'+perfFotoUrl+'" alt="">';el.style.background='transparent';}
+  else{el.textContent=ini;el.style.background=perfCor||'var(--accent2)';}
+}
+function perfRenderCores(){
+  const c=document.getElementById('perfCores');
+  c.innerHTML=PERF_CORES.map(function(cor){
+    return '<button type="button" class="perf-cor'+(perfCor===cor?' on':'')+'" style="background:'+cor+'" onclick="perfEscolherCor(\''+cor+'\')"></button>';
+  }).join('');
+}
+function perfEscolherCor(cor){perfCor=cor;perfRenderCores();perfPreviewAtualiza();}
+async function perfSubirFoto(files){
+  if(!files||!files.length)return;
+  const f=files[0];
+  const btn=document.getElementById('perfFotoBtn');
+  btn.disabled=true;btn.textContent='Enviando...';
+  const path='perfil/'+(currentUser&&currentUser.id?currentUser.id:'user')+'-'+Date.now()+'-'+f.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+  const {error}=await db.storage.from('task-files').upload(path,f);
+  btn.disabled=false;btn.textContent='Escolher foto';
+  if(error){showToast('Erro no upload: '+error.message,'error');return;}
+  perfFotoPath=path;
+  await tkAssinar([path]);
+  perfFotoUrl=tkUrlCache[path]||'';
+  perfPreviewAtualiza();
+}
+function perfTirarFoto(){perfFotoUrl='';perfFotoPath='';perfPreviewAtualiza();}
+async function perfAplicarAvatar(){
+  const el=document.getElementById('currentUserAvatar');
+  if(!el)return;
+  const m=(await db.auth.getUser()).data.user;
+  const meta=(m&&m.user_metadata)||{};
+  if(meta.avatar_path){
+    await tkAssinar([meta.avatar_path]);
+    const u=tkUrlCache[meta.avatar_path];
+    if(u){el.innerHTML='<img src="'+u+'" alt="">';el.style.background='transparent';return;}
+  }
+  const nome=(currentUser&&currentUser.name)||'';
+  el.textContent=nome?nome.trim().charAt(0).toUpperCase():'--';
+  if(meta.avatar_cor)el.style.background=meta.avatar_cor;
+}
+async function openProfileModal(){
+  const m=(await db.auth.getUser()).data.user;
+  const meta=(m&&m.user_metadata)||{};
+  perfFotoPath=meta.avatar_path||'';
+  perfCor=meta.avatar_cor||'';
+  perfFotoUrl='';
+  if(perfFotoPath){await tkAssinar([perfFotoPath]);perfFotoUrl=tkUrlCache[perfFotoPath]||'';}
+  perfRenderCores();
   document.getElementById('profile-name').value = currentUser.name;
   document.getElementById('profile-password').value = '';
   document.getElementById('profile-password-confirm').value = '';
+  perfPreviewAtualiza();
   document.getElementById('profileModal').classList.add('open');
 }
 
@@ -3193,6 +3291,10 @@ async function saveProfile(){
   if(!name){ showToast('Informe um nome.', 'error'); return; }
   if(pass && pass !== passConfirm){ showToast('As senhas não coincidem.', 'error'); return; }
   if(pass && pass.length < 6){ showToast('A senha deve ter pelo menos 6 caracteres.', 'error'); return; }
+
+  // Foto e cor ficam no metadata do usuário
+  const { error: metaError } = await db.auth.updateUser({ data:{ avatar_path: perfFotoPath||null, avatar_cor: perfCor||null } });
+  if(metaError){ showToast('Erro ao salvar avatar: '+metaError.message, 'error'); return; }
 
   // Nome fica salvo na tabela master_admins (vínculo com auth_user_id)
   const { error: nameError } = await db.from('master_admins').update({ name }).eq('id', currentUser.id);
@@ -3206,6 +3308,7 @@ async function saveProfile(){
 
   currentUser = { ...currentUser, name };
   document.getElementById('currentUserAvatar').textContent = initials(currentUser.name);
+  try{await perfAplicarAvatar();}catch(e){}
   showToast('Perfil atualizado!', 'success');
   closeModal('profileModal');
 }
