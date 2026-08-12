@@ -163,6 +163,8 @@
   .tk-cm-del:hover{color:var(--red);}
   .tk-cm-count{font-size:11px;color:var(--text3);display:inline-flex;align-items:center;gap:3px;}
   .modal.modal-task{width:940px;}
+  .tk-draft-aviso{display:flex;align-items:center;gap:10px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:var(--amber);border-radius:var(--radius);padding:9px 13px;font-size:12.5px;margin-bottom:14px;}
+  .tk-draft-aviso button{margin-left:auto;background:none;border:1px solid currentColor;color:inherit;border-radius:6px;padding:3px 10px;font-family:inherit;font-size:11.5px;cursor:pointer;}
   .tk-modal-grid{display:grid;grid-template-columns:1fr 320px;gap:22px;align-items:start;}
   .tk-side-cm{border-left:1px solid var(--border);padding-left:20px;position:sticky;top:0;}
   .tk-side-cm>label{margin-top:0;}
@@ -620,11 +622,12 @@
       <button class="modal-close" onclick="closeModal('taskModal')">×</button>
     </div>
     <div class="modal-body">
+     <div id="tkDraftAviso" class="tk-draft-aviso" style="display:none;"></div>
      <div class="tk-modal-grid">
       <div class="tk-side-main">
       <div class="form-group">
         <label>Título</label>
-        <input type="text" id="tk-titulo">
+        <input type="text" id="tk-titulo" oninput="tkDraftAgenda()">
       </div>
       <div class="form-group">
         <label>Descrição</label>
@@ -638,7 +641,7 @@
           <button type="button" onclick="tkRefAbrir()" title="Banco de Referências">📚 Referência</button>
           <button type="button" onclick="tkTogglePrev()" id="tkPrevBtn" style="margin-left:auto;">Editar</button>
         </div>
-        <textarea id="tk-desc" rows="3" oninput="tkRenderLinks()"></textarea>
+        <textarea id="tk-desc" rows="3" oninput="tkRenderLinks();tkDraftAgenda()"></textarea>
         <div class="tk-md" id="tkDescPrev" style="display:none;" title="Use o botão Editar para alterar"></div>
         <div class="tk-links" id="tkLinkList"></div>
       </div>
@@ -713,7 +716,7 @@
             <button type="button" onclick="tkFmtLine('tkCmNew','- ')" title="Lista">• Lista</button>
             <button type="button" onclick="tkFmtInsert('tkCmNew','\n---\n')" title="Linha divisória">—</button>
           </div>
-          <textarea id="tkCmNew" rows="2" placeholder="Escreva uma observação..."></textarea>
+          <textarea id="tkCmNew" rows="2" placeholder="Escreva uma observação..." oninput="tkDraftAgenda()"></textarea>
           <button class="btn btn-ghost btn-sm" onclick="tkAddCm()">Adicionar</button>
         </div>
         <div id="tkCmList"></div>
@@ -1254,7 +1257,11 @@ window.addEventListener('DOMContentLoaded', async ()=>{
     await checkMfaAndProceed();
   }
 
-  document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
+  document.querySelectorAll('.modal-overlay').forEach(o=>o.addEventListener('click',e=>{
+    if(e.target!==o)return;
+    if(o.id==='taskModal'){ tkSalvarRascunho(true); }
+    o.classList.remove('open');
+  }));
 });
 
 // Decide o que mostrar depois do login com e-mail/senha: se o usuário já tem MFA verificado
@@ -2039,6 +2046,7 @@ function openTaskModal(id){
   const ps=tkAxTemp.map(function(a){return a.path;}).filter(Boolean);
   if(ps.length)tkAssinar(ps).then(tkRenderAx);
   document.getElementById('taskModal').classList.add('open');
+  tkAplicarRascunho();
 }
 function tkCkProgresso(){
   const box=document.getElementById('tkCkProg');
@@ -2063,6 +2071,57 @@ function tkRenderCk(){
     l.appendChild(d);
   });
   tkCkProgresso();
+}
+// ---- rascunho automático do card ----
+function tkDraftKey(){return 'tk_draft_'+(tkEditing||'nova');}
+function tkColetar(){
+  const g=function(id){const e=document.getElementById(id);return e?e.value:'';};
+  return {
+    titulo:g('tk-titulo'), descricao:g('tk-desc'), area:g('tk-area'),
+    prioridade:g('tk-prio'), coluna:g('tk-col'), prazo:g('tk-prazo'), dia:g('tk-dia'),
+    checklist:tkCkTemp, comentarios:tkCmTemp, comentarioPendente:g('tkCmNew'),
+    quando:Date.now()
+  };
+}
+function tkSalvarRascunho(avisar){
+  if(!document.getElementById('taskModal').classList.contains('open'))return;
+  const d=tkColetar();
+  if(!d.titulo&&!d.descricao&&!d.checklist.length&&!d.comentarioPendente)return;
+  try{
+    localStorage.setItem(tkDraftKey(),JSON.stringify(d));
+    if(avisar)showToast('Rascunho salvo — reabra o card pra continuar','success');
+  }catch(e){}
+}
+function tkLimparRascunho(){try{localStorage.removeItem(tkDraftKey());}catch(e){}}
+function tkAplicarRascunho(){
+  let d=null;
+  try{const raw=localStorage.getItem(tkDraftKey());if(raw)d=JSON.parse(raw);}catch(e){}
+  const box=document.getElementById('tkDraftAviso');
+  if(!d){if(box)box.style.display='none';return;}
+  const s=function(id,v){const e=document.getElementById(id);if(e&&v!=null)e.value=v;};
+  s('tk-titulo',d.titulo); s('tk-desc',d.descricao); s('tk-area',d.area);
+  s('tk-prio',d.prioridade); s('tk-col',d.coluna); s('tk-prazo',d.prazo); s('tk-dia',d.dia);
+  if(d.checklist)tkCkTemp=d.checklist;
+  if(d.comentarios)tkCmTemp=d.comentarios;
+  s('tkCmNew',d.comentarioPendente);
+  tkRenderCk(); tkRenderCm(); tkRenderLinks();
+  if(box){
+    const q=new Date(d.quando).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    box.innerHTML='Rascunho não salvo recuperado ('+q+'). <button type="button" onclick="tkDescartarRascunho()">Descartar</button>';
+    box.style.display='flex';
+  }
+}
+function tkDescartarRascunho(){
+  tkLimparRascunho();
+  const id=tkEditing;
+  closeModal('taskModal');
+  if(id)openTaskModal(id); else openTaskModal();
+  showToast('Rascunho descartado','success');
+}
+let tkDraftTimer=null;
+function tkDraftAgenda(){
+  clearTimeout(tkDraftTimer);
+  tkDraftTimer=setTimeout(function(){tkSalvarRascunho(false);},800);
 }
 function tkChecarConclusao(){
   if(!tkEditing||!tkCkTemp.length)return;
@@ -2103,6 +2162,7 @@ async function saveTaskModal(){
   if(tkEditing){({error}=await db.from('tasks').update(data).eq('id',tkEditing));}
   else{({error}=await db.from('tasks').insert({id:tkNovoId(titulo),codigo:tkProxCodigo(),...data}));}
   if(error){showToast('Erro ao salvar: '+error.message,'error');return;}
+  tkLimparRascunho();
   closeModal('taskModal');showToast('Tarefa salva!','success');
   tkFetch();
 }
@@ -2111,6 +2171,7 @@ async function deleteTask(){
   if(!confirm('Excluir esta tarefa?'))return;
   const {error}=await db.from('tasks').delete().eq('id',tkEditing);
   if(error){showToast('Erro: '+error.message,'error');return;}
+  tkLimparRascunho();
   closeModal('taskModal');showToast('Tarefa excluída.','success');
   tkFetch();
 }
