@@ -3615,6 +3615,40 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0220",
+      "type": "update",
+      "task": {
+        "id": "t-jumka-18x",
+        "descricao": "Divulgar o **parcelamento em até 18x** dos móveis da Jumka.\n\n**⚠️ RESSALVA OBRIGATÓRIA:** *Sujeito a análise de crédito.*\nPrecisa aparecer em toda peça que citar o parcelamento, mesmo em corpo menor. Trocamos \"perante análise do banco\" por esse termo — é o padrão do mercado, mais curto e evita problema com o Procon.\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar com o Jean: são 18x em qualquer valor ou só acima de um mínimo? Tem juros a partir de qual parcela? Quais bandeiras entram?\n- *Anunciar \"18x\" e o cliente descobrir no balcão que é só acima de X queima a loja no direct.*\n\n---\n\n**ARTE 1 · TEXTO SOBRE A FOTO**\n\n> **LEVE AGORA.**\n> **PAGUE EM 18X.**\n>\n> *Sujeito a análise de crédito.*\n\n*Variação:* SEU. HOJE. EM 18X.\n\nPoucas palavras, duas linhas de peso igual, \"18X\" como maior elemento. Sobre foto, frase com mais de seis palavras vira ruído — a imagem já faz metade do trabalho.\n**Composição:** se a foto for de ambiente claro, usar faixa escura translúcida por trás. Texto branco direto sobre madeira clara some no feed comprimido do Instagram.\n\n---\n\n**ARTE 2 · PEÇA MONTADA**\n\n- **Headline:** MÓVEL BOM NÃO PRECISA SER À VISTA\n- **Sub:** Parcelamos em até 18 vezes\n- **Apoio:** Você escolhe o móvel, a gente resolve o pagamento. A análise sai na hora e você já sai da loja sabendo.\n- **Selo:** ATÉ 18X\n- **CTA:** Chama no direct\n- **Rodapé:** Sujeito a análise de crédito.\n\nA headline quebra a objeção antes de falar do parcelamento: quem lê \"não precisa ser à vista\" já entende que o problema tem solução, e só então aparece o número.\n\n---\n\n**OUTRAS COPYS · POST E LEGENDA**\n\n**Direta**\n> **Seu móvel novo em até 18x**\n> Você escolhe, a gente parcela. Sujeito a análise de crédito.\n> **CTA:** Chama no direct que a gente simula\n\n**Com o cálculo na cabeça do cliente**\n> **18x cabe no seu mês**\n> Aquele conjunto que você adiou o ano todo divide em até 18 vezes.\n> Fala com a gente que a análise sai na hora.\n\n**Curta pra story**\n> **Parcelamos em 18x.**\n> Vem escolher o seu.\n\n---\n\n**ROTEIRO DE VÍDEO** — 15s\n\n- 1. \"Você tá adiando esse móvel há quanto tempo?\"\n- 2. \"Aqui a gente parcela em até 18 vezes.\"\n- 3. \"A análise é na hora e você já sai sabendo.\"\n- 4. **Fecho:** \"Manda a foto do que você quer no direct que eu já simulo pra você.\"\n\n---\n\n**ESTRATÉGIA — funciona como selo, não como campanha**\n\nParcelamento não é notícia, é argumento. Com um selo de 18x fixo nas artes de produto, ele trabalha em toda peça o tempo todo. Campanha isolada de parcelamento rende uma semana e morre.\n\n**Onde usar**\n- Selo fixo nas artes de produto\n- Story de resposta rápida quando perguntarem preço\n- Vídeo curto no feed, uma vez por mês\n\n*Combina especialmente com a mesa de madeira, que é o produto de maior interesse — quanto maior o ticket, mais o parcelamento pesa na decisão.*",
+        "checklist": [
+          {
+            "t": "Confirmar a regra com o Jean: valor mínimo, juros e bandeiras",
+            "done": false
+          },
+          {
+            "t": "Criar o selo ATÉ 18X pras artes de produto",
+            "done": false
+          },
+          {
+            "t": "Produzir arte 1 — texto sobre a foto",
+            "done": false
+          },
+          {
+            "t": "Produzir arte 2 — peça montada",
+            "done": false
+          },
+          {
+            "t": "Gravar o vídeo de 15s",
+            "done": false
+          },
+          {
+            "t": "Publicar",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
