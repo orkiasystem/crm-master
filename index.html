@@ -73,6 +73,57 @@
   .tk-geral-bar{height:7px;background:var(--bg);border-radius:4px;overflow:hidden;}
   .tk-geral-fill{height:100%;border-radius:4px;transition:width .35s;}
   .tk-board.panning{cursor:grabbing;user-select:none;}
+  .ws{display:flex;gap:22px;align-items:flex-start;}
+  .ws-side{width:216px;flex-shrink:0;position:sticky;top:0;}
+  .ws-sec{font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--text3);padding:12px 8px 6px;font-weight:600;}
+  .ws-item{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:7px;cursor:pointer;color:var(--text2);font-size:13.5px;transition:.12s;}
+  .ws-item:hover{background:var(--bg3);color:var(--text);}
+  .ws-item.on{background:var(--bg3);color:var(--text);font-weight:600;}
+  .ws-ico{font-size:12px;opacity:.7;}
+  .ws-bola{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .ws-cnt{margin-left:auto;font-size:11px;color:var(--text3);font-family:ui-monospace,Menlo,monospace;}
+  .ws-main{flex:1;min-width:0;}
+  .ws-cab{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+  .ws-titulo{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;display:flex;align-items:center;gap:10px;}
+  .ws-acoes{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .ws-visoes{display:flex;gap:2px;border-bottom:1px solid var(--border);}
+  .ws-visao{padding:8px 14px;font-size:13px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:.12s;}
+  .ws-visao:hover{color:var(--text2);}
+  .ws-visao.on{color:var(--text);border-bottom-color:var(--accent);font-weight:600;}
+  .ws-tab{width:100%;border-collapse:collapse;}
+  .ws-tab th{text-align:left;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);font-weight:600;padding:0 12px 10px;border-bottom:1px solid var(--border);white-space:nowrap;}
+  .ws-tab td{padding:11px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+  .ws-tab tbody tr{cursor:pointer;}
+  .ws-tab tbody tr:hover{background:var(--bg2);}
+  .ws-barra{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;min-width:64px;display:inline-block;width:64px;vertical-align:middle;}
+  .ws-barra i{display:block;height:100%;border-radius:3px;}
+  .ws-mono{font-family:ui-monospace,Menlo,monospace;font-size:11.5px;color:var(--text2);margin-left:7px;}
+  .ws-kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:13px;margin-bottom:8px;}
+  .ws-kpi{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:15px 17px;}
+  .ws-kpi .n{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;line-height:1;}
+  .ws-kpi .l{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-top:7px;}
+  .ws-sub{font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);margin:22px 0 11px;font-weight:600;}
+  .ws-cal-cab{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+  .ws-grade{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+  .ws-dow{font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);text-align:center;padding-bottom:4px;font-weight:600;}
+  .ws-dia{background:var(--bg2);border:1px solid var(--border);border-radius:9px;min-height:96px;padding:7px;display:flex;flex-direction:column;gap:4px;transition:.12s;}
+  .ws-dia.vazio{background:transparent;border-color:transparent;}
+  .ws-dia.hoje{border-color:var(--accent);}
+  .ws-dia.alvo{border-color:var(--accent);background:rgba(61,126,255,.08);}
+  .ws-num{font-size:11.5px;color:var(--text3);font-family:ui-monospace,Menlo,monospace;}
+  .ws-dia.hoje .ws-num{color:var(--accent);font-weight:700;}
+  .ws-ev{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:6px;padding:5px 7px;font-size:11.5px;line-height:1.3;cursor:grab;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+  .ws-ev:hover{border-color:var(--border2);}
+  .ws-pool{display:flex;flex-wrap:wrap;gap:8px;}
+  .ws-pool .ws-ev{max-width:230px;}
+  @media(max-width:900px){
+    .ws{flex-direction:column;}
+    .ws-side{width:100%;position:static;display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;}
+    .ws-sec{display:none;}
+    .ws-item{white-space:nowrap;flex-shrink:0;}
+    .ws-grade{gap:3px;}
+    .ws-dia{min-height:72px;padding:4px;}
+  }
   .tk-board{display:flex;gap:14px;overflow-x:auto;align-items:flex-start;padding-bottom:8px;}
   #smBoard .tk-col{min-width:230px;width:230px;}
   .tk-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);min-width:280px;width:280px;flex-shrink:0;display:flex;flex-direction:column;max-height:calc(100vh - 230px);}
@@ -452,7 +503,6 @@
     <div class="tab" id="tab-payments" onclick="showPage('payments')">Pagamentos</div>
     <div class="tab" id="tab-support" onclick="showPage('support')">Suporte</div>
     <div class="tab active" id="tab-tasks" onclick="showPage('tasks')">Tarefas</div>
-    <div class="tab" id="tab-semana" onclick="showPage('semana')">Semana</div>
   </div>
 
   <!-- PAGE: OVERVIEW -->
@@ -581,57 +631,32 @@
   </div>
 
   <!-- PAGE: TAREFAS -->
-  <!-- PAGE: SEMANA -->
-  <div class="page" id="page-semana">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap;">
-      <div id="smResumo" style="font-size:13px;color:var(--text2);"></div>
-      <div style="margin-left:auto;display:flex;gap:8px;">
-        <button class="btn btn-ghost btn-sm" onclick="smPuxar()">+ Puxar tarefa</button>
-        <button class="btn btn-ghost btn-sm" onclick="smFecharSemana()">Fechar semana</button>
-      </div>
-    </div>
-    <div style="font-size:11px;color:var(--text3);margin-bottom:12px;">Arraste os cards entre os dias. "Fechar semana" manda tudo que sobrou pra Revisão.</div>
-    <div class="tk-board" id="smBoard"></div>
-  </div>
-
-  <!-- MODAL: PUXAR TAREFA PRA SEMANA -->
-  <div class="modal-overlay" id="smPickModal">
-    <div class="modal modal-pick">
-      <div class="modal-header">
-        <div class="modal-title">Puxar tarefa pra semana</div>
-        <button class="modal-close" onclick="closeModal('smPickModal')">×</button>
-      </div>
-      <div class="modal-body">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Dia</label>
-            <select id="smPickDia"></select>
-          </div>
-          <div class="form-group">
-            <label>Buscar</label>
-            <input type="text" id="smPickBusca" placeholder="Título ou código..." oninput="smPickRender()">
+  <div class="page active" id="page-tasks">
+    <div class="ws">
+      <aside class="ws-side" id="wsSide"></aside>
+      <div class="ws-main">
+        <div class="ws-cab">
+          <div class="ws-titulo" id="wsTitulo"></div>
+          <div class="ws-acoes">
+            <div class="tk-search-wrap">
+              <input type="text" id="tkSearch" placeholder="Buscar por título, texto ou código" oninput="tkSearchUI()">
+              <button id="tkSearchClear" onclick="tkSearchLimpar()" title="Limpar busca" style="display:none;">×</button>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="openCfgModal()">Configurar</button>
+            <button class="btn btn-ghost btn-sm" onclick="loadTasks(true)">Atualizar</button>
+            <button class="btn btn-primary btn-sm" onclick="openTaskModal()">+ Tarefa</button>
           </div>
         </div>
-        <div id="smPickLista"></div>
+        <div class="ws-visoes" id="wsVisoes"></div>
+        <div id="tkSyncInfo" style="font-size:11px;color:var(--text3);margin:10px 0;">Sincronização: aguardando...</div>
+        <div id="wsConteudo">
+          <div class="tk-board" id="tkBoard"></div>
+          <div id="wsTabela" style="display:none;"></div>
+          <div id="wsPainel" style="display:none;"></div>
+          <div id="wsCal" style="display:none;"></div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="page active" id="page-tasks">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;">
-      <div class="tk-search-wrap">
-        <input type="text" id="tkSearch" placeholder="Buscar por título, texto ou código (#000007)" oninput="tkSearchUI()">
-        <button id="tkSearchClear" onclick="tkSearchLimpar()" title="Limpar busca" style="display:none;">×</button>
-      </div>
-      <div id="tkFiltros" class="tk-filtros"></div>
-      <div style="margin-left:auto;display:flex;gap:8px;">
-        <button class="btn btn-ghost btn-sm" onclick="openCfgModal()">Configurar</button>
-        <button class="btn btn-ghost btn-sm" onclick="loadTasks(true)">Atualizar</button>
-        <button class="btn btn-primary btn-sm" onclick="openTaskModal()">+ Tarefa</button>
-      </div>
-    </div>
-    <div id="tkSyncInfo" style="font-size:11px;color:var(--text3);margin-bottom:12px;">Sincronização: aguardando...</div>
-    <div class="tk-board" id="tkBoard"></div>
   </div>
 </div>
 
@@ -1343,7 +1368,6 @@ function showPage(page){
   document.getElementById('topbarTitle').textContent = titles[page];
   if(page==='support') loadSupportClients();
   if(page==='tasks') loadTasks();
-  if(page==='semana') loadSemana();
 }
 
 // ---------- TAREFAS ----------
@@ -1922,12 +1946,186 @@ function renderTasks(){
     b.appendChild(col);
   });
   tkRenderFiltros();
+  wsRenderLateral();
+  const mostra=function(id,on){const e=document.getElementById(id);if(e)e.style.display=on?'':'none';};
+  mostra('tkBoard',wsVisao==='quadro');
+  mostra('wsTabela',wsVisao==='tabela');
+  mostra('wsPainel',wsVisao==='painel');
+  mostra('wsCal',wsVisao==='cal');
+  if(wsVisao==='tabela')wsRenderTabela();
+  else if(wsVisao==='painel')wsRenderPainel();
+  else if(wsVisao==='cal')wsRenderCal();
 }
 
 let tkFiltroArea='';
+let wsVisao='quadro';
+const WS_VISOES=[['quadro','Quadro'],['tabela','Tabela'],['painel','Painel'],['cal','Calendário']];
+let wsMes=new Date();
+
+function wsSetVisao(v){wsVisao=v;renderTasks();}
+function wsForaDaConta(t){
+  const c=tkResolveCol(t.coluna);
+  if(c==='done')return true;
+  const col=TK_COLS.find(function(x){return x.id===c;});
+  return !!(col&&tkSlug(col.n)==='utilitarios');
+}
+function wsDaArea(){
+  const q=(document.getElementById('tkSearch').value||'').toLowerCase();
+  return tkTasks.filter(function(t){
+    if(tkFiltroArea&&tkArea(t.area).id!==tkFiltroArea)return false;
+    return tkMatch(t,q);
+  });
+}
+function wsRenderLateral(){
+  const el=document.getElementById('wsSide');
+  if(!el)return;
+  const contaveis=tkTasks.filter(function(t){return !wsForaDaConta(t);});
+  const cont={};
+  contaveis.forEach(function(t){const a=tkArea(t.area);cont[a.id]=(cont[a.id]||0)+1;});
+  let h='<div class="ws-sec">Visão geral</div>';
+  h+='<div class="ws-item'+(tkFiltroArea?'':' on')+'" onclick="tkSetFiltro(\'\')"><span class="ws-ico">▦</span>Tudo<span class="ws-cnt">'+contaveis.length+'</span></div>';
+  h+='<div class="ws-sec">Clientes e áreas</div>';
+  TK_AREAS.slice().sort(function(x,y){
+    return String(x.n||'').localeCompare(String(y.n||''),'pt-BR',{sensitivity:'base'});
+  }).forEach(function(a){
+    const n=cont[a.id]||0;
+    if(!n&&tkFiltroArea!==a.id)return;
+    h+='<div class="ws-item'+(tkFiltroArea===a.id?' on':'')+'" onclick="tkSetFiltro(\''+a.id+'\')">'+
+       '<span class="ws-bola" style="background:'+a.c+'"></span>'+tkEsc(a.n)+'<span class="ws-cnt">'+n+'</span></div>';
+  });
+  el.innerHTML=h;
+  const t=document.getElementById('wsTitulo');
+  if(t){
+    const a=tkFiltroArea?tkArea(tkFiltroArea):null;
+    t.innerHTML=a?('<span class="ws-bola" style="background:'+a.c+';width:11px;height:11px"></span>'+tkEsc(a.n)):'Tudo';
+  }
+  const v=document.getElementById('wsVisoes');
+  if(v)v.innerHTML=WS_VISOES.map(function(x){
+    return '<div class="ws-visao'+(wsVisao===x[0]?' on':'')+'" onclick="wsSetVisao(\''+x[0]+'\')">'+x[1]+'</div>';
+  }).join('');
+}
+
+// ---- visão TABELA ----
+function wsRenderTabela(){
+  const el=document.getElementById('wsTabela');
+  const d=wsDaArea().slice().sort(function(a,b){return (a.codigo||0)-(b.codigo||0);});
+  if(!d.length){el.innerHTML='<p style="color:var(--text3);font-size:13px;padding:20px 0;">Nada por aqui ainda.</p>';return;}
+  el.innerHTML='<table class="ws-tab"><thead><tr>'+
+    '<th>Tarefa</th><th>Área</th><th>Status</th><th>Prioridade</th><th>Progresso</th><th>Prazo</th>'+
+    '</tr></thead><tbody>'+d.map(function(t){
+      const a=tkArea(t.area), c=TK_COLS.find(function(x){return x.id===tkResolveCol(t.coluna);})||{n:'—',c:'#888'};
+      const ck=t.checklist||[], feitos=ck.filter(function(i){return i.done;}).length;
+      const p=ck.length?Math.round(feitos/ck.length*100):0;
+      const late=t.prazo&&tkResolveCol(t.coluna)!=='done'&&new Date(t.prazo+'T23:59')<new Date();
+      return '<tr onclick="openTaskModal(\''+t.id+'\')">'+
+        '<td><span class="tk-code">'+tkCode(t)+'</span> '+tkEsc(t.titulo)+'</td>'+
+        '<td><span class="badge" style="background:'+a.c+'22;color:'+a.c+'">'+tkEsc(a.n)+'</span></td>'+
+        '<td><span class="badge" style="background:'+c.c+'22;color:'+c.c+'">'+tkEsc(c.n)+'</span></td>'+
+        '<td><span style="color:'+(TK_PRIOS[t.prioridade]||'var(--text3)')+';font-size:12px;font-weight:600">'+(t.prioridade||'—')+'</span></td>'+
+        '<td>'+(ck.length?'<div class="ws-barra"><i style="width:'+p+'%;background:'+(p===100?'var(--green)':'var(--accent)')+'"></i></div><span class="ws-mono">'+feitos+'/'+ck.length+'</span>':'<span class="ws-mono">—</span>')+'</td>'+
+        '<td><span class="ws-mono"'+(late?' style="color:var(--red);font-weight:600"':'')+'>'+(t.prazo?t.prazo.split('-').reverse().join('/'):'—')+'</span></td>'+
+        '</tr>';
+    }).join('')+'</tbody></table>';
+}
+
+// ---- visão PAINEL ----
+function wsRenderPainel(){
+  const el=document.getElementById('wsPainel');
+  const d=wsDaArea();
+  const feitos=d.filter(function(t){return tkResolveCol(t.coluna)==='done';}).length;
+  let itens=0,ok=0;
+  d.forEach(function(t){const ck=t.checklist||[];itens+=ck.length;ok+=ck.filter(function(i){return i.done;}).length;});
+  let h='<div class="ws-kpis">'+
+    '<div class="ws-kpi"><div class="n">'+d.length+'</div><div class="l">Tarefas</div></div>'+
+    '<div class="ws-kpi"><div class="n" style="color:var(--green)">'+feitos+'</div><div class="l">Concluídas</div></div>'+
+    '<div class="ws-kpi"><div class="n">'+(itens?Math.round(ok/itens*100):0)+'%</div><div class="l">Checklists</div></div>'+
+    '<div class="ws-kpi"><div class="n" style="color:var(--red)">'+d.filter(function(t){return t.prazo&&tkResolveCol(t.coluna)!=='done'&&new Date(t.prazo+'T23:59')<new Date();}).length+'</div><div class="l">Atrasadas</div></div>'+
+  '</div>';
+  h+='<div class="ws-sub">Por coluna</div><div class="ws-kpis">';
+  TK_COLS.forEach(function(c){
+    const l=d.filter(function(t){return tkResolveCol(t.coluna)===c.id;});
+    h+='<div class="ws-kpi"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span class="ws-bola" style="background:'+c.c+'"></span><b style="font-size:13px">'+tkEsc(c.n)+'</b></div>'+
+       '<div class="n" style="font-size:22px">'+l.length+'</div></div>';
+  });
+  h+='</div>';
+  if(!tkFiltroArea){
+    h+='<div class="ws-sub">Por área</div><div class="ws-kpis">';
+    TK_AREAS.slice().sort(function(x,y){return String(x.n).localeCompare(String(y.n),'pt-BR',{sensitivity:'base'});}).forEach(function(a){
+      const meus=tkTasks.filter(function(t){return tkArea(t.area).id===a.id;});
+      if(!meus.length)return;
+      const f=meus.filter(function(t){return tkResolveCol(t.coluna)==='done';}).length;
+      h+='<div class="ws-kpi" style="cursor:pointer" onclick="tkSetFiltro(\''+a.id+'\')">'+
+         '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span class="ws-bola" style="background:'+a.c+'"></span><b style="font-size:13px">'+tkEsc(a.n)+'</b></div>'+
+         '<div class="ws-barra"><i style="width:'+(meus.length?Math.round(f/meus.length*100):0)+'%;background:'+a.c+'"></i></div>'+
+         '<div class="l" style="margin-top:8px">'+f+' de '+meus.length+' concluídas</div></div>';
+    });
+    h+='</div>';
+  }
+  el.innerHTML=h;
+}
+
+// ---- visão CALENDÁRIO ----
+function wsMoverPrazo(id,iso){
+  const t=tkTasks.find(function(x){return x.id===id;});
+  if(!t)return;
+  t.prazo=iso;renderTasks();
+  db.from('tasks').update({prazo:iso}).eq('id',id).then(function(r){
+    if(r.error)showToast('Erro ao mover: '+r.error.message,'error');
+    else showToast('Prazo definido para '+iso.split('-').reverse().join('/'),'success');
+  });
+}
+function wsRenderCal(){
+  const el=document.getElementById('wsCal');
+  const d=wsDaArea();
+  const ano=wsMes.getFullYear(), mes=wsMes.getMonth();
+  const primeiro=new Date(ano,mes,1), ini=primeiro.getDay();
+  const dias=new Date(ano,mes+1,0).getDate();
+  const nomeMes=wsMes.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});
+  const hoje=new Date(); const hojeIso=[hoje.getFullYear(),String(hoje.getMonth()+1).padStart(2,'0'),String(hoje.getDate()).padStart(2,'0')].join('-');
+  const semPrazo=d.filter(function(t){return !t.prazo&&tkResolveCol(t.coluna)!=='done';});
+  let h='<div class="ws-cal-cab"><button class="btn btn-ghost btn-sm" onclick="wsMudaMes(-1)">‹</button>'+
+        '<b style="text-transform:capitalize;font-size:15px">'+nomeMes+'</b>'+
+        '<button class="btn btn-ghost btn-sm" onclick="wsMudaMes(1)">›</button>'+
+        '<button class="btn btn-ghost btn-sm" onclick="wsHoje()" style="margin-left:8px">Hoje</button></div>';
+  h+='<div class="ws-grade">';
+  ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'].forEach(function(x){h+='<div class="ws-dow">'+x+'</div>';});
+  for(let i=0;i<ini;i++)h+='<div class="ws-dia vazio"></div>';
+  for(let dia=1;dia<=dias;dia++){
+    const iso=[ano,String(mes+1).padStart(2,'0'),String(dia).padStart(2,'0')].join('-');
+    const doDia=d.filter(function(t){return t.prazo===iso;});
+    h+='<div class="ws-dia'+(iso===hojeIso?' hoje':'')+'" data-iso="'+iso+'"><div class="ws-num">'+dia+'</div>'+
+       doDia.map(function(t){
+         const a=tkArea(t.area);
+         return '<div class="ws-ev" draggable="true" data-id="'+t.id+'" style="border-left-color:'+a.c+'" title="'+tkEsc(t.titulo)+'">'+tkEsc(t.titulo)+'</div>';
+       }).join('')+'</div>';
+  }
+  h+='</div>';
+  h+='<div class="ws-sub">Sem data — arraste para um dia</div><div class="ws-pool">'+
+     (semPrazo.length?semPrazo.map(function(t){
+        const a=tkArea(t.area);
+        return '<div class="ws-ev" draggable="true" data-id="'+t.id+'" style="border-left-color:'+a.c+'">'+tkCode(t)+' '+tkEsc(t.titulo)+'</div>';
+     }).join(''):'<span style="color:var(--text3);font-size:12.5px">Todas as tarefas já têm data.</span>')+'</div>';
+  el.innerHTML=h;
+  [].forEach.call(el.querySelectorAll('.ws-ev'),function(ev){
+    ev.addEventListener('dragstart',function(e){e.dataTransfer.setData('id',ev.dataset.id);});
+    ev.addEventListener('click',function(){openTaskModal(ev.dataset.id);});
+  });
+  [].forEach.call(el.querySelectorAll('.ws-dia[data-iso]'),function(cel){
+    cel.addEventListener('dragover',function(e){e.preventDefault();cel.classList.add('alvo');});
+    cel.addEventListener('dragleave',function(){cel.classList.remove('alvo');});
+    cel.addEventListener('drop',function(e){
+      e.preventDefault();cel.classList.remove('alvo');
+      const id=e.dataTransfer.getData('id');
+      if(id)wsMoverPrazo(id,cel.dataset.iso);
+    });
+  });
+}
+function wsMudaMes(n){wsMes=new Date(wsMes.getFullYear(),wsMes.getMonth()+n,1);wsRenderCal();}
+function wsHoje(){wsMes=new Date();wsRenderCal();}
+
 function tkRenderFiltros(){
   const el=document.getElementById('tkFiltros');
-  if(!el)return;
+  if(!el)return;   // os chips foram substituídos pela lateral do workspace
   // não conta o que está em Concluído nem em Utilitários
   const foraDaConta=function(t){
     const c=tkResolveCol(t.coluna);
