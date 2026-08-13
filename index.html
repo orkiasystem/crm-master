@@ -84,8 +84,10 @@
   .ws-cnt{margin-left:auto;font-size:11px;color:var(--text3);font-family:ui-monospace,Menlo,monospace;}
   .ws-main{flex:1;min-width:0;}
   .ws-cab{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:12px;}
+  .ws-acoes .btn{white-space:nowrap;}
+  @media(max-width:1100px){.ws-acoes{flex-wrap:wrap;}}
   .ws-titulo{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;display:flex;align-items:center;gap:10px;}
-  .ws-acoes{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .ws-acoes{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:nowrap;}
   .ws-visoes{display:flex;gap:2px;border-bottom:1px solid var(--border);}
   .ws-visao{padding:8px 14px;font-size:13px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:.12s;}
   .ws-visao:hover{color:var(--text2);}
@@ -93,6 +95,11 @@
   .ws-tab{width:100%;border-collapse:collapse;}
   .ws-tab th{text-align:left;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);font-weight:600;padding:0 12px 10px;border-bottom:1px solid var(--border);white-space:nowrap;}
   .ws-tab td{padding:11px 12px;border-bottom:1px solid var(--border);font-size:13px;vertical-align:middle;}
+  .ws-tab th.ord{cursor:pointer;user-select:none;transition:.12s;}
+  .ws-tab th.ord:hover{color:var(--text2);}
+  .ws-tab th.ord.on{color:var(--accent);}
+  .ws-tab th .seta{margin-left:5px;font-size:9px;opacity:.6;}
+  .ws-tab th.ord.on .seta{opacity:1;}
   .ws-tab tbody tr{cursor:pointer;}
   .ws-tab tbody tr:hover{background:var(--bg2);}
   .ws-barra{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;min-width:64px;display:inline-block;width:64px;vertical-align:middle;}
@@ -249,7 +256,7 @@
     .tk-modal-grid{grid-template-columns:1fr;gap:0;}
     .tk-side-cm{border-left:none;padding-left:0;border-top:1px solid var(--border);padding-top:14px;margin-top:6px;position:static;}
   }
-  .tk-search-wrap{position:relative;max-width:260px;flex:0 1 260px;}
+  .tk-search-wrap{position:relative;width:250px;flex:0 0 250px;}
   .tk-search-wrap input{width:100%;padding-right:32px;}
   #tkSearchClear{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--text3);font-size:19px;line-height:1;cursor:pointer;padding:2px 6px;border-radius:5px;}
   #tkSearchClear:hover{color:var(--text);background:var(--bg3);}
@@ -2006,12 +2013,55 @@ function wsRenderLateral(){
 }
 
 // ---- visão TABELA ----
+let wsOrd={campo:'codigo',desc:false};
+const WS_COLS=[
+ {k:'titulo',  r:'Tarefa'},
+ {k:'area',    r:'Área'},
+ {k:'coluna',  r:'Status'},
+ {k:'prioridade', r:'Prioridade'},
+ {k:'progresso', r:'Progresso'},
+ {k:'prazo',   r:'Prazo'}
+];
+function wsOrdenar(campo){
+  if(wsOrd.campo===campo)wsOrd.desc=!wsOrd.desc;
+  else{wsOrd.campo=campo;wsOrd.desc=(campo==='prioridade'||campo==='progresso');}
+  wsRenderTabela();
+}
+function wsValor(t,campo){
+  const ck=t.checklist||[];
+  switch(campo){
+    case 'titulo': return String(t.titulo||'').toLowerCase();
+    case 'area': return String(tkArea(t.area).n||'').toLowerCase();
+    case 'coluna': {
+      const i=TK_COLS.findIndex(function(c){return c.id===tkResolveCol(t.coluna);});
+      return i<0?99:i;
+    }
+    case 'prioridade': {
+      const m={alta:3,media:2,'média':2,baixa:1};
+      return m[String(t.prioridade||'').toLowerCase()]||0;
+    }
+    case 'progresso': return ck.length?ck.filter(function(i){return i.done;}).length/ck.length:-1;
+    case 'prazo': return t.prazo||'9999-99-99';
+    default: return t.codigo||0;
+  }
+}
 function wsRenderTabela(){
   const el=document.getElementById('wsTabela');
-  const d=wsDaArea().slice().sort(function(a,b){return (a.codigo||0)-(b.codigo||0);});
+  const d=wsDaArea().slice().sort(function(a,b){
+    const va=wsValor(a,wsOrd.campo), vb=wsValor(b,wsOrd.campo);
+    let r=0;
+    if(typeof va==='number'&&typeof vb==='number')r=va-vb;
+    else r=String(va).localeCompare(String(vb),'pt-BR',{sensitivity:'base'});
+    if(r===0)r=(a.codigo||0)-(b.codigo||0);
+    return wsOrd.desc?-r:r;
+  });
   if(!d.length){el.innerHTML='<p style="color:var(--text3);font-size:13px;padding:20px 0;">Nada por aqui ainda.</p>';return;}
   el.innerHTML='<table class="ws-tab"><thead><tr>'+
-    '<th>Tarefa</th><th>Área</th><th>Status</th><th>Prioridade</th><th>Progresso</th><th>Prazo</th>'+
+    WS_COLS.map(function(c){
+      const on=wsOrd.campo===c.k;
+      return '<th class="ord'+(on?' on':'')+'" onclick="wsOrdenar(\''+c.k+'\')">'+c.r+
+             '<span class="seta">'+(on?(wsOrd.desc?'▾':'▴'):'⇅')+'</span></th>';
+    }).join('')+
     '</tr></thead><tbody>'+d.map(function(t){
       const a=tkArea(t.area), c=TK_COLS.find(function(x){return x.id===tkResolveCol(t.coluna);})||{n:'—',c:'#888'};
       const ck=t.checklist||[], feitos=ck.filter(function(i){return i.done;}).length;
