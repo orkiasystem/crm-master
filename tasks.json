@@ -3153,7 +3153,7 @@
       "depois": "todo",
       "coluna": {
         "id": "tarefas",
-        "n": "Tarefas",
+        "n": "Conteúdos",
         "c": "#14b8a6"
       }
     },
@@ -3571,9 +3571,15 @@
       "depois": "todo",
       "coluna": {
         "id": "tarefas",
-        "n": "Tarefas",
+        "n": "Conteúdos",
         "c": "#14b8a6"
       }
+    },
+    {
+      "id": "op-0218",
+      "type": "col_ren",
+      "col_id": "tarefas",
+      "nome": "Conteúdos"
     }
   ]
 }
