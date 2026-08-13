@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrkAI — protótipo por cliente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0f16; --bg2:#12161f; --bg3:#1a1f2b; --border:#252b39; --border2:#39415a;
+  --text:#e9edf5; --text2:#9aa3b8; --text3:#69718a;
+  --azul:#3d7eff; --verde:#22c55e; --roxo:#a855f7; --ambar:#f59e0b; --rosa:#ec4899; --teal:#14b8a6; --vermelho:#ef4444;
+  --r:9px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;height:100vh;display:flex;overflow:hidden;font-size:14px}
+button{font-family:inherit}
+
+/* AVISO DE TESTE */
+.faixa{position:fixed;top:0;left:0;right:0;height:30px;background:var(--ambar);color:#1a1200;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:600;z-index:100;letter-spacing:.2px}
+
+/* SIDEBAR */
+.side{width:260px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;padding-top:30px}
+.side-topo{padding:16px 16px 12px;border-bottom:1px solid var(--border)}
+.marca{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;letter-spacing:.3px}
+.marca span{color:var(--azul)}
+.marca small{display:block;font-family:'DM Sans';font-weight:500;font-size:10px;color:var(--text3);letter-spacing:1.6px;text-transform:uppercase;margin-top:2px}
+.side-rolagem{flex:1;overflow-y:auto;padding:10px 8px}
+.sec{font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);padding:12px 10px 6px;font-weight:600}
+.item{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:7px;cursor:pointer;color:var(--text2);transition:.12s;font-size:13.5px}
+.item:hover{background:var(--bg3);color:var(--text)}
+.item.on{background:var(--bg3);color:var(--text);font-weight:600}
+.item .cnt{margin-left:auto;font-size:11px;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.bolinha{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.seta{width:14px;text-align:center;color:var(--text3);font-size:10px;transition:transform .15s;flex-shrink:0}
+.seta.aberta{transform:rotate(90deg)}
+.filhos{display:none;margin-left:14px;border-left:1px solid var(--border);padding-left:6px}
+.filhos.aberta{display:block}
+.filho{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:6px;cursor:pointer;color:var(--text3);font-size:12.5px;transition:.12s}
+.filho:hover{background:var(--bg3);color:var(--text2)}
+.filho .pt{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.6}
+
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;min-width:0;padding-top:30px}
+.cab{padding:22px 30px 0}
+.trilha{font-size:11.5px;color:var(--text3);margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+.titulo{font-family:'Syne',sans-serif;font-size:27px;font-weight:700;display:flex;align-items:center;gap:12px}
+.desc-pg{color:var(--text2);font-size:13.5px;margin-top:6px}
+.visoes{display:flex;gap:2px;margin-top:18px;border-bottom:1px solid var(--border)}
+.visao{padding:8px 14px;font-size:13px;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:.12s}
+.visao:hover{color:var(--text2)}
+.visao.on{color:var(--text);border-bottom-color:var(--azul);font-weight:600}
+.conteudo{flex:1;overflow:auto;padding:20px 30px 40px}
+
+/* TABELA */
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--text3);font-weight:600;padding:0 12px 10px;border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+tbody tr{cursor:pointer;transition:.1s}
+tbody tr:hover{background:var(--bg2)}
+.cel-nome{font-weight:500;display:flex;align-items:center;gap:9px}
+.cod{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--text3)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.pri{font-size:11px;font-weight:600;letter-spacing:.3px}
+.barra{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;min-width:70px}
+.barra i{display:block;height:100%;border-radius:3px}
+.mono{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--text2)}
+
+/* QUADRO */
+.quadro{display:flex;gap:14px;align-items:flex-start;overflow-x:auto;padding-bottom:10px}
+.col{background:var(--bg2);border:1px solid var(--border);border-radius:12px;width:250px;flex-shrink:0}
+.col-cab{display:flex;align-items:center;gap:8px;padding:12px 13px;border-bottom:1px solid var(--border);font-size:12px;letter-spacing:.6px;text-transform:uppercase;font-weight:600}
+.col-cab .cnt{margin-left:auto;background:var(--bg3);color:var(--text3);font-size:10.5px;padding:2px 7px;border-radius:9px;font-family:'JetBrains Mono',monospace}
+.col-corpo{padding:9px;display:flex;flex-direction:column;gap:8px}
+.mini{background:var(--bg3);border:1px solid var(--border);border-radius:9px;padding:10px 11px;cursor:pointer;transition:.12s}
+.mini:hover{border-color:var(--border2)}
+.mini h4{font-size:13px;font-weight:500;line-height:1.35;margin-bottom:7px}
+.mini-meta{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+
+/* PAINEL DO CLIENTE */
+.cards-cli{display:grid;grid-template-columns:repeat(auto-fill,minmax(215px,1fr));gap:14px;margin-bottom:26px}
+.kpi{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.kpi .n{font-family:'Syne',sans-serif;font-size:30px;font-weight:700;line-height:1}
+.kpi .l{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text3);margin-top:7px}
+
+/* DETALHE */
+.det{position:fixed;top:30px;right:0;bottom:0;width:min(560px,92vw);background:var(--bg2);border-left:1px solid var(--border2);transform:translateX(100%);transition:transform .22s cubic-bezier(.4,0,.2,1);z-index:60;display:flex;flex-direction:column;box-shadow:-20px 0 50px rgba(0,0,0,.4)}
+.det.on{transform:translateX(0)}
+.det-cab{padding:18px 24px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px}
+.det-cab h2{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;line-height:1.3;flex:1}
+.fechar{background:none;border:none;color:var(--text3);font-size:22px;cursor:pointer;line-height:1;padding:0 4px}
+.fechar:hover{color:var(--text)}
+.det-corpo{flex:1;overflow-y:auto;padding:20px 24px}
+.props{display:flex;flex-direction:column;gap:11px;margin-bottom:22px}
+.prop{display:flex;gap:14px;align-items:center;font-size:13px}
+.prop b{width:96px;color:var(--text3);font-weight:500;font-size:12px;flex-shrink:0}
+.det h3{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);margin:22px 0 10px}
+.ck{display:flex;align-items:center;gap:10px;padding:8px 11px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;margin-bottom:6px;font-size:13px}
+.ck.feito span{text-decoration:line-through;color:var(--text3)}
+.quadrado{width:15px;height:15px;border:1.5px solid var(--border2);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px}
+.quadrado.on{background:var(--verde);border-color:var(--verde);color:#062b12}
+.veu{position:fixed;inset:30px 0 0;background:rgba(6,9,14,.55);opacity:0;pointer-events:none;transition:.2s;z-index:55}
+.veu.on{opacity:1;pointer-events:auto}
+
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+@media(max-width:820px){
+  .side{position:fixed;left:0;top:0;bottom:0;z-index:70;transform:translateX(-100%);transition:.2s}
+  .side.on{transform:translateX(0)}
+  .cab,.conteudo{padding-left:16px;padding-right:16px}
+  .abre-menu{display:block!important}
+}
+.abre-menu{display:none;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:7px;padding:6px 11px;font-size:13px;cursor:pointer;margin-bottom:12px}
+</style>
+</head>
+<body>
+
+<div class="faixa">PROTÓTIPO — dados de exemplo. Nada aqui afeta o seu painel real.</div>
+
+<aside class="side" id="side">
+  <div class="side-topo">
+    <div class="marca">Ork<span>AI</span><small>Workspace</small></div>
+  </div>
+  <div class="side-rolagem" id="menu"></div>
+</aside>
+
+<main class="main">
+  <div class="cab">
+    <button class="abre-menu" onclick="document.getElementById('side').classList.toggle('on')">☰ Menu</button>
+    <div class="trilha" id="trilha"></div>
+    <div class="titulo" id="titulo"></div>
+    <div class="desc-pg" id="descPg"></div>
+    <div class="visoes" id="visoes"></div>
+  </div>
+  <div class="conteudo" id="conteudo"></div>
+</main>
+
+<div class="veu" id="veu" onclick="fecharDet()"></div>
+<div class="det" id="det">
+  <div class="det-cab">
+    <h2 id="detTitulo"></h2>
+    <button class="fechar" onclick="fecharDet()">×</button>
+  </div>
+  <div class="det-corpo" id="detCorpo"></div>
+</div>
+
+<script>
+const CLIENTES=[
+  {id:'icasas',  n:'iCasas Construtora', cor:'var(--azul)',  desc:'Marketing e vendas · terreno e construção'},
+  {id:'auto',    n:'iCasas Automação',   cor:'var(--teal)',  desc:'Sistemas e infraestrutura'},
+  {id:'jumka',   n:'Jumka Móveis',       cor:'var(--rosa)',  desc:'Móveis sob medida e reforma'},
+  {id:'orkai',   n:'OrkAI Systems',      cor:'var(--verde)', desc:'A própria casa'},
+  {id:'trafego', n:'Tráfego',            cor:'var(--roxo)',  desc:'Campanhas e públicos'},
+];
+const COLUNAS=[
+  {id:'ideias',   n:'Ideias',       cor:'var(--teal)'},
+  {id:'todo',     n:'A fazer',      cor:'var(--ambar)'},
+  {id:'conteudo', n:'Conteúdos',    cor:'var(--roxo)'},
+  {id:'doing',    n:'Em andamento', cor:'var(--azul)'},
+  {id:'wait',     n:'Aguardando',   cor:'var(--rosa)'},
+  {id:'done',     n:'Concluído',    cor:'var(--verde)'},
+];
+const T=[
+  {c:'icasas',cod:1,t:'Fotografar empreendimento entregue',col:'todo',p:'alta',prazo:'',ck:[1,10],proj:'Captação'},
+  {c:'icasas',cod:12,t:'Totens fachada iCasas Inteligentes',col:'todo',p:'média',prazo:'',ck:[0,4],proj:'Artes'},
+  {c:'icasas',cod:23,t:'Placa loteamento Jatobás',col:'wait',p:'média',prazo:'',ck:[0,5],proj:'Artes'},
+  {c:'icasas',cod:31,t:'Roteiros Grandena — gravação em campo',col:'done',p:'alta',prazo:'',ck:[7,7],proj:'Grandena'},
+  {c:'icasas',cod:40,t:'Copys terreno e construção',col:'doing',p:'alta',prazo:'',ck:[3,21],proj:'Copys'},
+  {c:'icasas',cod:41,t:'Vídeo P1 · O aluguel é seu amigo',col:'conteudo',p:'alta',prazo:'',ck:[0,0],proj:'Copys'},
+  {c:'icasas',cod:45,t:'Vídeo R1 · Pizza de rodízio',col:'conteudo',p:'alta',prazo:'',ck:[0,0],proj:'Copys'},
+  {c:'icasas',cod:47,t:'Vídeo O1 · Entrega da chave',col:'conteudo',p:'alta',prazo:'',ck:[0,0],proj:'Copys'},
+  {c:'icasas',cod:8,t:'Ideia: promoção garagem concretada',col:'ideias',p:'baixa',prazo:'',ck:[0,0],proj:'Ideias'},
+  {c:'icasas',cod:34,t:'Ideia: ação público invisível (case Cury)',col:'ideias',p:'média',prazo:'',ck:[0,0],proj:'Ideias'},
+  {c:'auto',cod:24,t:'Revisar senhas fixas nos sistemas',col:'todo',p:'alta',prazo:'',ck:[0,6],proj:'Segurança'},
+  {c:'auto',cod:16,t:'CRM iCasas',col:'done',p:'baixa',prazo:'',ck:[0,1],proj:'Acessos'},
+  {c:'auto',cod:18,t:'Vitrine dos Sonhos',col:'done',p:'baixa',prazo:'',ck:[0,1],proj:'Acessos'},
+  {c:'jumka',cod:7,t:'Loja Jumka na Shopee',col:'wait',p:'alta',prazo:'',ck:[1,8],proj:'Marketplace'},
+  {c:'jumka',cod:38,t:'Campanhas Jumka — reforma, reconhecimento e oferta',col:'todo',p:'alta',prazo:'',ck:[0,7],proj:'Campanhas'},
+  {c:'jumka',cod:39,t:'Post mesa posta e bistrô',col:'doing',p:'alta',prazo:'',ck:[2,6],proj:'Conteúdo'},
+  {c:'jumka',cod:62,t:'Parcelamento 18x',col:'todo',p:'média',prazo:'',ck:[0,6],proj:'Conteúdo'},
+  {c:'orkai',cod:2,t:'Abrir CNPJ da OrkAI',col:'todo',p:'alta',prazo:'31/08',ck:[0,4],proj:'Empresa'},
+  {c:'orkai',cod:3,t:'Comprar domínio OrkAI',col:'todo',p:'média',prazo:'',ck:[0,3],proj:'Empresa'},
+  {c:'orkai',cod:25,t:'Migrar Supabases para uma conta só',col:'todo',p:'baixa',prazo:'',ck:[0,7],proj:'Infra'},
+  {c:'trafego',cod:32,t:'Refazer públicos da Meta do zero',col:'doing',p:'alta',prazo:'',ck:[3,11],proj:'Públicos'},
+  {c:'trafego',cod:28,t:'Anúncios Residencial Grandena',col:'done',p:'alta',prazo:'',ck:[7,7],proj:'Campanhas'},
+];
+const CORP={'alta':'var(--vermelho)','média':'var(--ambar)','baixa':'var(--verde)'};
+
+let atual='todos', visao='tabela', abertos={};
+
+function cli(id){return CLIENTES.find(c=>c.id===id)||{n:'—',cor:'var(--text3)'}}
+function col(id){return COLUNAS.find(c=>c.id===id)||{n:id,cor:'var(--text3)'}}
+function daPagina(){return atual==='todos'?T:T.filter(x=>x.c===atual)}
+function pct(k){return k[1]?Math.round(k[0]/k[1]*100):0}
+
+function menu(){
+  const m=document.getElementById('menu');
+  let h='<div class="sec">Visão geral</div>';
+  h+=`<div class="item ${atual==='todos'?'on':''}" onclick="ir('todos')">▦ Tudo<span class="cnt">${T.length}</span></div>`;
+  h+='<div class="sec">Clientes</div>';
+  CLIENTES.forEach(c=>{
+    const meus=T.filter(x=>x.c===c.id);
+    const projs=[...new Set(meus.map(x=>x.proj))];
+    h+=`<div class="item ${atual===c.id?'on':''}" onclick="ir('${c.id}')">
+      <span class="seta ${abertos[c.id]?'aberta':''}" onclick="event.stopPropagation();dobra('${c.id}')">▸</span>
+      <span class="bolinha" style="background:${c.cor}"></span>${c.n}<span class="cnt">${meus.length}</span></div>
+      <div class="filhos ${abertos[c.id]?'aberta':''}">${projs.map(p=>`<div class="filho" onclick="ir('${c.id}')"><span class="pt"></span>${p}</div>`).join('')}</div>`;
+  });
+  m.innerHTML=h;
+}
+function dobra(id){abertos[id]=!abertos[id];menu();}
+function ir(id){atual=id;menu();render();}
+function setVisao(v){visao=v;render();}
+
+function render(){
+  const c=atual==='todos'?null:cli(atual);
+  document.getElementById('trilha').textContent=c?('Workspace / Clientes / '+c.n):'Workspace';
+  document.getElementById('titulo').innerHTML=c?`<span class="bolinha" style="background:${c.cor};width:11px;height:11px"></span>${c.n}`:'Tudo';
+  document.getElementById('descPg').textContent=c?c.desc:'Todas as tarefas de todos os clientes, num lugar só.';
+  const vs=[['tabela','Tabela'],['quadro','Quadro'],['painel','Painel']];
+  document.getElementById('visoes').innerHTML=vs.map(v=>`<div class="visao ${visao===v[0]?'on':''}" onclick="setVisao('${v[0]}')">${v[1]}</div>`).join('');
+  const alvo=document.getElementById('conteudo');
+  if(visao==='tabela')alvo.innerHTML=tabela();
+  else if(visao==='quadro')alvo.innerHTML=quadro();
+  else alvo.innerHTML=painel();
+}
+
+function tabela(){
+  const d=daPagina();
+  return `<table><thead><tr>
+    <th>Tarefa</th>${atual==='todos'?'<th>Cliente</th>':'<th>Projeto</th>'}<th>Status</th><th>Prioridade</th><th>Progresso</th><th>Prazo</th>
+  </tr></thead><tbody>${d.map(x=>{
+    const cl=cli(x.c),co=col(x.col),p=pct(x.ck);
+    return `<tr onclick="abrir(${x.cod})">
+      <td><div class="cel-nome"><span class="cod">#${String(x.cod).padStart(6,'0')}</span> ${x.t}</div></td>
+      <td>${atual==='todos'
+        ? `<span class="tag" style="background:${cl.cor}1f;color:${cl.cor}"><span class="bolinha" style="background:${cl.cor}"></span>${cl.n}</span>`
+        : `<span class="mono">${x.proj}</span>`}</td>
+      <td><span class="tag" style="background:${co.cor}1f;color:${co.cor}">${co.n}</span></td>
+      <td><span class="pri" style="color:${CORP[x.p]}">${x.p}</span></td>
+      <td>${x.ck[1]?`<div class="barra"><i style="width:${p}%;background:${p===100?'var(--verde)':'var(--azul)'}"></i></div><span class="mono">${x.ck[0]}/${x.ck[1]}</span>`:'<span class="mono">—</span>'}</td>
+      <td><span class="mono">${x.prazo||'—'}</span></td>
+    </tr>`;}).join('')}</tbody></table>`;
+}
+
+function quadro(){
+  const d=daPagina();
+  return `<div class="quadro">${COLUNAS.map(c=>{
+    const l=d.filter(x=>x.col===c.id);
+    return `<div class="col">
+      <div class="col-cab"><span class="bolinha" style="background:${c.cor}"></span>${c.n}<span class="cnt">${l.length}</span></div>
+      <div class="col-corpo">${l.map(x=>{
+        const cl=cli(x.c),p=pct(x.ck);
+        return `<div class="mini" onclick="abrir(${x.cod})">
+          <h4>${x.t}</h4>
+          <div class="mini-meta">
+            ${atual==='todos'?`<span class="tag" style="background:${cl.cor}1f;color:${cl.cor};font-size:10.5px">${cl.n}</span>`:''}
+            <span class="cod">#${String(x.cod).padStart(6,'0')}</span>
+          </div>
+          ${x.ck[1]?`<div class="barra" style="margin-top:8px"><i style="width:${p}%;background:${p===100?'var(--verde)':'var(--azul)'}"></i></div>`:''}
+        </div>`;}).join('')}</div></div>`;}).join('')}</div>`;
+}
+
+function painel(){
+  const d=daPagina();
+  const feitos=d.filter(x=>x.col==='done').length;
+  const andamento=d.filter(x=>x.col==='doing').length;
+  const itens=d.reduce((a,x)=>a+x.ck[1],0), ok=d.reduce((a,x)=>a+x.ck[0],0);
+  let h=`<div class="cards-cli">
+    <div class="kpi"><div class="n">${d.length}</div><div class="l">Tarefas</div></div>
+    <div class="kpi"><div class="n" style="color:var(--azul)">${andamento}</div><div class="l">Em andamento</div></div>
+    <div class="kpi"><div class="n" style="color:var(--verde)">${feitos}</div><div class="l">Concluídas</div></div>
+    <div class="kpi"><div class="n">${itens?Math.round(ok/itens*100):0}%</div><div class="l">Checklists</div></div>
+  </div>`;
+  if(atual==='todos'){
+    h+='<h3 style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);margin:0 0 12px">Por cliente</h3><div class="cards-cli">';
+    CLIENTES.forEach(c=>{
+      const meus=T.filter(x=>x.c===c.id), f=meus.filter(x=>x.col==='done').length;
+      h+=`<div class="kpi" style="cursor:pointer" onclick="ir('${c.id}')">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px"><span class="bolinha" style="background:${c.cor}"></span><b style="font-size:13.5px">${c.n}</b></div>
+        <div class="barra"><i style="width:${meus.length?Math.round(f/meus.length*100):0}%;background:${c.cor}"></i></div>
+        <div class="l" style="margin-top:8px">${f} de ${meus.length} concluídas</div>
+      </div>`;
+    });
+    h+='</div>';
+  }else{
+    const projs=[...new Set(d.map(x=>x.proj))];
+    h+='<h3 style="font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);margin:0 0 12px">Projetos</h3><div class="cards-cli">';
+    projs.forEach(p=>{
+      const meus=d.filter(x=>x.proj===p), f=meus.filter(x=>x.col==='done').length;
+      h+=`<div class="kpi"><b style="font-size:13.5px">${p}</b>
+        <div class="barra" style="margin-top:12px"><i style="width:${meus.length?Math.round(f/meus.length*100):0}%;background:var(--azul)"></i></div>
+        <div class="l" style="margin-top:8px">${f} de ${meus.length} concluídas</div></div>`;
+    });
+    h+='</div>';
+  }
+  return h;
+}
+
+function abrir(cod){
+  const x=T.find(t=>t.cod===cod); if(!x)return;
+  const cl=cli(x.c),co=col(x.col),p=pct(x.ck);
+  document.getElementById('detTitulo').textContent=x.t;
+  let ck='';
+  if(x.ck[1]){
+    ck='<h3>Checklist</h3>';
+    for(let i=0;i<x.ck[1];i++){
+      const f=i<x.ck[0];
+      ck+=`<div class="ck ${f?'feito':''}"><span class="quadrado ${f?'on':''}">${f?'✓':''}</span><span>Item ${i+1} do checklist</span></div>`;
+    }
+  }
+  document.getElementById('detCorpo').innerHTML=`
+    <div class="props">
+      <div class="prop"><b>Código</b><span class="cod">#${String(x.cod).padStart(6,'0')}</span></div>
+      <div class="prop"><b>Cliente</b><span class="tag" style="background:${cl.cor}1f;color:${cl.cor}"><span class="bolinha" style="background:${cl.cor}"></span>${cl.n}</span></div>
+      <div class="prop"><b>Projeto</b><span class="mono">${x.proj}</span></div>
+      <div class="prop"><b>Status</b><span class="tag" style="background:${co.cor}1f;color:${co.cor}">${co.n}</span></div>
+      <div class="prop"><b>Prioridade</b><span class="pri" style="color:${CORP[x.p]}">${x.p}</span></div>
+      <div class="prop"><b>Prazo</b><span class="mono">${x.prazo||'—'}</span></div>
+      ${x.ck[1]?`<div class="prop"><b>Progresso</b><div class="barra" style="flex:1"><i style="width:${p}%;background:${p===100?'var(--verde)':'var(--azul)'}"></i></div><span class="mono">${p}%</span></div>`:''}
+    </div>
+    <h3>Descrição</h3>
+    <p style="font-size:13.5px;line-height:1.6;color:var(--text2)">Neste protótipo a descrição é ilustrativa. No sistema real, é aqui que ficam as copys, roteiros, anexos e comentários — exatamente como já funciona hoje.</p>
+    ${ck}`;
+  document.getElementById('det').classList.add('on');
+  document.getElementById('veu').classList.add('on');
+}
+function fecharDet(){
+  document.getElementById('det').classList.remove('on');
+  document.getElementById('veu').classList.remove('on');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharDet()});
+
+menu();render();
+</script>
+</body>
+</html>
