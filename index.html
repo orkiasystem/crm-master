@@ -1913,12 +1913,20 @@ let tkFiltroArea='';
 function tkRenderFiltros(){
   const el=document.getElementById('tkFiltros');
   if(!el)return;
+  // não conta o que está em Concluído nem em Utilitários
+  const foraDaConta=function(t){
+    const c=tkResolveCol(t.coluna);
+    if(c==='done')return true;
+    const col=TK_COLS.find(function(x){return x.id===c;});
+    return !!(col&&tkSlug(col.n)==='utilitarios');
+  };
+  const contaveis=tkTasks.filter(function(t){return !foraDaConta(t);});
   const cont={};
-  tkTasks.forEach(function(t){
+  contaveis.forEach(function(t){
     const a=tkArea(t.area);
     cont[a.id]=(cont[a.id]||0)+1;
   });
-  let html='<button class="tk-chip'+(tkFiltroArea?'':' on')+'" onclick="tkSetFiltro(\'\')">Todas <span>'+tkTasks.length+'</span></button>';
+  let html='<button class="tk-chip'+(tkFiltroArea?'':' on')+'" onclick="tkSetFiltro(\'\')">Todas <span>'+contaveis.length+'</span></button>';
   TK_AREAS.slice().sort(function(x,y){
     return String(x.n||'').localeCompare(String(y.n||''),'pt-BR',{sensitivity:'base'});
   }).forEach(function(a){
