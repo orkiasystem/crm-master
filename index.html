@@ -157,10 +157,12 @@
   .tk-ax-thumb{width:46px;height:46px;object-fit:cover;border-radius:6px;display:block;background:var(--bg);border:1px solid var(--border);flex-shrink:0;transition:.15s;}
   .tk-ax-thumb:hover{border-color:var(--accent);}
   .tk-ax-ico{width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--bg);border:1px solid var(--border);border-radius:6px;font-size:18px;flex-shrink:0;}
-  .tk-ax-del{background:none;border:1px solid var(--border);color:var(--text3);border-radius:6px;padding:4px 10px;font-family:inherit;font-size:11.5px;cursor:pointer;transition:.15s;flex-shrink:0;flex-grow:0;margin-left:auto;}
+  .tk-ax-del{background:none;border:1px solid var(--border);color:var(--text3);border-radius:6px;padding:4px 10px;font-family:inherit;font-size:11.5px;cursor:pointer;transition:.15s;flex-shrink:0;}
   .tk-ax-del:hover{border-color:var(--red);color:var(--red);background:rgba(239,68,68,.1);}
-  .tk-ax-item label.tk-ax-cover{font-size:11px;color:var(--text3);display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap;flex-shrink:0;flex-grow:0;margin:0;width:auto;}
-  .tk-ax-item label.tk-ax-cover input{accent-color:var(--accent);cursor:pointer;margin:0;flex-shrink:0;}
+  .tk-ax-acoes{display:flex;align-items:center;gap:12px;margin-left:auto;flex-shrink:0;}
+  .tk-ax-item .tk-ax-cover{font-size:11px;color:var(--text3);display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap;flex-shrink:0;margin:0;width:auto;user-select:none;}
+  .tk-ax-item .tk-ax-cover:hover{color:var(--text2);}
+  .tk-ax-item .tk-ax-cover input{accent-color:var(--accent);cursor:pointer;margin:0;flex-shrink:0;width:15px;height:15px;}
   .tk-card.filedrop{outline:2px dashed var(--accent);outline-offset:-3px;}
   .tk-card.insertpos{box-shadow:0 -3px 0 0 var(--accent);}
   .tk-cm-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:9px 12px;margin-bottom:7px;}
@@ -1622,12 +1624,24 @@ function tkRenderAx(){
     const ehImg=tkIsImg(a)&&tkUrlDe(a);
     d.innerHTML=`${ehImg?`<img class="tk-ax-thumb" src="${tkUrlDe(a)}" loading="lazy" alt="">`:'<span class="tk-ax-ico">📄</span>'}
       <a href="${tkUrlDe(a)}" ${ehImg?'':'target="_blank"'} title="${tkEsc(a.name)}">${tkEsc(a.name)}</a>
-      ${tkIsImg(a)?`<label class="tk-ax-cover"><input type="checkbox" ${a.cover?'checked':''}> capa</label>`:''}
-      <button class="tk-ax-del" title="Remover anexo">Remover</button>`;
+      <div class="tk-ax-acoes">
+        ${tkIsImg(a)?`<span class="tk-ax-cover"><input type="checkbox" ${a.cover?'checked':''}><span>capa</span></span>`:''}
+        <button class="tk-ax-del" title="Remover anexo">Remover</button>
+      </div>`;
     if(ehImg){
       const abrir=function(e){e.preventDefault();tkAbrirImg(tkUrlDe(a),a.name);};
       d.querySelector('.tk-ax-thumb').addEventListener('click',abrir);
       d.querySelector('a').addEventListener('click',abrir);
+    }
+    const wrapCover=d.querySelector('.tk-ax-cover');
+    if(wrapCover){
+      wrapCover.addEventListener('click',function(e){
+        if(e.target.tagName!=='INPUT'){
+          const i=wrapCover.querySelector('input');
+          i.checked=!i.checked;
+          i.dispatchEvent(new Event('change'));
+        }
+      });
     }
     const cb=d.querySelector('.tk-ax-cover input');
     if(cb)cb.addEventListener('change',e=>{
