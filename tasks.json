@@ -3580,6 +3580,41 @@
       "type": "col_ren",
       "col_id": "tarefas",
       "nome": "Conteúdos"
+    },
+    {
+      "id": "op-0219",
+      "type": "add",
+      "task": {
+        "id": "t-jumka-18x",
+        "codigo": 62,
+        "titulo": "PARCELAMENTO 18X — JUMKA",
+        "coluna": "todo",
+        "area": "Jumka",
+        "prioridade": "media",
+        "descricao": "Divulgar o **parcelamento em até 18x** dos móveis da Jumka.\n\n**Ressalva obrigatória:** *Sujeito a análise de crédito.*\nTrocamos \"perante análise do banco\" por esse termo — é o padrão do mercado, mais curto e evita problema com o Procon. Precisa aparecer em **toda peça** que citar o parcelamento, mesmo em corpo menor.\n\n---\n\n**COPY · DIRETA**\n> **Seu móvel novo em até 18x**\n> Você escolhe, a gente parcela. Sujeito a análise de crédito.\n> **CTA:** Chama no direct que a gente simula\n\n**COPY · QUEBRANDO A OBJEÇÃO**\n> **Móvel bom não precisa ser à vista**\n> Até 18 vezes pra montar a casa do jeito que você quer, sem esperar juntar tudo.\n> Sujeito a análise de crédito.\n\n**COPY · COM O CÁLCULO NA CABEÇA DO CLIENTE**\n> **18x cabe no seu mês**\n> Aquele conjunto que você adiou o ano todo divide em até 18 vezes.\n> Fala com a gente que a análise sai na hora.\n\n**COPY · CURTA PRA STORY**\n> **Parcelamos em 18x.**\n> Vem escolher o seu.\n\n---\n\n**ROTEIRO DE VÍDEO** — 15s\n\n- 1. \"Você tá adiando esse móvel há quanto tempo?\"\n- 2. \"Aqui a gente parcela em até 18 vezes.\"\n- 3. \"A análise é na hora e você já sai sabendo.\"\n- 4. **Fecho:** \"Manda a foto do que você quer no direct que eu já simulo pra você.\"\n\n---\n\n**ONDE USAR**\n- Selo fixo nas artes de produto — o parcelamento vira argumento em toda peça, não campanha isolada\n- Story de resposta rápida quando alguém pergunta preço\n- Vídeo curto no feed, uma vez por mês\n\n*Combina bem com a mesa de madeira, que é o produto que mais gera interesse — preço alto é onde o parcelamento pesa mais.*",
+        "checklist": [
+          {
+            "t": "Confirmar a regra com o Jean: bandeiras, valor mínimo e juros",
+            "done": false
+          },
+          {
+            "t": "Criar o selo de 18x pras artes de produto",
+            "done": false
+          },
+          {
+            "t": "Produzir a arte principal",
+            "done": false
+          },
+          {
+            "t": "Gravar o vídeo de 15s",
+            "done": false
+          },
+          {
+            "t": "Publicar",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
