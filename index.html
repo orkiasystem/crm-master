@@ -1770,6 +1770,15 @@ async function tkSyncOps(){
     try{
       if(op.type==='remove'&&op.task_id){
         await db.from('tasks').delete().eq('id',op.task_id);
+      }else if(op.type==='col_ren'&&op.col_id){
+        const {data:cfg}=await db.from('task_config').select('colunas').eq('id',1).maybeSingle();
+        let cols=(cfg&&cfg.colunas)||TK_COLS.slice();
+        let achou=false;
+        cols=cols.map(function(c){
+          if(c.id===op.col_id){achou=true;return Object.assign({},c,{n:op.nome});}
+          return c;
+        });
+        if(achou){await db.from('task_config').upsert({id:1,colunas:cols});TK_COLS=cols;}
       }else if(op.type==='col_add'&&op.coluna){
         const {data:cfg}=await db.from('task_config').select('colunas').eq('id',1).maybeSingle();
         let cols=(cfg&&cfg.colunas)||TK_COLS.slice();
