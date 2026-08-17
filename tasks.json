@@ -333,6 +333,60 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0222",
+      "type": "update",
+      "task": {
+        "id": "t-crm-construtora",
+        "descricao": "CRM para a **iCasas Construtora**, construído **em cima do CRM que já roda** — hoje atendendo a iCasas Automação — com visão consolidada das duas empresas para usuários específicos.\n\n**Base:** https://mkticasas.github.io/crm-icasas/\n\n---\n\n**POR QUE APROVEITAR O QUE EXISTE**\n\nO CRM atual já tem pronto: dashboard, pipeline com arraste, relatórios com exportação em PDF, vendedores com meta e permissão, etiquetas, temperatura de lead, lembretes, modo TV, anexos e — o mais valioso — **integrações por webhook** com Zapier e Meta Lead Ads, com distribuição round-robin.\n\nComeçar do zero jogaria fora justamente a parte mais trabalhosa.\n\n**E a visão dupla já tem meio caminho andado:** o cadastro de vendedor tem a permissão *\"Ver todos os leads\"*. A visão do Cris é o mesmo padrão um nível acima — permissão **\"Ver todas as empresas\"**.\n\n---\n\n**O QUE FAZER**\n\n- 1. Coluna `empresa` em leads, vendedores, etiquetas e webhooks, com padrão em 'automacao' e as linhas existentes preenchidas\n- 2. Nova permissão `ver_todas_empresas` no cadastro de vendedor — marcada só pro Cris\n- 3. **Reescrever a RLS:** vendedor vê a própria empresa; com a permissão, vê as duas\n- 4. Seletor de empresa no topo, visível só pra quem tem a permissão\n- 5. **Um webhook por empresa** — o lead já entra marcado, sem trabalho manual\n- 6. Dashboard e relatórios com filtro por empresa, e soma das duas pro Cris\n\n*Adicionar a coluna não restringe nada até a política RLS mudar. Se hoje a regra é \"usuário autenticado vê tudo\", ela continua deixando todos verem as duas empresas.*\n\n---\n\n**⚠️ RESOLVER ANTES DE DUPLICAR: SENHA DOS VENDEDORES**\n\nO cadastro de vendedor tem campos próprios de **Login e Senha**, ou seja, credencial guardada na tabela em vez de autenticação de verdade.\n\n**Como conferir:** Supabase → Table Editor → tabela de vendedores → coluna de senha.\n- Se a senha é **legível** → texto puro. Quem acessa o banco entra na conta de qualquer vendedor\n- Se aparece algo como `$2a$10$N9qo8uLO...` → é hash, está certo\n\n**Se for texto puro:** migrar pra **Supabase Auth**, que já faz hash e recuperação de senha. Não programar hash na mão.\n\n*Fazer isso antes de estender pra Construtora — senão o problema é replicado em dois sistemas.* Ver card de revisão de senhas fixas.\n\n---\n\n**ORDEM DE EXECUÇÃO**\n- 1. Backup do banco — é sistema em produção com dados reais\n- 2. Conferir e corrigir a questão das senhas\n- 3. Coluna `empresa` e preenchimento das linhas atuais\n- 4. Permissão e políticas RLS\n- 5. **Testar logando como vendedor comum e tentando ler a outra empresa**\n- 6. Seletor de empresa e webhooks por empresa\n- 7. Dashboard consolidado por último\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Quais usuários além do Cris terão a visão dupla?\n- As senhas dos vendedores estão em texto puro ou com hash?",
+        "checklist": [
+          {
+            "t": "Backup do banco antes de mexer",
+            "done": false
+          },
+          {
+            "t": "Conferir se a senha dos vendedores está com hash",
+            "done": false
+          },
+          {
+            "t": "Migrar login pra Supabase Auth se for texto puro",
+            "done": false
+          },
+          {
+            "t": "Definir quem terá visão dupla além do Cris",
+            "done": false
+          },
+          {
+            "t": "Coluna empresa nas tabelas + preencher linhas atuais",
+            "done": false
+          },
+          {
+            "t": "Permissão ver_todas_empresas no cadastro de vendedor",
+            "done": false
+          },
+          {
+            "t": "Reescrever as políticas RLS",
+            "done": false
+          },
+          {
+            "t": "Testar com vendedor comum tentando ler a outra empresa",
+            "done": false
+          },
+          {
+            "t": "Seletor de empresa no topo",
+            "done": false
+          },
+          {
+            "t": "Webhook separado por empresa",
+            "done": false
+          },
+          {
+            "t": "Dashboard consolidado das duas",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
