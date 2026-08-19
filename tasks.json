@@ -387,6 +387,53 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0223",
+      "type": "add",
+      "task": {
+        "id": "t-placa-sonia",
+        "codigo": 64,
+        "titulo": "PLACA DE OBRA — SÔNIA CARDOZO",
+        "coluna": "doing",
+        "area": "Pessoal",
+        "prioridade": "alta",
+        "descricao": "Freela pra **Sônia Cardozo** (arquiteta). Combinado por WhatsApp entre 17 e 19/08.\n\n**Valor combinado: R$ 35** pela arte simples.\n\n---\n\n**DADOS DA PLACA**\n- Nome: **Sonia Cardozo de Carvalho**\n- Registro: **CAU nº A300996-3**\n- Site: **soniacardozo.com**\n- Medida: **1,20 × 0,90 m** (horizontal — sugestão sua, ela aceitou)\n- QR Code do site na peça — decidido no lugar do Instagram, pra manter a arte clean\n- Referência de estilo e logo: ela mandou por imagem no WhatsApp\n\n---\n\n**STATUS**\n- Três versões de foto já enviadas pra ela escolher: **sketch/render misturado**, **render** e **foto real**\n- Ela ficou de mandar uma **logo diferente**, mais chamativa\n- Você ficou de **gerar o QR Code** e de **trabalhar as cores do site dela** na arte, pra quebrar um pouco o clean\n\n---\n\n**PENDÊNCIAS**\n- Receber a logo nova que ela vai mandar\n- Gerar e aplicar o QR Code de soniacardozo.com\n- Aplicar a paleta do site dela\n- Confirmar qual das três versões de foto ela escolheu\n- Montar a simulação da placa no terreno (ela mandou foto do local)\n- Enviar pra aprovação e cobrar os R$ 35\n\n---\n\n**OPORTUNIDADE ABERTA**\nVocê ofereceu **vídeo pra divulgar o trabalho dela** e ela respondeu por áudio — pelo que veio depois (\"bora bora\", \"pai tá open\"), o interesse existe. Vale retomar essa conversa depois de entregar a placa: cliente satisfeito com entrega pequena é a melhor hora de propor a maior.\n\n*Arquiteta com CAU, site próprio e obra em andamento é perfil de conteúdo recorrente, não de trabalho avulso.*",
+        "checklist": [
+          {
+            "t": "Receber a logo nova dela",
+            "done": false
+          },
+          {
+            "t": "Confirmar qual das 3 versões de foto ela escolheu",
+            "done": false
+          },
+          {
+            "t": "Gerar o QR Code de soniacardozo.com",
+            "done": false
+          },
+          {
+            "t": "Aplicar as cores do site dela",
+            "done": false
+          },
+          {
+            "t": "Montar a simulação da placa no terreno",
+            "done": false
+          },
+          {
+            "t": "Enviar pra aprovação",
+            "done": false
+          },
+          {
+            "t": "Receber os R$ 35",
+            "done": false
+          },
+          {
+            "t": "Retomar a proposta do vídeo de divulgação",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
