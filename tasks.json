@@ -473,6 +473,53 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0225",
+      "type": "add",
+      "task": {
+        "id": "t-status-migracao-crm",
+        "codigo": 66,
+        "titulo": "STATUS — MIGRAÇÃO CRM PARA CONTA ÚNICA",
+        "coluna": "doing",
+        "area": "iCasas – Automação",
+        "prioridade": "alta",
+        "descricao": "Registro do estado atual da migração pro CRM único (projeto `mqdhavyaeujufhlqdlfg`), pra continuar numa conversa nova sem perder o fio.\n\n---\n\n**✅ JÁ FEITO**\n\n- Visão por empresa no CRM: coluna `empresa` em leads e vendedores, tudo que já existia marcado como `automacao`\n- Etapas específicas da Construtora no pipeline (Contato Inicial, Visita Agendada, Reunião Realizada, Retrabalho Futuro etc.)\n- Seletor de empresa no topo — aparece só pra quem tem `can_see_all_companies = true`. Cris e você (Lucas/admin) já estão liberados\n- Meryson liberado como `can_see_all_leads = true` só da Automação (sem ver a Construtora)\n- Selo de empresa nos cards do pipeline\n- Vínculo de 3 vendedores ao Supabase Auth (login por e-mail): **cris**, **lucas** (admin) e **meryson** — todos usando a mesma conta que já usam no Acompanhamento de Obras\n- Tela de login trocada pra e-mail + senha via Supabase Auth\n- Fluxo de \"Esqueci minha senha\" com envio de link por e-mail, e tela de \"Nova senha\"\n- Round-robin da Edge Function `webhook-lead` ajustado pra respeitar a empresa do webhook (gira só entre vendedores da mesma empresa)\n- Campo de Empresa no cadastro de webhook, com selo na listagem\n\n---\n\n**⚠️ PENDENTE**\n\n- **José Mauricio** ainda não tem e-mail nem `auth_user_id` — não consegue entrar depois da virada. Falta pegar o e-mail dele, criar o usuário em Authentication → Users e vincular\n- **Bug crítico corrigido, mas falta subir**: uma chamada (`db.auth.onAuthStateChange`) estava fora de função e quebrava o carregamento da página inteira. Corrigido no arquivo mais recente — precisa confirmar que subiu e testar o \"Enviar link\" de recuperação de senha\n- **Apagar a coluna `password` da tabela `sellers`** — só fazer depois que todo mundo (incluindo o José) já estiver entrando pelo Auth com sucesso\n- **Criar o webhook novo da Construtora** — escolher Empresa: iCasas Construtora no cadastro, pegar a URL e trocar no Meta Lead Ads / Zapier daquela campanha\n- **Testar o round-robin por empresa** — disparar um lead de teste no webhook novo e confirmar que caiu com `empresa = 'construtora'` e foi pra Cris/Thais/Vini, nunca pro José/Meryson\n- **Teste de vazamento (RLS)** — ainda não foi feito. Abrir o CRM em aba anônima, sem login, e no console tentar `db.from('sellers').select('*')` e `db.from('leads').select('*')`. Os dois têm que voltar vazios\n- **Trocar todas as senhas** depois que a coluna `password` for apagada — as antigas ficaram legíveis no banco por meses, valem como já vazadas\n- Backup de `leads` e `sellers` em CSV — ainda não confirmado se foi feito antes das alterações\n\n---\n\n**ARQUIVOS RELEVANTES DESSA MIGRAÇÃO**\n- `index-final.html` — versão mais recente do CRM, com tudo (empresa + Auth + correção do bug de carregamento)\n- `sql-empresa.sql` — cria as colunas de empresa em leads/sellers\n- `fase2-auth.sql` — passo a passo do vínculo com Auth e da RLS\n- `webhook-lead-empresa.ts` — Edge Function com round-robin por empresa\n- `sql-webhook-empresa.sql` — cria a coluna empresa nos webhooks\n- `passo-a-passo.md` — roteiro completo das duas fases\n\n**PROJETOS SUPABASE**\n- `mqdhavyaeujufhlqdlfg` — produção real, é aqui que a migração está acontecendo\n- `oddredchqdhhuskguxtb` — ambiente de teste, não usar em produção",
+        "checklist": [
+          {
+            "t": "Resolver acesso do José (e-mail + vínculo)",
+            "done": false
+          },
+          {
+            "t": "Confirmar que a correção do bug subiu e testar recuperação de senha",
+            "done": false
+          },
+          {
+            "t": "Apagar a coluna password (só depois de todos migrados)",
+            "done": false
+          },
+          {
+            "t": "Criar o webhook da Construtora e trocar no Meta/Zapier",
+            "done": false
+          },
+          {
+            "t": "Testar o round-robin por empresa",
+            "done": false
+          },
+          {
+            "t": "Teste de vazamento em aba anônima",
+            "done": false
+          },
+          {
+            "t": "Trocar todas as senhas",
+            "done": false
+          },
+          {
+            "t": "Confirmar backup de leads e sellers",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
