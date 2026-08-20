@@ -520,6 +520,60 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0226",
+      "type": "update",
+      "task": {
+        "id": "t-status-migracao-crm",
+        "descricao": "Retomar aqui numa conversa nova: \"abre o card de status da migração do CRM\".\n\n**Projetos Supabase**\n- `mqdhavyaeujufhlqdlfg` — PRODUÇÃO. É aqui que tudo acontece.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n---\n\n**✅ JÁ FEITO**\n- Coluna `empresa` em leads e vendedores (tudo antigo = `automacao`)\n- Etapas específicas da Construtora no pipeline\n- Seletor de empresa no topo pra quem tem `can_see_all_companies=true` (Cris, Lucas/admin)\n- Meryson com `can_see_all_leads=true` só da Automação\n- Selo de empresa nos cards\n- Login trocado pra Supabase Auth (e-mail + senha) — vinculados: cris, lucas, meryson\n- Round-robin da Edge Function `webhook-lead` respeitando a empresa do webhook\n- Campo Empresa no cadastro de webhook\n- Corrigido bug que travava a página inteira (`db.auth.onAuthStateChange` estava fora de função)\n\n---\n\n**⚠️ AGORA — o link de redefinir senha caiu em localhost**\n\n**Passo 1 — corrigir a URL (Supabase → Authentication → URL Configuration)**\n- Site URL: colar o endereço real do CRM\n- Redirect URLs: colar o mesmo endereço\n- Salvar\n\n**Passo 2 — deixar o e-mail em português (Authentication → Email Templates → Reset Password)**\n```html\n<h2>Redefinir sua senha</h2>\n<p>Recebemos um pedido para redefinir sua senha no CRM iCasas.</p>\n<p><a href=\"{{ .ConfirmationURL }}\">Clique aqui para criar uma nova senha</a></p>\n<p>Se você não pediu isso, pode ignorar este e-mail.</p>\n```\n\n**Passo 3 — testar de novo**\nPedir \"esqueci minha senha\", abrir o link do e-mail novo e confirmar que cai na tela de nova senha do CRM (não mais em localhost).\n\n---\n\n**PENDENTE DEPOIS DISSO, NA ORDEM**\n\n**1. José Mauricio sem acesso**\n- Conseguir o e-mail dele\n- Supabase → Authentication → Users → Add user (marcar Auto Confirm User)\n- Copiar o UUID gerado e rodar:\n```sql\nupdate sellers set email = 'EMAIL-DO-JOSE', auth_user_id = 'UUID-COPIADO' where login = 'jose';\n```\n\n**2. Confirmar todo mundo com auth_user_id**\n```sql\nselect login, name, email, auth_user_id from sellers where status='active' order by name;\n```\nNinguém pode estar com auth_user_id vazio antes do próximo passo.\n\n**3. Apagar a senha da tabela (só depois do passo 2 estar 100%)**\n```sql\nalter table sellers drop column password;\n```\n\n**4. Criar o webhook da Construtora**\n- No CRM: Webhooks → novo → Empresa: iCasas Construtora → Round-robin\n- Copiar a URL gerada e trocar no Meta Lead Ads / Zapier daquela campanha\n\n**5. Testar o round-robin por empresa**\n- Disparar um lead de teste no webhook novo\n- Conferir: `select name, empresa, seller_id from leads order by created_at desc limit 1;`\n- Empresa tem que ser 'construtora' e o seller_id tem que ser do Cris, Thais ou Vini\n\n**6. Teste de vazamento (RLS) — não pular**\n- Abrir o CRM em aba anônima, sem logar\n- F12 → Console:\n```js\nconst t = await db.from('sellers').select('*'); console.log(t);\nconst l = await db.from('leads').select('*'); console.log(l);\n```\n- Os dois têm que voltar vazios ou com erro de permissão\n\n**7. Trocar todas as senhas**\nAs antigas ficaram legíveis no banco por meses — tratar como já vazadas.\n\n**8. Confirmar backup de leads e sellers em CSV** (se ainda não foi feito)\n\n---\n\n**ARQUIVOS DESSA MIGRAÇÃO**\n`index-final.html` (CRM completo e corrigido) · `sql-empresa.sql` · `fase2-auth.sql` · `webhook-lead-empresa.ts` · `sql-webhook-empresa.sql` · `passo-a-passo.md`",
+        "checklist": [
+          {
+            "t": "Corrigir Site URL e Redirect URLs no Supabase",
+            "done": false
+          },
+          {
+            "t": "Trocar o template de e-mail pra português",
+            "done": false
+          },
+          {
+            "t": "Testar recuperação de senha de novo",
+            "done": false
+          },
+          {
+            "t": "Resolver acesso do José (e-mail + vínculo)",
+            "done": false
+          },
+          {
+            "t": "Confirmar todos com auth_user_id preenchido",
+            "done": false
+          },
+          {
+            "t": "Apagar a coluna password",
+            "done": false
+          },
+          {
+            "t": "Criar o webhook da Construtora",
+            "done": false
+          },
+          {
+            "t": "Testar o round-robin por empresa",
+            "done": false
+          },
+          {
+            "t": "Teste de vazamento em aba anônima",
+            "done": false
+          },
+          {
+            "t": "Trocar todas as senhas",
+            "done": false
+          },
+          {
+            "t": "Confirmar backup de leads e sellers",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
