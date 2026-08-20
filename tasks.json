@@ -434,6 +434,45 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0224",
+      "type": "add",
+      "task": {
+        "id": "t-sonia-placa-obra",
+        "codigo": 65,
+        "titulo": "PLACA DE OBRA E VÍDEO — SONIA (ARQUITETA)",
+        "coluna": "doing",
+        "area": "Pessoal",
+        "prioridade": "media",
+        "descricao": "Placa de obra para a **Sônia** (arquiteta), freela combinado por WhatsApp (17-19/08).\n\n**COMBINADO**\n- Arte da placa de obra — estilo horizontal, referência que ela mandou\n- Medida: **1,20 x 0,90 m** (horizontal — ela sugeriu 1,00x1,00 mas ficaria quadrada demais)\n- Valor: **R$ 35** — arte simples\n- Vídeo de divulgação do trabalho dela — **combinado, ainda sem valor fechado**\n- Logo dela + site: **soniacardozo.com**\n- Nome completo pra registro: **Sonia Cardozo de Carvalho**\n- Registro profissional: **CAU nº A300996-3**\n\n---\n\n**O QUE JÁ FOI PRODUZIDO (19/08)**\nVocê já fez **3 propostas de estilo de foto** pra ela escolher:\n1. Sketch/render/mix\n2. Render\n3. Foto real\n\nEla ainda não respondeu qual prefere (mandou só áudio).\n\n**Decisão tomada:** QR code do site em vez do Instagram — o Insta tem informação demais e quebra a proposta clean da peça. Vai trabalhar com as cores do site dela pra destacar a arte.\n\n**Pendente dela:** disse que vai mandar uma logo diferente, \"pra chamar mais atenção\".\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar com ela qual das 3 propostas de foto ela escolheu\n- Aguardar a logo nova que ela disse que ia mandar\n- Fechar o valor do vídeo de divulgação",
+        "checklist": [
+          {
+            "t": "Confirmar qual das 3 propostas de foto ela escolheu",
+            "done": false
+          },
+          {
+            "t": "Receber a logo nova dela",
+            "done": false
+          },
+          {
+            "t": "Gerar o QR code do site",
+            "done": true
+          },
+          {
+            "t": "Finalizar a arte na medida 1,20x0,90",
+            "done": false
+          },
+          {
+            "t": "Fechar valor do vídeo de divulgação",
+            "done": false
+          },
+          {
+            "t": "Entregar e receber os R$ 35 da placa",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
