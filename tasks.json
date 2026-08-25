@@ -582,6 +582,64 @@
         "id": "t-status-migracao-crm",
         "descricao": "Retomar aqui numa conversa nova: \"abre o card de status da migração do CRM\".\n\n**Projetos Supabase**\n- `mqdhavyaeujufhlqdlfg` — PRODUÇÃO. É aqui que tudo acontece.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n---\n\n**✅ JÁ FEITO**\n- Coluna `empresa` em leads e vendedores (tudo antigo = `automacao`)\n- Etapas específicas da Construtora no pipeline\n- Seletor de empresa no topo pra quem tem `can_see_all_companies=true` (Cris, Lucas/admin)\n- Meryson com `can_see_all_leads=true` só da Automação\n- Selo de empresa nos cards\n- Login trocado pra Supabase Auth (e-mail + senha) — vinculados: cris, lucas, meryson\n- Round-robin da Edge Function `webhook-lead` respeitando a empresa do webhook\n- Campo Empresa no cadastro de webhook\n- Corrigido bug que travava a página inteira (`db.auth.onAuthStateChange` estava fora de função)\n\n---\n\n**⚠️ AGORA — o link de redefinir senha caiu em localhost**\n\n**Passo 1 — corrigir a URL (Supabase → Authentication → URL Configuration)**\n- Site URL: colar o endereço real do CRM\n- Redirect URLs: colar o mesmo endereço\n- Salvar\n\n**Passo 2 — deixar o e-mail em português (Authentication → Email Templates → Reset Password)**\n```html\n<h2>Redefinir sua senha</h2>\n<p>Recebemos um pedido para redefinir sua senha no CRM iCasas.</p>\n<p><a href=\"{{ .ConfirmationURL }}\">Clique aqui para criar uma nova senha</a></p>\n<p>Se você não pediu isso, pode ignorar este e-mail.</p>\n```\n\n**Passo 3 — testar de novo**\nPedir \"esqueci minha senha\", abrir o link do e-mail novo e confirmar que cai na tela de nova senha do CRM (não mais em localhost).\n\n---\n\n**PENDENTE DEPOIS DISSO, NA ORDEM**\n\n**1. José Mauricio sem acesso**\n- Conseguir o e-mail dele\n- Supabase → Authentication → Users → Add user (marcar Auto Confirm User)\n- Copiar o UUID gerado e rodar:\n```sql\nupdate sellers set email = 'EMAIL-DO-JOSE', auth_user_id = 'UUID-COPIADO' where login = 'jose';\n```\n\n**2. Confirmar todo mundo com auth_user_id**\n```sql\nselect login, name, email, auth_user_id from sellers where status='active' order by name;\n```\nNinguém pode estar com auth_user_id vazio antes do próximo passo.\n\n**3. Apagar a senha da tabela (só depois do passo 2 estar 100%)**\n```sql\nalter table sellers drop column password;\n```\n\n**4. Criar o webhook da Construtora**\n- No CRM: Webhooks → novo → Empresa: iCasas Construtora → Round-robin\n- Copiar a URL gerada e trocar no Meta Lead Ads / Zapier daquela campanha\n\n**5. Testar o round-robin por empresa**\n- Disparar um lead de teste no webhook novo\n- Conferir: `select name, empresa, seller_id from leads order by created_at desc limit 1;`\n- Empresa tem que ser 'construtora' e o seller_id tem que ser do Cris, Thais ou Vini\n\n**6. Teste de vazamento (RLS) — não pular**\n- Abrir o CRM em aba anônima, sem logar\n- F12 → Console:\n```js\nconst t = await db.from('sellers').select('*'); console.log(t);\nconst l = await db.from('leads').select('*'); console.log(l);\n```\n- Os dois têm que voltar vazios ou com erro de permissão\n\n**7. Trocar todas as senhas**\nAs antigas ficaram legíveis no banco por meses — tratar como já vazadas.\n\n**8. Confirmar backup de leads e sellers em CSV** (se ainda não foi feito)\n\n---\n\n**ARQUIVOS DESSA MIGRAÇÃO**\n`index-final.html` (CRM completo e corrigido) · `sql-empresa.sql` · `fase2-auth.sql` · `webhook-lead-empresa.ts` · `sql-webhook-empresa.sql` · `passo-a-passo.md`\n\n---\n\n**⚠️ ALERTA IMPORTANTE — SUPABASE COMPARTILHADO**\n\nO CRM, a **Vitrine dos Sonhos** e o **Obras + Automação** usam o mesmo projeto Supabase e a mesma conta de login (mesmo e-mail/senha nos três).\n\n**Trocar a senha de alguém (pelo botão do CRM ou pelo próprio \"esqueci minha senha\") derruba a sessão dela em TODOS os sistemas ao mesmo tempo** — é o Supabase encerrando sessões antigas por segurança quando a senha muda. Não é bug, é o comportamento esperado.\n\n**O que fazer quando isso acontecer:** a pessoa só precisa entrar de novo na Vitrine (ou no Obras) usando a **senha nova**. Não perdeu acesso nem permissão, só precisa logar de novo.\n\n**Sempre que trocar a senha de alguém, avisar junto:** \"troquei sua senha, é essa aqui — e você vai precisar logar de novo na Vitrine e no Obras com ela também\"."
       }
+    },
+    {
+      "id": "op-0228",
+      "type": "add",
+      "task": {
+        "id": "t-videos-jatobas-reconhecimento-vendas",
+        "codigo": 67,
+        "titulo": "VÍDEOS JATOBÁS — RECONHECIMENTO E VENDAS",
+        "coluna": "todo",
+        "area": "iCasas – Construtora",
+        "prioridade": "alta",
+        "descricao": "Vídeos do loteamento **Jatobás** — dois tipos, combinado por áudio (24-25/08).\n\n**⚠️ Confirmar:** o áudio mencionou um segundo loteamento junto com o Jatobás, mas o nome não ficou claro na transcrição (soou como \"Ariab\"/\"Ariatá\"). Confirmar qual é antes de gravar.\n\n---\n\n**VÍDEO 1 · RECONHECIMENTO**\n- Sem falar de valor, só ação\n- Objetivo: movimentar o Instagram, gerar engajamento\n- Estilo pedido: \"focado, com umas mexidinhas na câmera — fica com cara de cinema\"\n\n**VÍDEO 2 · VENDAS**\n- Fala de valor e condições\n- Objetivo: a pessoa se identificar e preencher o formulário\n- Mesmo estilo de câmera do vídeo 1\n\n**Contexto da instalação (Jatobás):**\n- Placa de 3m\n- 12 pontaletes de 4m\n- Enterrar 1m, deixar 3m à mostra\n- Precisa de cavadeira\n- Planejado pra depois do almoço",
+        "checklist": [
+          {
+            "t": "Confirmar o segundo loteamento mencionado no áudio",
+            "done": false
+          },
+          {
+            "t": "Gravar vídeo de reconhecimento",
+            "done": false
+          },
+          {
+            "t": "Gravar vídeo de vendas",
+            "done": false
+          },
+          {
+            "t": "Editar e publicar",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0229",
+      "type": "add",
+      "task": {
+        "id": "t-video-zani",
+        "codigo": 68,
+        "titulo": "VÍDEO — ZANI",
+        "coluna": "todo",
+        "area": "iCasas – Construtora",
+        "prioridade": "media",
+        "descricao": "Vídeo pendente do cliente **Zani**.\n\nJá existe material gravado (recebido no cartão). Ainda não foi editado — ficou pendente por causa da correria da semana.\n\n**O que é:** vídeo mostrando os negócios dele, com um design no final.\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar se ainda tem os vídeos originais ou se precisa regravar\n- Alinhar prazo com o Zani",
+        "checklist": [
+          {
+            "t": "Localizar o material gravado no cartão",
+            "done": false
+          },
+          {
+            "t": "Editar",
+            "done": false
+          },
+          {
+            "t": "Entregar ao Zani",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
