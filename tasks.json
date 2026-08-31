@@ -640,6 +640,45 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0230",
+      "type": "add",
+      "task": {
+        "id": "t-video-entrega-jumka-juliana",
+        "codigo": 69,
+        "titulo": "VÍDEO ENTREGA MONTADA — JUMKA (JULIANA)",
+        "coluna": "todo",
+        "area": "Jumka",
+        "prioridade": "alta",
+        "descricao": "Vídeo de entrega de móveis montados — roteiro com a Juliana no gancho e na CTA.\n\n**Duração:** 35-45s · Formato vertical (Reels/Stories)\n\n---\n\n**ROTEIRO**\n\n1. Juliana em frente ao carro carregado, olhando pra câmera (3-4s)\n   🗣️ \"Vocês sabiam que a gente entrega o móvel montado, prontinho pra usar?\"\n\n2. Plano da caçamba cheia — móveis encaixados, amarrados/protegidos (3s) — sem fala, só o gancho visual\n\n3. Detalhe de como está organizado, mostrando o \"quebra-cabeça\" da carga (4-5s)\n   🗣️ Juliana em off: \"Cada móvel é montado na loja e a gente organiza tudo pra caber certinho, sem arranhar nada\"\n\n4. Carro saindo, câmera acompanhando lateral (3s) — música sobe, sem fala\n\n5. Chegada na casa do cliente, Juliana descendo do carro (2s)\n   🗣️ \"Chegamos!\" (natural, sorrindo)\n\n6. Retirando o móvel já pronto da caçamba (3-4s) — sem fala\n\n7. Carregando pra dentro de casa (3s) — sem fala, ritmo mais lento\n\n8. Móvel no lugar, ambiente pronto (3s) — sem fala\n\n9. Juliana de volta, olhando pra câmera, fechando o vídeo (4-5s)\n   🗣️ \"Sem furo, sem parafuso solto, sem dor de cabeça. Só chegar, colocar e usar. Chama no direct e pede o seu!\"\n\n---\n\n**LEGENDA**\n\nMóvel montado. Entrega prontinha. Sem estresse.\nAqui na Jumka você só recebe e usa. 🛋️\nChama no direct e garante o seu.\n\n---\n\n**CENAS EXTRAS, SE DER TEMPO**\n- Juliana fazendo alguma gracinha ao lado do carro carregado — humaniza\n- Close rápido no nó/amarração de segurança dos móveis — reforça cuidado\n- Reação do cliente abrindo a porta e vendo o móvel pronto na sala\n\n⚠️ Não mencionar o modelo/veículo específico em nenhuma fala.",
+        "checklist": [
+          {
+            "t": "Confirmar disponibilidade da Juliana pra gravar",
+            "done": false
+          },
+          {
+            "t": "Escolher a entrega/cliente que vai servir de captação",
+            "done": false
+          },
+          {
+            "t": "Gravar cenas 1-4 (carregamento e saída)",
+            "done": false
+          },
+          {
+            "t": "Gravar cenas 5-8 (chegada e montagem no local)",
+            "done": false
+          },
+          {
+            "t": "Gravar cena 9 (fala final / CTA)",
+            "done": false
+          },
+          {
+            "t": "Editar e publicar",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
