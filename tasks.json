@@ -736,6 +736,144 @@
         "titulo": "STATUS GERAL — CRM + DOCUMENTAÇÃO DE OBRAS",
         "descricao": "Retomar aqui numa conversa nova: \"abre o card de status geral\" ou \"puxa o card t-status-migracao-crm\".\n\nEste card resume TUDO que existe hoje nos sistemas iCasas/OrkAI. Ele é atualizado sempre que algo grande muda — se parecer desatualizado em algum ponto, confia no comportamento real do sistema, não neste texto.\n\n---\n\n## PROJETOS SUPABASE\n- `mqdhavyaeujufhlqdlfg` — **PRODUÇÃO**. CRM, Documentação de Obras, tudo real acontece aqui.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n## REPOSITÓRIOS\n- CRM (`index.html`) e Documentação (`documentacao.html`) — mesmo repositório, GitHub Pages.\n- Board de tarefas: `orkiasystem/crm-master`, arquivo `tasks.json`. Token do GitHub não persiste entre conversas — precisa colar de novo a cada vez.\n\n---\n\n## CRM — ESTADO ATUAL\n\n**Empresas:** iCasas Automação e iCasas Construtora, no mesmo banco, separadas por coluna `empresa` em `leads` e `sellers`.\n\n**Login:** Supabase Auth (e-mail + senha), com recuperação de senha por link. Compartilhado com Documentação e outros sistemas (Vitrine, Obras) — trocar senha de alguém desloga ela de todos os sistemas ao mesmo tempo, é esperado.\n\n**Papéis especiais:**\n- Admins: Lucas (dois logins, `mkt.icasas@gmail.com` e `lucas.s.ribeiro@hotmail.com`) e Cris (`cristopher.icasas@gmail.com`)\n- Ambos marcados como `oculto_filtro_vendedor=true` — não aparecem nos filtros de vendedor nem recebem lead no rodízio\n- Lucas tem `categoria_interna='Dev'` — aparece numa seção própria \"⚙️ Dev\" na aba Vendedores, separado da seção \"🛡️ Administração\" (onde fica o Cris)\n- Cargo \"Engenharia\" e \"Financeiro\" também ficam fora do filtro de vendedor e do rodízio automaticamente\n\n**Aba Vendedores:** agrupável por Empresa ou Cargo (seletor no topo). Seções Dev e Administração sempre aparecem primeiro, antes das empresas.\n\n**Dashboard:** ranking de vendedores agora filtra só quem realmente vende (`vendedoresReais()`), não lista mais admin/dev/financeiro com \"0 leads\".\n\n**Relatórios:** repaginado — filtro de Empresa (só quem vê as duas), Estágio dinâmico conforme a empresa, KPIs (total, vendas fechadas, ticket médio, taxa de conversão), gráfico de distribuição por estágio, exporta CSV e PDF. Abre sempre com o período dos últimos 30 dias já preenchido e já carregado.\n\n**Round-robin de leads (Edge Function `webhook-lead`):** distribui só entre vendedores ativos da mesma empresa do webhook, excluindo quem não vende (Engenharia/Financeiro/oculto). Cada webhook tem uma `empresa` própria — criar um webhook por empresa/campanha.\n\n**Importação:** 804 leads antigos da Construtora já migrados (CSV do sistema anterior), mapeados pros vendedores certos, sem corretor foram pro Cris.\n\n---\n\n## DOCUMENTAÇÃO DE OBRAS (`documentacao.html`) — ESTADO ATUAL\n\n**O que é:** Kanban onde cada uma das etapas da obra é uma coluna. O card da obra aparece sozinho na coluna certa (primeira etapa não concluída) e atravessa as colunas conforme o trabalho avança.\n\n**Estrutura: 30 etapas**, na ordem — do contrato até a última medição, passando por projeto, financeiro (Caixa), obra reduzida a 3 fases (Alvenaria/Acabamento/Finalização) e entrega. Etapas com mais de um responsável (até 4 pessoas) exigem confirmação de todos antes de avançar.\n\n**Responsabilidades:** Corretor, Carlos, Tamires, Gi, Obras, Duda (financeiro), Maria (financeiro). Vinculação feita na tela \"👥 Equipe\" (só admin vê), campo `doc_responsavel` em `sellers`.\n\n**Aprovação financeira:** a etapa \"Início pré-obra\" trava até a Duda aprovar — funciona como uma dupla confirmação onde o segundo lado é sempre o financeiro.\n\n**Funcionalidades:**\n- Arrastar card ou clicar em \"concluir\" avança a etapa\n- **Admin pode arrastar pra qualquer coluna**, em qualquer direção — o checklist é reajustado de verdade no banco nos dois sentidos (volta desmarca, avança pulando marca tudo no caminho)\n- Corretor responsável aparece no card e é editável por admin\n- Comentários por obra (mural simples, com autor e data)\n- Modo TV — o mesmo kanban em tela cheia, fonte maior, pra telão\n- Tempo real entre todos que estão com a tela aberta\n- Excluir obra (admin, com confirmação)\n- Login com recuperação de senha, mesmo padrão do CRM\n\n**Cuidado permanente:** sempre que adicionar/mudar etapa que envolve confirmação múltipla ou aprovação financeira, testar os cenários de permissão antes de liberar.\n\n---\n\n## PADRÕES DE TRABALHO QUE JÁ VALEM\n\n- SQL sempre com `if not exists` / `drop if exists` antes de `create`, pra poder rodar de novo sem erro\n- Toda migração de estrutura (etapas, colunas) preservar dados existentes — checar progresso real antes de renumerar\n- Card de vídeo/campanha: roteiro completo + legenda + observações no card, área certa (Jumka, iCasas – Construtora, etc)\n- Confirmar nome/pessoa antes de gerar SQL com UUID — pedir a query de \"buscar por nome\" quando o login não bate\n\n## ARQUIVOS DE REFERÊNCIA\nOs HTMLs completos (CRM e Documentação) e os SQLs de schema ficam entregues como arquivo a cada sessão — não há um \"arquivo mestre\" fixo, sempre gero a partir do código mais recente. Pedir pra eu recriar caso precise, citando o que precisa mudar."
       }
+    },
+    {
+      "id": "op-0234",
+      "type": "add",
+      "task": {
+        "id": "t-campanha-ary-attab-3",
+        "codigo": 71,
+        "titulo": "CAMPANHA TRÁFEGO — ARY ATTAB 3 (VÍDEO THAIS)",
+        "coluna": "todo",
+        "area": "Tráfego",
+        "prioridade": "alta",
+        "descricao": "Campanha de captação de leads — vídeo da Thais, loteamento Ary Attab 3.\n\n**OBJETIVO:** Geração de Cadastros (Lead Ads)\n**ORÇAMENTO SUGERIDO:** R$ 30-40/dia pra começar\n**LOCAL:** São José do Rio Preto + raio de 15km\n**IDADE:** 28-55\n\n---\n\n**SEGMENTAÇÃO — IF & IF (camadas combinadas)**\n\nCamada A (intenção imobiliária ativa):\n- Financiamento imobiliário\n- Compra de imóveis\n- Construção residencial\n\n↓ Restringir ainda mais (Narrow Further) ↓\n\nCamada B (sinal de decisão madura):\n- Reforma e decoração\n- Casa própria\n- Mudança residencial\n\n⚠️ Testar a estimativa de alcance no Gerenciador antes de publicar — se vier \"público pequeno\", afrouxar uma das camadas.\n\n**Desativar:** Advantage+ Audience, Audience Network, Messenger\n\n---\n\n**POSICIONAMENTO (manual)**\n- Stories/Reels: vídeo vertical 9:16 completo, sem cortes\n- Feed (Instagram/Facebook): mesmo vídeo + legenda embutida\n- Audience Network: desativado\n- Messenger: desativado nessa campanha\n\n---\n\n**TÍTULO**\nAry Attab 3 liberado para construir — Zona Norte de Rio Preto\n\n**LEGENDA**\nA espera acabou. 🏡\n\nAry Attab 3 está liberado para construir! Lotes a partir de R$ 130.000 na Zona Norte de Rio Preto — a 2km da rodovia e pertinho do Clube de Campo do Palestra.\n\nUm bairro com potencial gigantesco de crescimento, onde só tem casa boa sendo construída.\n\nSimule agora e veja como seu terreno pode sair do papel. 👇\n\n**CTA do botão:** Simular agora\n\n**FORMULÁRIO (Instant Form)**\n1. Nome completo\n2. Telefone (com DDD)\n3. Pergunta qualificadora: \"Você já tem o valor de entrada disponível?\" (Sim / Estou organizando / Só quero simular)\n\n---\n\n**REGRAS AUTOMÁTICAS**\n- SE CPL > R$ 60 por 3 dias consecutivos → pausar o conjunto e notificar\n- SE frequência > 3,5 → reduzir orçamento em 20%\n- SE gasto > R$ 50 sem nenhum lead → pausar e revisar criativo\n- SE CPL < R$ 25 por 3 dias → aumentar orçamento em 20%",
+        "checklist": [
+          {
+            "t": "Criar a campanha (objetivo: Geração de Cadastros)",
+            "done": false
+          },
+          {
+            "t": "Configurar local (Rio Preto + 15km) e idade (28-55)",
+            "done": false
+          },
+          {
+            "t": "Montar Camada A de interesses",
+            "done": false
+          },
+          {
+            "t": "Aplicar 'Restringir ainda mais' com a Camada B",
+            "done": false
+          },
+          {
+            "t": "Conferir estimativa de alcance (ajustar se vier muito pequeno)",
+            "done": false
+          },
+          {
+            "t": "Desativar Advantage+, Audience Network e Messenger",
+            "done": false
+          },
+          {
+            "t": "Configurar posicionamento manual (Stories/Reels + Feed)",
+            "done": false
+          },
+          {
+            "t": "Subir o vídeo da Thais como criativo",
+            "done": false
+          },
+          {
+            "t": "Preencher título e legenda",
+            "done": false
+          },
+          {
+            "t": "Criar o formulário (Instant Form) com as 3 perguntas",
+            "done": false
+          },
+          {
+            "t": "Definir orçamento (R$ 30-40/dia)",
+            "done": false
+          },
+          {
+            "t": "Configurar as 4 regras automáticas",
+            "done": false
+          },
+          {
+            "t": "Revisar tudo e publicar",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0235",
+      "type": "add",
+      "task": {
+        "id": "t-campanha-jatobas-reativacao",
+        "codigo": 72,
+        "titulo": "CAMPANHA TRÁFEGO — JATOBÁS REATIVAÇÃO (VÍDEO VINI)",
+        "coluna": "todo",
+        "area": "Tráfego",
+        "prioridade": "alta",
+        "descricao": "Campanha de reativação — vídeo do Vini, promoção pra quem já tem terreno no Jatobás.\n\n**OBJETIVO:** Geração de Cadastros (Lead Ads)\n**ORÇAMENTO SUGERIDO:** R$ 20-30/dia (público menor, não precisa de tanto)\n\n---\n\n**PÚBLICO — dois passos**\n\n1. Público base (Custom Audience): lista de clientes que já compraram terreno no Jatobás\n   ⚠️ PRECISO DE VOCÊ: exportar essa lista do CRM (filtro: empreendimento = Jatobás, estágio = Fechado) e subir no Gerenciador de Anúncios como Público Personalizado\n\n2. Restringir ainda mais, com sinal de que está pensando em construir agora:\n   - Materiais de construção\n   - Construção residencial\n   - Empréstimo/financiamento para reforma\n\n**Desativar:** Advantage+ Audience, Audience Network\n\n---\n\n**POSICIONAMENTO (manual)**\n- Stories/Reels: vídeo vertical 9:16 completo\n- Feed: mesmo vídeo + legenda com os 3 prêmios visíveis sem precisar expandir\n- Audience Network: desativado\n- Messenger: desativado\n\n---\n\n**TÍTULO**\nVocê tem terreno no Jatobás? Pare de pagar só o terreno\n\n**LEGENDA**\nSe você comprou terreno financiado no Residencial Jatobás, essa é pra você. 🎁\n\nAo fechar a construção, você para de pagar a parcela do terreno — e ainda escolhe um cupom pra usar na obra: TV, ar-condicionado ou PlayStation 5.\n\nPromoção só pra quem já tem terreno aqui. Fale com a gente antes que acabe.\n\n**CTA do botão:** Fale conosco\n\n**FORMULÁRIO (Instant Form)**\n1. Nome completo\n2. Telefone\n3. Pergunta qualificadora: \"Qual quadra/lote é o seu no Jatobás?\"\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar se os prêmios (TV, ar-condicionado, PS5) têm alguma regra/restrição — Meta é rígida com regulamento de promoção e pode reprovar o anúncio sem isso claro\n\n---\n\n**REGRAS AUTOMÁTICAS**\n- SE CPL > R$ 60 por 3 dias consecutivos → pausar o conjunto e notificar\n- SE frequência > 3,5 → reduzir orçamento em 20%\n- SE gasto > R$ 50 sem nenhum lead → pausar e revisar criativo\n- SE CPL < R$ 25 por 3 dias → aumentar orçamento em 20%",
+        "checklist": [
+          {
+            "t": "Exportar lista de clientes Jatobás do CRM",
+            "done": false
+          },
+          {
+            "t": "Subir a lista como Público Personalizado no Gerenciador",
+            "done": false
+          },
+          {
+            "t": "Criar a campanha (objetivo: Geração de Cadastros)",
+            "done": false
+          },
+          {
+            "t": "Aplicar 'Restringir ainda mais' com os interesses de construção",
+            "done": false
+          },
+          {
+            "t": "Conferir estimativa de alcance",
+            "done": false
+          },
+          {
+            "t": "Desativar Advantage+, Audience Network e Messenger",
+            "done": false
+          },
+          {
+            "t": "Configurar posicionamento manual (Stories/Reels + Feed)",
+            "done": false
+          },
+          {
+            "t": "Subir o vídeo do Vini como criativo",
+            "done": false
+          },
+          {
+            "t": "Preencher título e legenda",
+            "done": false
+          },
+          {
+            "t": "Confirmar regras dos prêmios (TV, ar, PS5) antes de publicar",
+            "done": false
+          },
+          {
+            "t": "Criar o formulário (Instant Form) com as 3 perguntas",
+            "done": false
+          },
+          {
+            "t": "Definir orçamento (R$ 20-30/dia)",
+            "done": false
+          },
+          {
+            "t": "Configurar as 4 regras automáticas",
+            "done": false
+          },
+          {
+            "t": "Revisar tudo e publicar",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
