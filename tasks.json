@@ -874,6 +874,104 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0236",
+      "type": "add",
+      "task": {
+        "id": "t-evento-lancamento-clube-casas",
+        "codigo": 73,
+        "titulo": "EVENTO — LANÇAMENTO CLUBE CASAS (11/09)",
+        "coluna": "doing",
+        "area": "iCasas – Construtora",
+        "prioridade": "alta",
+        "descricao": "Lançamento do programa de indicação, reunindo clientes, corretores e imobiliárias no mesmo evento.\n\n**DECIDIDO**\n- Data: sexta-feira, 11 de setembro\n- Horário: a partir das 16h (confirmar se é 16h ou 19h — ficou ambíguo na reunião)\n- Nome: \"Lançamento do Clube Casas\" (não \"inauguração\")\n- Formato único, sem separar cliente de corretor em eventos diferentes\n- Churrasco (churrasqueiro + mesa de frios) e chope\n- Apresentação institucional: história resumida, números (crescimento 320% 2023→2024, 78 casas vendidas, faturamento R$13mi em 2025), meta 2026 (ser a melhor construtora de Rio Preto)\n- Dinâmica \"Silvio Santos\": quem mandar 5 contatos primeiro ganha R$200 na hora\n- Entrega simbólica de cheque de R$1.000 pra 2-3 clientes com indicação já pendente\n\n**PROGRAMA DE INDICAÇÃO — a mudança central**\n- Sai prêmio variado (TV, ar-condicionado, PS5, viagem), entra dinheiro direto\n- Cada indicação fechada = R$1.000 em cheque\n- 10 indicações fechadas = 1 iPhone\n- Site/dashboard estilo \"Metropolitano\": ranking, pontuação, integração com CRM (card movido pra \"Fechado\" conta ponto automático)\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar horário exato (16h ou 19h)\n- Decidir se vai ter pagode ou não\n- Fechar o prazo do programa: sem data, ou ciclos de 4 em 4 meses com bônus pros 3 primeiros de cada ciclo (R$1.000 ou R$1.500 cada — não decidido)\n- Aprovar os números finais da nova comissão de corretores/imobiliárias (baixar de 4% pra 3%, repassando 1% pro time interno)\n\n**Nota:** prazo é curto pro dia 11 — vale considerar se algum item pode ficar pra uma segunda comunicação, sem prejudicar o evento em si.",
+        "checklist": [
+          {
+            "t": "Confirmar horário exato e decisão sobre música",
+            "done": false
+          },
+          {
+            "t": "Fechar cardápio e bebida com fornecedor",
+            "done": false
+          },
+          {
+            "t": "Criar apresentação institucional atualizada",
+            "done": false
+          },
+          {
+            "t": "Gravar e soltar vídeo teaser no grupo (sem entregar detalhes)",
+            "done": false
+          },
+          {
+            "t": "Providenciar os cheques de R$1.000 pendentes",
+            "done": false
+          },
+          {
+            "t": "Desenhar números finais da comissão de corretores/imobiliárias",
+            "done": false
+          },
+          {
+            "t": "Planejar a dinâmica Silvio Santos (quem veste, mecânica)",
+            "done": false
+          },
+          {
+            "t": "Fechar prazo/formato definitivo do programa de indicação",
+            "done": false
+          },
+          {
+            "t": "Montar o site/dashboard de ranking (ou definir se fica pra depois)",
+            "done": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "op-0237",
+      "type": "add",
+      "task": {
+        "id": "t-empresa-marketing-nova",
+        "codigo": 74,
+        "titulo": "NOVA EMPRESA DE MARKETING — PACOTES E ESTRUTURA",
+        "coluna": "ideas",
+        "area": "OrkAI",
+        "prioridade": "media",
+        "descricao": "Nova empresa de marketing, vendendo pacotes de fotos/vídeo/conteúdo pra pequenos prestadores de serviço, usando o Instagram do Lucas/Cris/iCasas como vitrine.\n\n**⚠️ Nome da empresa ainda não definido.**\n\n**PACOTES DISCUTIDOS (valores não fechados)**\n\nEntrada — R$ 900\n- 5 fotos profissionais\n- 1 vídeo de apresentação\n- 4 posts de arte/criativos (tema definido pelo cliente)\n\nIntermediário — R$ 1.400\n- Tudo do anterior +\n- 3 conteúdos fixados no perfil\n- Captação do serviço/produto em campo\n- Organização geral do Instagram\n\nCompleto — R$ 1.500\n- Tudo dos anteriores +\n- Um segundo vídeo de Reels\n- Mais conteúdos mensais (quantidade indefinida — variou entre 3 e 10 na conversa)\n\nTráfego pago — adicional (~R$100 pela gestão)\n- Investimento diário do anúncio é custo do próprio cliente, separado do pacote\n\n**PRECIFICAÇÃO:** os valores foram pensados como \"efeito pipoca de cinema\" — aproximar o intermediário do completo pra maioria escolher o pacote maior.\n\n**⚠️ PRECISO DE VOCÊ**\n- Fechar o nome da empresa\n- Fechar definitivamente o que entra em cada pacote (mudou várias vezes na conversa)\n- Confirmar quantidade de conteúdos mensais do pacote completo",
+        "checklist": [
+          {
+            "t": "Fechar o nome da empresa",
+            "done": false
+          },
+          {
+            "t": "Fechar o conteúdo definitivo de cada pacote (900/1400/1500)",
+            "done": false
+          },
+          {
+            "t": "Reorganizar e profissionalizar o Instagram do Lucas",
+            "done": false
+          },
+          {
+            "t": "Reorganizar e profissionalizar o Instagram do Cris",
+            "done": false
+          },
+          {
+            "t": "Reorganizar o Instagram da iCasas como case",
+            "done": false
+          },
+          {
+            "t": "Rodar o processo internamente como teste (cliente-piloto)",
+            "done": false
+          },
+          {
+            "t": "Buscar os 3 primeiros clientes reais",
+            "done": false
+          },
+          {
+            "t": "Montar proposta comercial / apresentação de venda",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
