@@ -1003,6 +1003,32 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0239",
+      "type": "update",
+      "task": {
+        "id": "t-cliente-cris-silvestre-marketing",
+        "descricao": "Primeiro cliente da nova empresa de marketing — Cris Silvestre, IDV própria já pronta.\n\n**IDENTIDADE VISUAL (analisada do material em PDF)**\n- Logotipo: \"CRIS SILVESTRE\" em tipografia pincel/street + mascote (caricatura dele mesmo)\n- Tipografia principal: Skulrock (títulos, estilo grafite)\n- Tipografia secundária: Montaser Arabic (texto corrido)\n- Paleta: amarelo pastel #f9ea8d · turquesa #00c3bc · preto #000000 · branco #ffffff\n- Tom de voz: frases curtas e diretas, com uma virada no meio — registro de liderança/mentalidade, não corporativo\n\n**FRENTE DE CONTEÚDO: automação residencial / consultoria de automação**\n\nPosts organizados em 2 blocos, cadência sugerida de 2 Bloco A : 1 Bloco B.\n\nBLOCO A — Provocação (para o scroll)\n1. Sua casa não precisa ser inteligente. Precisa trabalhar por você.\n2. Automação não é luxo. É parar de perder tempo com o óbvio.\n3. Se você ainda levanta pra apagar luz, o atrasado não é você. É a sua casa.\n4. Tecnologia boa é a que você para de notar que existe.\n5. Casa automatizada não é pra impressionar visita. É pra facilitar sua rotina quando ninguém está vendo.\n6. O luxo de hoje não é ter mais coisas em casa. É não precisar pensar nelas.\n7. Você não contrata automação pra mostrar. Contrata pra esquecer que ela existe.\n\nBLOCO B — Autoridade técnica (constrói confiança)\n8. Automação sem projeto é gambiarra cara. Consultoria é o que separa gadget de solução.\n9. Todo projeto de automação bom começa antes da obra. Não depois dela pronta.\n10. Não é sobre comprar tecnologia. É sobre alguém entender o que a sua rotina realmente precisa.\n\n**⚠️ PRECISO DE VOCÊ**\n- Definir a frequência real de postagem (sugestão: 3x/semana)\n- Aprovar o visual de cada post (cores/tipografia da IDV aplicadas em cima das frases)",
+        "checklist": [
+          {
+            "t": "Definir frequencia de postagem",
+            "done": false
+          },
+          {
+            "t": "Montar visual do Bloco A (provocacao) com a IDV",
+            "done": false
+          },
+          {
+            "t": "Montar visual do Bloco B (autoridade) com a IDV",
+            "done": false
+          },
+          {
+            "t": "Publicar o primeiro lote e medir engajamento",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
