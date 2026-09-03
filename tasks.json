@@ -972,6 +972,37 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0238",
+      "type": "add",
+      "task": {
+        "id": "t-cliente-cris-silvestre-marketing",
+        "codigo": 75,
+        "titulo": "CLIENTE — CRIS SILVESTRE (AUTOMAÇÃO RESIDENCIAL)",
+        "coluna": "doing",
+        "area": "OrkAI",
+        "prioridade": "media",
+        "descricao": "Primeiro cliente da nova empresa de marketing — Cris Silvestre, IDV própria já pronta.\n\n**IDENTIDADE VISUAL (analisada do material em PDF)**\n- Logotipo: \"CRIS SILVESTRE\" em tipografia pincel/street + mascote (caricatura dele mesmo)\n- Tipografia principal: Skulrock (títulos, estilo grafite)\n- Tipografia secundária: Montaser Arabic (texto corrido)\n- Paleta: amarelo pastel #f9ea8d · turquesa #00c3bc · preto #000000 · branco #ffffff\n- Tom de voz: frases curtas e diretas, com uma virada no meio — registro de liderança/mentalidade, não corporativo\n  Exemplos do material: \"Se você só acerta, talvez esteja jogando pequeno demais.\" / \"Tudo parece difícil quando você está prestes a subir de nível. Não desista.\"\n\n**NOVA FRENTE DE CONTEÚDO: automação residencial / consultoria de automação**\n\nObjetivo: criar posts usando a IDV já existente, mas migrando o tema de liderança genérica pra autoridade em automação residencial.\n\n**⚠️ PRECISO DE VOCÊ**\n- Escolher, entre as frases sugeridas no chat, quais vão virar posts\n- Confirmar se mantém o estilo \"post motivacional\" ou se quer um formato mais educativo/técnico também (ex.: antes/depois, mitos sobre automação)\n- Definir a frequência de postagem",
+        "checklist": [
+          {
+            "t": "Escolher as frases que vao virar os primeiros posts",
+            "done": false
+          },
+          {
+            "t": "Montar os posts usando a IDV (cores, tipografia, mascote)",
+            "done": false
+          },
+          {
+            "t": "Definir formato: so frase motivacional ou variar com conteudo educativo",
+            "done": false
+          },
+          {
+            "t": "Publicar o primeiro lote e medir engajamento",
+            "done": false
+          }
+        ]
+      }
     }
   ]
 }
