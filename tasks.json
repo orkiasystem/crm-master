@@ -1029,6 +1029,56 @@
           }
         ]
       }
+    },
+    {
+      "id": "op-0240",
+      "type": "remove",
+      "task_id": "t-copy-a5-obra-chave"
+    },
+    {
+      "id": "op-0241",
+      "type": "remove",
+      "task_id": "t-copy-a6-mae"
+    },
+    {
+      "id": "op-0242",
+      "type": "remove",
+      "task_id": "t-copy-a7-parcela"
+    },
+    {
+      "id": "op-0243",
+      "type": "remove",
+      "task_id": "t-copy-a8-subsidio"
+    },
+    {
+      "id": "op-0244",
+      "type": "remove",
+      "task_id": "t-copy-a9-entrada"
+    },
+    {
+      "id": "op-0245",
+      "type": "remove",
+      "task_id": "t-copy-a10-simula"
+    },
+    {
+      "id": "op-0246",
+      "type": "remove",
+      "task_id": "t-copy-a11-suite"
+    },
+    {
+      "id": "op-0247",
+      "type": "col_del",
+      "col_id": "tarefas"
+    },
+    {
+      "id": "op-0248",
+      "type": "col_add",
+      "depois": "done",
+      "coluna": {
+        "id": "cancelados",
+        "n": "Cancelados",
+        "c": "#6b7280"
+      }
     }
   ]
 }
