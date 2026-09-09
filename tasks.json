@@ -1,1084 +1,1168 @@
 {
-  "ops": [
-    {
-      "id": "op-0209",
-      "type": "add",
-      "task": {
-        "id": "t-copy-a5-obra-chave",
-        "codigo": 55,
-        "titulo": "ARTE E5 · NINGUÉM QUER VER OBRA",
-        "coluna": "tarefas",
-        "area": "iCasas – Construtora",
-        "prioridade": "media",
-        "pai": "t-copys-tc-descontraido",
-        "ordem": 550,
-        "descricao": "**Arte · engajamento**\n\n**Headline:** Ninguém quer ver obra. Todo mundo quer ver chave.\n\n**Apoio:** Arquiteto e engenheiro do projeto até a mudança, com acompanhamento em cada etapa. Você aparece pra escolher no começo e pra receber a chave no fim. O barulho fica com a gente."
-      }
-    },
-    {
-      "id": "op-0210",
-      "type": "add",
-      "task": {
-        "id": "t-copy-a6-mae",
-        "codigo": 56,
-        "titulo": "ARTE E6 · SUA MÃE VAI QUERER VISITAR",
-        "coluna": "tarefas",
-        "area": "iCasas – Construtora",
-        "prioridade": "baixa",
-        "pai": "t-copys-tc-descontraido",
-        "ordem": 560,
-        "descricao": "**Arte · engajamento**\n\n**Headline:** Sua mãe vai querer visitar\n\n**Apoio:** Ou não — e isso também é escolha sua. Quando o terreno é você quem escolhe, a distância da família deixa de ser sorte e vira decisão."
-      }
-    },
-    {
-      "id": "op-0211",
-      "type": "add",
-      "task": {
-        "id": "t-copy-a7-parcela",
-        "codigo": 57,
-        "titulo": "ARTE C1 · CASA PRÓPRIA POR [R$ X]/MÊS",
-        "coluna": "tarefas",
-        "area": "iCasas – Construtora",
-        "prioridade": "alta",
-        "pai": "t-copys-tc-descontraido",
-        "ordem": 570,
-        "descricao": "**Arte · captação**\n\n**Headline:** CASA PRÓPRIA POR [R$ X]/MÊS\n\n**Apoio:** Terreno e construção no mesmo financiamento, pelo Minha Casa Minha Vida. Você não precisa comprar o lote antes nem juntar entrada impossível — dá pra começar do jeito que você está hoje.\n\n**CTA:** Simula a sua"
-      }
-    },
-    {
-      "id": "op-0212",
-      "type": "add",
-      "task": {
-        "id": "t-copy-a8-subsidio",
-        "codigo": 58,
-        "titulo": "ARTE C2 · ATÉ [R$ X] DE SUBSÍDIO",
-        "coluna": "tarefas",
-        "area": "iCasas – Construtora",
-        "prioridade": "alta",
-        "pai": "t-copys-tc-descontraido",
-        "ordem": 580,
-        "descricao": "**Arte · captação**\n\n**Headline:** ATÉ [R$ X] DE SUBSÍDIO. VOCÊ TEM?\n\n**Apoio:** Depende da sua renda familiar e de você nunca ter financiado imóvel. Muita gente tem direito e nunca foi atrás. A consulta é gratuita, leva cinco minutos e a resposta é honesta — mesmo quando é não.\n\n**CTA:** Quero saber"
-      }
-    },
-    {
-      "id": "op-0213",
-      "type": "add",
-      "task": {
-        "id": "t-copy-a9-entrada",
-        "codigo": 59,
-        "titulo": "ARTE C3 · A ENTRADA TRAVA VOCÊ?",
-        "coluna": "tarefas",
-        "area": "iCasas – Construtora",
-        "prioridade": "media",
-        "pai": "t-copys-tc-descontraido",
-        "ordem": 590,
-        "descricao": "**Arte · captação**\n\n**Headline:** A ENTRADA TRAVA VOCÊ? ELA PARCELA.\n\n**Apoio:** A entrada é o que faz a maioria desistir antes de tentar. Aqui ela é parcelada e a documentação é acompanhada por quem entende do processo. O que travava vira só mais uma etapa.\n\n**CTA:** Ver condições"
-      }
-    },
-    {
-      "id": "op-0214",
-      "type": "add",
-      "task": {
-        "id": "t-copy-a10-simula",
-        "codigo": 60,
-        "titulo": "ARTE C4 · SIMULA ANTES DE COMPRAR O TERRENO",
-        "coluna": "tarefas",
-        "area": "iCasas – Construtora",
-        "prioridade": "media",
-        "pai": "t-copys-tc-descontraido",
-        "ordem": 600,
-        "descricao": "**Arte · captação**\n\n**Headline:** SIMULA ANTES DE COMPRAR O TERRENO\n\n**Apoio:** Todo mês aparece alguém que comprou o lote animado e descobriu depois que não passa no financiamento. A ordem certa é o contrário: simula primeiro, compra depois — e aí você negocia sabendo quanto pode.\n\n**CTA:** Fazer simulação"
-      }
-    },
-    {
-      "id": "op-0215",
-      "type": "add",
-      "task": {
-        "id": "t-copy-a11-suite",
-        "codigo": 61,
-        "titulo": "ARTE C5 · 2 QUARTOS, SUÍTE E CLOSET",
-        "coluna": "tarefas",
-        "area": "iCasas – Construtora",
-        "prioridade": "media",
-        "pai": "t-copys-tc-descontraido",
-        "ordem": 610,
-        "descricao": "**Arte · captação**\n\n**Headline:** 2 QUARTOS, SUÍTE, CLOSET E JÁ AUTOMATIZADA\n\n**Apoio:** A partir de [R$ X] por mês pelo Minha Casa Minha Vida, com projeto personalizado e o terreno na localização que você escolher. Não é padrão de catálogo: é a sua casa, do seu jeito.\n\n**CTA:** Quero as condições"
-      }
-    },
-    {
-      "id": "op-0216",
-      "type": "update",
-      "task": {
-        "id": "t-copys-tc-descontraido",
-        "checklist": [
-          {
-            "t": "VÍDEO P1 · O ALUGUEL É SEU AMIGO",
-            "done": false
-          },
-          {
-            "t": "VÍDEO P2 · NÃO SEI CONSTRUIR",
-            "done": false
-          },
-          {
-            "t": "VÍDEO P3 · O ERRO CLÁSSICO",
-            "done": false
-          },
-          {
-            "t": "VÍDEO P4 · SUÍTE E CLOSET",
-            "done": false
-          },
-          {
-            "t": "VÍDEO R1 · PIZZA DE RODÍZIO",
-            "done": false
-          },
-          {
-            "t": "VÍDEO R2 · A CASA JÁ VEM ESPERTA",
-            "done": false
-          },
-          {
-            "t": "VÍDEO O1 · ENTREGA DA CHAVE",
-            "done": false
-          },
-          {
-            "t": "VÍDEO O2 · BASTIDOR DE OBRA",
-            "done": false
-          },
-          {
-            "t": "VÍDEO O3 · ANTES E DEPOIS DO TERRENO",
-            "done": false
-          },
-          {
-            "t": "VÍDEO O4 · PERGUNTA DE CLIENTE",
-            "done": false
-          },
-          {
-            "t": "ARTE E1 · ALUGUEL É AQUELE AMIGO",
-            "done": false
-          },
-          {
-            "t": "ARTE E2 · APARTAMENTO É RODÍZIO",
-            "done": false
-          },
-          {
-            "t": "ARTE E3 · ALEXA ACENDE A LUZ",
-            "done": false
-          },
-          {
-            "t": "ARTE E4 · CLOSET NO MCMV",
-            "done": false
-          },
-          {
-            "t": "ARTE E5 · NINGUÉM QUER VER OBRA",
-            "done": false
-          },
-          {
-            "t": "ARTE E6 · SUA MÃE VAI QUERER VISITAR",
-            "done": false
-          },
-          {
-            "t": "ARTE C1 · CASA PRÓPRIA POR [R$ X]/MÊS",
-            "done": false
-          },
-          {
-            "t": "ARTE C2 · ATÉ [R$ X] DE SUBSÍDIO",
-            "done": false
-          },
-          {
-            "t": "ARTE C3 · A ENTRADA TRAVA VOCÊ?",
-            "done": false
-          },
-          {
-            "t": "ARTE C4 · SIMULA ANTES DE COMPRAR O TERRENO",
-            "done": false
-          },
-          {
-            "t": "ARTE C5 · 2 QUARTOS, SUÍTE E CLOSET",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0217",
-      "type": "col_add",
-      "depois": "todo",
-      "coluna": {
-        "id": "tarefas",
-        "n": "Conteúdos",
-        "c": "#14b8a6"
-      }
-    },
-    {
-      "id": "op-0218",
-      "type": "col_ren",
-      "col_id": "tarefas",
-      "nome": "Conteúdos"
-    },
-    {
-      "id": "op-0219",
-      "type": "add",
-      "task": {
-        "id": "t-jumka-18x",
-        "codigo": 62,
-        "titulo": "PARCELAMENTO 18X — JUMKA",
-        "coluna": "todo",
-        "area": "Jumka",
-        "prioridade": "media",
-        "descricao": "Divulgar o **parcelamento em até 18x** dos móveis da Jumka.\n\n**Ressalva obrigatória:** *Sujeito a análise de crédito.*\nTrocamos \"perante análise do banco\" por esse termo — é o padrão do mercado, mais curto e evita problema com o Procon. Precisa aparecer em **toda peça** que citar o parcelamento, mesmo em corpo menor.\n\n---\n\n**COPY · DIRETA**\n> **Seu móvel novo em até 18x**\n> Você escolhe, a gente parcela. Sujeito a análise de crédito.\n> **CTA:** Chama no direct que a gente simula\n\n**COPY · QUEBRANDO A OBJEÇÃO**\n> **Móvel bom não precisa ser à vista**\n> Até 18 vezes pra montar a casa do jeito que você quer, sem esperar juntar tudo.\n> Sujeito a análise de crédito.\n\n**COPY · COM O CÁLCULO NA CABEÇA DO CLIENTE**\n> **18x cabe no seu mês**\n> Aquele conjunto que você adiou o ano todo divide em até 18 vezes.\n> Fala com a gente que a análise sai na hora.\n\n**COPY · CURTA PRA STORY**\n> **Parcelamos em 18x.**\n> Vem escolher o seu.\n\n---\n\n**ROTEIRO DE VÍDEO** — 15s\n\n- 1. \"Você tá adiando esse móvel há quanto tempo?\"\n- 2. \"Aqui a gente parcela em até 18 vezes.\"\n- 3. \"A análise é na hora e você já sai sabendo.\"\n- 4. **Fecho:** \"Manda a foto do que você quer no direct que eu já simulo pra você.\"\n\n---\n\n**ONDE USAR**\n- Selo fixo nas artes de produto — o parcelamento vira argumento em toda peça, não campanha isolada\n- Story de resposta rápida quando alguém pergunta preço\n- Vídeo curto no feed, uma vez por mês\n\n*Combina bem com a mesa de madeira, que é o produto que mais gera interesse — preço alto é onde o parcelamento pesa mais.*",
-        "checklist": [
-          {
-            "t": "Confirmar a regra com o Jean: bandeiras, valor mínimo e juros",
-            "done": false
-          },
-          {
-            "t": "Criar o selo de 18x pras artes de produto",
-            "done": false
-          },
-          {
-            "t": "Produzir a arte principal",
-            "done": false
-          },
-          {
-            "t": "Gravar o vídeo de 15s",
-            "done": false
-          },
-          {
-            "t": "Publicar",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0220",
-      "type": "update",
-      "task": {
-        "id": "t-jumka-18x",
-        "descricao": "Divulgar o **parcelamento em até 18x** dos móveis da Jumka.\n\n**⚠️ RESSALVA OBRIGATÓRIA:** *Sujeito a análise de crédito.*\nPrecisa aparecer em toda peça que citar o parcelamento, mesmo em corpo menor. Trocamos \"perante análise do banco\" por esse termo — é o padrão do mercado, mais curto e evita problema com o Procon.\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar com o Jean: são 18x em qualquer valor ou só acima de um mínimo? Tem juros a partir de qual parcela? Quais bandeiras entram?\n- *Anunciar \"18x\" e o cliente descobrir no balcão que é só acima de X queima a loja no direct.*\n\n---\n\n**ARTE 1 · TEXTO SOBRE A FOTO**\n\n> **LEVE AGORA.**\n> **PAGUE EM 18X.**\n>\n> *Sujeito a análise de crédito.*\n\n*Variação:* SEU. HOJE. EM 18X.\n\nPoucas palavras, duas linhas de peso igual, \"18X\" como maior elemento. Sobre foto, frase com mais de seis palavras vira ruído — a imagem já faz metade do trabalho.\n**Composição:** se a foto for de ambiente claro, usar faixa escura translúcida por trás. Texto branco direto sobre madeira clara some no feed comprimido do Instagram.\n\n---\n\n**ARTE 2 · PEÇA MONTADA**\n\n- **Headline:** MÓVEL BOM NÃO PRECISA SER À VISTA\n- **Sub:** Parcelamos em até 18 vezes\n- **Apoio:** Você escolhe o móvel, a gente resolve o pagamento. A análise sai na hora e você já sai da loja sabendo.\n- **Selo:** ATÉ 18X\n- **CTA:** Chama no direct\n- **Rodapé:** Sujeito a análise de crédito.\n\nA headline quebra a objeção antes de falar do parcelamento: quem lê \"não precisa ser à vista\" já entende que o problema tem solução, e só então aparece o número.\n\n---\n\n**OUTRAS COPYS · POST E LEGENDA**\n\n**Direta**\n> **Seu móvel novo em até 18x**\n> Você escolhe, a gente parcela. Sujeito a análise de crédito.\n> **CTA:** Chama no direct que a gente simula\n\n**Com o cálculo na cabeça do cliente**\n> **18x cabe no seu mês**\n> Aquele conjunto que você adiou o ano todo divide em até 18 vezes.\n> Fala com a gente que a análise sai na hora.\n\n**Curta pra story**\n> **Parcelamos em 18x.**\n> Vem escolher o seu.\n\n---\n\n**ROTEIRO DE VÍDEO** — 15s\n\n- 1. \"Você tá adiando esse móvel há quanto tempo?\"\n- 2. \"Aqui a gente parcela em até 18 vezes.\"\n- 3. \"A análise é na hora e você já sai sabendo.\"\n- 4. **Fecho:** \"Manda a foto do que você quer no direct que eu já simulo pra você.\"\n\n---\n\n**ESTRATÉGIA — funciona como selo, não como campanha**\n\nParcelamento não é notícia, é argumento. Com um selo de 18x fixo nas artes de produto, ele trabalha em toda peça o tempo todo. Campanha isolada de parcelamento rende uma semana e morre.\n\n**Onde usar**\n- Selo fixo nas artes de produto\n- Story de resposta rápida quando perguntarem preço\n- Vídeo curto no feed, uma vez por mês\n\n*Combina especialmente com a mesa de madeira, que é o produto de maior interesse — quanto maior o ticket, mais o parcelamento pesa na decisão.*",
-        "checklist": [
-          {
-            "t": "Confirmar a regra com o Jean: valor mínimo, juros e bandeiras",
-            "done": false
-          },
-          {
-            "t": "Criar o selo ATÉ 18X pras artes de produto",
-            "done": false
-          },
-          {
-            "t": "Produzir arte 1 — texto sobre a foto",
-            "done": false
-          },
-          {
-            "t": "Produzir arte 2 — peça montada",
-            "done": false
-          },
-          {
-            "t": "Gravar o vídeo de 15s",
-            "done": false
-          },
-          {
-            "t": "Publicar",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0221",
-      "type": "add",
-      "task": {
-        "id": "t-crm-construtora",
-        "codigo": 63,
-        "titulo": "CRM DA CONSTRUTORA COM VISÃO DUPLA",
-        "coluna": "todo",
-        "area": "iCasas – Construtora",
-        "prioridade": "alta",
-        "descricao": "CRM para a **iCasas Construtora**, no mesmo padrão do CRM da Automação — com uma visão consolidada das duas empresas para usuários específicos.\n\n**REQUISITOS**\n- CRM próprio da Construtora, mesma arquitetura do da Automação\n- O **Cris** vê as duas empresas ao mesmo tempo\n- Só usuários específicos têm acesso a essa visão dupla\n\n---\n\n**DECISÃO DE ARQUITETURA**\n\n**Os dois CRMs no mesmo projeto Supabase**, com uma coluna `empresa` em todas as tabelas ('construtora' ou 'automacao') — não em dois bancos separados.\n\n*Por quê:* a visão consolidada vira uma consulta só. Com bancos separados, seria preciso manter dois clientes Supabase abertos no navegador e a possibilidade de relatório cruzado se perde.\n\n**Tabela de perfis**\n- `usuario_id` (auth), `empresa`, `papel`\n- Papéis: `diretor` (vê tudo), `gestor` (vê a própria empresa), `corretor` (vê só o que é dele)\n\n**⚠️ O ACESSO TEM QUE SER GARANTIDO NO BANCO, NÃO NA TELA**\n\nAs políticas RLS decidem quem lê o quê:\n- usuário comum: só linhas onde `empresa` = a empresa dele\n- papel `diretor`: todas as linhas das duas empresas\n\nSe o controle for só esconder botões no front, qualquer pessoa com a chave pública lê a base inteira — e essa chave está no código-fonte do site. *(Ver card de revisão de senhas: já temos histórico de acesso exposto.)*\n\n---\n\n**FUNCIONALIDADES**\n- Pipeline de leads por etapa, no padrão do CRM atual\n- Distribuição de leads entre corretores\n- Origem do lead marcada (qual campanha trouxe) — hoje isso falta e impede medir tráfego\n- Seletor de empresa no topo, visível só pra quem tem papel `diretor`\n- Painel consolidado: leads, conversões e funil das duas empresas lado a lado\n\n---\n\n**ORDEM SUGERIDA**\n- 1. Modelar tabelas com a coluna `empresa` desde o início — retrofit depois dá muito mais trabalho\n- 2. Criar a tabela de perfis e as políticas RLS antes de qualquer tela\n- 3. Testar a RLS logando com um usuário comum e tentando ler dados da outra empresa\n- 4. Só então construir a interface\n- 5. Painel consolidado por último\n\n*Testar a RLS antes da interface evita descobrir vazamento com o sistema já em uso.*\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Quais usuários além do Cris terão a visão dupla?\n- O CRM da Construtora vai receber lead de campanha automaticamente, como o atual, ou só cadastro manual no começo?",
-        "checklist": [
-          {
-            "t": "Definir quem terá a visão dupla além do Cris",
-            "done": false
-          },
-          {
-            "t": "Modelar tabelas com a coluna empresa",
-            "done": false
-          },
-          {
-            "t": "Criar tabela de perfis com empresa e papel",
-            "done": false
-          },
-          {
-            "t": "Escrever as políticas RLS",
-            "done": false
-          },
-          {
-            "t": "Testar RLS com usuário comum tentando ler a outra empresa",
-            "done": false
-          },
-          {
-            "t": "Construir o pipeline de leads",
-            "done": false
-          },
-          {
-            "t": "Marcar origem do lead por campanha",
-            "done": false
-          },
-          {
-            "t": "Seletor de empresa pro papel diretor",
-            "done": false
-          },
-          {
-            "t": "Painel consolidado das duas empresas",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0222",
-      "type": "update",
-      "task": {
-        "id": "t-crm-construtora",
-        "descricao": "CRM para a **iCasas Construtora**, construído **em cima do CRM que já roda** — hoje atendendo a iCasas Automação — com visão consolidada das duas empresas para usuários específicos.\n\n**Base:** https://mkticasas.github.io/crm-icasas/\n\n---\n\n**POR QUE APROVEITAR O QUE EXISTE**\n\nO CRM atual já tem pronto: dashboard, pipeline com arraste, relatórios com exportação em PDF, vendedores com meta e permissão, etiquetas, temperatura de lead, lembretes, modo TV, anexos e — o mais valioso — **integrações por webhook** com Zapier e Meta Lead Ads, com distribuição round-robin.\n\nComeçar do zero jogaria fora justamente a parte mais trabalhosa.\n\n**E a visão dupla já tem meio caminho andado:** o cadastro de vendedor tem a permissão *\"Ver todos os leads\"*. A visão do Cris é o mesmo padrão um nível acima — permissão **\"Ver todas as empresas\"**.\n\n---\n\n**O QUE FAZER**\n\n- 1. Coluna `empresa` em leads, vendedores, etiquetas e webhooks, com padrão em 'automacao' e as linhas existentes preenchidas\n- 2. Nova permissão `ver_todas_empresas` no cadastro de vendedor — marcada só pro Cris\n- 3. **Reescrever a RLS:** vendedor vê a própria empresa; com a permissão, vê as duas\n- 4. Seletor de empresa no topo, visível só pra quem tem a permissão\n- 5. **Um webhook por empresa** — o lead já entra marcado, sem trabalho manual\n- 6. Dashboard e relatórios com filtro por empresa, e soma das duas pro Cris\n\n*Adicionar a coluna não restringe nada até a política RLS mudar. Se hoje a regra é \"usuário autenticado vê tudo\", ela continua deixando todos verem as duas empresas.*\n\n---\n\n**⚠️ RESOLVER ANTES DE DUPLICAR: SENHA DOS VENDEDORES**\n\nO cadastro de vendedor tem campos próprios de **Login e Senha**, ou seja, credencial guardada na tabela em vez de autenticação de verdade.\n\n**Como conferir:** Supabase → Table Editor → tabela de vendedores → coluna de senha.\n- Se a senha é **legível** → texto puro. Quem acessa o banco entra na conta de qualquer vendedor\n- Se aparece algo como `$2a$10$N9qo8uLO...` → é hash, está certo\n\n**Se for texto puro:** migrar pra **Supabase Auth**, que já faz hash e recuperação de senha. Não programar hash na mão.\n\n*Fazer isso antes de estender pra Construtora — senão o problema é replicado em dois sistemas.* Ver card de revisão de senhas fixas.\n\n---\n\n**ORDEM DE EXECUÇÃO**\n- 1. Backup do banco — é sistema em produção com dados reais\n- 2. Conferir e corrigir a questão das senhas\n- 3. Coluna `empresa` e preenchimento das linhas atuais\n- 4. Permissão e políticas RLS\n- 5. **Testar logando como vendedor comum e tentando ler a outra empresa**\n- 6. Seletor de empresa e webhooks por empresa\n- 7. Dashboard consolidado por último\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Quais usuários além do Cris terão a visão dupla?\n- As senhas dos vendedores estão em texto puro ou com hash?",
-        "checklist": [
-          {
-            "t": "Backup do banco antes de mexer",
-            "done": false
-          },
-          {
-            "t": "Conferir se a senha dos vendedores está com hash",
-            "done": false
-          },
-          {
-            "t": "Migrar login pra Supabase Auth se for texto puro",
-            "done": false
-          },
-          {
-            "t": "Definir quem terá visão dupla além do Cris",
-            "done": false
-          },
-          {
-            "t": "Coluna empresa nas tabelas + preencher linhas atuais",
-            "done": false
-          },
-          {
-            "t": "Permissão ver_todas_empresas no cadastro de vendedor",
-            "done": false
-          },
-          {
-            "t": "Reescrever as políticas RLS",
-            "done": false
-          },
-          {
-            "t": "Testar com vendedor comum tentando ler a outra empresa",
-            "done": false
-          },
-          {
-            "t": "Seletor de empresa no topo",
-            "done": false
-          },
-          {
-            "t": "Webhook separado por empresa",
-            "done": false
-          },
-          {
-            "t": "Dashboard consolidado das duas",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0223",
-      "type": "add",
-      "task": {
-        "id": "t-placa-sonia",
-        "codigo": 64,
-        "titulo": "PLACA DE OBRA — SÔNIA CARDOZO",
-        "coluna": "doing",
-        "area": "Pessoal",
-        "prioridade": "alta",
-        "descricao": "Freela pra **Sônia Cardozo** (arquiteta). Combinado por WhatsApp entre 17 e 19/08.\n\n**Valor combinado: R$ 35** pela arte simples.\n\n---\n\n**DADOS DA PLACA**\n- Nome: **Sonia Cardozo de Carvalho**\n- Registro: **CAU nº A300996-3**\n- Site: **soniacardozo.com**\n- Medida: **1,20 × 0,90 m** (horizontal — sugestão sua, ela aceitou)\n- QR Code do site na peça — decidido no lugar do Instagram, pra manter a arte clean\n- Referência de estilo e logo: ela mandou por imagem no WhatsApp\n\n---\n\n**STATUS**\n- Três versões de foto já enviadas pra ela escolher: **sketch/render misturado**, **render** e **foto real**\n- Ela ficou de mandar uma **logo diferente**, mais chamativa\n- Você ficou de **gerar o QR Code** e de **trabalhar as cores do site dela** na arte, pra quebrar um pouco o clean\n\n---\n\n**PENDÊNCIAS**\n- Receber a logo nova que ela vai mandar\n- Gerar e aplicar o QR Code de soniacardozo.com\n- Aplicar a paleta do site dela\n- Confirmar qual das três versões de foto ela escolheu\n- Montar a simulação da placa no terreno (ela mandou foto do local)\n- Enviar pra aprovação e cobrar os R$ 35\n\n---\n\n**OPORTUNIDADE ABERTA**\nVocê ofereceu **vídeo pra divulgar o trabalho dela** e ela respondeu por áudio — pelo que veio depois (\"bora bora\", \"pai tá open\"), o interesse existe. Vale retomar essa conversa depois de entregar a placa: cliente satisfeito com entrega pequena é a melhor hora de propor a maior.\n\n*Arquiteta com CAU, site próprio e obra em andamento é perfil de conteúdo recorrente, não de trabalho avulso.*",
-        "checklist": [
-          {
-            "t": "Receber a logo nova dela",
-            "done": false
-          },
-          {
-            "t": "Confirmar qual das 3 versões de foto ela escolheu",
-            "done": false
-          },
-          {
-            "t": "Gerar o QR Code de soniacardozo.com",
-            "done": false
-          },
-          {
-            "t": "Aplicar as cores do site dela",
-            "done": false
-          },
-          {
-            "t": "Montar a simulação da placa no terreno",
-            "done": false
-          },
-          {
-            "t": "Enviar pra aprovação",
-            "done": false
-          },
-          {
-            "t": "Receber os R$ 35",
-            "done": false
-          },
-          {
-            "t": "Retomar a proposta do vídeo de divulgação",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0224",
-      "type": "add",
-      "task": {
-        "id": "t-sonia-placa-obra",
-        "codigo": 65,
-        "titulo": "PLACA DE OBRA E VÍDEO — SONIA (ARQUITETA)",
-        "coluna": "doing",
-        "area": "Pessoal",
-        "prioridade": "media",
-        "descricao": "Placa de obra para a **Sônia** (arquiteta), freela combinado por WhatsApp (17-19/08).\n\n**COMBINADO**\n- Arte da placa de obra — estilo horizontal, referência que ela mandou\n- Medida: **1,20 x 0,90 m** (horizontal — ela sugeriu 1,00x1,00 mas ficaria quadrada demais)\n- Valor: **R$ 35** — arte simples\n- Vídeo de divulgação do trabalho dela — **combinado, ainda sem valor fechado**\n- Logo dela + site: **soniacardozo.com**\n- Nome completo pra registro: **Sonia Cardozo de Carvalho**\n- Registro profissional: **CAU nº A300996-3**\n\n---\n\n**O QUE JÁ FOI PRODUZIDO (19/08)**\nVocê já fez **3 propostas de estilo de foto** pra ela escolher:\n1. Sketch/render/mix\n2. Render\n3. Foto real\n\nEla ainda não respondeu qual prefere (mandou só áudio).\n\n**Decisão tomada:** QR code do site em vez do Instagram — o Insta tem informação demais e quebra a proposta clean da peça. Vai trabalhar com as cores do site dela pra destacar a arte.\n\n**Pendente dela:** disse que vai mandar uma logo diferente, \"pra chamar mais atenção\".\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar com ela qual das 3 propostas de foto ela escolheu\n- Aguardar a logo nova que ela disse que ia mandar\n- Fechar o valor do vídeo de divulgação",
-        "checklist": [
-          {
-            "t": "Confirmar qual das 3 propostas de foto ela escolheu",
-            "done": false
-          },
-          {
-            "t": "Receber a logo nova dela",
-            "done": false
-          },
-          {
-            "t": "Gerar o QR code do site",
-            "done": true
-          },
-          {
-            "t": "Finalizar a arte na medida 1,20x0,90",
-            "done": false
-          },
-          {
-            "t": "Fechar valor do vídeo de divulgação",
-            "done": false
-          },
-          {
-            "t": "Entregar e receber os R$ 35 da placa",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0225",
-      "type": "add",
-      "task": {
-        "id": "t-status-migracao-crm",
-        "codigo": 66,
-        "titulo": "STATUS — MIGRAÇÃO CRM PARA CONTA ÚNICA",
-        "coluna": "doing",
-        "area": "iCasas – Automação",
-        "prioridade": "alta",
-        "descricao": "Registro do estado atual da migração pro CRM único (projeto `mqdhavyaeujufhlqdlfg`), pra continuar numa conversa nova sem perder o fio.\n\n---\n\n**✅ JÁ FEITO**\n\n- Visão por empresa no CRM: coluna `empresa` em leads e vendedores, tudo que já existia marcado como `automacao`\n- Etapas específicas da Construtora no pipeline (Contato Inicial, Visita Agendada, Reunião Realizada, Retrabalho Futuro etc.)\n- Seletor de empresa no topo — aparece só pra quem tem `can_see_all_companies = true`. Cris e você (Lucas/admin) já estão liberados\n- Meryson liberado como `can_see_all_leads = true` só da Automação (sem ver a Construtora)\n- Selo de empresa nos cards do pipeline\n- Vínculo de 3 vendedores ao Supabase Auth (login por e-mail): **cris**, **lucas** (admin) e **meryson** — todos usando a mesma conta que já usam no Acompanhamento de Obras\n- Tela de login trocada pra e-mail + senha via Supabase Auth\n- Fluxo de \"Esqueci minha senha\" com envio de link por e-mail, e tela de \"Nova senha\"\n- Round-robin da Edge Function `webhook-lead` ajustado pra respeitar a empresa do webhook (gira só entre vendedores da mesma empresa)\n- Campo de Empresa no cadastro de webhook, com selo na listagem\n\n---\n\n**⚠️ PENDENTE**\n\n- **José Mauricio** ainda não tem e-mail nem `auth_user_id` — não consegue entrar depois da virada. Falta pegar o e-mail dele, criar o usuário em Authentication → Users e vincular\n- **Bug crítico corrigido, mas falta subir**: uma chamada (`db.auth.onAuthStateChange`) estava fora de função e quebrava o carregamento da página inteira. Corrigido no arquivo mais recente — precisa confirmar que subiu e testar o \"Enviar link\" de recuperação de senha\n- **Apagar a coluna `password` da tabela `sellers`** — só fazer depois que todo mundo (incluindo o José) já estiver entrando pelo Auth com sucesso\n- **Criar o webhook novo da Construtora** — escolher Empresa: iCasas Construtora no cadastro, pegar a URL e trocar no Meta Lead Ads / Zapier daquela campanha\n- **Testar o round-robin por empresa** — disparar um lead de teste no webhook novo e confirmar que caiu com `empresa = 'construtora'` e foi pra Cris/Thais/Vini, nunca pro José/Meryson\n- **Teste de vazamento (RLS)** — ainda não foi feito. Abrir o CRM em aba anônima, sem login, e no console tentar `db.from('sellers').select('*')` e `db.from('leads').select('*')`. Os dois têm que voltar vazios\n- **Trocar todas as senhas** depois que a coluna `password` for apagada — as antigas ficaram legíveis no banco por meses, valem como já vazadas\n- Backup de `leads` e `sellers` em CSV — ainda não confirmado se foi feito antes das alterações\n\n---\n\n**ARQUIVOS RELEVANTES DESSA MIGRAÇÃO**\n- `index-final.html` — versão mais recente do CRM, com tudo (empresa + Auth + correção do bug de carregamento)\n- `sql-empresa.sql` — cria as colunas de empresa em leads/sellers\n- `fase2-auth.sql` — passo a passo do vínculo com Auth e da RLS\n- `webhook-lead-empresa.ts` — Edge Function com round-robin por empresa\n- `sql-webhook-empresa.sql` — cria a coluna empresa nos webhooks\n- `passo-a-passo.md` — roteiro completo das duas fases\n\n**PROJETOS SUPABASE**\n- `mqdhavyaeujufhlqdlfg` — produção real, é aqui que a migração está acontecendo\n- `oddredchqdhhuskguxtb` — ambiente de teste, não usar em produção",
-        "checklist": [
-          {
-            "t": "Resolver acesso do José (e-mail + vínculo)",
-            "done": false
-          },
-          {
-            "t": "Confirmar que a correção do bug subiu e testar recuperação de senha",
-            "done": false
-          },
-          {
-            "t": "Apagar a coluna password (só depois de todos migrados)",
-            "done": false
-          },
-          {
-            "t": "Criar o webhook da Construtora e trocar no Meta/Zapier",
-            "done": false
-          },
-          {
-            "t": "Testar o round-robin por empresa",
-            "done": false
-          },
-          {
-            "t": "Teste de vazamento em aba anônima",
-            "done": false
-          },
-          {
-            "t": "Trocar todas as senhas",
-            "done": false
-          },
-          {
-            "t": "Confirmar backup de leads e sellers",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0226",
-      "type": "update",
-      "task": {
-        "id": "t-status-migracao-crm",
-        "descricao": "Retomar aqui numa conversa nova: \"abre o card de status da migração do CRM\".\n\n**Projetos Supabase**\n- `mqdhavyaeujufhlqdlfg` — PRODUÇÃO. É aqui que tudo acontece.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n---\n\n**✅ JÁ FEITO**\n- Coluna `empresa` em leads e vendedores (tudo antigo = `automacao`)\n- Etapas específicas da Construtora no pipeline\n- Seletor de empresa no topo pra quem tem `can_see_all_companies=true` (Cris, Lucas/admin)\n- Meryson com `can_see_all_leads=true` só da Automação\n- Selo de empresa nos cards\n- Login trocado pra Supabase Auth (e-mail + senha) — vinculados: cris, lucas, meryson\n- Round-robin da Edge Function `webhook-lead` respeitando a empresa do webhook\n- Campo Empresa no cadastro de webhook\n- Corrigido bug que travava a página inteira (`db.auth.onAuthStateChange` estava fora de função)\n\n---\n\n**⚠️ AGORA — o link de redefinir senha caiu em localhost**\n\n**Passo 1 — corrigir a URL (Supabase → Authentication → URL Configuration)**\n- Site URL: colar o endereço real do CRM\n- Redirect URLs: colar o mesmo endereço\n- Salvar\n\n**Passo 2 — deixar o e-mail em português (Authentication → Email Templates → Reset Password)**\n```html\n<h2>Redefinir sua senha</h2>\n<p>Recebemos um pedido para redefinir sua senha no CRM iCasas.</p>\n<p><a href=\"{{ .ConfirmationURL }}\">Clique aqui para criar uma nova senha</a></p>\n<p>Se você não pediu isso, pode ignorar este e-mail.</p>\n```\n\n**Passo 3 — testar de novo**\nPedir \"esqueci minha senha\", abrir o link do e-mail novo e confirmar que cai na tela de nova senha do CRM (não mais em localhost).\n\n---\n\n**PENDENTE DEPOIS DISSO, NA ORDEM**\n\n**1. José Mauricio sem acesso**\n- Conseguir o e-mail dele\n- Supabase → Authentication → Users → Add user (marcar Auto Confirm User)\n- Copiar o UUID gerado e rodar:\n```sql\nupdate sellers set email = 'EMAIL-DO-JOSE', auth_user_id = 'UUID-COPIADO' where login = 'jose';\n```\n\n**2. Confirmar todo mundo com auth_user_id**\n```sql\nselect login, name, email, auth_user_id from sellers where status='active' order by name;\n```\nNinguém pode estar com auth_user_id vazio antes do próximo passo.\n\n**3. Apagar a senha da tabela (só depois do passo 2 estar 100%)**\n```sql\nalter table sellers drop column password;\n```\n\n**4. Criar o webhook da Construtora**\n- No CRM: Webhooks → novo → Empresa: iCasas Construtora → Round-robin\n- Copiar a URL gerada e trocar no Meta Lead Ads / Zapier daquela campanha\n\n**5. Testar o round-robin por empresa**\n- Disparar um lead de teste no webhook novo\n- Conferir: `select name, empresa, seller_id from leads order by created_at desc limit 1;`\n- Empresa tem que ser 'construtora' e o seller_id tem que ser do Cris, Thais ou Vini\n\n**6. Teste de vazamento (RLS) — não pular**\n- Abrir o CRM em aba anônima, sem logar\n- F12 → Console:\n```js\nconst t = await db.from('sellers').select('*'); console.log(t);\nconst l = await db.from('leads').select('*'); console.log(l);\n```\n- Os dois têm que voltar vazios ou com erro de permissão\n\n**7. Trocar todas as senhas**\nAs antigas ficaram legíveis no banco por meses — tratar como já vazadas.\n\n**8. Confirmar backup de leads e sellers em CSV** (se ainda não foi feito)\n\n---\n\n**ARQUIVOS DESSA MIGRAÇÃO**\n`index-final.html` (CRM completo e corrigido) · `sql-empresa.sql` · `fase2-auth.sql` · `webhook-lead-empresa.ts` · `sql-webhook-empresa.sql` · `passo-a-passo.md`",
-        "checklist": [
-          {
-            "t": "Corrigir Site URL e Redirect URLs no Supabase",
-            "done": false
-          },
-          {
-            "t": "Trocar o template de e-mail pra português",
-            "done": false
-          },
-          {
-            "t": "Testar recuperação de senha de novo",
-            "done": false
-          },
-          {
-            "t": "Resolver acesso do José (e-mail + vínculo)",
-            "done": false
-          },
-          {
-            "t": "Confirmar todos com auth_user_id preenchido",
-            "done": false
-          },
-          {
-            "t": "Apagar a coluna password",
-            "done": false
-          },
-          {
-            "t": "Criar o webhook da Construtora",
-            "done": false
-          },
-          {
-            "t": "Testar o round-robin por empresa",
-            "done": false
-          },
-          {
-            "t": "Teste de vazamento em aba anônima",
-            "done": false
-          },
-          {
-            "t": "Trocar todas as senhas",
-            "done": false
-          },
-          {
-            "t": "Confirmar backup de leads e sellers",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0227",
-      "type": "update",
-      "task": {
-        "id": "t-status-migracao-crm",
-        "descricao": "Retomar aqui numa conversa nova: \"abre o card de status da migração do CRM\".\n\n**Projetos Supabase**\n- `mqdhavyaeujufhlqdlfg` — PRODUÇÃO. É aqui que tudo acontece.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n---\n\n**✅ JÁ FEITO**\n- Coluna `empresa` em leads e vendedores (tudo antigo = `automacao`)\n- Etapas específicas da Construtora no pipeline\n- Seletor de empresa no topo pra quem tem `can_see_all_companies=true` (Cris, Lucas/admin)\n- Meryson com `can_see_all_leads=true` só da Automação\n- Selo de empresa nos cards\n- Login trocado pra Supabase Auth (e-mail + senha) — vinculados: cris, lucas, meryson\n- Round-robin da Edge Function `webhook-lead` respeitando a empresa do webhook\n- Campo Empresa no cadastro de webhook\n- Corrigido bug que travava a página inteira (`db.auth.onAuthStateChange` estava fora de função)\n\n---\n\n**⚠️ AGORA — o link de redefinir senha caiu em localhost**\n\n**Passo 1 — corrigir a URL (Supabase → Authentication → URL Configuration)**\n- Site URL: colar o endereço real do CRM\n- Redirect URLs: colar o mesmo endereço\n- Salvar\n\n**Passo 2 — deixar o e-mail em português (Authentication → Email Templates → Reset Password)**\n```html\n<h2>Redefinir sua senha</h2>\n<p>Recebemos um pedido para redefinir sua senha no CRM iCasas.</p>\n<p><a href=\"{{ .ConfirmationURL }}\">Clique aqui para criar uma nova senha</a></p>\n<p>Se você não pediu isso, pode ignorar este e-mail.</p>\n```\n\n**Passo 3 — testar de novo**\nPedir \"esqueci minha senha\", abrir o link do e-mail novo e confirmar que cai na tela de nova senha do CRM (não mais em localhost).\n\n---\n\n**PENDENTE DEPOIS DISSO, NA ORDEM**\n\n**1. José Mauricio sem acesso**\n- Conseguir o e-mail dele\n- Supabase → Authentication → Users → Add user (marcar Auto Confirm User)\n- Copiar o UUID gerado e rodar:\n```sql\nupdate sellers set email = 'EMAIL-DO-JOSE', auth_user_id = 'UUID-COPIADO' where login = 'jose';\n```\n\n**2. Confirmar todo mundo com auth_user_id**\n```sql\nselect login, name, email, auth_user_id from sellers where status='active' order by name;\n```\nNinguém pode estar com auth_user_id vazio antes do próximo passo.\n\n**3. Apagar a senha da tabela (só depois do passo 2 estar 100%)**\n```sql\nalter table sellers drop column password;\n```\n\n**4. Criar o webhook da Construtora**\n- No CRM: Webhooks → novo → Empresa: iCasas Construtora → Round-robin\n- Copiar a URL gerada e trocar no Meta Lead Ads / Zapier daquela campanha\n\n**5. Testar o round-robin por empresa**\n- Disparar um lead de teste no webhook novo\n- Conferir: `select name, empresa, seller_id from leads order by created_at desc limit 1;`\n- Empresa tem que ser 'construtora' e o seller_id tem que ser do Cris, Thais ou Vini\n\n**6. Teste de vazamento (RLS) — não pular**\n- Abrir o CRM em aba anônima, sem logar\n- F12 → Console:\n```js\nconst t = await db.from('sellers').select('*'); console.log(t);\nconst l = await db.from('leads').select('*'); console.log(l);\n```\n- Os dois têm que voltar vazios ou com erro de permissão\n\n**7. Trocar todas as senhas**\nAs antigas ficaram legíveis no banco por meses — tratar como já vazadas.\n\n**8. Confirmar backup de leads e sellers em CSV** (se ainda não foi feito)\n\n---\n\n**ARQUIVOS DESSA MIGRAÇÃO**\n`index-final.html` (CRM completo e corrigido) · `sql-empresa.sql` · `fase2-auth.sql` · `webhook-lead-empresa.ts` · `sql-webhook-empresa.sql` · `passo-a-passo.md`\n\n---\n\n**⚠️ ALERTA IMPORTANTE — SUPABASE COMPARTILHADO**\n\nO CRM, a **Vitrine dos Sonhos** e o **Obras + Automação** usam o mesmo projeto Supabase e a mesma conta de login (mesmo e-mail/senha nos três).\n\n**Trocar a senha de alguém (pelo botão do CRM ou pelo próprio \"esqueci minha senha\") derruba a sessão dela em TODOS os sistemas ao mesmo tempo** — é o Supabase encerrando sessões antigas por segurança quando a senha muda. Não é bug, é o comportamento esperado.\n\n**O que fazer quando isso acontecer:** a pessoa só precisa entrar de novo na Vitrine (ou no Obras) usando a **senha nova**. Não perdeu acesso nem permissão, só precisa logar de novo.\n\n**Sempre que trocar a senha de alguém, avisar junto:** \"troquei sua senha, é essa aqui — e você vai precisar logar de novo na Vitrine e no Obras com ela também\"."
-      }
-    },
-    {
-      "id": "op-0228",
-      "type": "add",
-      "task": {
-        "id": "t-videos-jatobas-reconhecimento-vendas",
-        "codigo": 67,
-        "titulo": "VÍDEOS JATOBÁS — RECONHECIMENTO E VENDAS",
-        "coluna": "todo",
-        "area": "iCasas – Construtora",
-        "prioridade": "alta",
-        "descricao": "Vídeos do loteamento **Jatobás** — dois tipos, combinado por áudio (24-25/08).\n\n**⚠️ Confirmar:** o áudio mencionou um segundo loteamento junto com o Jatobás, mas o nome não ficou claro na transcrição (soou como \"Ariab\"/\"Ariatá\"). Confirmar qual é antes de gravar.\n\n---\n\n**VÍDEO 1 · RECONHECIMENTO**\n- Sem falar de valor, só ação\n- Objetivo: movimentar o Instagram, gerar engajamento\n- Estilo pedido: \"focado, com umas mexidinhas na câmera — fica com cara de cinema\"\n\n**VÍDEO 2 · VENDAS**\n- Fala de valor e condições\n- Objetivo: a pessoa se identificar e preencher o formulário\n- Mesmo estilo de câmera do vídeo 1\n\n**Contexto da instalação (Jatobás):**\n- Placa de 3m\n- 12 pontaletes de 4m\n- Enterrar 1m, deixar 3m à mostra\n- Precisa de cavadeira\n- Planejado pra depois do almoço",
-        "checklist": [
-          {
-            "t": "Confirmar o segundo loteamento mencionado no áudio",
-            "done": false
-          },
-          {
-            "t": "Gravar vídeo de reconhecimento",
-            "done": false
-          },
-          {
-            "t": "Gravar vídeo de vendas",
-            "done": false
-          },
-          {
-            "t": "Editar e publicar",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0229",
-      "type": "add",
-      "task": {
-        "id": "t-video-zani",
-        "codigo": 68,
-        "titulo": "VÍDEO — ZANI",
-        "coluna": "todo",
-        "area": "iCasas – Construtora",
-        "prioridade": "media",
-        "descricao": "Vídeo pendente do cliente **Zani**.\n\nJá existe material gravado (recebido no cartão). Ainda não foi editado — ficou pendente por causa da correria da semana.\n\n**O que é:** vídeo mostrando os negócios dele, com um design no final.\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar se ainda tem os vídeos originais ou se precisa regravar\n- Alinhar prazo com o Zani",
-        "checklist": [
-          {
-            "t": "Localizar o material gravado no cartão",
-            "done": false
-          },
-          {
-            "t": "Editar",
-            "done": false
-          },
-          {
-            "t": "Entregar ao Zani",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0230",
-      "type": "add",
-      "task": {
-        "id": "t-video-entrega-jumka-juliana",
-        "codigo": 69,
-        "titulo": "VÍDEO ENTREGA MONTADA — JUMKA (JULIANA)",
-        "coluna": "todo",
-        "area": "Jumka",
-        "prioridade": "alta",
-        "descricao": "Vídeo de entrega de móveis montados — roteiro com a Juliana no gancho e na CTA.\n\n**Duração:** 35-45s · Formato vertical (Reels/Stories)\n\n---\n\n**ROTEIRO**\n\n1. Juliana em frente ao carro carregado, olhando pra câmera (3-4s)\n   🗣️ \"Vocês sabiam que a gente entrega o móvel montado, prontinho pra usar?\"\n\n2. Plano da caçamba cheia — móveis encaixados, amarrados/protegidos (3s) — sem fala, só o gancho visual\n\n3. Detalhe de como está organizado, mostrando o \"quebra-cabeça\" da carga (4-5s)\n   🗣️ Juliana em off: \"Cada móvel é montado na loja e a gente organiza tudo pra caber certinho, sem arranhar nada\"\n\n4. Carro saindo, câmera acompanhando lateral (3s) — música sobe, sem fala\n\n5. Chegada na casa do cliente, Juliana descendo do carro (2s)\n   🗣️ \"Chegamos!\" (natural, sorrindo)\n\n6. Retirando o móvel já pronto da caçamba (3-4s) — sem fala\n\n7. Carregando pra dentro de casa (3s) — sem fala, ritmo mais lento\n\n8. Móvel no lugar, ambiente pronto (3s) — sem fala\n\n9. Juliana de volta, olhando pra câmera, fechando o vídeo (4-5s)\n   🗣️ \"Sem furo, sem parafuso solto, sem dor de cabeça. Só chegar, colocar e usar. Chama no direct e pede o seu!\"\n\n---\n\n**LEGENDA**\n\nMóvel montado. Entrega prontinha. Sem estresse.\nAqui na Jumka você só recebe e usa. 🛋️\nChama no direct e garante o seu.\n\n---\n\n**CENAS EXTRAS, SE DER TEMPO**\n- Juliana fazendo alguma gracinha ao lado do carro carregado — humaniza\n- Close rápido no nó/amarração de segurança dos móveis — reforça cuidado\n- Reação do cliente abrindo a porta e vendo o móvel pronto na sala\n\n⚠️ Não mencionar o modelo/veículo específico em nenhuma fala.",
-        "checklist": [
-          {
-            "t": "Confirmar disponibilidade da Juliana pra gravar",
-            "done": false
-          },
-          {
-            "t": "Escolher a entrega/cliente que vai servir de captação",
-            "done": false
-          },
-          {
-            "t": "Gravar cenas 1-4 (carregamento e saída)",
-            "done": false
-          },
-          {
-            "t": "Gravar cenas 5-8 (chegada e montagem no local)",
-            "done": false
-          },
-          {
-            "t": "Gravar cena 9 (fala final / CTA)",
-            "done": false
-          },
-          {
-            "t": "Editar e publicar",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0231",
-      "type": "update",
-      "task": {
-        "id": "t-video-entrega-jumka-juliana",
-        "titulo": "VÍDEO ENTREGA MONTADA — JUMKA (ADRIANA)",
-        "descricao": "Vídeo de entrega de móveis montados — roteiro com a Adriana no gancho e na CTA.\n\n**Duração:** 35-45s · Formato vertical (Reels/Stories)\n\n---\n\n**ROTEIRO**\n\n1. Adriana em frente ao carro carregado, olhando pra câmera (3-4s)\n   🗣️ \"Vocês sabiam que a gente entrega o móvel montado, prontinho pra usar?\"\n\n2. Plano da caçamba cheia — móveis encaixados, amarrados/protegidos (3s) — sem fala, só o gancho visual\n\n3. Detalhe de como está organizado, mostrando o \"quebra-cabeça\" da carga (4-5s)\n   🗣️ Adriana em off: \"Cada móvel é montado na loja e a gente organiza tudo pra caber certinho, sem arranhar nada\"\n\n4. Carro saindo, câmera acompanhando lateral (3s) — música sobe, sem fala\n\n5. Chegada na casa do cliente, Adriana descendo do carro (2s)\n   🗣️ \"Chegamos!\" (natural, sorrindo)\n\n6. Retirando o móvel já pronto da caçamba (3-4s) — sem fala\n\n7. Carregando pra dentro de casa (3s) — sem fala, ritmo mais lento\n\n8. Móvel no lugar, ambiente pronto (3s) — sem fala\n\n9. Adriana de volta, olhando pra câmera, fechando o vídeo (4-5s)\n   🗣️ \"Sem furo, sem parafuso solto, sem dor de cabeça. Só chegar, colocar e usar. Chama no direct e pede o seu!\"\n\n---\n\n**LEGENDA**\n\nMóvel montado. Entrega prontinha. Sem estresse.\nAqui na Jumka você só recebe e usa. 🛋️\nChama no direct e garante o seu.\n\n---\n\n**CENAS EXTRAS, SE DER TEMPO**\n- Adriana fazendo alguma gracinha ao lado do carro carregado — humaniza\n- Close rápido no nó/amarração de segurança dos móveis — reforça cuidado\n- Reação do cliente abrindo a porta e vendo o móvel pronto na sala\n\n⚠️ Não mencionar o modelo/veículo específico em nenhuma fala."
-      }
-    },
-    {
-      "id": "op-0232",
-      "type": "add",
-      "task": {
-        "id": "t-evento-showroom-clientes-corretores",
-        "codigo": 70,
-        "titulo": "EVENTO NO SHOWROOM — CLIENTES, ICASAS E CORRETORES",
-        "coluna": "ideas",
-        "area": "iCasas – Construtora",
-        "prioridade": "media",
-        "descricao": "Evento no showroom, reunindo clientes, equipe iCasas e corretores parceiros.\n\n**⚠️ PRECISO DE VOCÊ**\n- Data e horário do evento\n- Objetivo principal (lançamento de empreendimento, confraternização, apresentação institucional, captação de leads)\n- Lista de convidados (só carteira própria de corretores, ou aberto pra novos parceiros também)\n- Orçamento disponível (buffet, decoração, brindes)",
-        "checklist": [
-          {
-            "t": "Definir data, horário e objetivo do evento",
-            "done": false
-          },
-          {
-            "t": "Montar lista de convidados (clientes e corretores)",
-            "done": false
-          },
-          {
-            "t": "Reservar/organizar o espaço do showroom",
-            "done": false
-          },
-          {
-            "t": "Definir buffet e decoração",
-            "done": false
-          },
-          {
-            "t": "Criar convite (arte e envio)",
-            "done": false
-          },
-          {
-            "t": "Planejar captação de fotos/vídeo do evento",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0233",
-      "type": "update",
-      "task": {
-        "id": "t-status-migracao-crm",
-        "titulo": "STATUS GERAL — CRM + DOCUMENTAÇÃO DE OBRAS",
-        "descricao": "Retomar aqui numa conversa nova: \"abre o card de status geral\" ou \"puxa o card t-status-migracao-crm\".\n\nEste card resume TUDO que existe hoje nos sistemas iCasas/OrkAI. Ele é atualizado sempre que algo grande muda — se parecer desatualizado em algum ponto, confia no comportamento real do sistema, não neste texto.\n\n---\n\n## PROJETOS SUPABASE\n- `mqdhavyaeujufhlqdlfg` — **PRODUÇÃO**. CRM, Documentação de Obras, tudo real acontece aqui.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n## REPOSITÓRIOS\n- CRM (`index.html`) e Documentação (`documentacao.html`) — mesmo repositório, GitHub Pages.\n- Board de tarefas: `orkiasystem/crm-master`, arquivo `tasks.json`. Token do GitHub não persiste entre conversas — precisa colar de novo a cada vez.\n\n---\n\n## CRM — ESTADO ATUAL\n\n**Empresas:** iCasas Automação e iCasas Construtora, no mesmo banco, separadas por coluna `empresa` em `leads` e `sellers`.\n\n**Login:** Supabase Auth (e-mail + senha), com recuperação de senha por link. Compartilhado com Documentação e outros sistemas (Vitrine, Obras) — trocar senha de alguém desloga ela de todos os sistemas ao mesmo tempo, é esperado.\n\n**Papéis especiais:**\n- Admins: Lucas (dois logins, `mkt.icasas@gmail.com` e `lucas.s.ribeiro@hotmail.com`) e Cris (`cristopher.icasas@gmail.com`)\n- Ambos marcados como `oculto_filtro_vendedor=true` — não aparecem nos filtros de vendedor nem recebem lead no rodízio\n- Lucas tem `categoria_interna='Dev'` — aparece numa seção própria \"⚙️ Dev\" na aba Vendedores, separado da seção \"🛡️ Administração\" (onde fica o Cris)\n- Cargo \"Engenharia\" e \"Financeiro\" também ficam fora do filtro de vendedor e do rodízio automaticamente\n\n**Aba Vendedores:** agrupável por Empresa ou Cargo (seletor no topo). Seções Dev e Administração sempre aparecem primeiro, antes das empresas.\n\n**Dashboard:** ranking de vendedores agora filtra só quem realmente vende (`vendedoresReais()`), não lista mais admin/dev/financeiro com \"0 leads\".\n\n**Relatórios:** repaginado — filtro de Empresa (só quem vê as duas), Estágio dinâmico conforme a empresa, KPIs (total, vendas fechadas, ticket médio, taxa de conversão), gráfico de distribuição por estágio, exporta CSV e PDF. Abre sempre com o período dos últimos 30 dias já preenchido e já carregado.\n\n**Round-robin de leads (Edge Function `webhook-lead`):** distribui só entre vendedores ativos da mesma empresa do webhook, excluindo quem não vende (Engenharia/Financeiro/oculto). Cada webhook tem uma `empresa` própria — criar um webhook por empresa/campanha.\n\n**Importação:** 804 leads antigos da Construtora já migrados (CSV do sistema anterior), mapeados pros vendedores certos, sem corretor foram pro Cris.\n\n---\n\n## DOCUMENTAÇÃO DE OBRAS (`documentacao.html`) — ESTADO ATUAL\n\n**O que é:** Kanban onde cada uma das etapas da obra é uma coluna. O card da obra aparece sozinho na coluna certa (primeira etapa não concluída) e atravessa as colunas conforme o trabalho avança.\n\n**Estrutura: 30 etapas**, na ordem — do contrato até a última medição, passando por projeto, financeiro (Caixa), obra reduzida a 3 fases (Alvenaria/Acabamento/Finalização) e entrega. Etapas com mais de um responsável (até 4 pessoas) exigem confirmação de todos antes de avançar.\n\n**Responsabilidades:** Corretor, Carlos, Tamires, Gi, Obras, Duda (financeiro), Maria (financeiro). Vinculação feita na tela \"👥 Equipe\" (só admin vê), campo `doc_responsavel` em `sellers`.\n\n**Aprovação financeira:** a etapa \"Início pré-obra\" trava até a Duda aprovar — funciona como uma dupla confirmação onde o segundo lado é sempre o financeiro.\n\n**Funcionalidades:**\n- Arrastar card ou clicar em \"concluir\" avança a etapa\n- **Admin pode arrastar pra qualquer coluna**, em qualquer direção — o checklist é reajustado de verdade no banco nos dois sentidos (volta desmarca, avança pulando marca tudo no caminho)\n- Corretor responsável aparece no card e é editável por admin\n- Comentários por obra (mural simples, com autor e data)\n- Modo TV — o mesmo kanban em tela cheia, fonte maior, pra telão\n- Tempo real entre todos que estão com a tela aberta\n- Excluir obra (admin, com confirmação)\n- Login com recuperação de senha, mesmo padrão do CRM\n\n**Cuidado permanente:** sempre que adicionar/mudar etapa que envolve confirmação múltipla ou aprovação financeira, testar os cenários de permissão antes de liberar.\n\n---\n\n## PADRÕES DE TRABALHO QUE JÁ VALEM\n\n- SQL sempre com `if not exists` / `drop if exists` antes de `create`, pra poder rodar de novo sem erro\n- Toda migração de estrutura (etapas, colunas) preservar dados existentes — checar progresso real antes de renumerar\n- Card de vídeo/campanha: roteiro completo + legenda + observações no card, área certa (Jumka, iCasas – Construtora, etc)\n- Confirmar nome/pessoa antes de gerar SQL com UUID — pedir a query de \"buscar por nome\" quando o login não bate\n\n## ARQUIVOS DE REFERÊNCIA\nOs HTMLs completos (CRM e Documentação) e os SQLs de schema ficam entregues como arquivo a cada sessão — não há um \"arquivo mestre\" fixo, sempre gero a partir do código mais recente. Pedir pra eu recriar caso precise, citando o que precisa mudar."
-      }
-    },
-    {
-      "id": "op-0234",
-      "type": "add",
-      "task": {
-        "id": "t-campanha-ary-attab-3",
-        "codigo": 71,
-        "titulo": "CAMPANHA TRÁFEGO — ARY ATTAB 3 (VÍDEO THAIS)",
-        "coluna": "todo",
-        "area": "Tráfego",
-        "prioridade": "alta",
-        "descricao": "Campanha de captação de leads — vídeo da Thais, loteamento Ary Attab 3.\n\n**OBJETIVO:** Geração de Cadastros (Lead Ads)\n**ORÇAMENTO SUGERIDO:** R$ 30-40/dia pra começar\n**LOCAL:** São José do Rio Preto + raio de 15km\n**IDADE:** 28-55\n\n---\n\n**SEGMENTAÇÃO — IF & IF (camadas combinadas)**\n\nCamada A (intenção imobiliária ativa):\n- Financiamento imobiliário\n- Compra de imóveis\n- Construção residencial\n\n↓ Restringir ainda mais (Narrow Further) ↓\n\nCamada B (sinal de decisão madura):\n- Reforma e decoração\n- Casa própria\n- Mudança residencial\n\n⚠️ Testar a estimativa de alcance no Gerenciador antes de publicar — se vier \"público pequeno\", afrouxar uma das camadas.\n\n**Desativar:** Advantage+ Audience, Audience Network, Messenger\n\n---\n\n**POSICIONAMENTO (manual)**\n- Stories/Reels: vídeo vertical 9:16 completo, sem cortes\n- Feed (Instagram/Facebook): mesmo vídeo + legenda embutida\n- Audience Network: desativado\n- Messenger: desativado nessa campanha\n\n---\n\n**TÍTULO**\nAry Attab 3 liberado para construir — Zona Norte de Rio Preto\n\n**LEGENDA**\nA espera acabou. 🏡\n\nAry Attab 3 está liberado para construir! Lotes a partir de R$ 130.000 na Zona Norte de Rio Preto — a 2km da rodovia e pertinho do Clube de Campo do Palestra.\n\nUm bairro com potencial gigantesco de crescimento, onde só tem casa boa sendo construída.\n\nSimule agora e veja como seu terreno pode sair do papel. 👇\n\n**CTA do botão:** Simular agora\n\n**FORMULÁRIO (Instant Form)**\n1. Nome completo\n2. Telefone (com DDD)\n3. Pergunta qualificadora: \"Você já tem o valor de entrada disponível?\" (Sim / Estou organizando / Só quero simular)\n\n---\n\n**REGRAS AUTOMÁTICAS**\n- SE CPL > R$ 60 por 3 dias consecutivos → pausar o conjunto e notificar\n- SE frequência > 3,5 → reduzir orçamento em 20%\n- SE gasto > R$ 50 sem nenhum lead → pausar e revisar criativo\n- SE CPL < R$ 25 por 3 dias → aumentar orçamento em 20%",
-        "checklist": [
-          {
-            "t": "Criar a campanha (objetivo: Geração de Cadastros)",
-            "done": false
-          },
-          {
-            "t": "Configurar local (Rio Preto + 15km) e idade (28-55)",
-            "done": false
-          },
-          {
-            "t": "Montar Camada A de interesses",
-            "done": false
-          },
-          {
-            "t": "Aplicar 'Restringir ainda mais' com a Camada B",
-            "done": false
-          },
-          {
-            "t": "Conferir estimativa de alcance (ajustar se vier muito pequeno)",
-            "done": false
-          },
-          {
-            "t": "Desativar Advantage+, Audience Network e Messenger",
-            "done": false
-          },
-          {
-            "t": "Configurar posicionamento manual (Stories/Reels + Feed)",
-            "done": false
-          },
-          {
-            "t": "Subir o vídeo da Thais como criativo",
-            "done": false
-          },
-          {
-            "t": "Preencher título e legenda",
-            "done": false
-          },
-          {
-            "t": "Criar o formulário (Instant Form) com as 3 perguntas",
-            "done": false
-          },
-          {
-            "t": "Definir orçamento (R$ 30-40/dia)",
-            "done": false
-          },
-          {
-            "t": "Configurar as 4 regras automáticas",
-            "done": false
-          },
-          {
-            "t": "Revisar tudo e publicar",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0235",
-      "type": "add",
-      "task": {
-        "id": "t-campanha-jatobas-reativacao",
-        "codigo": 72,
-        "titulo": "CAMPANHA TRÁFEGO — JATOBÁS REATIVAÇÃO (VÍDEO VINI)",
-        "coluna": "todo",
-        "area": "Tráfego",
-        "prioridade": "alta",
-        "descricao": "Campanha de reativação — vídeo do Vini, promoção pra quem já tem terreno no Jatobás.\n\n**OBJETIVO:** Geração de Cadastros (Lead Ads)\n**ORÇAMENTO SUGERIDO:** R$ 20-30/dia (público menor, não precisa de tanto)\n\n---\n\n**PÚBLICO — dois passos**\n\n1. Público base (Custom Audience): lista de clientes que já compraram terreno no Jatobás\n   ⚠️ PRECISO DE VOCÊ: exportar essa lista do CRM (filtro: empreendimento = Jatobás, estágio = Fechado) e subir no Gerenciador de Anúncios como Público Personalizado\n\n2. Restringir ainda mais, com sinal de que está pensando em construir agora:\n   - Materiais de construção\n   - Construção residencial\n   - Empréstimo/financiamento para reforma\n\n**Desativar:** Advantage+ Audience, Audience Network\n\n---\n\n**POSICIONAMENTO (manual)**\n- Stories/Reels: vídeo vertical 9:16 completo\n- Feed: mesmo vídeo + legenda com os 3 prêmios visíveis sem precisar expandir\n- Audience Network: desativado\n- Messenger: desativado\n\n---\n\n**TÍTULO**\nVocê tem terreno no Jatobás? Pare de pagar só o terreno\n\n**LEGENDA**\nSe você comprou terreno financiado no Residencial Jatobás, essa é pra você. 🎁\n\nAo fechar a construção, você para de pagar a parcela do terreno — e ainda escolhe um cupom pra usar na obra: TV, ar-condicionado ou PlayStation 5.\n\nPromoção só pra quem já tem terreno aqui. Fale com a gente antes que acabe.\n\n**CTA do botão:** Fale conosco\n\n**FORMULÁRIO (Instant Form)**\n1. Nome completo\n2. Telefone\n3. Pergunta qualificadora: \"Qual quadra/lote é o seu no Jatobás?\"\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar se os prêmios (TV, ar-condicionado, PS5) têm alguma regra/restrição — Meta é rígida com regulamento de promoção e pode reprovar o anúncio sem isso claro\n\n---\n\n**REGRAS AUTOMÁTICAS**\n- SE CPL > R$ 60 por 3 dias consecutivos → pausar o conjunto e notificar\n- SE frequência > 3,5 → reduzir orçamento em 20%\n- SE gasto > R$ 50 sem nenhum lead → pausar e revisar criativo\n- SE CPL < R$ 25 por 3 dias → aumentar orçamento em 20%",
-        "checklist": [
-          {
-            "t": "Exportar lista de clientes Jatobás do CRM",
-            "done": false
-          },
-          {
-            "t": "Subir a lista como Público Personalizado no Gerenciador",
-            "done": false
-          },
-          {
-            "t": "Criar a campanha (objetivo: Geração de Cadastros)",
-            "done": false
-          },
-          {
-            "t": "Aplicar 'Restringir ainda mais' com os interesses de construção",
-            "done": false
-          },
-          {
-            "t": "Conferir estimativa de alcance",
-            "done": false
-          },
-          {
-            "t": "Desativar Advantage+, Audience Network e Messenger",
-            "done": false
-          },
-          {
-            "t": "Configurar posicionamento manual (Stories/Reels + Feed)",
-            "done": false
-          },
-          {
-            "t": "Subir o vídeo do Vini como criativo",
-            "done": false
-          },
-          {
-            "t": "Preencher título e legenda",
-            "done": false
-          },
-          {
-            "t": "Confirmar regras dos prêmios (TV, ar, PS5) antes de publicar",
-            "done": false
-          },
-          {
-            "t": "Criar o formulário (Instant Form) com as 3 perguntas",
-            "done": false
-          },
-          {
-            "t": "Definir orçamento (R$ 20-30/dia)",
-            "done": false
-          },
-          {
-            "t": "Configurar as 4 regras automáticas",
-            "done": false
-          },
-          {
-            "t": "Revisar tudo e publicar",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0236",
-      "type": "add",
-      "task": {
-        "id": "t-evento-lancamento-clube-casas",
-        "codigo": 73,
-        "titulo": "EVENTO — LANÇAMENTO CLUBE CASAS (11/09)",
-        "coluna": "doing",
-        "area": "iCasas – Construtora",
-        "prioridade": "alta",
-        "descricao": "Lançamento do programa de indicação, reunindo clientes, corretores e imobiliárias no mesmo evento.\n\n**DECIDIDO**\n- Data: sexta-feira, 11 de setembro\n- Horário: a partir das 16h (confirmar se é 16h ou 19h — ficou ambíguo na reunião)\n- Nome: \"Lançamento do Clube Casas\" (não \"inauguração\")\n- Formato único, sem separar cliente de corretor em eventos diferentes\n- Churrasco (churrasqueiro + mesa de frios) e chope\n- Apresentação institucional: história resumida, números (crescimento 320% 2023→2024, 78 casas vendidas, faturamento R$13mi em 2025), meta 2026 (ser a melhor construtora de Rio Preto)\n- Dinâmica \"Silvio Santos\": quem mandar 5 contatos primeiro ganha R$200 na hora\n- Entrega simbólica de cheque de R$1.000 pra 2-3 clientes com indicação já pendente\n\n**PROGRAMA DE INDICAÇÃO — a mudança central**\n- Sai prêmio variado (TV, ar-condicionado, PS5, viagem), entra dinheiro direto\n- Cada indicação fechada = R$1.000 em cheque\n- 10 indicações fechadas = 1 iPhone\n- Site/dashboard estilo \"Metropolitano\": ranking, pontuação, integração com CRM (card movido pra \"Fechado\" conta ponto automático)\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar horário exato (16h ou 19h)\n- Decidir se vai ter pagode ou não\n- Fechar o prazo do programa: sem data, ou ciclos de 4 em 4 meses com bônus pros 3 primeiros de cada ciclo (R$1.000 ou R$1.500 cada — não decidido)\n- Aprovar os números finais da nova comissão de corretores/imobiliárias (baixar de 4% pra 3%, repassando 1% pro time interno)\n\n**Nota:** prazo é curto pro dia 11 — vale considerar se algum item pode ficar pra uma segunda comunicação, sem prejudicar o evento em si.",
-        "checklist": [
-          {
-            "t": "Confirmar horário exato e decisão sobre música",
-            "done": false
-          },
-          {
-            "t": "Fechar cardápio e bebida com fornecedor",
-            "done": false
-          },
-          {
-            "t": "Criar apresentação institucional atualizada",
-            "done": false
-          },
-          {
-            "t": "Gravar e soltar vídeo teaser no grupo (sem entregar detalhes)",
-            "done": false
-          },
-          {
-            "t": "Providenciar os cheques de R$1.000 pendentes",
-            "done": false
-          },
-          {
-            "t": "Desenhar números finais da comissão de corretores/imobiliárias",
-            "done": false
-          },
-          {
-            "t": "Planejar a dinâmica Silvio Santos (quem veste, mecânica)",
-            "done": false
-          },
-          {
-            "t": "Fechar prazo/formato definitivo do programa de indicação",
-            "done": false
-          },
-          {
-            "t": "Montar o site/dashboard de ranking (ou definir se fica pra depois)",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0237",
-      "type": "add",
-      "task": {
-        "id": "t-empresa-marketing-nova",
-        "codigo": 74,
-        "titulo": "NOVA EMPRESA DE MARKETING — PACOTES E ESTRUTURA",
-        "coluna": "ideas",
-        "area": "OrkAI",
-        "prioridade": "media",
-        "descricao": "Nova empresa de marketing, vendendo pacotes de fotos/vídeo/conteúdo pra pequenos prestadores de serviço, usando o Instagram do Lucas/Cris/iCasas como vitrine.\n\n**⚠️ Nome da empresa ainda não definido.**\n\n**PACOTES DISCUTIDOS (valores não fechados)**\n\nEntrada — R$ 900\n- 5 fotos profissionais\n- 1 vídeo de apresentação\n- 4 posts de arte/criativos (tema definido pelo cliente)\n\nIntermediário — R$ 1.400\n- Tudo do anterior +\n- 3 conteúdos fixados no perfil\n- Captação do serviço/produto em campo\n- Organização geral do Instagram\n\nCompleto — R$ 1.500\n- Tudo dos anteriores +\n- Um segundo vídeo de Reels\n- Mais conteúdos mensais (quantidade indefinida — variou entre 3 e 10 na conversa)\n\nTráfego pago — adicional (~R$100 pela gestão)\n- Investimento diário do anúncio é custo do próprio cliente, separado do pacote\n\n**PRECIFICAÇÃO:** os valores foram pensados como \"efeito pipoca de cinema\" — aproximar o intermediário do completo pra maioria escolher o pacote maior.\n\n**⚠️ PRECISO DE VOCÊ**\n- Fechar o nome da empresa\n- Fechar definitivamente o que entra em cada pacote (mudou várias vezes na conversa)\n- Confirmar quantidade de conteúdos mensais do pacote completo",
-        "checklist": [
-          {
-            "t": "Fechar o nome da empresa",
-            "done": false
-          },
-          {
-            "t": "Fechar o conteúdo definitivo de cada pacote (900/1400/1500)",
-            "done": false
-          },
-          {
-            "t": "Reorganizar e profissionalizar o Instagram do Lucas",
-            "done": false
-          },
-          {
-            "t": "Reorganizar e profissionalizar o Instagram do Cris",
-            "done": false
-          },
-          {
-            "t": "Reorganizar o Instagram da iCasas como case",
-            "done": false
-          },
-          {
-            "t": "Rodar o processo internamente como teste (cliente-piloto)",
-            "done": false
-          },
-          {
-            "t": "Buscar os 3 primeiros clientes reais",
-            "done": false
-          },
-          {
-            "t": "Montar proposta comercial / apresentação de venda",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0238",
-      "type": "add",
-      "task": {
-        "id": "t-cliente-cris-silvestre-marketing",
-        "codigo": 75,
-        "titulo": "CLIENTE — CRIS SILVESTRE (AUTOMAÇÃO RESIDENCIAL)",
-        "coluna": "doing",
-        "area": "OrkAI",
-        "prioridade": "media",
-        "descricao": "Primeiro cliente da nova empresa de marketing — Cris Silvestre, IDV própria já pronta.\n\n**IDENTIDADE VISUAL (analisada do material em PDF)**\n- Logotipo: \"CRIS SILVESTRE\" em tipografia pincel/street + mascote (caricatura dele mesmo)\n- Tipografia principal: Skulrock (títulos, estilo grafite)\n- Tipografia secundária: Montaser Arabic (texto corrido)\n- Paleta: amarelo pastel #f9ea8d · turquesa #00c3bc · preto #000000 · branco #ffffff\n- Tom de voz: frases curtas e diretas, com uma virada no meio — registro de liderança/mentalidade, não corporativo\n  Exemplos do material: \"Se você só acerta, talvez esteja jogando pequeno demais.\" / \"Tudo parece difícil quando você está prestes a subir de nível. Não desista.\"\n\n**NOVA FRENTE DE CONTEÚDO: automação residencial / consultoria de automação**\n\nObjetivo: criar posts usando a IDV já existente, mas migrando o tema de liderança genérica pra autoridade em automação residencial.\n\n**⚠️ PRECISO DE VOCÊ**\n- Escolher, entre as frases sugeridas no chat, quais vão virar posts\n- Confirmar se mantém o estilo \"post motivacional\" ou se quer um formato mais educativo/técnico também (ex.: antes/depois, mitos sobre automação)\n- Definir a frequência de postagem",
-        "checklist": [
-          {
-            "t": "Escolher as frases que vao virar os primeiros posts",
-            "done": false
-          },
-          {
-            "t": "Montar os posts usando a IDV (cores, tipografia, mascote)",
-            "done": false
-          },
-          {
-            "t": "Definir formato: so frase motivacional ou variar com conteudo educativo",
-            "done": false
-          },
-          {
-            "t": "Publicar o primeiro lote e medir engajamento",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0239",
-      "type": "update",
-      "task": {
-        "id": "t-cliente-cris-silvestre-marketing",
-        "descricao": "Primeiro cliente da nova empresa de marketing — Cris Silvestre, IDV própria já pronta.\n\n**IDENTIDADE VISUAL (analisada do material em PDF)**\n- Logotipo: \"CRIS SILVESTRE\" em tipografia pincel/street + mascote (caricatura dele mesmo)\n- Tipografia principal: Skulrock (títulos, estilo grafite)\n- Tipografia secundária: Montaser Arabic (texto corrido)\n- Paleta: amarelo pastel #f9ea8d · turquesa #00c3bc · preto #000000 · branco #ffffff\n- Tom de voz: frases curtas e diretas, com uma virada no meio — registro de liderança/mentalidade, não corporativo\n\n**FRENTE DE CONTEÚDO: automação residencial / consultoria de automação**\n\nPosts organizados em 2 blocos, cadência sugerida de 2 Bloco A : 1 Bloco B.\n\nBLOCO A — Provocação (para o scroll)\n1. Sua casa não precisa ser inteligente. Precisa trabalhar por você.\n2. Automação não é luxo. É parar de perder tempo com o óbvio.\n3. Se você ainda levanta pra apagar luz, o atrasado não é você. É a sua casa.\n4. Tecnologia boa é a que você para de notar que existe.\n5. Casa automatizada não é pra impressionar visita. É pra facilitar sua rotina quando ninguém está vendo.\n6. O luxo de hoje não é ter mais coisas em casa. É não precisar pensar nelas.\n7. Você não contrata automação pra mostrar. Contrata pra esquecer que ela existe.\n\nBLOCO B — Autoridade técnica (constrói confiança)\n8. Automação sem projeto é gambiarra cara. Consultoria é o que separa gadget de solução.\n9. Todo projeto de automação bom começa antes da obra. Não depois dela pronta.\n10. Não é sobre comprar tecnologia. É sobre alguém entender o que a sua rotina realmente precisa.\n\n**⚠️ PRECISO DE VOCÊ**\n- Definir a frequência real de postagem (sugestão: 3x/semana)\n- Aprovar o visual de cada post (cores/tipografia da IDV aplicadas em cima das frases)",
-        "checklist": [
-          {
-            "t": "Definir frequencia de postagem",
-            "done": false
-          },
-          {
-            "t": "Montar visual do Bloco A (provocacao) com a IDV",
-            "done": false
-          },
-          {
-            "t": "Montar visual do Bloco B (autoridade) com a IDV",
-            "done": false
-          },
-          {
-            "t": "Publicar o primeiro lote e medir engajamento",
-            "done": false
-          }
-        ]
-      }
-    },
-    {
-      "id": "op-0240",
-      "type": "remove",
-      "task_id": "t-copy-a5-obra-chave"
-    },
-    {
-      "id": "op-0241",
-      "type": "remove",
-      "task_id": "t-copy-a6-mae"
-    },
-    {
-      "id": "op-0242",
-      "type": "remove",
-      "task_id": "t-copy-a7-parcela"
-    },
-    {
-      "id": "op-0243",
-      "type": "remove",
-      "task_id": "t-copy-a8-subsidio"
-    },
-    {
-      "id": "op-0244",
-      "type": "remove",
-      "task_id": "t-copy-a9-entrada"
-    },
-    {
-      "id": "op-0245",
-      "type": "remove",
-      "task_id": "t-copy-a10-simula"
-    },
-    {
-      "id": "op-0246",
-      "type": "remove",
-      "task_id": "t-copy-a11-suite"
-    },
-    {
-      "id": "op-0247",
-      "type": "col_del",
-      "col_id": "tarefas"
-    },
-    {
-      "id": "op-0248",
-      "type": "col_add",
-      "depois": "done",
-      "coluna": {
-        "id": "cancelados",
-        "n": "Cancelados",
-        "c": "#6b7280"
-      }
-    }
-  ]
+ "ops": [
+  {
+   "id": "op-0209",
+   "type": "add",
+   "task": {
+    "id": "t-copy-a5-obra-chave",
+    "codigo": 55,
+    "titulo": "ARTE E5 · NINGUÉM QUER VER OBRA",
+    "coluna": "tarefas",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "pai": "t-copys-tc-descontraido",
+    "ordem": 550,
+    "descricao": "**Arte · engajamento**\n\n**Headline:** Ninguém quer ver obra. Todo mundo quer ver chave.\n\n**Apoio:** Arquiteto e engenheiro do projeto até a mudança, com acompanhamento em cada etapa. Você aparece pra escolher no começo e pra receber a chave no fim. O barulho fica com a gente."
+   }
+  },
+  {
+   "id": "op-0210",
+   "type": "add",
+   "task": {
+    "id": "t-copy-a6-mae",
+    "codigo": 56,
+    "titulo": "ARTE E6 · SUA MÃE VAI QUERER VISITAR",
+    "coluna": "tarefas",
+    "area": "iCasas – Construtora",
+    "prioridade": "baixa",
+    "pai": "t-copys-tc-descontraido",
+    "ordem": 560,
+    "descricao": "**Arte · engajamento**\n\n**Headline:** Sua mãe vai querer visitar\n\n**Apoio:** Ou não — e isso também é escolha sua. Quando o terreno é você quem escolhe, a distância da família deixa de ser sorte e vira decisão."
+   }
+  },
+  {
+   "id": "op-0211",
+   "type": "add",
+   "task": {
+    "id": "t-copy-a7-parcela",
+    "codigo": 57,
+    "titulo": "ARTE C1 · CASA PRÓPRIA POR [R$ X]/MÊS",
+    "coluna": "tarefas",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "pai": "t-copys-tc-descontraido",
+    "ordem": 570,
+    "descricao": "**Arte · captação**\n\n**Headline:** CASA PRÓPRIA POR [R$ X]/MÊS\n\n**Apoio:** Terreno e construção no mesmo financiamento, pelo Minha Casa Minha Vida. Você não precisa comprar o lote antes nem juntar entrada impossível — dá pra começar do jeito que você está hoje.\n\n**CTA:** Simula a sua"
+   }
+  },
+  {
+   "id": "op-0212",
+   "type": "add",
+   "task": {
+    "id": "t-copy-a8-subsidio",
+    "codigo": 58,
+    "titulo": "ARTE C2 · ATÉ [R$ X] DE SUBSÍDIO",
+    "coluna": "tarefas",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "pai": "t-copys-tc-descontraido",
+    "ordem": 580,
+    "descricao": "**Arte · captação**\n\n**Headline:** ATÉ [R$ X] DE SUBSÍDIO. VOCÊ TEM?\n\n**Apoio:** Depende da sua renda familiar e de você nunca ter financiado imóvel. Muita gente tem direito e nunca foi atrás. A consulta é gratuita, leva cinco minutos e a resposta é honesta — mesmo quando é não.\n\n**CTA:** Quero saber"
+   }
+  },
+  {
+   "id": "op-0213",
+   "type": "add",
+   "task": {
+    "id": "t-copy-a9-entrada",
+    "codigo": 59,
+    "titulo": "ARTE C3 · A ENTRADA TRAVA VOCÊ?",
+    "coluna": "tarefas",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "pai": "t-copys-tc-descontraido",
+    "ordem": 590,
+    "descricao": "**Arte · captação**\n\n**Headline:** A ENTRADA TRAVA VOCÊ? ELA PARCELA.\n\n**Apoio:** A entrada é o que faz a maioria desistir antes de tentar. Aqui ela é parcelada e a documentação é acompanhada por quem entende do processo. O que travava vira só mais uma etapa.\n\n**CTA:** Ver condições"
+   }
+  },
+  {
+   "id": "op-0214",
+   "type": "add",
+   "task": {
+    "id": "t-copy-a10-simula",
+    "codigo": 60,
+    "titulo": "ARTE C4 · SIMULA ANTES DE COMPRAR O TERRENO",
+    "coluna": "tarefas",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "pai": "t-copys-tc-descontraido",
+    "ordem": 600,
+    "descricao": "**Arte · captação**\n\n**Headline:** SIMULA ANTES DE COMPRAR O TERRENO\n\n**Apoio:** Todo mês aparece alguém que comprou o lote animado e descobriu depois que não passa no financiamento. A ordem certa é o contrário: simula primeiro, compra depois — e aí você negocia sabendo quanto pode.\n\n**CTA:** Fazer simulação"
+   }
+  },
+  {
+   "id": "op-0215",
+   "type": "add",
+   "task": {
+    "id": "t-copy-a11-suite",
+    "codigo": 61,
+    "titulo": "ARTE C5 · 2 QUARTOS, SUÍTE E CLOSET",
+    "coluna": "tarefas",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "pai": "t-copys-tc-descontraido",
+    "ordem": 610,
+    "descricao": "**Arte · captação**\n\n**Headline:** 2 QUARTOS, SUÍTE, CLOSET E JÁ AUTOMATIZADA\n\n**Apoio:** A partir de [R$ X] por mês pelo Minha Casa Minha Vida, com projeto personalizado e o terreno na localização que você escolher. Não é padrão de catálogo: é a sua casa, do seu jeito.\n\n**CTA:** Quero as condições"
+   }
+  },
+  {
+   "id": "op-0216",
+   "type": "update",
+   "task": {
+    "id": "t-copys-tc-descontraido",
+    "checklist": [
+     {
+      "t": "VÍDEO P1 · O ALUGUEL É SEU AMIGO",
+      "done": false
+     },
+     {
+      "t": "VÍDEO P2 · NÃO SEI CONSTRUIR",
+      "done": false
+     },
+     {
+      "t": "VÍDEO P3 · O ERRO CLÁSSICO",
+      "done": false
+     },
+     {
+      "t": "VÍDEO P4 · SUÍTE E CLOSET",
+      "done": false
+     },
+     {
+      "t": "VÍDEO R1 · PIZZA DE RODÍZIO",
+      "done": false
+     },
+     {
+      "t": "VÍDEO R2 · A CASA JÁ VEM ESPERTA",
+      "done": false
+     },
+     {
+      "t": "VÍDEO O1 · ENTREGA DA CHAVE",
+      "done": false
+     },
+     {
+      "t": "VÍDEO O2 · BASTIDOR DE OBRA",
+      "done": false
+     },
+     {
+      "t": "VÍDEO O3 · ANTES E DEPOIS DO TERRENO",
+      "done": false
+     },
+     {
+      "t": "VÍDEO O4 · PERGUNTA DE CLIENTE",
+      "done": false
+     },
+     {
+      "t": "ARTE E1 · ALUGUEL É AQUELE AMIGO",
+      "done": false
+     },
+     {
+      "t": "ARTE E2 · APARTAMENTO É RODÍZIO",
+      "done": false
+     },
+     {
+      "t": "ARTE E3 · ALEXA ACENDE A LUZ",
+      "done": false
+     },
+     {
+      "t": "ARTE E4 · CLOSET NO MCMV",
+      "done": false
+     },
+     {
+      "t": "ARTE E5 · NINGUÉM QUER VER OBRA",
+      "done": false
+     },
+     {
+      "t": "ARTE E6 · SUA MÃE VAI QUERER VISITAR",
+      "done": false
+     },
+     {
+      "t": "ARTE C1 · CASA PRÓPRIA POR [R$ X]/MÊS",
+      "done": false
+     },
+     {
+      "t": "ARTE C2 · ATÉ [R$ X] DE SUBSÍDIO",
+      "done": false
+     },
+     {
+      "t": "ARTE C3 · A ENTRADA TRAVA VOCÊ?",
+      "done": false
+     },
+     {
+      "t": "ARTE C4 · SIMULA ANTES DE COMPRAR O TERRENO",
+      "done": false
+     },
+     {
+      "t": "ARTE C5 · 2 QUARTOS, SUÍTE E CLOSET",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0217",
+   "type": "col_add",
+   "depois": "todo",
+   "coluna": {
+    "id": "tarefas",
+    "n": "Conteúdos",
+    "c": "#14b8a6"
+   }
+  },
+  {
+   "id": "op-0218",
+   "type": "col_ren",
+   "col_id": "tarefas",
+   "nome": "Conteúdos"
+  },
+  {
+   "id": "op-0219",
+   "type": "add",
+   "task": {
+    "id": "t-jumka-18x",
+    "codigo": 62,
+    "titulo": "PARCELAMENTO 18X — JUMKA",
+    "coluna": "todo",
+    "area": "Jumka",
+    "prioridade": "media",
+    "descricao": "Divulgar o **parcelamento em até 18x** dos móveis da Jumka.\n\n**Ressalva obrigatória:** *Sujeito a análise de crédito.*\nTrocamos \"perante análise do banco\" por esse termo — é o padrão do mercado, mais curto e evita problema com o Procon. Precisa aparecer em **toda peça** que citar o parcelamento, mesmo em corpo menor.\n\n---\n\n**COPY · DIRETA**\n> **Seu móvel novo em até 18x**\n> Você escolhe, a gente parcela. Sujeito a análise de crédito.\n> **CTA:** Chama no direct que a gente simula\n\n**COPY · QUEBRANDO A OBJEÇÃO**\n> **Móvel bom não precisa ser à vista**\n> Até 18 vezes pra montar a casa do jeito que você quer, sem esperar juntar tudo.\n> Sujeito a análise de crédito.\n\n**COPY · COM O CÁLCULO NA CABEÇA DO CLIENTE**\n> **18x cabe no seu mês**\n> Aquele conjunto que você adiou o ano todo divide em até 18 vezes.\n> Fala com a gente que a análise sai na hora.\n\n**COPY · CURTA PRA STORY**\n> **Parcelamos em 18x.**\n> Vem escolher o seu.\n\n---\n\n**ROTEIRO DE VÍDEO** — 15s\n\n- 1. \"Você tá adiando esse móvel há quanto tempo?\"\n- 2. \"Aqui a gente parcela em até 18 vezes.\"\n- 3. \"A análise é na hora e você já sai sabendo.\"\n- 4. **Fecho:** \"Manda a foto do que você quer no direct que eu já simulo pra você.\"\n\n---\n\n**ONDE USAR**\n- Selo fixo nas artes de produto — o parcelamento vira argumento em toda peça, não campanha isolada\n- Story de resposta rápida quando alguém pergunta preço\n- Vídeo curto no feed, uma vez por mês\n\n*Combina bem com a mesa de madeira, que é o produto que mais gera interesse — preço alto é onde o parcelamento pesa mais.*",
+    "checklist": [
+     {
+      "t": "Confirmar a regra com o Jean: bandeiras, valor mínimo e juros",
+      "done": false
+     },
+     {
+      "t": "Criar o selo de 18x pras artes de produto",
+      "done": false
+     },
+     {
+      "t": "Produzir a arte principal",
+      "done": false
+     },
+     {
+      "t": "Gravar o vídeo de 15s",
+      "done": false
+     },
+     {
+      "t": "Publicar",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0220",
+   "type": "update",
+   "task": {
+    "id": "t-jumka-18x",
+    "descricao": "Divulgar o **parcelamento em até 18x** dos móveis da Jumka.\n\n**⚠️ RESSALVA OBRIGATÓRIA:** *Sujeito a análise de crédito.*\nPrecisa aparecer em toda peça que citar o parcelamento, mesmo em corpo menor. Trocamos \"perante análise do banco\" por esse termo — é o padrão do mercado, mais curto e evita problema com o Procon.\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar com o Jean: são 18x em qualquer valor ou só acima de um mínimo? Tem juros a partir de qual parcela? Quais bandeiras entram?\n- *Anunciar \"18x\" e o cliente descobrir no balcão que é só acima de X queima a loja no direct.*\n\n---\n\n**ARTE 1 · TEXTO SOBRE A FOTO**\n\n> **LEVE AGORA.**\n> **PAGUE EM 18X.**\n>\n> *Sujeito a análise de crédito.*\n\n*Variação:* SEU. HOJE. EM 18X.\n\nPoucas palavras, duas linhas de peso igual, \"18X\" como maior elemento. Sobre foto, frase com mais de seis palavras vira ruído — a imagem já faz metade do trabalho.\n**Composição:** se a foto for de ambiente claro, usar faixa escura translúcida por trás. Texto branco direto sobre madeira clara some no feed comprimido do Instagram.\n\n---\n\n**ARTE 2 · PEÇA MONTADA**\n\n- **Headline:** MÓVEL BOM NÃO PRECISA SER À VISTA\n- **Sub:** Parcelamos em até 18 vezes\n- **Apoio:** Você escolhe o móvel, a gente resolve o pagamento. A análise sai na hora e você já sai da loja sabendo.\n- **Selo:** ATÉ 18X\n- **CTA:** Chama no direct\n- **Rodapé:** Sujeito a análise de crédito.\n\nA headline quebra a objeção antes de falar do parcelamento: quem lê \"não precisa ser à vista\" já entende que o problema tem solução, e só então aparece o número.\n\n---\n\n**OUTRAS COPYS · POST E LEGENDA**\n\n**Direta**\n> **Seu móvel novo em até 18x**\n> Você escolhe, a gente parcela. Sujeito a análise de crédito.\n> **CTA:** Chama no direct que a gente simula\n\n**Com o cálculo na cabeça do cliente**\n> **18x cabe no seu mês**\n> Aquele conjunto que você adiou o ano todo divide em até 18 vezes.\n> Fala com a gente que a análise sai na hora.\n\n**Curta pra story**\n> **Parcelamos em 18x.**\n> Vem escolher o seu.\n\n---\n\n**ROTEIRO DE VÍDEO** — 15s\n\n- 1. \"Você tá adiando esse móvel há quanto tempo?\"\n- 2. \"Aqui a gente parcela em até 18 vezes.\"\n- 3. \"A análise é na hora e você já sai sabendo.\"\n- 4. **Fecho:** \"Manda a foto do que você quer no direct que eu já simulo pra você.\"\n\n---\n\n**ESTRATÉGIA — funciona como selo, não como campanha**\n\nParcelamento não é notícia, é argumento. Com um selo de 18x fixo nas artes de produto, ele trabalha em toda peça o tempo todo. Campanha isolada de parcelamento rende uma semana e morre.\n\n**Onde usar**\n- Selo fixo nas artes de produto\n- Story de resposta rápida quando perguntarem preço\n- Vídeo curto no feed, uma vez por mês\n\n*Combina especialmente com a mesa de madeira, que é o produto de maior interesse — quanto maior o ticket, mais o parcelamento pesa na decisão.*",
+    "checklist": [
+     {
+      "t": "Confirmar a regra com o Jean: valor mínimo, juros e bandeiras",
+      "done": false
+     },
+     {
+      "t": "Criar o selo ATÉ 18X pras artes de produto",
+      "done": false
+     },
+     {
+      "t": "Produzir arte 1 — texto sobre a foto",
+      "done": false
+     },
+     {
+      "t": "Produzir arte 2 — peça montada",
+      "done": false
+     },
+     {
+      "t": "Gravar o vídeo de 15s",
+      "done": false
+     },
+     {
+      "t": "Publicar",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0221",
+   "type": "add",
+   "task": {
+    "id": "t-crm-construtora",
+    "codigo": 63,
+    "titulo": "CRM DA CONSTRUTORA COM VISÃO DUPLA",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "descricao": "CRM para a **iCasas Construtora**, no mesmo padrão do CRM da Automação — com uma visão consolidada das duas empresas para usuários específicos.\n\n**REQUISITOS**\n- CRM próprio da Construtora, mesma arquitetura do da Automação\n- O **Cris** vê as duas empresas ao mesmo tempo\n- Só usuários específicos têm acesso a essa visão dupla\n\n---\n\n**DECISÃO DE ARQUITETURA**\n\n**Os dois CRMs no mesmo projeto Supabase**, com uma coluna `empresa` em todas as tabelas ('construtora' ou 'automacao') — não em dois bancos separados.\n\n*Por quê:* a visão consolidada vira uma consulta só. Com bancos separados, seria preciso manter dois clientes Supabase abertos no navegador e a possibilidade de relatório cruzado se perde.\n\n**Tabela de perfis**\n- `usuario_id` (auth), `empresa`, `papel`\n- Papéis: `diretor` (vê tudo), `gestor` (vê a própria empresa), `corretor` (vê só o que é dele)\n\n**⚠️ O ACESSO TEM QUE SER GARANTIDO NO BANCO, NÃO NA TELA**\n\nAs políticas RLS decidem quem lê o quê:\n- usuário comum: só linhas onde `empresa` = a empresa dele\n- papel `diretor`: todas as linhas das duas empresas\n\nSe o controle for só esconder botões no front, qualquer pessoa com a chave pública lê a base inteira — e essa chave está no código-fonte do site. *(Ver card de revisão de senhas: já temos histórico de acesso exposto.)*\n\n---\n\n**FUNCIONALIDADES**\n- Pipeline de leads por etapa, no padrão do CRM atual\n- Distribuição de leads entre corretores\n- Origem do lead marcada (qual campanha trouxe) — hoje isso falta e impede medir tráfego\n- Seletor de empresa no topo, visível só pra quem tem papel `diretor`\n- Painel consolidado: leads, conversões e funil das duas empresas lado a lado\n\n---\n\n**ORDEM SUGERIDA**\n- 1. Modelar tabelas com a coluna `empresa` desde o início — retrofit depois dá muito mais trabalho\n- 2. Criar a tabela de perfis e as políticas RLS antes de qualquer tela\n- 3. Testar a RLS logando com um usuário comum e tentando ler dados da outra empresa\n- 4. Só então construir a interface\n- 5. Painel consolidado por último\n\n*Testar a RLS antes da interface evita descobrir vazamento com o sistema já em uso.*\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Quais usuários além do Cris terão a visão dupla?\n- O CRM da Construtora vai receber lead de campanha automaticamente, como o atual, ou só cadastro manual no começo?",
+    "checklist": [
+     {
+      "t": "Definir quem terá a visão dupla além do Cris",
+      "done": false
+     },
+     {
+      "t": "Modelar tabelas com a coluna empresa",
+      "done": false
+     },
+     {
+      "t": "Criar tabela de perfis com empresa e papel",
+      "done": false
+     },
+     {
+      "t": "Escrever as políticas RLS",
+      "done": false
+     },
+     {
+      "t": "Testar RLS com usuário comum tentando ler a outra empresa",
+      "done": false
+     },
+     {
+      "t": "Construir o pipeline de leads",
+      "done": false
+     },
+     {
+      "t": "Marcar origem do lead por campanha",
+      "done": false
+     },
+     {
+      "t": "Seletor de empresa pro papel diretor",
+      "done": false
+     },
+     {
+      "t": "Painel consolidado das duas empresas",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0222",
+   "type": "update",
+   "task": {
+    "id": "t-crm-construtora",
+    "descricao": "CRM para a **iCasas Construtora**, construído **em cima do CRM que já roda** — hoje atendendo a iCasas Automação — com visão consolidada das duas empresas para usuários específicos.\n\n**Base:** https://mkticasas.github.io/crm-icasas/\n\n---\n\n**POR QUE APROVEITAR O QUE EXISTE**\n\nO CRM atual já tem pronto: dashboard, pipeline com arraste, relatórios com exportação em PDF, vendedores com meta e permissão, etiquetas, temperatura de lead, lembretes, modo TV, anexos e — o mais valioso — **integrações por webhook** com Zapier e Meta Lead Ads, com distribuição round-robin.\n\nComeçar do zero jogaria fora justamente a parte mais trabalhosa.\n\n**E a visão dupla já tem meio caminho andado:** o cadastro de vendedor tem a permissão *\"Ver todos os leads\"*. A visão do Cris é o mesmo padrão um nível acima — permissão **\"Ver todas as empresas\"**.\n\n---\n\n**O QUE FAZER**\n\n- 1. Coluna `empresa` em leads, vendedores, etiquetas e webhooks, com padrão em 'automacao' e as linhas existentes preenchidas\n- 2. Nova permissão `ver_todas_empresas` no cadastro de vendedor — marcada só pro Cris\n- 3. **Reescrever a RLS:** vendedor vê a própria empresa; com a permissão, vê as duas\n- 4. Seletor de empresa no topo, visível só pra quem tem a permissão\n- 5. **Um webhook por empresa** — o lead já entra marcado, sem trabalho manual\n- 6. Dashboard e relatórios com filtro por empresa, e soma das duas pro Cris\n\n*Adicionar a coluna não restringe nada até a política RLS mudar. Se hoje a regra é \"usuário autenticado vê tudo\", ela continua deixando todos verem as duas empresas.*\n\n---\n\n**⚠️ RESOLVER ANTES DE DUPLICAR: SENHA DOS VENDEDORES**\n\nO cadastro de vendedor tem campos próprios de **Login e Senha**, ou seja, credencial guardada na tabela em vez de autenticação de verdade.\n\n**Como conferir:** Supabase → Table Editor → tabela de vendedores → coluna de senha.\n- Se a senha é **legível** → texto puro. Quem acessa o banco entra na conta de qualquer vendedor\n- Se aparece algo como `$2a$10$N9qo8uLO...` → é hash, está certo\n\n**Se for texto puro:** migrar pra **Supabase Auth**, que já faz hash e recuperação de senha. Não programar hash na mão.\n\n*Fazer isso antes de estender pra Construtora — senão o problema é replicado em dois sistemas.* Ver card de revisão de senhas fixas.\n\n---\n\n**ORDEM DE EXECUÇÃO**\n- 1. Backup do banco — é sistema em produção com dados reais\n- 2. Conferir e corrigir a questão das senhas\n- 3. Coluna `empresa` e preenchimento das linhas atuais\n- 4. Permissão e políticas RLS\n- 5. **Testar logando como vendedor comum e tentando ler a outra empresa**\n- 6. Seletor de empresa e webhooks por empresa\n- 7. Dashboard consolidado por último\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Quais usuários além do Cris terão a visão dupla?\n- As senhas dos vendedores estão em texto puro ou com hash?",
+    "checklist": [
+     {
+      "t": "Backup do banco antes de mexer",
+      "done": false
+     },
+     {
+      "t": "Conferir se a senha dos vendedores está com hash",
+      "done": false
+     },
+     {
+      "t": "Migrar login pra Supabase Auth se for texto puro",
+      "done": false
+     },
+     {
+      "t": "Definir quem terá visão dupla além do Cris",
+      "done": false
+     },
+     {
+      "t": "Coluna empresa nas tabelas + preencher linhas atuais",
+      "done": false
+     },
+     {
+      "t": "Permissão ver_todas_empresas no cadastro de vendedor",
+      "done": false
+     },
+     {
+      "t": "Reescrever as políticas RLS",
+      "done": false
+     },
+     {
+      "t": "Testar com vendedor comum tentando ler a outra empresa",
+      "done": false
+     },
+     {
+      "t": "Seletor de empresa no topo",
+      "done": false
+     },
+     {
+      "t": "Webhook separado por empresa",
+      "done": false
+     },
+     {
+      "t": "Dashboard consolidado das duas",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0223",
+   "type": "add",
+   "task": {
+    "id": "t-placa-sonia",
+    "codigo": 64,
+    "titulo": "PLACA DE OBRA — SÔNIA CARDOZO",
+    "coluna": "doing",
+    "area": "Pessoal",
+    "prioridade": "alta",
+    "descricao": "Freela pra **Sônia Cardozo** (arquiteta). Combinado por WhatsApp entre 17 e 19/08.\n\n**Valor combinado: R$ 35** pela arte simples.\n\n---\n\n**DADOS DA PLACA**\n- Nome: **Sonia Cardozo de Carvalho**\n- Registro: **CAU nº A300996-3**\n- Site: **soniacardozo.com**\n- Medida: **1,20 × 0,90 m** (horizontal — sugestão sua, ela aceitou)\n- QR Code do site na peça — decidido no lugar do Instagram, pra manter a arte clean\n- Referência de estilo e logo: ela mandou por imagem no WhatsApp\n\n---\n\n**STATUS**\n- Três versões de foto já enviadas pra ela escolher: **sketch/render misturado**, **render** e **foto real**\n- Ela ficou de mandar uma **logo diferente**, mais chamativa\n- Você ficou de **gerar o QR Code** e de **trabalhar as cores do site dela** na arte, pra quebrar um pouco o clean\n\n---\n\n**PENDÊNCIAS**\n- Receber a logo nova que ela vai mandar\n- Gerar e aplicar o QR Code de soniacardozo.com\n- Aplicar a paleta do site dela\n- Confirmar qual das três versões de foto ela escolheu\n- Montar a simulação da placa no terreno (ela mandou foto do local)\n- Enviar pra aprovação e cobrar os R$ 35\n\n---\n\n**OPORTUNIDADE ABERTA**\nVocê ofereceu **vídeo pra divulgar o trabalho dela** e ela respondeu por áudio — pelo que veio depois (\"bora bora\", \"pai tá open\"), o interesse existe. Vale retomar essa conversa depois de entregar a placa: cliente satisfeito com entrega pequena é a melhor hora de propor a maior.\n\n*Arquiteta com CAU, site próprio e obra em andamento é perfil de conteúdo recorrente, não de trabalho avulso.*",
+    "checklist": [
+     {
+      "t": "Receber a logo nova dela",
+      "done": false
+     },
+     {
+      "t": "Confirmar qual das 3 versões de foto ela escolheu",
+      "done": false
+     },
+     {
+      "t": "Gerar o QR Code de soniacardozo.com",
+      "done": false
+     },
+     {
+      "t": "Aplicar as cores do site dela",
+      "done": false
+     },
+     {
+      "t": "Montar a simulação da placa no terreno",
+      "done": false
+     },
+     {
+      "t": "Enviar pra aprovação",
+      "done": false
+     },
+     {
+      "t": "Receber os R$ 35",
+      "done": false
+     },
+     {
+      "t": "Retomar a proposta do vídeo de divulgação",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0224",
+   "type": "add",
+   "task": {
+    "id": "t-sonia-placa-obra",
+    "codigo": 65,
+    "titulo": "PLACA DE OBRA E VÍDEO — SONIA (ARQUITETA)",
+    "coluna": "doing",
+    "area": "Pessoal",
+    "prioridade": "media",
+    "descricao": "Placa de obra para a **Sônia** (arquiteta), freela combinado por WhatsApp (17-19/08).\n\n**COMBINADO**\n- Arte da placa de obra — estilo horizontal, referência que ela mandou\n- Medida: **1,20 x 0,90 m** (horizontal — ela sugeriu 1,00x1,00 mas ficaria quadrada demais)\n- Valor: **R$ 35** — arte simples\n- Vídeo de divulgação do trabalho dela — **combinado, ainda sem valor fechado**\n- Logo dela + site: **soniacardozo.com**\n- Nome completo pra registro: **Sonia Cardozo de Carvalho**\n- Registro profissional: **CAU nº A300996-3**\n\n---\n\n**O QUE JÁ FOI PRODUZIDO (19/08)**\nVocê já fez **3 propostas de estilo de foto** pra ela escolher:\n1. Sketch/render/mix\n2. Render\n3. Foto real\n\nEla ainda não respondeu qual prefere (mandou só áudio).\n\n**Decisão tomada:** QR code do site em vez do Instagram — o Insta tem informação demais e quebra a proposta clean da peça. Vai trabalhar com as cores do site dela pra destacar a arte.\n\n**Pendente dela:** disse que vai mandar uma logo diferente, \"pra chamar mais atenção\".\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar com ela qual das 3 propostas de foto ela escolheu\n- Aguardar a logo nova que ela disse que ia mandar\n- Fechar o valor do vídeo de divulgação",
+    "checklist": [
+     {
+      "t": "Confirmar qual das 3 propostas de foto ela escolheu",
+      "done": false
+     },
+     {
+      "t": "Receber a logo nova dela",
+      "done": false
+     },
+     {
+      "t": "Gerar o QR code do site",
+      "done": true
+     },
+     {
+      "t": "Finalizar a arte na medida 1,20x0,90",
+      "done": false
+     },
+     {
+      "t": "Fechar valor do vídeo de divulgação",
+      "done": false
+     },
+     {
+      "t": "Entregar e receber os R$ 35 da placa",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0225",
+   "type": "add",
+   "task": {
+    "id": "t-status-migracao-crm",
+    "codigo": 66,
+    "titulo": "STATUS — MIGRAÇÃO CRM PARA CONTA ÚNICA",
+    "coluna": "doing",
+    "area": "iCasas – Automação",
+    "prioridade": "alta",
+    "descricao": "Registro do estado atual da migração pro CRM único (projeto `mqdhavyaeujufhlqdlfg`), pra continuar numa conversa nova sem perder o fio.\n\n---\n\n**✅ JÁ FEITO**\n\n- Visão por empresa no CRM: coluna `empresa` em leads e vendedores, tudo que já existia marcado como `automacao`\n- Etapas específicas da Construtora no pipeline (Contato Inicial, Visita Agendada, Reunião Realizada, Retrabalho Futuro etc.)\n- Seletor de empresa no topo — aparece só pra quem tem `can_see_all_companies = true`. Cris e você (Lucas/admin) já estão liberados\n- Meryson liberado como `can_see_all_leads = true` só da Automação (sem ver a Construtora)\n- Selo de empresa nos cards do pipeline\n- Vínculo de 3 vendedores ao Supabase Auth (login por e-mail): **cris**, **lucas** (admin) e **meryson** — todos usando a mesma conta que já usam no Acompanhamento de Obras\n- Tela de login trocada pra e-mail + senha via Supabase Auth\n- Fluxo de \"Esqueci minha senha\" com envio de link por e-mail, e tela de \"Nova senha\"\n- Round-robin da Edge Function `webhook-lead` ajustado pra respeitar a empresa do webhook (gira só entre vendedores da mesma empresa)\n- Campo de Empresa no cadastro de webhook, com selo na listagem\n\n---\n\n**⚠️ PENDENTE**\n\n- **José Mauricio** ainda não tem e-mail nem `auth_user_id` — não consegue entrar depois da virada. Falta pegar o e-mail dele, criar o usuário em Authentication → Users e vincular\n- **Bug crítico corrigido, mas falta subir**: uma chamada (`db.auth.onAuthStateChange`) estava fora de função e quebrava o carregamento da página inteira. Corrigido no arquivo mais recente — precisa confirmar que subiu e testar o \"Enviar link\" de recuperação de senha\n- **Apagar a coluna `password` da tabela `sellers`** — só fazer depois que todo mundo (incluindo o José) já estiver entrando pelo Auth com sucesso\n- **Criar o webhook novo da Construtora** — escolher Empresa: iCasas Construtora no cadastro, pegar a URL e trocar no Meta Lead Ads / Zapier daquela campanha\n- **Testar o round-robin por empresa** — disparar um lead de teste no webhook novo e confirmar que caiu com `empresa = 'construtora'` e foi pra Cris/Thais/Vini, nunca pro José/Meryson\n- **Teste de vazamento (RLS)** — ainda não foi feito. Abrir o CRM em aba anônima, sem login, e no console tentar `db.from('sellers').select('*')` e `db.from('leads').select('*')`. Os dois têm que voltar vazios\n- **Trocar todas as senhas** depois que a coluna `password` for apagada — as antigas ficaram legíveis no banco por meses, valem como já vazadas\n- Backup de `leads` e `sellers` em CSV — ainda não confirmado se foi feito antes das alterações\n\n---\n\n**ARQUIVOS RELEVANTES DESSA MIGRAÇÃO**\n- `index-final.html` — versão mais recente do CRM, com tudo (empresa + Auth + correção do bug de carregamento)\n- `sql-empresa.sql` — cria as colunas de empresa em leads/sellers\n- `fase2-auth.sql` — passo a passo do vínculo com Auth e da RLS\n- `webhook-lead-empresa.ts` — Edge Function com round-robin por empresa\n- `sql-webhook-empresa.sql` — cria a coluna empresa nos webhooks\n- `passo-a-passo.md` — roteiro completo das duas fases\n\n**PROJETOS SUPABASE**\n- `mqdhavyaeujufhlqdlfg` — produção real, é aqui que a migração está acontecendo\n- `oddredchqdhhuskguxtb` — ambiente de teste, não usar em produção",
+    "checklist": [
+     {
+      "t": "Resolver acesso do José (e-mail + vínculo)",
+      "done": false
+     },
+     {
+      "t": "Confirmar que a correção do bug subiu e testar recuperação de senha",
+      "done": false
+     },
+     {
+      "t": "Apagar a coluna password (só depois de todos migrados)",
+      "done": false
+     },
+     {
+      "t": "Criar o webhook da Construtora e trocar no Meta/Zapier",
+      "done": false
+     },
+     {
+      "t": "Testar o round-robin por empresa",
+      "done": false
+     },
+     {
+      "t": "Teste de vazamento em aba anônima",
+      "done": false
+     },
+     {
+      "t": "Trocar todas as senhas",
+      "done": false
+     },
+     {
+      "t": "Confirmar backup de leads e sellers",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0226",
+   "type": "update",
+   "task": {
+    "id": "t-status-migracao-crm",
+    "descricao": "Retomar aqui numa conversa nova: \"abre o card de status da migração do CRM\".\n\n**Projetos Supabase**\n- `mqdhavyaeujufhlqdlfg` — PRODUÇÃO. É aqui que tudo acontece.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n---\n\n**✅ JÁ FEITO**\n- Coluna `empresa` em leads e vendedores (tudo antigo = `automacao`)\n- Etapas específicas da Construtora no pipeline\n- Seletor de empresa no topo pra quem tem `can_see_all_companies=true` (Cris, Lucas/admin)\n- Meryson com `can_see_all_leads=true` só da Automação\n- Selo de empresa nos cards\n- Login trocado pra Supabase Auth (e-mail + senha) — vinculados: cris, lucas, meryson\n- Round-robin da Edge Function `webhook-lead` respeitando a empresa do webhook\n- Campo Empresa no cadastro de webhook\n- Corrigido bug que travava a página inteira (`db.auth.onAuthStateChange` estava fora de função)\n\n---\n\n**⚠️ AGORA — o link de redefinir senha caiu em localhost**\n\n**Passo 1 — corrigir a URL (Supabase → Authentication → URL Configuration)**\n- Site URL: colar o endereço real do CRM\n- Redirect URLs: colar o mesmo endereço\n- Salvar\n\n**Passo 2 — deixar o e-mail em português (Authentication → Email Templates → Reset Password)**\n```html\n<h2>Redefinir sua senha</h2>\n<p>Recebemos um pedido para redefinir sua senha no CRM iCasas.</p>\n<p><a href=\"{{ .ConfirmationURL }}\">Clique aqui para criar uma nova senha</a></p>\n<p>Se você não pediu isso, pode ignorar este e-mail.</p>\n```\n\n**Passo 3 — testar de novo**\nPedir \"esqueci minha senha\", abrir o link do e-mail novo e confirmar que cai na tela de nova senha do CRM (não mais em localhost).\n\n---\n\n**PENDENTE DEPOIS DISSO, NA ORDEM**\n\n**1. José Mauricio sem acesso**\n- Conseguir o e-mail dele\n- Supabase → Authentication → Users → Add user (marcar Auto Confirm User)\n- Copiar o UUID gerado e rodar:\n```sql\nupdate sellers set email = 'EMAIL-DO-JOSE', auth_user_id = 'UUID-COPIADO' where login = 'jose';\n```\n\n**2. Confirmar todo mundo com auth_user_id**\n```sql\nselect login, name, email, auth_user_id from sellers where status='active' order by name;\n```\nNinguém pode estar com auth_user_id vazio antes do próximo passo.\n\n**3. Apagar a senha da tabela (só depois do passo 2 estar 100%)**\n```sql\nalter table sellers drop column password;\n```\n\n**4. Criar o webhook da Construtora**\n- No CRM: Webhooks → novo → Empresa: iCasas Construtora → Round-robin\n- Copiar a URL gerada e trocar no Meta Lead Ads / Zapier daquela campanha\n\n**5. Testar o round-robin por empresa**\n- Disparar um lead de teste no webhook novo\n- Conferir: `select name, empresa, seller_id from leads order by created_at desc limit 1;`\n- Empresa tem que ser 'construtora' e o seller_id tem que ser do Cris, Thais ou Vini\n\n**6. Teste de vazamento (RLS) — não pular**\n- Abrir o CRM em aba anônima, sem logar\n- F12 → Console:\n```js\nconst t = await db.from('sellers').select('*'); console.log(t);\nconst l = await db.from('leads').select('*'); console.log(l);\n```\n- Os dois têm que voltar vazios ou com erro de permissão\n\n**7. Trocar todas as senhas**\nAs antigas ficaram legíveis no banco por meses — tratar como já vazadas.\n\n**8. Confirmar backup de leads e sellers em CSV** (se ainda não foi feito)\n\n---\n\n**ARQUIVOS DESSA MIGRAÇÃO**\n`index-final.html` (CRM completo e corrigido) · `sql-empresa.sql` · `fase2-auth.sql` · `webhook-lead-empresa.ts` · `sql-webhook-empresa.sql` · `passo-a-passo.md`",
+    "checklist": [
+     {
+      "t": "Corrigir Site URL e Redirect URLs no Supabase",
+      "done": false
+     },
+     {
+      "t": "Trocar o template de e-mail pra português",
+      "done": false
+     },
+     {
+      "t": "Testar recuperação de senha de novo",
+      "done": false
+     },
+     {
+      "t": "Resolver acesso do José (e-mail + vínculo)",
+      "done": false
+     },
+     {
+      "t": "Confirmar todos com auth_user_id preenchido",
+      "done": false
+     },
+     {
+      "t": "Apagar a coluna password",
+      "done": false
+     },
+     {
+      "t": "Criar o webhook da Construtora",
+      "done": false
+     },
+     {
+      "t": "Testar o round-robin por empresa",
+      "done": false
+     },
+     {
+      "t": "Teste de vazamento em aba anônima",
+      "done": false
+     },
+     {
+      "t": "Trocar todas as senhas",
+      "done": false
+     },
+     {
+      "t": "Confirmar backup de leads e sellers",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0227",
+   "type": "update",
+   "task": {
+    "id": "t-status-migracao-crm",
+    "descricao": "Retomar aqui numa conversa nova: \"abre o card de status da migração do CRM\".\n\n**Projetos Supabase**\n- `mqdhavyaeujufhlqdlfg` — PRODUÇÃO. É aqui que tudo acontece.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n---\n\n**✅ JÁ FEITO**\n- Coluna `empresa` em leads e vendedores (tudo antigo = `automacao`)\n- Etapas específicas da Construtora no pipeline\n- Seletor de empresa no topo pra quem tem `can_see_all_companies=true` (Cris, Lucas/admin)\n- Meryson com `can_see_all_leads=true` só da Automação\n- Selo de empresa nos cards\n- Login trocado pra Supabase Auth (e-mail + senha) — vinculados: cris, lucas, meryson\n- Round-robin da Edge Function `webhook-lead` respeitando a empresa do webhook\n- Campo Empresa no cadastro de webhook\n- Corrigido bug que travava a página inteira (`db.auth.onAuthStateChange` estava fora de função)\n\n---\n\n**⚠️ AGORA — o link de redefinir senha caiu em localhost**\n\n**Passo 1 — corrigir a URL (Supabase → Authentication → URL Configuration)**\n- Site URL: colar o endereço real do CRM\n- Redirect URLs: colar o mesmo endereço\n- Salvar\n\n**Passo 2 — deixar o e-mail em português (Authentication → Email Templates → Reset Password)**\n```html\n<h2>Redefinir sua senha</h2>\n<p>Recebemos um pedido para redefinir sua senha no CRM iCasas.</p>\n<p><a href=\"{{ .ConfirmationURL }}\">Clique aqui para criar uma nova senha</a></p>\n<p>Se você não pediu isso, pode ignorar este e-mail.</p>\n```\n\n**Passo 3 — testar de novo**\nPedir \"esqueci minha senha\", abrir o link do e-mail novo e confirmar que cai na tela de nova senha do CRM (não mais em localhost).\n\n---\n\n**PENDENTE DEPOIS DISSO, NA ORDEM**\n\n**1. José Mauricio sem acesso**\n- Conseguir o e-mail dele\n- Supabase → Authentication → Users → Add user (marcar Auto Confirm User)\n- Copiar o UUID gerado e rodar:\n```sql\nupdate sellers set email = 'EMAIL-DO-JOSE', auth_user_id = 'UUID-COPIADO' where login = 'jose';\n```\n\n**2. Confirmar todo mundo com auth_user_id**\n```sql\nselect login, name, email, auth_user_id from sellers where status='active' order by name;\n```\nNinguém pode estar com auth_user_id vazio antes do próximo passo.\n\n**3. Apagar a senha da tabela (só depois do passo 2 estar 100%)**\n```sql\nalter table sellers drop column password;\n```\n\n**4. Criar o webhook da Construtora**\n- No CRM: Webhooks → novo → Empresa: iCasas Construtora → Round-robin\n- Copiar a URL gerada e trocar no Meta Lead Ads / Zapier daquela campanha\n\n**5. Testar o round-robin por empresa**\n- Disparar um lead de teste no webhook novo\n- Conferir: `select name, empresa, seller_id from leads order by created_at desc limit 1;`\n- Empresa tem que ser 'construtora' e o seller_id tem que ser do Cris, Thais ou Vini\n\n**6. Teste de vazamento (RLS) — não pular**\n- Abrir o CRM em aba anônima, sem logar\n- F12 → Console:\n```js\nconst t = await db.from('sellers').select('*'); console.log(t);\nconst l = await db.from('leads').select('*'); console.log(l);\n```\n- Os dois têm que voltar vazios ou com erro de permissão\n\n**7. Trocar todas as senhas**\nAs antigas ficaram legíveis no banco por meses — tratar como já vazadas.\n\n**8. Confirmar backup de leads e sellers em CSV** (se ainda não foi feito)\n\n---\n\n**ARQUIVOS DESSA MIGRAÇÃO**\n`index-final.html` (CRM completo e corrigido) · `sql-empresa.sql` · `fase2-auth.sql` · `webhook-lead-empresa.ts` · `sql-webhook-empresa.sql` · `passo-a-passo.md`\n\n---\n\n**⚠️ ALERTA IMPORTANTE — SUPABASE COMPARTILHADO**\n\nO CRM, a **Vitrine dos Sonhos** e o **Obras + Automação** usam o mesmo projeto Supabase e a mesma conta de login (mesmo e-mail/senha nos três).\n\n**Trocar a senha de alguém (pelo botão do CRM ou pelo próprio \"esqueci minha senha\") derruba a sessão dela em TODOS os sistemas ao mesmo tempo** — é o Supabase encerrando sessões antigas por segurança quando a senha muda. Não é bug, é o comportamento esperado.\n\n**O que fazer quando isso acontecer:** a pessoa só precisa entrar de novo na Vitrine (ou no Obras) usando a **senha nova**. Não perdeu acesso nem permissão, só precisa logar de novo.\n\n**Sempre que trocar a senha de alguém, avisar junto:** \"troquei sua senha, é essa aqui — e você vai precisar logar de novo na Vitrine e no Obras com ela também\"."
+   }
+  },
+  {
+   "id": "op-0228",
+   "type": "add",
+   "task": {
+    "id": "t-videos-jatobas-reconhecimento-vendas",
+    "codigo": 67,
+    "titulo": "VÍDEOS JATOBÁS — RECONHECIMENTO E VENDAS",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "descricao": "Vídeos do loteamento **Jatobás** — dois tipos, combinado por áudio (24-25/08).\n\n**⚠️ Confirmar:** o áudio mencionou um segundo loteamento junto com o Jatobás, mas o nome não ficou claro na transcrição (soou como \"Ariab\"/\"Ariatá\"). Confirmar qual é antes de gravar.\n\n---\n\n**VÍDEO 1 · RECONHECIMENTO**\n- Sem falar de valor, só ação\n- Objetivo: movimentar o Instagram, gerar engajamento\n- Estilo pedido: \"focado, com umas mexidinhas na câmera — fica com cara de cinema\"\n\n**VÍDEO 2 · VENDAS**\n- Fala de valor e condições\n- Objetivo: a pessoa se identificar e preencher o formulário\n- Mesmo estilo de câmera do vídeo 1\n\n**Contexto da instalação (Jatobás):**\n- Placa de 3m\n- 12 pontaletes de 4m\n- Enterrar 1m, deixar 3m à mostra\n- Precisa de cavadeira\n- Planejado pra depois do almoço",
+    "checklist": [
+     {
+      "t": "Confirmar o segundo loteamento mencionado no áudio",
+      "done": false
+     },
+     {
+      "t": "Gravar vídeo de reconhecimento",
+      "done": false
+     },
+     {
+      "t": "Gravar vídeo de vendas",
+      "done": false
+     },
+     {
+      "t": "Editar e publicar",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0229",
+   "type": "add",
+   "task": {
+    "id": "t-video-zani",
+    "codigo": 68,
+    "titulo": "VÍDEO — ZANI",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "descricao": "Vídeo pendente do cliente **Zani**.\n\nJá existe material gravado (recebido no cartão). Ainda não foi editado — ficou pendente por causa da correria da semana.\n\n**O que é:** vídeo mostrando os negócios dele, com um design no final.\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar se ainda tem os vídeos originais ou se precisa regravar\n- Alinhar prazo com o Zani",
+    "checklist": [
+     {
+      "t": "Localizar o material gravado no cartão",
+      "done": false
+     },
+     {
+      "t": "Editar",
+      "done": false
+     },
+     {
+      "t": "Entregar ao Zani",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0230",
+   "type": "add",
+   "task": {
+    "id": "t-video-entrega-jumka-juliana",
+    "codigo": 69,
+    "titulo": "VÍDEO ENTREGA MONTADA — JUMKA (JULIANA)",
+    "coluna": "todo",
+    "area": "Jumka",
+    "prioridade": "alta",
+    "descricao": "Vídeo de entrega de móveis montados — roteiro com a Juliana no gancho e na CTA.\n\n**Duração:** 35-45s · Formato vertical (Reels/Stories)\n\n---\n\n**ROTEIRO**\n\n1. Juliana em frente ao carro carregado, olhando pra câmera (3-4s)\n   🗣️ \"Vocês sabiam que a gente entrega o móvel montado, prontinho pra usar?\"\n\n2. Plano da caçamba cheia — móveis encaixados, amarrados/protegidos (3s) — sem fala, só o gancho visual\n\n3. Detalhe de como está organizado, mostrando o \"quebra-cabeça\" da carga (4-5s)\n   🗣️ Juliana em off: \"Cada móvel é montado na loja e a gente organiza tudo pra caber certinho, sem arranhar nada\"\n\n4. Carro saindo, câmera acompanhando lateral (3s) — música sobe, sem fala\n\n5. Chegada na casa do cliente, Juliana descendo do carro (2s)\n   🗣️ \"Chegamos!\" (natural, sorrindo)\n\n6. Retirando o móvel já pronto da caçamba (3-4s) — sem fala\n\n7. Carregando pra dentro de casa (3s) — sem fala, ritmo mais lento\n\n8. Móvel no lugar, ambiente pronto (3s) — sem fala\n\n9. Juliana de volta, olhando pra câmera, fechando o vídeo (4-5s)\n   🗣️ \"Sem furo, sem parafuso solto, sem dor de cabeça. Só chegar, colocar e usar. Chama no direct e pede o seu!\"\n\n---\n\n**LEGENDA**\n\nMóvel montado. Entrega prontinha. Sem estresse.\nAqui na Jumka você só recebe e usa. 🛋️\nChama no direct e garante o seu.\n\n---\n\n**CENAS EXTRAS, SE DER TEMPO**\n- Juliana fazendo alguma gracinha ao lado do carro carregado — humaniza\n- Close rápido no nó/amarração de segurança dos móveis — reforça cuidado\n- Reação do cliente abrindo a porta e vendo o móvel pronto na sala\n\n⚠️ Não mencionar o modelo/veículo específico em nenhuma fala.",
+    "checklist": [
+     {
+      "t": "Confirmar disponibilidade da Juliana pra gravar",
+      "done": false
+     },
+     {
+      "t": "Escolher a entrega/cliente que vai servir de captação",
+      "done": false
+     },
+     {
+      "t": "Gravar cenas 1-4 (carregamento e saída)",
+      "done": false
+     },
+     {
+      "t": "Gravar cenas 5-8 (chegada e montagem no local)",
+      "done": false
+     },
+     {
+      "t": "Gravar cena 9 (fala final / CTA)",
+      "done": false
+     },
+     {
+      "t": "Editar e publicar",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0231",
+   "type": "update",
+   "task": {
+    "id": "t-video-entrega-jumka-juliana",
+    "titulo": "VÍDEO ENTREGA MONTADA — JUMKA (ADRIANA)",
+    "descricao": "Vídeo de entrega de móveis montados — roteiro com a Adriana no gancho e na CTA.\n\n**Duração:** 35-45s · Formato vertical (Reels/Stories)\n\n---\n\n**ROTEIRO**\n\n1. Adriana em frente ao carro carregado, olhando pra câmera (3-4s)\n   🗣️ \"Vocês sabiam que a gente entrega o móvel montado, prontinho pra usar?\"\n\n2. Plano da caçamba cheia — móveis encaixados, amarrados/protegidos (3s) — sem fala, só o gancho visual\n\n3. Detalhe de como está organizado, mostrando o \"quebra-cabeça\" da carga (4-5s)\n   🗣️ Adriana em off: \"Cada móvel é montado na loja e a gente organiza tudo pra caber certinho, sem arranhar nada\"\n\n4. Carro saindo, câmera acompanhando lateral (3s) — música sobe, sem fala\n\n5. Chegada na casa do cliente, Adriana descendo do carro (2s)\n   🗣️ \"Chegamos!\" (natural, sorrindo)\n\n6. Retirando o móvel já pronto da caçamba (3-4s) — sem fala\n\n7. Carregando pra dentro de casa (3s) — sem fala, ritmo mais lento\n\n8. Móvel no lugar, ambiente pronto (3s) — sem fala\n\n9. Adriana de volta, olhando pra câmera, fechando o vídeo (4-5s)\n   🗣️ \"Sem furo, sem parafuso solto, sem dor de cabeça. Só chegar, colocar e usar. Chama no direct e pede o seu!\"\n\n---\n\n**LEGENDA**\n\nMóvel montado. Entrega prontinha. Sem estresse.\nAqui na Jumka você só recebe e usa. 🛋️\nChama no direct e garante o seu.\n\n---\n\n**CENAS EXTRAS, SE DER TEMPO**\n- Adriana fazendo alguma gracinha ao lado do carro carregado — humaniza\n- Close rápido no nó/amarração de segurança dos móveis — reforça cuidado\n- Reação do cliente abrindo a porta e vendo o móvel pronto na sala\n\n⚠️ Não mencionar o modelo/veículo específico em nenhuma fala."
+   }
+  },
+  {
+   "id": "op-0232",
+   "type": "add",
+   "task": {
+    "id": "t-evento-showroom-clientes-corretores",
+    "codigo": 70,
+    "titulo": "EVENTO NO SHOWROOM — CLIENTES, ICASAS E CORRETORES",
+    "coluna": "ideas",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "descricao": "Evento no showroom, reunindo clientes, equipe iCasas e corretores parceiros.\n\n**⚠️ PRECISO DE VOCÊ**\n- Data e horário do evento\n- Objetivo principal (lançamento de empreendimento, confraternização, apresentação institucional, captação de leads)\n- Lista de convidados (só carteira própria de corretores, ou aberto pra novos parceiros também)\n- Orçamento disponível (buffet, decoração, brindes)",
+    "checklist": [
+     {
+      "t": "Definir data, horário e objetivo do evento",
+      "done": false
+     },
+     {
+      "t": "Montar lista de convidados (clientes e corretores)",
+      "done": false
+     },
+     {
+      "t": "Reservar/organizar o espaço do showroom",
+      "done": false
+     },
+     {
+      "t": "Definir buffet e decoração",
+      "done": false
+     },
+     {
+      "t": "Criar convite (arte e envio)",
+      "done": false
+     },
+     {
+      "t": "Planejar captação de fotos/vídeo do evento",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0233",
+   "type": "update",
+   "task": {
+    "id": "t-status-migracao-crm",
+    "titulo": "STATUS GERAL — CRM + DOCUMENTAÇÃO DE OBRAS",
+    "descricao": "Retomar aqui numa conversa nova: \"abre o card de status geral\" ou \"puxa o card t-status-migracao-crm\".\n\nEste card resume TUDO que existe hoje nos sistemas iCasas/OrkAI. Ele é atualizado sempre que algo grande muda — se parecer desatualizado em algum ponto, confia no comportamento real do sistema, não neste texto.\n\n---\n\n## PROJETOS SUPABASE\n- `mqdhavyaeujufhlqdlfg` — **PRODUÇÃO**. CRM, Documentação de Obras, tudo real acontece aqui.\n- `oddredchqdhhuskguxtb` — ambiente de teste. Nunca rodar SQL de produção aqui.\n\n## REPOSITÓRIOS\n- CRM (`index.html`) e Documentação (`documentacao.html`) — mesmo repositório, GitHub Pages.\n- Board de tarefas: `orkiasystem/crm-master`, arquivo `tasks.json`. Token do GitHub não persiste entre conversas — precisa colar de novo a cada vez.\n\n---\n\n## CRM — ESTADO ATUAL\n\n**Empresas:** iCasas Automação e iCasas Construtora, no mesmo banco, separadas por coluna `empresa` em `leads` e `sellers`.\n\n**Login:** Supabase Auth (e-mail + senha), com recuperação de senha por link. Compartilhado com Documentação e outros sistemas (Vitrine, Obras) — trocar senha de alguém desloga ela de todos os sistemas ao mesmo tempo, é esperado.\n\n**Papéis especiais:**\n- Admins: Lucas (dois logins, `mkt.icasas@gmail.com` e `lucas.s.ribeiro@hotmail.com`) e Cris (`cristopher.icasas@gmail.com`)\n- Ambos marcados como `oculto_filtro_vendedor=true` — não aparecem nos filtros de vendedor nem recebem lead no rodízio\n- Lucas tem `categoria_interna='Dev'` — aparece numa seção própria \"⚙️ Dev\" na aba Vendedores, separado da seção \"🛡️ Administração\" (onde fica o Cris)\n- Cargo \"Engenharia\" e \"Financeiro\" também ficam fora do filtro de vendedor e do rodízio automaticamente\n\n**Aba Vendedores:** agrupável por Empresa ou Cargo (seletor no topo). Seções Dev e Administração sempre aparecem primeiro, antes das empresas.\n\n**Dashboard:** ranking de vendedores agora filtra só quem realmente vende (`vendedoresReais()`), não lista mais admin/dev/financeiro com \"0 leads\".\n\n**Relatórios:** repaginado — filtro de Empresa (só quem vê as duas), Estágio dinâmico conforme a empresa, KPIs (total, vendas fechadas, ticket médio, taxa de conversão), gráfico de distribuição por estágio, exporta CSV e PDF. Abre sempre com o período dos últimos 30 dias já preenchido e já carregado.\n\n**Round-robin de leads (Edge Function `webhook-lead`):** distribui só entre vendedores ativos da mesma empresa do webhook, excluindo quem não vende (Engenharia/Financeiro/oculto). Cada webhook tem uma `empresa` própria — criar um webhook por empresa/campanha.\n\n**Importação:** 804 leads antigos da Construtora já migrados (CSV do sistema anterior), mapeados pros vendedores certos, sem corretor foram pro Cris.\n\n---\n\n## DOCUMENTAÇÃO DE OBRAS (`documentacao.html`) — ESTADO ATUAL\n\n**O que é:** Kanban onde cada uma das etapas da obra é uma coluna. O card da obra aparece sozinho na coluna certa (primeira etapa não concluída) e atravessa as colunas conforme o trabalho avança.\n\n**Estrutura: 30 etapas**, na ordem — do contrato até a última medição, passando por projeto, financeiro (Caixa), obra reduzida a 3 fases (Alvenaria/Acabamento/Finalização) e entrega. Etapas com mais de um responsável (até 4 pessoas) exigem confirmação de todos antes de avançar.\n\n**Responsabilidades:** Corretor, Carlos, Tamires, Gi, Obras, Duda (financeiro), Maria (financeiro). Vinculação feita na tela \"👥 Equipe\" (só admin vê), campo `doc_responsavel` em `sellers`.\n\n**Aprovação financeira:** a etapa \"Início pré-obra\" trava até a Duda aprovar — funciona como uma dupla confirmação onde o segundo lado é sempre o financeiro.\n\n**Funcionalidades:**\n- Arrastar card ou clicar em \"concluir\" avança a etapa\n- **Admin pode arrastar pra qualquer coluna**, em qualquer direção — o checklist é reajustado de verdade no banco nos dois sentidos (volta desmarca, avança pulando marca tudo no caminho)\n- Corretor responsável aparece no card e é editável por admin\n- Comentários por obra (mural simples, com autor e data)\n- Modo TV — o mesmo kanban em tela cheia, fonte maior, pra telão\n- Tempo real entre todos que estão com a tela aberta\n- Excluir obra (admin, com confirmação)\n- Login com recuperação de senha, mesmo padrão do CRM\n\n**Cuidado permanente:** sempre que adicionar/mudar etapa que envolve confirmação múltipla ou aprovação financeira, testar os cenários de permissão antes de liberar.\n\n---\n\n## PADRÕES DE TRABALHO QUE JÁ VALEM\n\n- SQL sempre com `if not exists` / `drop if exists` antes de `create`, pra poder rodar de novo sem erro\n- Toda migração de estrutura (etapas, colunas) preservar dados existentes — checar progresso real antes de renumerar\n- Card de vídeo/campanha: roteiro completo + legenda + observações no card, área certa (Jumka, iCasas – Construtora, etc)\n- Confirmar nome/pessoa antes de gerar SQL com UUID — pedir a query de \"buscar por nome\" quando o login não bate\n\n## ARQUIVOS DE REFERÊNCIA\nOs HTMLs completos (CRM e Documentação) e os SQLs de schema ficam entregues como arquivo a cada sessão — não há um \"arquivo mestre\" fixo, sempre gero a partir do código mais recente. Pedir pra eu recriar caso precise, citando o que precisa mudar."
+   }
+  },
+  {
+   "id": "op-0234",
+   "type": "add",
+   "task": {
+    "id": "t-campanha-ary-attab-3",
+    "codigo": 71,
+    "titulo": "CAMPANHA TRÁFEGO — ARY ATTAB 3 (VÍDEO THAIS)",
+    "coluna": "todo",
+    "area": "Tráfego",
+    "prioridade": "alta",
+    "descricao": "Campanha de captação de leads — vídeo da Thais, loteamento Ary Attab 3.\n\n**OBJETIVO:** Geração de Cadastros (Lead Ads)\n**ORÇAMENTO SUGERIDO:** R$ 30-40/dia pra começar\n**LOCAL:** São José do Rio Preto + raio de 15km\n**IDADE:** 28-55\n\n---\n\n**SEGMENTAÇÃO — IF & IF (camadas combinadas)**\n\nCamada A (intenção imobiliária ativa):\n- Financiamento imobiliário\n- Compra de imóveis\n- Construção residencial\n\n↓ Restringir ainda mais (Narrow Further) ↓\n\nCamada B (sinal de decisão madura):\n- Reforma e decoração\n- Casa própria\n- Mudança residencial\n\n⚠️ Testar a estimativa de alcance no Gerenciador antes de publicar — se vier \"público pequeno\", afrouxar uma das camadas.\n\n**Desativar:** Advantage+ Audience, Audience Network, Messenger\n\n---\n\n**POSICIONAMENTO (manual)**\n- Stories/Reels: vídeo vertical 9:16 completo, sem cortes\n- Feed (Instagram/Facebook): mesmo vídeo + legenda embutida\n- Audience Network: desativado\n- Messenger: desativado nessa campanha\n\n---\n\n**TÍTULO**\nAry Attab 3 liberado para construir — Zona Norte de Rio Preto\n\n**LEGENDA**\nA espera acabou. 🏡\n\nAry Attab 3 está liberado para construir! Lotes a partir de R$ 130.000 na Zona Norte de Rio Preto — a 2km da rodovia e pertinho do Clube de Campo do Palestra.\n\nUm bairro com potencial gigantesco de crescimento, onde só tem casa boa sendo construída.\n\nSimule agora e veja como seu terreno pode sair do papel. 👇\n\n**CTA do botão:** Simular agora\n\n**FORMULÁRIO (Instant Form)**\n1. Nome completo\n2. Telefone (com DDD)\n3. Pergunta qualificadora: \"Você já tem o valor de entrada disponível?\" (Sim / Estou organizando / Só quero simular)\n\n---\n\n**REGRAS AUTOMÁTICAS**\n- SE CPL > R$ 60 por 3 dias consecutivos → pausar o conjunto e notificar\n- SE frequência > 3,5 → reduzir orçamento em 20%\n- SE gasto > R$ 50 sem nenhum lead → pausar e revisar criativo\n- SE CPL < R$ 25 por 3 dias → aumentar orçamento em 20%",
+    "checklist": [
+     {
+      "t": "Criar a campanha (objetivo: Geração de Cadastros)",
+      "done": false
+     },
+     {
+      "t": "Configurar local (Rio Preto + 15km) e idade (28-55)",
+      "done": false
+     },
+     {
+      "t": "Montar Camada A de interesses",
+      "done": false
+     },
+     {
+      "t": "Aplicar 'Restringir ainda mais' com a Camada B",
+      "done": false
+     },
+     {
+      "t": "Conferir estimativa de alcance (ajustar se vier muito pequeno)",
+      "done": false
+     },
+     {
+      "t": "Desativar Advantage+, Audience Network e Messenger",
+      "done": false
+     },
+     {
+      "t": "Configurar posicionamento manual (Stories/Reels + Feed)",
+      "done": false
+     },
+     {
+      "t": "Subir o vídeo da Thais como criativo",
+      "done": false
+     },
+     {
+      "t": "Preencher título e legenda",
+      "done": false
+     },
+     {
+      "t": "Criar o formulário (Instant Form) com as 3 perguntas",
+      "done": false
+     },
+     {
+      "t": "Definir orçamento (R$ 30-40/dia)",
+      "done": false
+     },
+     {
+      "t": "Configurar as 4 regras automáticas",
+      "done": false
+     },
+     {
+      "t": "Revisar tudo e publicar",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0235",
+   "type": "add",
+   "task": {
+    "id": "t-campanha-jatobas-reativacao",
+    "codigo": 72,
+    "titulo": "CAMPANHA TRÁFEGO — JATOBÁS REATIVAÇÃO (VÍDEO VINI)",
+    "coluna": "todo",
+    "area": "Tráfego",
+    "prioridade": "alta",
+    "descricao": "Campanha de reativação — vídeo do Vini, promoção pra quem já tem terreno no Jatobás.\n\n**OBJETIVO:** Geração de Cadastros (Lead Ads)\n**ORÇAMENTO SUGERIDO:** R$ 20-30/dia (público menor, não precisa de tanto)\n\n---\n\n**PÚBLICO — dois passos**\n\n1. Público base (Custom Audience): lista de clientes que já compraram terreno no Jatobás\n   ⚠️ PRECISO DE VOCÊ: exportar essa lista do CRM (filtro: empreendimento = Jatobás, estágio = Fechado) e subir no Gerenciador de Anúncios como Público Personalizado\n\n2. Restringir ainda mais, com sinal de que está pensando em construir agora:\n   - Materiais de construção\n   - Construção residencial\n   - Empréstimo/financiamento para reforma\n\n**Desativar:** Advantage+ Audience, Audience Network\n\n---\n\n**POSICIONAMENTO (manual)**\n- Stories/Reels: vídeo vertical 9:16 completo\n- Feed: mesmo vídeo + legenda com os 3 prêmios visíveis sem precisar expandir\n- Audience Network: desativado\n- Messenger: desativado\n\n---\n\n**TÍTULO**\nVocê tem terreno no Jatobás? Pare de pagar só o terreno\n\n**LEGENDA**\nSe você comprou terreno financiado no Residencial Jatobás, essa é pra você. 🎁\n\nAo fechar a construção, você para de pagar a parcela do terreno — e ainda escolhe um cupom pra usar na obra: TV, ar-condicionado ou PlayStation 5.\n\nPromoção só pra quem já tem terreno aqui. Fale com a gente antes que acabe.\n\n**CTA do botão:** Fale conosco\n\n**FORMULÁRIO (Instant Form)**\n1. Nome completo\n2. Telefone\n3. Pergunta qualificadora: \"Qual quadra/lote é o seu no Jatobás?\"\n\n---\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar se os prêmios (TV, ar-condicionado, PS5) têm alguma regra/restrição — Meta é rígida com regulamento de promoção e pode reprovar o anúncio sem isso claro\n\n---\n\n**REGRAS AUTOMÁTICAS**\n- SE CPL > R$ 60 por 3 dias consecutivos → pausar o conjunto e notificar\n- SE frequência > 3,5 → reduzir orçamento em 20%\n- SE gasto > R$ 50 sem nenhum lead → pausar e revisar criativo\n- SE CPL < R$ 25 por 3 dias → aumentar orçamento em 20%",
+    "checklist": [
+     {
+      "t": "Exportar lista de clientes Jatobás do CRM",
+      "done": false
+     },
+     {
+      "t": "Subir a lista como Público Personalizado no Gerenciador",
+      "done": false
+     },
+     {
+      "t": "Criar a campanha (objetivo: Geração de Cadastros)",
+      "done": false
+     },
+     {
+      "t": "Aplicar 'Restringir ainda mais' com os interesses de construção",
+      "done": false
+     },
+     {
+      "t": "Conferir estimativa de alcance",
+      "done": false
+     },
+     {
+      "t": "Desativar Advantage+, Audience Network e Messenger",
+      "done": false
+     },
+     {
+      "t": "Configurar posicionamento manual (Stories/Reels + Feed)",
+      "done": false
+     },
+     {
+      "t": "Subir o vídeo do Vini como criativo",
+      "done": false
+     },
+     {
+      "t": "Preencher título e legenda",
+      "done": false
+     },
+     {
+      "t": "Confirmar regras dos prêmios (TV, ar, PS5) antes de publicar",
+      "done": false
+     },
+     {
+      "t": "Criar o formulário (Instant Form) com as 3 perguntas",
+      "done": false
+     },
+     {
+      "t": "Definir orçamento (R$ 20-30/dia)",
+      "done": false
+     },
+     {
+      "t": "Configurar as 4 regras automáticas",
+      "done": false
+     },
+     {
+      "t": "Revisar tudo e publicar",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0236",
+   "type": "add",
+   "task": {
+    "id": "t-evento-lancamento-clube-casas",
+    "codigo": 73,
+    "titulo": "EVENTO — LANÇAMENTO CLUBE CASAS (11/09)",
+    "coluna": "doing",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "descricao": "Lançamento do programa de indicação, reunindo clientes, corretores e imobiliárias no mesmo evento.\n\n**DECIDIDO**\n- Data: sexta-feira, 11 de setembro\n- Horário: a partir das 16h (confirmar se é 16h ou 19h — ficou ambíguo na reunião)\n- Nome: \"Lançamento do Clube Casas\" (não \"inauguração\")\n- Formato único, sem separar cliente de corretor em eventos diferentes\n- Churrasco (churrasqueiro + mesa de frios) e chope\n- Apresentação institucional: história resumida, números (crescimento 320% 2023→2024, 78 casas vendidas, faturamento R$13mi em 2025), meta 2026 (ser a melhor construtora de Rio Preto)\n- Dinâmica \"Silvio Santos\": quem mandar 5 contatos primeiro ganha R$200 na hora\n- Entrega simbólica de cheque de R$1.000 pra 2-3 clientes com indicação já pendente\n\n**PROGRAMA DE INDICAÇÃO — a mudança central**\n- Sai prêmio variado (TV, ar-condicionado, PS5, viagem), entra dinheiro direto\n- Cada indicação fechada = R$1.000 em cheque\n- 10 indicações fechadas = 1 iPhone\n- Site/dashboard estilo \"Metropolitano\": ranking, pontuação, integração com CRM (card movido pra \"Fechado\" conta ponto automático)\n\n**⚠️ PRECISO DE VOCÊ**\n- Confirmar horário exato (16h ou 19h)\n- Decidir se vai ter pagode ou não\n- Fechar o prazo do programa: sem data, ou ciclos de 4 em 4 meses com bônus pros 3 primeiros de cada ciclo (R$1.000 ou R$1.500 cada — não decidido)\n- Aprovar os números finais da nova comissão de corretores/imobiliárias (baixar de 4% pra 3%, repassando 1% pro time interno)\n\n**Nota:** prazo é curto pro dia 11 — vale considerar se algum item pode ficar pra uma segunda comunicação, sem prejudicar o evento em si.",
+    "checklist": [
+     {
+      "t": "Confirmar horário exato e decisão sobre música",
+      "done": false
+     },
+     {
+      "t": "Fechar cardápio e bebida com fornecedor",
+      "done": false
+     },
+     {
+      "t": "Criar apresentação institucional atualizada",
+      "done": false
+     },
+     {
+      "t": "Gravar e soltar vídeo teaser no grupo (sem entregar detalhes)",
+      "done": false
+     },
+     {
+      "t": "Providenciar os cheques de R$1.000 pendentes",
+      "done": false
+     },
+     {
+      "t": "Desenhar números finais da comissão de corretores/imobiliárias",
+      "done": false
+     },
+     {
+      "t": "Planejar a dinâmica Silvio Santos (quem veste, mecânica)",
+      "done": false
+     },
+     {
+      "t": "Fechar prazo/formato definitivo do programa de indicação",
+      "done": false
+     },
+     {
+      "t": "Montar o site/dashboard de ranking (ou definir se fica pra depois)",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0237",
+   "type": "add",
+   "task": {
+    "id": "t-empresa-marketing-nova",
+    "codigo": 74,
+    "titulo": "NOVA EMPRESA DE MARKETING — PACOTES E ESTRUTURA",
+    "coluna": "ideas",
+    "area": "OrkAI",
+    "prioridade": "media",
+    "descricao": "Nova empresa de marketing, vendendo pacotes de fotos/vídeo/conteúdo pra pequenos prestadores de serviço, usando o Instagram do Lucas/Cris/iCasas como vitrine.\n\n**⚠️ Nome da empresa ainda não definido.**\n\n**PACOTES DISCUTIDOS (valores não fechados)**\n\nEntrada — R$ 900\n- 5 fotos profissionais\n- 1 vídeo de apresentação\n- 4 posts de arte/criativos (tema definido pelo cliente)\n\nIntermediário — R$ 1.400\n- Tudo do anterior +\n- 3 conteúdos fixados no perfil\n- Captação do serviço/produto em campo\n- Organização geral do Instagram\n\nCompleto — R$ 1.500\n- Tudo dos anteriores +\n- Um segundo vídeo de Reels\n- Mais conteúdos mensais (quantidade indefinida — variou entre 3 e 10 na conversa)\n\nTráfego pago — adicional (~R$100 pela gestão)\n- Investimento diário do anúncio é custo do próprio cliente, separado do pacote\n\n**PRECIFICAÇÃO:** os valores foram pensados como \"efeito pipoca de cinema\" — aproximar o intermediário do completo pra maioria escolher o pacote maior.\n\n**⚠️ PRECISO DE VOCÊ**\n- Fechar o nome da empresa\n- Fechar definitivamente o que entra em cada pacote (mudou várias vezes na conversa)\n- Confirmar quantidade de conteúdos mensais do pacote completo",
+    "checklist": [
+     {
+      "t": "Fechar o nome da empresa",
+      "done": false
+     },
+     {
+      "t": "Fechar o conteúdo definitivo de cada pacote (900/1400/1500)",
+      "done": false
+     },
+     {
+      "t": "Reorganizar e profissionalizar o Instagram do Lucas",
+      "done": false
+     },
+     {
+      "t": "Reorganizar e profissionalizar o Instagram do Cris",
+      "done": false
+     },
+     {
+      "t": "Reorganizar o Instagram da iCasas como case",
+      "done": false
+     },
+     {
+      "t": "Rodar o processo internamente como teste (cliente-piloto)",
+      "done": false
+     },
+     {
+      "t": "Buscar os 3 primeiros clientes reais",
+      "done": false
+     },
+     {
+      "t": "Montar proposta comercial / apresentação de venda",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0238",
+   "type": "add",
+   "task": {
+    "id": "t-cliente-cris-silvestre-marketing",
+    "codigo": 75,
+    "titulo": "CLIENTE — CRIS SILVESTRE (AUTOMAÇÃO RESIDENCIAL)",
+    "coluna": "doing",
+    "area": "OrkAI",
+    "prioridade": "media",
+    "descricao": "Primeiro cliente da nova empresa de marketing — Cris Silvestre, IDV própria já pronta.\n\n**IDENTIDADE VISUAL (analisada do material em PDF)**\n- Logotipo: \"CRIS SILVESTRE\" em tipografia pincel/street + mascote (caricatura dele mesmo)\n- Tipografia principal: Skulrock (títulos, estilo grafite)\n- Tipografia secundária: Montaser Arabic (texto corrido)\n- Paleta: amarelo pastel #f9ea8d · turquesa #00c3bc · preto #000000 · branco #ffffff\n- Tom de voz: frases curtas e diretas, com uma virada no meio — registro de liderança/mentalidade, não corporativo\n  Exemplos do material: \"Se você só acerta, talvez esteja jogando pequeno demais.\" / \"Tudo parece difícil quando você está prestes a subir de nível. Não desista.\"\n\n**NOVA FRENTE DE CONTEÚDO: automação residencial / consultoria de automação**\n\nObjetivo: criar posts usando a IDV já existente, mas migrando o tema de liderança genérica pra autoridade em automação residencial.\n\n**⚠️ PRECISO DE VOCÊ**\n- Escolher, entre as frases sugeridas no chat, quais vão virar posts\n- Confirmar se mantém o estilo \"post motivacional\" ou se quer um formato mais educativo/técnico também (ex.: antes/depois, mitos sobre automação)\n- Definir a frequência de postagem",
+    "checklist": [
+     {
+      "t": "Escolher as frases que vao virar os primeiros posts",
+      "done": false
+     },
+     {
+      "t": "Montar os posts usando a IDV (cores, tipografia, mascote)",
+      "done": false
+     },
+     {
+      "t": "Definir formato: so frase motivacional ou variar com conteudo educativo",
+      "done": false
+     },
+     {
+      "t": "Publicar o primeiro lote e medir engajamento",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0239",
+   "type": "update",
+   "task": {
+    "id": "t-cliente-cris-silvestre-marketing",
+    "descricao": "Primeiro cliente da nova empresa de marketing — Cris Silvestre, IDV própria já pronta.\n\n**IDENTIDADE VISUAL (analisada do material em PDF)**\n- Logotipo: \"CRIS SILVESTRE\" em tipografia pincel/street + mascote (caricatura dele mesmo)\n- Tipografia principal: Skulrock (títulos, estilo grafite)\n- Tipografia secundária: Montaser Arabic (texto corrido)\n- Paleta: amarelo pastel #f9ea8d · turquesa #00c3bc · preto #000000 · branco #ffffff\n- Tom de voz: frases curtas e diretas, com uma virada no meio — registro de liderança/mentalidade, não corporativo\n\n**FRENTE DE CONTEÚDO: automação residencial / consultoria de automação**\n\nPosts organizados em 2 blocos, cadência sugerida de 2 Bloco A : 1 Bloco B.\n\nBLOCO A — Provocação (para o scroll)\n1. Sua casa não precisa ser inteligente. Precisa trabalhar por você.\n2. Automação não é luxo. É parar de perder tempo com o óbvio.\n3. Se você ainda levanta pra apagar luz, o atrasado não é você. É a sua casa.\n4. Tecnologia boa é a que você para de notar que existe.\n5. Casa automatizada não é pra impressionar visita. É pra facilitar sua rotina quando ninguém está vendo.\n6. O luxo de hoje não é ter mais coisas em casa. É não precisar pensar nelas.\n7. Você não contrata automação pra mostrar. Contrata pra esquecer que ela existe.\n\nBLOCO B — Autoridade técnica (constrói confiança)\n8. Automação sem projeto é gambiarra cara. Consultoria é o que separa gadget de solução.\n9. Todo projeto de automação bom começa antes da obra. Não depois dela pronta.\n10. Não é sobre comprar tecnologia. É sobre alguém entender o que a sua rotina realmente precisa.\n\n**⚠️ PRECISO DE VOCÊ**\n- Definir a frequência real de postagem (sugestão: 3x/semana)\n- Aprovar o visual de cada post (cores/tipografia da IDV aplicadas em cima das frases)",
+    "checklist": [
+     {
+      "t": "Definir frequencia de postagem",
+      "done": false
+     },
+     {
+      "t": "Montar visual do Bloco A (provocacao) com a IDV",
+      "done": false
+     },
+     {
+      "t": "Montar visual do Bloco B (autoridade) com a IDV",
+      "done": false
+     },
+     {
+      "t": "Publicar o primeiro lote e medir engajamento",
+      "done": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "op-0240",
+   "type": "remove",
+   "task_id": "t-copy-a5-obra-chave"
+  },
+  {
+   "id": "op-0241",
+   "type": "remove",
+   "task_id": "t-copy-a6-mae"
+  },
+  {
+   "id": "op-0242",
+   "type": "remove",
+   "task_id": "t-copy-a7-parcela"
+  },
+  {
+   "id": "op-0243",
+   "type": "remove",
+   "task_id": "t-copy-a8-subsidio"
+  },
+  {
+   "id": "op-0244",
+   "type": "remove",
+   "task_id": "t-copy-a9-entrada"
+  },
+  {
+   "id": "op-0245",
+   "type": "remove",
+   "task_id": "t-copy-a10-simula"
+  },
+  {
+   "id": "op-0246",
+   "type": "remove",
+   "task_id": "t-copy-a11-suite"
+  },
+  {
+   "id": "op-0247",
+   "type": "col_del",
+   "col_id": "tarefas"
+  },
+  {
+   "id": "op-0248",
+   "type": "col_add",
+   "depois": "done",
+   "coluna": {
+    "id": "cancelados",
+    "n": "Cancelados",
+    "c": "#6b7280"
+   }
+  },
+  {
+   "id": "op-0249",
+   "type": "add",
+   "task": {
+    "id": "t-clube-whatsapp",
+    "codigo": 76,
+    "titulo": "CLUBE · Trocar número de WhatsApp no site",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "ordem": 620,
+    "descricao": "**Bloqueador — site no ar quebrado.**\n\nA variável `WHATSAPP_CLUBE` no início do script do `clube-icasas-v2.html` ainda está com o placeholder `5500000000000`.\n\nTodo contato do formulário e do CTA da seção concierge está se perdendo. Trocar pelo número real no formato `55` + DDD + número e republicar em `mkticasas.github.io/crm-icasas/clubicasas.html`."
+   }
+  },
+  {
+   "id": "op-0250",
+   "type": "add",
+   "task": {
+    "id": "t-clube-bucket-fotos",
+    "codigo": 77,
+    "titulo": "CLUBE · Confirmar bucket indicadores-fotos",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "ordem": 630,
+    "descricao": "Conferir no Supabase Storage (projeto `mqdhavyaeujufhlqdlfg`):\n\n- Bucket `indicadores-fotos` existe\n- Está marcado como **público** (senão a foto sobe mas não aparece no ranking)\n- As 3 políticas de storage foram rodadas (insert/update para `authenticated`, select para `public`)\n\nSem isso, o upload de foto no cadastro de indicador retorna erro 400."
+   }
+  },
+  {
+   "id": "op-0251",
+   "type": "add",
+   "task": {
+    "id": "t-clube-imagens",
+    "codigo": 78,
+    "titulo": "CLUBE · Substituir as 8 imagens do site",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "ordem": 640,
+    "descricao": "Trocar os placeholders do `clube-icasas-v2.html`:\n\n1. Logo do header (`.header .marca img`) — 26px altura, PNG/SVG transparente\n2. Ícone \"O que é o Clube\" (`.intro-icone`) — 64×64 PNG transparente\n3-5. Ícones dos 3 passos (`.intro-icone`) — 64×64 cada\n6-7. Ícones dos slides de prêmio (`.slide-icone`, dinheiro e iPhone) — 96×96, renderiza a 48px\n8. Foto da seção concierge (`.concierge-visual`) — 800×600, foto real"
+   }
+  },
+  {
+   "id": "op-0252",
+   "type": "add",
+   "task": {
+    "id": "t-clube-indicadores-antigos",
+    "codigo": 79,
+    "titulo": "CLUBE · Cadastrar clientes antigos como indicadores",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "ordem": 650,
+    "descricao": "Clientes que fecharam contrato **antes** do sistema existir não entram pelo trigger `criar_indicador_ao_fechar` — precisam de cadastro manual pelo botão \"Novo Indicador\" na aba Clube iCasas do CRM.\n\n**Risco:** se o site for divulgado antes disso, o ranking vai ao ar vazio ou quase, o que derruba a credibilidade do programa na largada.\n\nLevantar a lista de clientes `stage='won'` da Construtora e cadastrar antes de qualquer divulgação."
+   }
+  },
+  {
+   "id": "op-0253",
+   "type": "add",
+   "task": {
+    "id": "t-clube-teste-ponta-a-ponta",
+    "codigo": 80,
+    "titulo": "CLUBE · Testar fluxo de pontuação ponta a ponta",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "ordem": 660,
+    "descricao": "Validar antes de divulgar:\n\n1. Criar lead novo no CRM com \"É uma indicação\" marcado, escolhendo um indicador\n2. Mover o lead até `stage='won'`\n3. Conferir se o trigger `pontuar_indicacao` gravou em `indicacoes_pontos`\n4. Conferir se o ponto aparece na view `ranking_publico` e no pódio do site\n5. Repetir o mesmo lead pra confirmar que o unique por `lead_id` não duplica ponto"
+   }
+  },
+  {
+   "id": "op-0254",
+   "type": "add",
+   "task": {
+    "id": "t-trafego-revisar-regras",
+    "codigo": 81,
+    "titulo": "TRÁFEGO · Revisar limiares das 4 regras automáticas",
+    "coluna": "ideas",
+    "area": "Tráfego",
+    "prioridade": "media",
+    "ordem": 670,
+    "descricao": "As 4 regras automáticas das campanhas Ary Attab 3 e Jatobás foram definidas **antes** de existir qualquer CPL real:\n\n1. CPL > R$60 por 3 dias → pausar\n2. Frequência > 3,5 → reduzir orçamento 20%\n3. Gasto > R$50 sem lead → pausar\n4. CPL < R$25 por 3 dias → aumentar orçamento 20%\n\nDepois dos primeiros dias rodando, recalibrar com o número real. Limiar chutado pausa campanha boa ou deixa campanha cara rodando."
+   }
+  }
+ ]
 }
