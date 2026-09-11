@@ -1163,6 +1163,20 @@
     "ordem": 670,
     "descricao": "As 4 regras automáticas das campanhas Ary Attab 3 e Jatobás foram definidas **antes** de existir qualquer CPL real:\n\n1. CPL > R$60 por 3 dias → pausar\n2. Frequência > 3,5 → reduzir orçamento 20%\n3. Gasto > R$50 sem lead → pausar\n4. CPL < R$25 por 3 dias → aumentar orçamento 20%\n\nDepois dos primeiros dias rodando, recalibrar com o número real. Limiar chutado pausa campanha boa ou deixa campanha cara rodando."
    }
+  },
+  {
+   "id": "op-0255",
+   "type": "add",
+   "task": {
+    "id": "t-comunicado-greve-caixa",
+    "codigo": 82,
+    "titulo": "COMUNICADO · Greve da Caixa — assinaturas e medições",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "ordem": 680,
+    "descricao": "Greve nacional dos bancários da Caixa iniciada em 10/09.\n\n**Duas peças:**\n\n1. **Post no Instagram** — clientes com assinatura de contrato agendada para 10 e 11 que foram remarcadas. Card + legenda prontos.\n2. **Mensagem no WhatsApp** — fornecedores, sobre medições retidas e pagamentos. A Duda faz o disparo.\n\nAmbos comunicam retomada na próxima semana.\n\n**Atenção:** a greve foi declarada por tempo indeterminado. Se a data não se confirmar, será preciso emitir um segundo comunicado corrigindo — acompanhar antes de prometer data nova em público."
+   }
   }
  ]
 }
