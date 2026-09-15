@@ -1834,6 +1834,14 @@ async function tkSyncOps(){
           await db.from('task_config').upsert({id:1,colunas:cols});
           TK_COLS=cols;
         }
+      }else if(op.type==='col_del'&&op.col_id){
+        const {data:cfg}=await db.from('task_config').select('colunas').eq('id',1).maybeSingle();
+        let cols=(cfg&&cfg.colunas)||TK_COLS.slice();
+        const restantes=cols.filter(function(c){return c.id!==op.col_id;});
+        if(restantes.length!==cols.length){
+          await db.from('task_config').upsert({id:1,colunas:restantes});
+          TK_COLS=restantes;
+        }
       }else if(op.type==='config'&&op.config){
         await db.from('task_config').upsert({id:1,...op.config});
       }else if(op.type==='update'&&op.task&&op.task.id){
