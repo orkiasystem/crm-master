@@ -3286,14 +3286,30 @@ function stopNotificationPolling(){
   if(notifPollInterval){ clearInterval(notifPollInterval); notifPollInterval = null; }
 }
 
+// Protecao contra cliente com Supabase fora do ar (projeto apagado, DNS morto).
+// Sem isso, um endereco invalido era consultado a cada 15s, empilhando erro no console
+// e travando a fila — as consultas eram sequenciais, entao um cliente morto segurava
+// todos os outros atras dele.
+const NOTIF_MAX_FALHAS = 3;
+const NOTIF_PAUSA_MS = 10 * 60 * 1000;
+const notifFalhas = {};
+
 async function checkNewSupportMessages(){
-  const clientsWithSupabase = allClients.filter(c=>c.supabase_url && c.supabase_key);
-  for(const client of clientsWithSupabase){
+  const agora = Date.now();
+  const clientsWithSupabase = allClients.filter(function(c){
+    if(!c.supabase_url || !c.supabase_key) return false;
+    const f = notifFalhas[c.id];
+    if(f && f.bloqueadoAte && f.bloqueadoAte > agora) return false; // em pausa
+    return true;
+  });
+
+  await Promise.allSettled(clientsWithSupabase.map(async function(client){
     try{
       const data = await fetchClientSupportTable(client, 'sender=eq.client&select=*&order=created_at.desc&limit=10');
-      if(!data.length) continue;
+      delete notifFalhas[client.id]; // voltou a responder, zera o contador
+      if(!data.length) return;
       const lastSeen = notifLastSeen[client.id] || null;
-      const newOnes = lastSeen ? data.filter(m=>new Date(m.created_at) > new Date(lastSeen)) : [data[0]]; // primeira vez: só pega a mais recente, evita notificar histórico antigo todo de uma vez
+      const newOnes = lastSeen ? data.filter(m=>new Date(m.created_at) > new Date(lastSeen)) : [data[0]]; // primeira vez: so pega a mais recente
       if(newOnes.length){
         newOnes.reverse().forEach(m=>{
           notifQueue.unshift({ clientId: client.id, clientName: client.client_name, message: m.message, senderName: m.sender_name, createdAt: m.created_at });
@@ -3303,10 +3319,17 @@ async function checkNewSupportMessages(){
         playNotifSound();
       }
     }catch(e){
-      console.warn('Erro ao checar notificações de', client.client_name, e.message);
+      const f = notifFalhas[client.id] || { seguidas: 0, bloqueadoAte: 0 };
+      f.seguidas++;
+      if(f.seguidas === NOTIF_MAX_FALHAS){
+        f.bloqueadoAte = Date.now() + NOTIF_PAUSA_MS;
+        console.warn('Notificacoes de "'+client.client_name+'" pausadas por 10 min apos '+f.seguidas+' falhas seguidas. Verifique o campo supabase_url deste cliente.');
+      }
+      notifFalhas[client.id] = f;
     }
-  }
-  notifQueue = notifQueue.slice(0, 30); // limita histórico exibido no sino
+  }));
+
+  notifQueue = notifQueue.slice(0, 30); // limita historico exibido no sino
   updateNotifBadge();
 }
 
