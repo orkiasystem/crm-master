@@ -1205,6 +1205,41 @@
     "ordem": 700,
     "descricao": "Formato recorrente de conteúdo, 30-40s, gravado na obra pelo celular. Mesma estrutura toda semana, muda a obra e a etapa.\n\n**0-4s** — \"Diário de obra. Casa do [cliente/bairro], semana [X].\" Plano aberto da fachada.\n\n**4-12s** — \"Essa semana a gente fechou a [etapa]. Aqui era [antes], agora está [depois].\" Andando e apontando.\n\n**12-24s** — Um detalhe técnico por vídeo: espessura de laje, tipo de fundação, posição de ponto elétrico, passagem de conduíte da automação. É o bloco que diferencia de vídeo de vendedor.\n\n**24-32s** — \"Semana que vem começa [próxima etapa].\"\n\n**32-38s** — Fecho fixo, sempre igual: \"E o cliente acompanha tudo isso pelo celular, etapa por etapa.\"\n\n**Regras:** sempre o mesmo ponto de abertura na obra, pra dar comparação entre semanas. Celular na horizontal. Legenda queimada. Sem decoreba — funciona por parecer registro.\n\n**Ganho:** quatro diários viram um \"do terreno à chave\" no fim da obra, sem gravar nada novo."
    }
+  },
+  {
+   "id": "op-0258",
+   "type": "remove",
+   "task_id": "t-copy-a5-obra-chave"
+  },
+  {
+   "id": "op-0259",
+   "type": "remove",
+   "task_id": "t-copy-a6-mae"
+  },
+  {
+   "id": "op-0260",
+   "type": "remove",
+   "task_id": "t-copy-a7-parcela"
+  },
+  {
+   "id": "op-0261",
+   "type": "remove",
+   "task_id": "t-copy-a8-subsidio"
+  },
+  {
+   "id": "op-0262",
+   "type": "remove",
+   "task_id": "t-copy-a9-entrada"
+  },
+  {
+   "id": "op-0263",
+   "type": "remove",
+   "task_id": "t-copy-a10-simula"
+  },
+  {
+   "id": "op-0264",
+   "type": "remove",
+   "task_id": "t-copy-a11-suite"
   }
  ]
 }
