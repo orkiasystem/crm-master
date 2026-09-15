@@ -1177,6 +1177,34 @@
     "ordem": 680,
     "descricao": "Greve nacional dos bancários da Caixa iniciada em 10/09.\n\n**Duas peças:**\n\n1. **Post no Instagram** — clientes com assinatura de contrato agendada para 10 e 11 que foram remarcadas. Card + legenda prontos.\n2. **Mensagem no WhatsApp** — fornecedores, sobre medições retidas e pagamentos. A Duda faz o disparo.\n\nAmbos comunicam retomada na próxima semana.\n\n**Atenção:** a greve foi declarada por tempo indeterminado. Se a data não se confirmar, será preciso emitir um segundo comunicado corrigindo — acompanhar antes de prometer data nova em público."
    }
+  },
+  {
+   "id": "op-0256",
+   "type": "add",
+   "task": {
+    "id": "t-roteiro-video-lugner",
+    "codigo": 83,
+    "titulo": "ROTEIRO · Vídeo de apresentação do Lugner",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "alta",
+    "ordem": 690,
+    "descricao": "Vídeo de apresentação do Lugner — serve como **fixado 2** e como destaque **COMEÇA AQUI**. Cerca de 55s, uma tomada, gravado em obra.\n\n**0-5s** — \"Se você tem um terreno e não sabe se consegue construir, esse vídeo é pra você.\"\n\n**5-12s** — \"Sou Lugner, engenheiro civil e sócio do Grupo iCasas. A gente projeta e constrói casa em Rio Preto e região.\"\n\n**12-24s** — \"Funciona assim: a gente senta com você, entende o que dá pra fazer no seu terreno e no seu orçamento, e monta o projeto. Você aprova antes de qualquer coisa começar.\"\n\n**24-38s** — \"E aí vem o que a gente faz diferente: durante a obra você acompanha cada etapa pelo celular. E quando recebe a chave, a casa também já é comandada pelo celular — automação instalada durante a construção, não depois. Do primeiro dia de obra até você morar, tudo na sua mão.\"\n\n**38-48s** — nomear o que entra de automação: iluminação, portão, climatização.\n\n**48-55s** — \"Se você tem terreno ou está pensando em comprar, chama aqui. A primeira conversa não custa nada.\"\n\n**Produção:** celular na horizontal, altura dos olhos, uma tomada só. Gravar em obra, não em escritório. Áudio é o maior risco — usar lapela ou canto protegido de vento. Legenda queimada obrigatória.\n\n**Pendência:** confirmar se automação entra em toda casa ou é opcional. Se for opcional, trocar \"a casa é entregue com automação\" por \"a casa já sai preparada, com a automação instalada durante a obra\"."
+   }
+  },
+  {
+   "id": "op-0257",
+   "type": "add",
+   "task": {
+    "id": "t-roteiro-diario-de-obra",
+    "codigo": 84,
+    "titulo": "ROTEIRO · Diário de Obra (formato recorrente)",
+    "coluna": "todo",
+    "area": "iCasas – Construtora",
+    "prioridade": "media",
+    "ordem": 700,
+    "descricao": "Formato recorrente de conteúdo, 30-40s, gravado na obra pelo celular. Mesma estrutura toda semana, muda a obra e a etapa.\n\n**0-4s** — \"Diário de obra. Casa do [cliente/bairro], semana [X].\" Plano aberto da fachada.\n\n**4-12s** — \"Essa semana a gente fechou a [etapa]. Aqui era [antes], agora está [depois].\" Andando e apontando.\n\n**12-24s** — Um detalhe técnico por vídeo: espessura de laje, tipo de fundação, posição de ponto elétrico, passagem de conduíte da automação. É o bloco que diferencia de vídeo de vendedor.\n\n**24-32s** — \"Semana que vem começa [próxima etapa].\"\n\n**32-38s** — Fecho fixo, sempre igual: \"E o cliente acompanha tudo isso pelo celular, etapa por etapa.\"\n\n**Regras:** sempre o mesmo ponto de abertura na obra, pra dar comparação entre semanas. Celular na horizontal. Legenda queimada. Sem decoreba — funciona por parecer registro.\n\n**Ganho:** quatro diários viram um \"do terreno à chave\" no fim da obra, sem gravar nada novo."
+   }
   }
  ]
 }
